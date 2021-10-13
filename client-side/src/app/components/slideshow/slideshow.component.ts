@@ -72,6 +72,10 @@ export class SlideshowComponent implements OnInit {
         setTimeout(function(){that.slideIndex ++; that.showSlides() }, 3000);
       }
 
+      setSlideIndex(index){
+          this.slideIndex = index;
+      }
+
 
 
 

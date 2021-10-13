@@ -3,5 +3,15 @@
        [slide]="currentSlide" 
        [slideshowConfig]="hostObject?.slideshowConfig">
 </slide>
+<div id="slideFooterBtn">
+<div id="dotsCont">
+       <span *ngFor="slide of hostObject?.slides; let i = index" 
+              class="dot" 
+              (click)="setSlideIndex(i)" 
+              [ngClass]="{'active': i ===  slideIndex}">
+       </span>
+</div>
+<div id="playCont"></div>
+</div>
 
 

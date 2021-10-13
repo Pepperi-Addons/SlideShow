@@ -3,6 +3,49 @@
 // Get the theme object.
 //$pepperi-theme: get-pepperi-theme();
 
+#slideFooterBtn{
+    z-index: 1;
+    bottom: .5rem;
+    height: 2rem;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+#playCont,
+#dotsCont{
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+}
+
+#playCont{
+    width: 2rem;
+    height: 2rem;
+}
+#dotsCont{
+
+    padding: .375rem .5rem;
+   
+    .dot {
+        cursor: pointer;
+        margin: 0 2px;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+        width: .75rem;
+        height: .75rem;
+        background: rgba(26, 26, 26, 0.24);
+      }
+      
+      .active, .dot:hover {
+        background-color: #717171;
+      }
+}
+}
+
+
 
 
 
