@@ -32,7 +32,9 @@ export class SlideshowComponent implements OnInit {
 
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
 
+    public isPause = false;
     public slideIndex = 0;
+    private timer: any;
 
     constructor(
         public addonService: SlideshowService,
@@ -69,11 +71,25 @@ export class SlideshowComponent implements OnInit {
         
         
         var that = this;
-        setTimeout(function(){that.slideIndex ++; that.showSlides() }, 3000);
+        this.timer = setTimeout(function(){that.slideIndex ++; that.showSlides() }, 3000);
       }
 
       setSlideIndex(index){
           this.slideIndex = index;
+      }
+
+      setRunState(event){
+        this.isPause = !this.isPause;
+        
+        if(this.isPause){
+            clearTimeout(this.timer);
+        }
+        else{
+            this.showSlides();
+        }
+        
+        
+        
       }
 
 

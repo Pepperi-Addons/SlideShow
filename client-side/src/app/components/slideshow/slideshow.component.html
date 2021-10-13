@@ -11,7 +11,11 @@
               [ngClass]="{'active': i ===  slideIndex}">
        </span>
 </div>
-<div id="playCont"></div>
-</div>
+
+<pep-button *ngIf="!isPause" sizeType='sm' styleType="regular" iconName="system_pause" (buttonClick)="setRunState($event)"></pep-button>
+<pep-button *ngIf="isPause" sizeType='sm' styleType="regular" iconName="system_play" (buttonClick)="setRunState($event)"></pep-button>
+<!-- <button class="spacing-element pep-button icon-button sm weak" mat-button>
+                            <pep-icon name="system_pause"></pep-icon>
+</button> -->
 
 
