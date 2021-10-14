@@ -3,7 +3,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PepStyleType, PepSizeType} from '@pepperi-addons/ngx-lib';
-import { IPepButtonClickEvent } from '@pepperi-addons/ngx-lib/button';
+import { IPepButtonClickEvent, PepButton } from '@pepperi-addons/ngx-lib/button';
 import { ISlideShow, ISlideshowEditor, slide, TransitionType, ArrowShape, ISlideEditor, textColor } from '../slideshow.model';
 
 interface groupButtonArray {
@@ -44,7 +44,7 @@ export class SlideshowEditorComponent implements OnInit {
 
     HeightUnitsType: Array<groupButtonArray>;
     InnerSpacing: Array<{key: PepSizeType, value: string}>;
-    ArrowsType: Array<groupButtonArray>;
+    ArrowsType: Array<PepButton>;
     ArrowButtons: Array<{key: ArrowShape, value: string}>;
     ControllerSize: Array<groupButtonArray>;
     
@@ -96,18 +96,20 @@ export class SlideshowEditorComponent implements OnInit {
         const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();
 
         this.transitionTypes = [
-            { key: 'Fade', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.FADE') },
-            { key: 'Blur', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.BLUR') },
-            { key: 'Dissolve', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.DISSOLVE') },
-            { key: 'Iris', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.IRIS') }
+            { key: 'fade', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.FADE') },
+            { key: 'blur', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.BLUR') },
+            { key: 'dissolve', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.DISSOLVE') },
+            { key: 'iris', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.IRIS') }
         ]
 
         this.transitionTimes = [
-            { key: '3', value: '3'},
-            { key: '5', value: '5'},
-            { key: '7', value: '7'},
-            { key: '10', value: '10'},
-            { key: '15', value: '15'},
+            { key: '1s', value: '1'},
+            { key: '2s', value: '2'},
+            { key: '3s', value: '3'},
+            { key: '5s', value: '5'},
+            { key: '7s', value: '7'},
+            { key: '10s', value: '10'},
+            { key: '15s', value: '15'},
         ]
         
         this.buttonStyles = [
@@ -130,9 +132,9 @@ export class SlideshowEditorComponent implements OnInit {
         ];
     
         this.ArrowsType = [
-            { key: 'Two', value: this.translate.instant('SLIDESHOW.ARROW_TYPE.TWO_ARROWS') },
-            { key: 'One', value: this.translate.instant('SLIDESHOW.ARROW_TYPE.ONE_ARROW') },
-            { key: 'Styled', value: this.translate.instant('SLIDESHOW.ARROW_TYPE.STYLED_ARROW') },
+            { key: 'arrow_back', iconName: 'arrow_back', classNames: 'rotate180' },
+            { key: 'arrow_right', iconName: 'arrow_right' },
+            { key: 'arrow_right_alt', iconName: 'arrow_right_alt' }
         ];
     
         this.ArrowButtons = [

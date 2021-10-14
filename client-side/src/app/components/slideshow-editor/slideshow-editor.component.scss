@@ -27,7 +27,9 @@
 
         .group-buttons-container {
             margin-bottom: 1rem;
-
+            .rotate180{
+                transform: rotate(180deg);
+            }
             .toggle-buttons{
                 width: 100%;
             }

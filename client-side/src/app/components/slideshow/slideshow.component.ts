@@ -63,15 +63,18 @@ export class SlideshowComponent implements OnInit {
     }
 
     showSlides() {
-
-        var slides = this.hostObject.slides; 
-        //var dots = document.getElementsByClassName("dot");
-        if (this.slideIndex >= slides.length) {this.slideIndex = 0}
-        //if (this.slideIndex < 1) {this.slideIndex = slides.length}
-        
-        
-        var that = this;
-        this.timer = setTimeout(function(){that.slideIndex ++; that.showSlides() }, 3000);
+        if(!this.hostObject.slideshowConfig.isTransition){
+            this.isPause = true;
+            clearTimeout(this.timer);
+        }
+        else{
+            var slides = this.hostObject.slides; 
+            if (this.slideIndex >= slides.length) {this.slideIndex = 0}
+            
+            var that = this;
+            var duration = this.hostObject.slideshowConfig.transitionDuration * 1000;
+            this.timer = setTimeout(function(){that.slideIndex ++; that.showSlides() }, duration);
+        }
       }
 
       setSlideIndex(index){
@@ -86,10 +89,11 @@ export class SlideshowComponent implements OnInit {
         }
         else{
             this.showSlides();
-        }
-        
-        
-        
+        } 
+      }
+
+      navigate(event){
+
       }
 
 

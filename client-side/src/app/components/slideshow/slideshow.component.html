@@ -3,19 +3,22 @@
        [slide]="currentSlide" 
        [slideshowConfig]="hostObject?.slideshowConfig">
 </slide>
-<div id="slideFooterBtn">
-<div id="dotsCont">
-       <span *ngFor="slide of hostObject?.slides; let i = index" 
-              class="dot" 
-              (click)="setSlideIndex(i)" 
-              [ngClass]="{'active': i ===  slideIndex}">
-       </span>
+<div *ngIf="hostObject?.slideshowConfig?.isUseArrows" id="navigationCont">
+       <pep-button sizeType='sm' styleType="regular" [classNames]="'rotate180'" [iconName]="hostObject?.slideshowConfig?.arrowType" (buttonClick)="navigate($event)"></pep-button>
+       <pep-button sizeType='sm' styleType="regular" [iconName]="hostObject?.slideshowConfig?.arrowType"  (buttonClick)="navigate($event)"></pep-button>
 </div>
-
-<pep-button *ngIf="!isPause" sizeType='sm' styleType="regular" iconName="system_pause" (buttonClick)="setRunState($event)"></pep-button>
-<pep-button *ngIf="isPause" sizeType='sm' styleType="regular" iconName="system_play" (buttonClick)="setRunState($event)"></pep-button>
-<!-- <button class="spacing-element pep-button icon-button sm weak" mat-button>
-                            <pep-icon name="system_pause"></pep-icon>
-</button> -->
+<div id="slideFooterBtn">
+       <div id="dotsCont" class="pep-button sm regular system">
+              <span *ngFor="slide of hostObject?.slides; let i = index" 
+                     class="dot" 
+                     (click)="setSlideIndex(i)" 
+                     [ngClass]="{'active': i ===  slideIndex}">
+              </span>
+       </div>
+       <ng-container *ngIf="hostObject?.slideshowConfig?.isTransition && hostObject?.slideshowConfig?.usePauseButton">
+              <pep-button *ngIf="!isPause" sizeType='sm' styleType="regular" iconName="system_pause" (buttonClick)="setRunState($event)"></pep-button>
+              <pep-button *ngIf="isPause" sizeType='sm' styleType="regular" iconName="system_play" (buttonClick)="setRunState($event)"></pep-button>
+       </ng-container>
+</div>
 
 

@@ -6,8 +6,8 @@
 
                 <pep-textbox [value]="hostObject?.slideshowConfig?.height" [label]="'SLIDESHOW.HEIGHT' | translate" (valueChange)="onSlideshowFieldChange('height',$event)"></pep-textbox>
                 
-                <label class="body-xs ellipsis">{{'SLIDESHOW.INNERSPACING_TITLE' | translate}}</label>
-                <pep-group-buttons [buttons]="InnerSpacing" [selectedButtonKey]="hostObject?.slideshowConfig?.innerSpacing" buttonsClass="md regular" viewType="toggle" stretch="true" (buttonClick)="onSlideshowFieldChange('innerSpacing',$event)">
+                <label class="body-xs ellipsis">{{'SLIDESHOW.INNERPADDING_TITLE' | translate}}</label>
+                <pep-group-buttons [buttons]="InnerSpacing" [selectedButtonKey]="hostObject?.slideshowConfig?.innerPadding" buttonsClass="md regular" viewType="toggle" stretch="true" (buttonClick)="onSlideshowFieldChange('innerPadding',$event)">
                 </pep-group-buttons>
 
                 <pep-checkbox [value]="hostObject?.slideshowConfig?.isTransition" [label]="'SLIDESHOW.TRANSITION' | translate" [renderTitle]="false" (valueChange)="onSlideshowFieldChange('isTransition',$event)"></pep-checkbox>
@@ -17,9 +17,9 @@
                 
                 <div class="split-area">
                     <pep-select [label]="'SLIDESHOW.TRANSITION_TYPE' | translate" [value]="hostObject?.slideshowConfig?.transitionType" [options]="transitionTypes" 
-                        (valueChange)="onSlideshowFieldChange('transitionType',$event)" [emptyOption]="false" [disabled]="!hostObject?.slideshowConfig?.isTransition"></pep-select>
+                        (valueChange)="onSlideshowFieldChange('transitionType',$event)" [emptyOption]="false"></pep-select>
                     <pep-select [label]="'SLIDESHOW.TRANSITION_TIME' | translate" [value]="hostObject?.slideshowConfig?.transitionTime" [options]="transitionTimes"
-                        (valueChange)="onSlideshowFieldChange('transitionTime',$event)" [emptyOption]="false" [disabled]="!hostObject?.slideshowConfig?.isTransition"></pep-select>
+                        (valueChange)="onSlideshowFieldChange('transitionTime',$event)" [emptyOption]="false"></pep-select>
                 </div>
 
                 <pep-checkbox [value]="hostObject?.slideshowConfig?.isUseArrows" [label]="'SLIDESHOW.ARROWS' | translate" [renderTitle]="false" (valueChange)="onSlideshowFieldChange('isUseArrows',$event)"></pep-checkbox>
@@ -45,7 +45,9 @@
                 <pep-checkbox [value]="hostObject?.slideshowConfig?.useControllers" [label]="'SLIDESHOW.CONTROLLERS' | translate" [renderTitle]="false" (valueChange)="onSlideshowFieldChange('useControllers',$event)"></pep-checkbox>
                 <label class="body-xs" [innerHTML]="'SLIDESHOW.CONTROLLERS_DESC' | translate"></label>
 
-                <pep-checkbox class="body-sm" [disabled]="!hostObject?.slideshowConfig?.useControllers" [value]="hostObject?.slideshowConfig?.usePauseButton" 
+                <pep-checkbox class="body-sm" 
+                              [disabled]="!hostObject?.slideshowConfig?.useControllers || !hostObject?.slideshowConfig?.isTransition" 
+                              [value]="hostObject?.slideshowConfig?.usePauseButton && hostObject?.slideshowConfig?.isTransition" 
                               [label]="'SLIDESHOW.CONTROLLERS_PROPERTIES.PAUSE_PLAY' | translate" [renderTitle]="false" 
                               (valueChange)="onSlideshowFieldChange('usePauseButton',$event)"></pep-checkbox>
                 <pep-checkbox class="body-sm" [disabled]="!hostObject?.slideshowConfig?.useControllers" [value]="hostObject?.slideshowConfig?.showOnMobile" 

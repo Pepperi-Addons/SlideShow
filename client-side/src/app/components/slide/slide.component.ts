@@ -1,5 +1,5 @@
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from "@angular/core";
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
 import { PepLayoutService, PepScreenSizeType, PepSizeType, PepStyleType } from '@pepperi-addons/ngx-lib';
 import { ISlideEditor, ISlideShow, ISlideshowEditor } from '../slideshow.model';
 
@@ -11,6 +11,7 @@ import { ISlideEditor, ISlideShow, ISlideshowEditor } from '../slideshow.model';
 
 export class SlideComponent implements OnInit {
     @ViewChild('mainSlideCont', { static: true }) slideContainer: ElementRef;
+
     screenSize: PepScreenSizeType;
     
     @Input() slideshowConfig: ISlideshowEditor;

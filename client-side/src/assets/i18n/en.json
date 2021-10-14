@@ -25,6 +25,7 @@
         "HEIGHTUNITS_VH": "VH (precentage)",
         "HEIGHT": "Height",
         "INNERSPACING_TITLE": "Inner spacing",
+        "INNERPADDING_TITLE": "Inner padding",
         "TRANSITION": "Transition",
         "TRANSITION_TITLE": "Set transition duration and type.",
         "SLIDE_DURATION": "Slide duration (s)",
