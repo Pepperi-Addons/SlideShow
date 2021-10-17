@@ -5,7 +5,8 @@
      [ngClass]="['horAlign_'+slide?.horizontalAlign, 
                  'verAlign_'+slide?.verticalAlign,
                  'inner_padding_' + slideshowConfig.innerPadding,
-                 slideshowConfig.transitionType]">
+                 slideshowConfig.transitionType,
+                 slideshowConfig?.dropShadow?.useDropShadow === true ? 'drop-shadow_'+ slideshowConfig?.dropShadow?.intensity : '']">
     <pep-page-layout [ngStyle]="{'-webkit-animation-duration':  slideshowConfig.transitionTime,
                                  'animation-duration': slideshowConfig.transitionTime}" 
                       class="animation" 

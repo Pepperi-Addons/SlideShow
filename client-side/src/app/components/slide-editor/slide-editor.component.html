@@ -122,14 +122,14 @@
         </mat-slider>
     </div>
 
-    <pep-checkbox [value]="hostObject?.slides[id].dropShadow.useDropShadow" [label]="'SLIDE_EDITOR.DROP_SHADOW' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('dropShadow.useDropShadow',$event)"></pep-checkbox>
+    <pep-checkbox [value]="hostObject?.slides[id].dropShadow?.useDropShadow" [label]="'SLIDE_EDITOR.DROP_SHADOW' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('dropShadow.useDropShadow',$event)"></pep-checkbox>
     <label class="body-xs ellipsis">{{'SLIDE_EDITOR.SHADOW_INTENSITY' | translate}}</label>
-    <pep-group-buttons [buttons]="SlideDropShadowStyle" [selectedButtonKey]="hostObject?.slides[id].dropShadow.intensity" buttonsClass="md regular" 
-                       [buttonsDisabled]="!hostObject?.slides[id].dropShadow.useDropShadow"(buttonClick)="onSlideFieldChange('dropShadow.intensity',$event)" viewType="toggle" stretch="true">
+    <pep-group-buttons [buttons]="SlideDropShadowStyle" [selectedButtonKey]="hostObject?.slides[id].dropShadow?.intensity" buttonsClass="md regular" 
+                       [buttonsDisabled]="!hostObject?.slides[id].dropShadow?.useDropShadow"(buttonClick)="onSlideFieldChange('dropShadow.intensity',$event)" viewType="toggle" stretch="true">
     </pep-group-buttons>
     <div>
         <label class="body-xs ellipsis">{{'SLIDE_EDITOR.SHADOW_INTENSITY' | translate}}</label>
-        <mat-slider [value]="hostObject?.slides[id].dropShadow.opacity" aria-label="unit(s)" [min]="'0'" [max]="'100'" [disabled]="!hostObject?.slides[id].dropShadow.useDropShadow" 
+        <mat-slider [value]="hostObject?.slides[id].dropShadow?.opacity" aria-label="unit(s)" [min]="'0'" [max]="'100'" [disabled]="!hostObject?.slides[id].dropShadow?.useDropShadow" 
                     (change)="onSlideFieldChange('dropShadow.opacity',$event)" [thumbLabel]="'false'">
         </mat-slider>
     </div>

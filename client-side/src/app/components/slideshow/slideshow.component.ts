@@ -48,6 +48,13 @@ export class SlideshowComponent implements OnInit {
 
     }
     
+    private updateHostObject() {  
+        this.hostEvents.emit({
+            action: 'set-configuration',
+            configuration: this.hostObject
+        });
+    }
+
     private getDefaultHostObject(): ISlideShow {
         return { slideshowConfig: new ISlideshowEditor(), slides: Array<ISlideEditor>() };
     }
@@ -57,13 +64,20 @@ export class SlideshowComponent implements OnInit {
     }
     
     ngOnInit() {
-        //this.hostObject.slideshowConfig.editSlideIndex = "-1"; // TODO - NEED TO THINK ABOUT A BETTER SOLUTION
+        if(this.hostObject.slides.length === 0){ // add default slides
+            let a = new ISlideEditor();
+            a.id = 0;
+            this.hostObject.slides.push( a);
+
+            this.updateHostObject();
+        }
+    
         this.raiseBlockLoadedEvent();
         this.showSlides();
     }
 
     showSlides() {
-        if(!this.hostObject.slideshowConfig.isTransition){
+        if(!this.hostObject.slideshowConfig.isTransition || this.hostObject.slideshowConfig.transitionType === 'none'){
             this.isPause = true;
             clearTimeout(this.timer);
         }
@@ -93,7 +107,16 @@ export class SlideshowComponent implements OnInit {
       }
 
       navigate(event){
-
+        
+        this.slideIndex = event === 'forward' ? this.slideIndex + 1 : this.slideIndex - 1;
+        
+        if(this.slideIndex == this.hostObject.slides.length) {
+            this.slideIndex = 0
+        }
+        else if(this.slideIndex < 0) {
+            this.slideIndex = this.hostObject.slides.length -1;
+        }
+        
       }
 
 

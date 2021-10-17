@@ -39,9 +39,8 @@ export class SlideshowEditorComponent implements OnInit {
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
     
     transitionTypes: Array<{key: TransitionType, value: string}>;
-    transitionTimes: Array<{key: string, value: string}>;
     buttonStyles: Array<{key: PepStyleType, value: string}>;
-
+    SlideDropShadowStyle: Array<groupButtonArray>;
     HeightUnitsType: Array<groupButtonArray>;
     InnerSpacing: Array<{key: PepSizeType, value: string}>;
     ArrowsType: Array<PepButton>;
@@ -81,12 +80,23 @@ export class SlideshowEditorComponent implements OnInit {
     }
 
     onSlideshowFieldChange(key, event){
-        if(event && event.source && event.source.key){
-            this.hostObject.slideshowConfig[key] = event.source.key;
+
+        const value = event && event.source && event.source.key ? event.source.key : event && event.source && event.source.value ? event.source.value :  event;
+       
+        if(key.indexOf('.') > -1){
+            let keyObj = key.split('.');
+            this.hostObject.slideshowConfig[keyObj[0]][keyObj[1]] = value;
         }
         else{
-            this.hostObject.slideshowConfig[key] = event;
+            this.hostObject.slideshowConfig[key] = value;
         }
+        
+        // if(event && event.source && event.source.key){
+        //     this.hostObject.slideshowConfig[key] = event.source.key;
+        // }
+        // else{
+        //     this.hostObject.slideshowConfig[key] = event;
+        // }
 
         this.updateHostObject();
     }
@@ -94,22 +104,20 @@ export class SlideshowEditorComponent implements OnInit {
     async ngOnInit(): Promise<void> {
 
         const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();
+        
+        
+
+        this.SlideDropShadowStyle = [
+            { key: 'Soft', value: this.translate.instant('SLIDE_EDITOR.SOFT') },
+            { key: 'Regular', value: this.translate.instant('SLIDE_EDITOR.REGULAR') }
+        ];
 
         this.transitionTypes = [
+            { key: 'none', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.NONE') },
             { key: 'fade', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.FADE') },
             { key: 'blur', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.BLUR') },
             { key: 'dissolve', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.DISSOLVE') },
             { key: 'iris', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.IRIS') }
-        ]
-
-        this.transitionTimes = [
-            { key: '1s', value: '1'},
-            { key: '2s', value: '2'},
-            { key: '3s', value: '3'},
-            { key: '5s', value: '5'},
-            { key: '7s', value: '7'},
-            { key: '10s', value: '10'},
-            { key: '15s', value: '15'},
         ]
         
         this.buttonStyles = [
@@ -138,9 +146,9 @@ export class SlideshowEditorComponent implements OnInit {
         ];
     
         this.ArrowButtons = [
-            { key: 'None', value: this.translate.instant('GROUP_SIZE.NONE') },
-            { key: 'Rect', value: this.translate.instant('SLIDESHOW.ARROW_BUTTON.RECT') },
-            { key: 'Rounded', value: this.translate.instant('SLIDESHOW.ARROW_BUTTON.ROUNDED') }
+            { key: 'none', value: this.translate.instant('GROUP_SIZE.NONE') },
+            { key: 'rect', value: this.translate.instant('SLIDESHOW.ARROW_BUTTON.RECT') },
+            { key: 'rounded', value: this.translate.instant('SLIDESHOW.ARROW_BUTTON.ROUNDED') }
         ];
     
         this.ControllerSize = [
@@ -150,12 +158,11 @@ export class SlideshowEditorComponent implements OnInit {
 
     }
 
-    onAddNewSlideClick(e) {
+    addNewSlideClick() {
         let slide = new ISlideEditor();
         slide.id = (this.hostObject.slides.length);
 
-        this.hostObject.slides.push( slide);
-        //this.pageBuilderService.addSection();
+        this.hostObject.slides.push( slide);   
     }
 
     onSlideEditClick(event){

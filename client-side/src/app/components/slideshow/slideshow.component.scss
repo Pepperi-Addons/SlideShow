@@ -13,10 +13,24 @@
     padding: 0 1rem;
     transform: translate(0, -50%);
     z-index: 1;
-
-    ::ng-deep .rotate180{
-        transform: rotate(180deg);
-    }
+    
+    ::ng-deep{
+        .rotate180{
+            transform: rotate(180deg);
+        }
+        
+        .arrowShape_none{
+            button{
+                border-radius: 0;
+            }
+        }
+        
+        .arrowShape_rounded{
+            button{
+                border-radius: 50%;
+            }
+        } 
+    }    
 }
 #slideFooterBtn{
     z-index: 1;
