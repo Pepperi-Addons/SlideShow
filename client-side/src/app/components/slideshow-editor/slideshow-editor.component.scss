@@ -1,12 +1,12 @@
+@import 'ngx-lib/src/core/style/abstracts/mixins';
+@import '~@pepperi-addons/ngx-lib/theming';
+@include pepperi-theme();
+
 .editor-tabs {
     height: 100%;
     
     .add-content-button {
         margin-bottom: 1rem;
-    }
-    /* TODO - NEED TO BE REMOVED AFTER A SOLUTION FOR THE BOOTSTRAP STYLE*/
-    .normal{
-        font-weight: 400;
     }
 
     ::ng-deep {
@@ -119,8 +119,9 @@
 
     mat-slider{
         width: 100%;
-      }
-      ::ng-deep .mat-accent {
+    }
+
+    ::ng-deep .mat-accent {
         .mat-slider-thumb{
             background-color: gray !important;
         }
@@ -128,5 +129,11 @@
             background-image: linear-gradient(to right, white, black);
             background: linear-gradient(to right, white, black);
         }
-      }
+    }
+
+    pep-group-buttons{
+        ::ng-deep pep-icon{
+            max-height: 1rem;
+        }
+    }
 }

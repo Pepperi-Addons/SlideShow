@@ -1,9 +1,9 @@
 import { PepStyleType, PepStyleStateType, PepSizeType, PepHorizontalAlignment, PepVerticalAlignment, PepScreenSizeType} from '@pepperi-addons/ngx-lib';
 
 export type HeightUnit = 'REM' | 'VH';
-export type TransitionType = 'none' | 'fade' | 'blur' | 'dissolve' | 'iris';
-export type ArrowType = 'arrow_back' | 'arrow_left' | 'arrow_left_alt';
-export type ArrowShape = 'none' | 'rect' | 'rounded';
+export type TransitionType = 'none' | 'fade' | 'zoom' | 'slide';
+export type ArrowType = 'arrow_back_right' | 'arrow_left' | 'arrow_left_alt';
+export type ArrowShape = 'none' | 'regular' | 'round';
 export type WidthUnits = 'Narrow' | 'Regular' | 'Wide';
 export type Intensity = 'Soft' | 'Regular';
 export type textColor = 'system' | 'dimmed' | 'inverted' | 'strong';
@@ -41,13 +41,13 @@ export class ISlideshowEditor {
     heightUnit: HeightUnit = "REM";
     height: string = '16';
     innerPadding: PepSizeType = "md";
-    isTransition: boolean = false;
+    isTransition: boolean = true;
     transitionDuration: number = 3;
     transitionType: TransitionType = 'fade';
     transitionTime: string = '2';
     isUseArrows: boolean = true;
     arrowType: ArrowType = 'arrow_left';
-    arrowShape: ArrowShape = 'rect';
+    arrowShape: ArrowShape = 'regular';
     arrowsStyle: PepStyleType = 'regular';
     arrowsColor: PepStyleType = 'weak';
     usePauseButton: boolean = true;

@@ -33,9 +33,8 @@
         "TRANSITIONTYPES": {
             "NONE": "None",
             "FADE": "Fade",
-            "BLUR": "Blur",
-            "DISSOLVE": "Dissolve",
-            "IRIS": "Iris"
+            "SLIDE": "Slide",
+            "ZOOM": "Zoom"
         },
         "TRANSITION_TIME": "Transition time (s)",
         "ARROWS": "Arrows",
@@ -50,8 +49,8 @@
             "STYLED_ARROW":" -->"
         },
         "ARROW_BUTTON": {
-            "RECT":"Rect",
-            "ROUNDED":"Rounded"
+            "REGULAR":"Regular",
+            "ROUND":"Round"
         },
         "CONTROLLERS": "Controllers",
         "CONTROLLERS_DESC": "Dots indecate the number of sildes<br>and the silde position, they are<br>clickable and will change the silde.",

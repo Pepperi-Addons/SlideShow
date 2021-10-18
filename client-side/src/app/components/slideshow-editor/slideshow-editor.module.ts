@@ -18,11 +18,16 @@ import { PepDialogService } from '@pepperi-addons/ngx-lib/dialog';
 import { PepPageLayoutModule } from '@pepperi-addons/ngx-lib/page-layout';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatDialogModule } from '@angular/material/dialog';
-import { pepIconArrowBack, pepIconArrowLeftAlt,pepIconArrowDown, pepIconArrowUp, PepIconModule, pepIconNumberPlus, PepIconRegistry, pepIconSystemBin, pepIconSystemBolt, pepIconSystemClose, pepIconSystemEdit, pepIconSystemMove } from '@pepperi-addons/ngx-lib/icon';
+import { pepIconTextAlignCenter, pepIconTextAlignLeft, pepIconTextAlignRight, pepIconArrowBackRight, pepIconArrowBackLeft, pepIconArrowBack, pepIconArrowLeftAlt,pepIconArrowDown, pepIconArrowUp, PepIconModule, pepIconNumberPlus, PepIconRegistry, pepIconSystemBin, pepIconSystemBolt, pepIconSystemClose, pepIconSystemEdit, pepIconSystemMove } from '@pepperi-addons/ngx-lib/icon';
 
 import { config } from '../addon.config';
 
 const pepIcons = [
+    pepIconTextAlignCenter, 
+    pepIconTextAlignLeft, 
+    pepIconTextAlignRight, 
+    pepIconArrowBackRight, 
+    pepIconArrowBackLeft,
     pepIconArrowBack,
     pepIconSystemClose,
     pepIconNumberPlus,
