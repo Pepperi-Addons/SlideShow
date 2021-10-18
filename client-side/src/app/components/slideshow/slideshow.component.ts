@@ -32,7 +32,9 @@ export class SlideshowComponent implements OnInit {
 
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
 
+    public isPause = false;
     public slideIndex = 0;
+    private timer: any;
 
     constructor(
         public addonService: SlideshowService,
@@ -46,6 +48,13 @@ export class SlideshowComponent implements OnInit {
 
     }
     
+    private updateHostObject() {  
+        this.hostEvents.emit({
+            action: 'set-configuration',
+            configuration: this.hostObject
+        });
+    }
+
     private getDefaultHostObject(): ISlideShow {
         return { slideshowConfig: new ISlideshowEditor(), slides: Array<ISlideEditor>() };
     }
@@ -55,21 +64,59 @@ export class SlideshowComponent implements OnInit {
     }
     
     ngOnInit() {
-        //this.hostObject.slideshowConfig.editSlideIndex = "-1"; // TODO - NEED TO THINK ABOUT A BETTER SOLUTION
+        if(this.hostObject.slides.length === 0){ // add default slides
+            let a = new ISlideEditor();
+            a.id = 0;
+            this.hostObject.slides.push( a);
+
+            this.updateHostObject();
+        }
+    
         this.raiseBlockLoadedEvent();
         this.showSlides();
     }
 
     showSlides() {
+        if(!this.hostObject.slideshowConfig.isTransition || this.hostObject.slideshowConfig.transitionType === 'none'){
+            this.isPause = true;
+            clearTimeout(this.timer);
+        }
+        else{
+            var slides = this.hostObject.slides; 
+            if (this.slideIndex >= slides.length) {this.slideIndex = 0}
+            
+            var that = this;
+            var duration = this.hostObject.slideshowConfig.transitionDuration * 1000;
+            this.timer = setTimeout(function(){that.slideIndex ++; that.showSlides() }, duration);
+        }
+      }
 
-        var slides = this.hostObject.slides; 
-        //var dots = document.getElementsByClassName("dot");
-        if (this.slideIndex >= slides.length) {this.slideIndex = 0}
-        //if (this.slideIndex < 1) {this.slideIndex = slides.length}
+      setSlideIndex(index){
+          this.slideIndex = index;
+      }
+
+      setRunState(event){
+        this.isPause = !this.isPause;
         
+        if(this.isPause){
+            clearTimeout(this.timer);
+        }
+        else{
+            this.showSlides();
+        } 
+      }
+
+      navigate(event){
         
-        var that = this;
-        setTimeout(function(){that.slideIndex ++; that.showSlides() }, 3000);
+        this.slideIndex = event === 'forward' ? this.slideIndex + 1 : this.slideIndex - 1;
+        
+        if(this.slideIndex == this.hostObject.slides.length) {
+            this.slideIndex = 0
+        }
+        else if(this.slideIndex < 0) {
+            this.slideIndex = this.hostObject.slides.length -1;
+        }
+        
       }
 
 

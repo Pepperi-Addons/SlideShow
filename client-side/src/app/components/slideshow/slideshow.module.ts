@@ -11,7 +11,14 @@ import { SlideModule } from '../slide/slide.module';
 import { PepDialogService } from '@pepperi-addons/ngx-lib/dialog';
 import { PepPageLayoutModule } from '@pepperi-addons/ngx-lib/page-layout';
 import { config } from '../addon.config';
+import { PepIconModule, PepIconRegistry, pepIconSystemPause , pepIconSystemPlay, pepIconArrowLeft, pepIconArrowRight} from '@pepperi-addons/ngx-lib/icon';
 
+const pepIcons = [
+    pepIconSystemPlay,
+    pepIconSystemPause,
+    pepIconArrowLeft,
+    pepIconArrowRight
+]
 @NgModule({
     declarations: [
         SlideshowComponent,
@@ -33,8 +40,9 @@ import { config } from '../addon.config';
         PepNgxLibModule,
         PepButtonModule,
         PepSelectModule,
-        PepPageLayoutModule
-    ],
+        PepPageLayoutModule,
+        PepIconModule
+        ],
     exports:[SlideshowComponent],
     providers: [
         HttpClient,
@@ -49,8 +57,10 @@ import { config } from '../addon.config';
 export class SlideshowModule {
     constructor(
         translate: TranslateService,
+        private pepIconRegistry: PepIconRegistry,
         private addonService: PepAddonService,
     ) {
         this.addonService.setDefaultTranslateLang(translate);
+        this.pepIconRegistry.registerIcons(pepIcons);
     }
 }

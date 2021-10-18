@@ -3,5 +3,35 @@
        [slide]="currentSlide" 
        [slideshowConfig]="hostObject?.slideshowConfig">
 </slide>
+<div *ngIf="hostObject?.slides.length > 1 &&  hostObject?.slideshowConfig?.isUseArrows" id="navigationCont">
+       <pep-button sizeType='sm' 
+                   [styleType]="hostObject?.slideshowConfig?.arrowsStyle" 
+                   [styleStateType]="hostObject?.slideshowConfig?.arrowsColor"
+                   [ngClass]="['rotate180' , 'arrowShape_' +hostObject?.slideshowConfig?.arrowShape]" 
+                   [iconName]="hostObject?.slideshowConfig?.arrowType" 
+                   (buttonClick)="navigate('back')">
+       </pep-button>
+       <pep-button sizeType='sm' 
+                   [styleType]="hostObject?.slideshowConfig?.arrowsStyle" 
+                   [styleStateType]="hostObject?.slideshowConfig?.arrowsColor"
+                   [ngClass]="['arrowShape_' +hostObject?.slideshowConfig?.arrowShape]" 
+                   [iconName]="hostObject?.slideshowConfig?.arrowType"  
+                   (buttonClick)="navigate('forward')">
+       </pep-button>
+</div>
+<div id="slideFooterBtn" *ngIf="hostObject?.slides.length > 1">
+       <div id="dotsCont" class="pep-button regular system"
+            [ngClass]='hostObject?.slideshowConfig?.controllerSize'>
+              <span *ngFor="slide of hostObject?.slides; let i = index" 
+                     class="dot" 
+                     (click)="setSlideIndex(i)" 
+                     [ngClass]="{'active': i ===  slideIndex}">
+              </span>
+       </div>
+       <ng-container *ngIf="hostObject?.slideshowConfig?.isTransition && hostObject?.slideshowConfig?.usePauseButton">
+              <pep-button *ngIf="!isPause" [sizeType]='hostObject?.slideshowConfig?.controllerSize' styleType="regular" iconName="system_pause" (buttonClick)="setRunState($event)"></pep-button>
+              <pep-button *ngIf="isPause" [sizeType]='hostObject?.slideshowConfig?.controllerSize' styleType="regular" iconName="system_play" (buttonClick)="setRunState($event)"></pep-button>
+       </ng-container>
+</div>
 
 

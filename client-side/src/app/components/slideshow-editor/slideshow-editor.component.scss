@@ -27,7 +27,9 @@
 
         .group-buttons-container {
             margin-bottom: 1rem;
-
+            .rotate180{
+                transform: rotate(180deg);
+            }
             .toggle-buttons{
                 width: 100%;
             }
@@ -105,11 +107,16 @@
         flex-wrap: nowrap;
         justify-content: space-between;
         align-items: stretch;
-        column-gap: 1rem;
+        column-gap: .75rem;
 
-        ::ng-deep pep-select{
+        pep-select{
             display: block;
             overflow: hidden;
+        }
+
+        pep-textbox,
+        pep-select{
+            width: 100%;
         }
     }
 }
