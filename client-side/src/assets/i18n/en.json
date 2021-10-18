@@ -28,9 +28,10 @@
         "INNERPADDING_TITLE": "Inner padding",
         "TRANSITION": "Transition",
         "TRANSITION_TITLE": "Set transition duration and type.",
-        "SLIDE_DURATION": "Slide duration (s)",
+        "SLIDE_DURATION": "Slide loop duration (seconds)",
         "TRANSITION_TYPE": "Transition type",
         "TRANSITIONTYPES": {
+            "NONE": "None",
             "FADE": "Fade",
             "BLUR": "Blur",
             "DISSOLVE": "Dissolve",
@@ -65,6 +66,8 @@
 
     "SLIDE_EDITOR": {
         "TITLE": "Title",
+        "TITLE_CONTENT": "Title text",
+        "SUBTITLE_CONTENT": "Subtitle text",
         "CONTENT": "Content",
         "MAIN_TITLE_SIZE": "Main title size",
         "SUB_TITLE": "Subtitle",

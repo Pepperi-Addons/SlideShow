@@ -78,7 +78,6 @@ export class ISlideEditor {
     gradientOverlay: Overlay = new Overlay();
     overlay: Overlay = new Overlay();
     image: SlideImage = new SlideImage();
-    dropShadow: DropShadow = new DropShadow();
 }
 
 export interface slide {

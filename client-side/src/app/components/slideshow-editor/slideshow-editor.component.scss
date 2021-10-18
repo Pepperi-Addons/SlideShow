@@ -4,12 +4,9 @@
     .add-content-button {
         margin-bottom: 1rem;
     }
-
-    label{ /* TODO - NEED TO BE REMOVED AFTER A SOLUTION FOR THE BOOTSTRAP STYLE*/
-        &.body-xs, 
-        &.body-sm{
-            font-weight: 400;
-        }
+    /* TODO - NEED TO BE REMOVED AFTER A SOLUTION FOR THE BOOTSTRAP STYLE*/
+    .normal{
+        font-weight: 400;
     }
 
     ::ng-deep {
@@ -119,4 +116,17 @@
             width: 100%;
         }
     }
+
+    mat-slider{
+        width: 100%;
+      }
+      ::ng-deep .mat-accent {
+        .mat-slider-thumb{
+            background-color: gray !important;
+        }
+        .mat-slider-track-fill {
+            background-image: linear-gradient(to right, white, black);
+            background: linear-gradient(to right, white, black);
+        }
+      }
 }

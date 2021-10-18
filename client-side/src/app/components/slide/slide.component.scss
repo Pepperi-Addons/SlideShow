@@ -46,21 +46,7 @@ $pepperi-theme: get-pepperi-theme();
     &.inner_padding_lg{
         padding: $spacing-lg;
     }
-
-    &.drop-shadow_Regular{
-        box-shadow: 4.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.38);
-    }
-
-    &.drop-shadow_Soft{
-        box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
-                0 2px 4px rgba(0,0,0,0.07), 
-                0 4px 8px rgba(0,0,0,0.07), 
-                0 8px 16px rgba(0,0,0,0.07),
-                0 16px 32px rgba(0,0,0,0.07), 
-                0 32px 64px rgba(0,0,0,0.07);
-    }
     
-   
     .slide-box{
             display: grid;
             grid-template-rows: min-content min-content min-content;
@@ -172,48 +158,46 @@ $pepperi-theme: get-pepperi-theme();
 .animation{
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
-
-    &.none{
-        -webkit-animation-name: unset;
-        animation-name: unset;
-    }
-    
-    &.fade {
-        -webkit-animation-name: fade;
-        animation-name: fade;
-      }
-    
-      &.blur{
-        -webkit-animation-name: blur;
-        animation-name: blur;
-      }
-    
-      &.iris:before {
-        content:"";
-        position:absolute;
-        left:50%;
-        top:50%;
-        transform-origin: center;
-        transform:translate(-50%,-50%);
-        border-radius:50%;
-        box-shadow:0 0 0 200vh #000;
-        transition:2s all;
-        -webkit-animation-name: iris;
-        -webkit-animation-duration: 2s;
-        -webkit-animation-timing-function: ease;
-        -webkit-animation-delay: 0;
-        -webkit-animation-iteration-count: 1; 
-        animation-name: iris;
-        animation-duration: 2s;
-        animation-timing-function: ease;
-        animation-delay: 0;
-        animation-iteration-count: 1; 
-      }
 }
 
+.none{
+    -webkit-animation-name: unset;
+    animation-name: unset;
+}
 
-  
-  @-webkit-keyframes fade {
+.fade {
+    -webkit-animation-name: fade;
+    animation-name: fade;
+  }
+
+  .blur{
+    -webkit-animation-name: blur;
+    animation-name: blur;
+  }
+
+  .iris:before {
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform-origin: center;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    box-shadow:0 0 0 200vh #000;
+    transition:2s all;
+    -webkit-animation-name: iris;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: ease;
+    -webkit-animation-delay: 0;
+    -webkit-animation-iteration-count: 1; 
+    animation-name: iris;
+    animation-duration: 2s;
+    animation-timing-function: ease;
+    animation-delay: 0;
+    animation-iteration-count: 1; 
+  }
+
+@-webkit-keyframes fade {
     from {opacity: 0.3}
     to {opacity: 1}
   }
@@ -244,45 +228,24 @@ $pepperi-theme: get-pepperi-theme();
     }
    }
 
-   mat-slider{
-    width: 100%;
-}
-::ng-deep .mat-accent {
-    .mat-slider-thumb{
-        background-color: gray !important;
-    }
-    .mat-slider-track-fill {
-        background-image: linear-gradient(to right, white, black);
-        background: linear-gradient(to right, white, black);
+.drop-shadow_Regular{
+    padding-bottom: 0.75rem;
+
+    .ng-component-container{
+        box-shadow: 4.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.38);
     }
 }
 
-::ng-deep{
-    .mat-slider.mat-slider-horizontal .mat-slider-wrapper {
-  top: 18px;
-}
-.mat-slider.mat-slider-horizontal .mat-slider-track-wrapper {
-  height: 12px;
-  border-radius: 10px
-}
-.mat-slider.mat-slider-horizontal .mat-slider-track-background,
-.mat-slider.mat-slider-horizontal .mat-slider-track-fill {
-  height: 100%;
-}
-.mat-slider.mat-slider-horizontal .mat-slider-track-fill {
-  background-color: blue;
-}
-.mat-accent .mat-slider-thumb {
-  height: 30px;
-  width: 30px;
-  background-color: white;
-  border: solid 2px gray;
-  bottom: -20px;
-  right: -20px;
-}
-.mat-slider-min-value:not(.mat-slider-thumb-label-showing) .mat-slider-thumb {
-  background-color: white;
-}
+.drop-shadow_Soft{
+    padding-bottom: 0.75rem;
+    .ng-component-container{
+        box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
+                0 2px 4px rgba(0,0,0,0.07), 
+                0 4px 8px rgba(0,0,0,0.07), 
+                0 8px 16px rgba(0,0,0,0.07),
+                0 16px 32px rgba(0,0,0,0.07), 
+                0 32px 64px rgba(0,0,0,0.07);
+    }
 }
 
 

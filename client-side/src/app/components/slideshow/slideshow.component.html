@@ -1,3 +1,4 @@
+
 <slide *ngFor="let currentSlide of hostObject?.slides" 
        [showSlide]="slideIndex == currentSlide.id"
        [slide]="currentSlide" 
@@ -19,8 +20,12 @@
                    (buttonClick)="navigate('forward')">
        </pep-button>
 </div>
-<div id="slideFooterBtn" *ngIf="hostObject?.slides.length > 1">
-       <div id="dotsCont" class="pep-button regular system"
+<div id="slideFooterBtn" 
+     *ngIf="hostObject?.slides.length > 1"
+     [ngClass]="[hostObject?.slideshowConfig?.dropShadow?.useDropShadow === true ? 'with-shadow-margin' : '']">
+       <div id="dotsCont" 
+            class="pep-button regular system"
+            *ngIf="hostObject?.slideshowConfig?.showControllersInSlider"
             [ngClass]='hostObject?.slideshowConfig?.controllerSize'>
               <span *ngFor="slide of hostObject?.slides; let i = index" 
                      class="dot" 
