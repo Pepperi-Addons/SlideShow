@@ -4,7 +4,7 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { TranslateService } from '@ngx-translate/core';
 import { PepStyleType, PepSizeType} from '@pepperi-addons/ngx-lib';
 import { IPepButtonClickEvent, PepButton } from '@pepperi-addons/ngx-lib/button';
-import { ISlideShow, ISlideshowEditor, slide, TransitionType, ArrowShape, ISlideEditor, textColor } from '../slideshow.model';
+import { ISlideShow, ISlideshowEditor, slide, TransitionType, ArrowShape, ISlideEditor, textColor, IHostObject } from '../slideshow.model';
 
 @Component({
     selector: 'slideshow-editor',
@@ -17,48 +17,58 @@ export class SlideshowEditorComponent implements OnInit {
 
     // @Input() slidesDropList = []; 
     
-    private _hostObject: ISlideShow = this.getDefaultHostObject();
-    @Input() 
-    set hostObject(value: ISlideShow) {
-        
-        if (!value) {
-            value = this.getDefaultHostObject();
+    @Input()
+    set hostObject(value: IHostObject) {
+        if (value && value.configuration) {
+            this._configuration = value.configuration;
+        } else {
+            this.loadDefaultConfiguration();
         }
-
-        this._hostObject = value;
     }
-    get hostObject(): ISlideShow {
-        return this._hostObject;
+    
+    private _configuration: ISlideShow;
+    get configuration(): ISlideShow {
+        return this._configuration;
     }
 
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
     
-    transitionTypes: Array<{key: TransitionType, value: string}>;
-    buttonStyles: Array<{key: PepStyleType, value: string}>;
-    buttonColors: Array<PepButton>;
-    SlideDropShadowStyle: Array<PepButton>;
-    HeightUnitsType: Array<PepButton>;
-    InnerSpacing: Array<{key: PepSizeType, value: string}>;
-    ArrowsType: Array<PepButton>;
-    ArrowButtons: Array<{key: ArrowShape, value: string}>;
-    ControllerSize: Array<PepButton>;
+    transitionTypes: Array<{key: TransitionType, value: string}> = [];
+    buttonStyles: Array<{key: PepStyleType, value: string}> = [];
+    buttonColors: Array<PepButton> = [];
+    SlideDropShadowStyle: Array<PepButton> = [];
+    HeightUnitsType: Array<PepButton> = [];
+    InnerSpacing: Array<{key: PepSizeType, value: string}> = [];
+    ArrowsType: Array<PepButton> = [];
+    ArrowButtons: Array<{key: ArrowShape, value: string}> = [];
+    ControllerSize: Array<PepButton> = [];
     
-   
-
     currentSlideindex = 0;
+
     constructor(private translate: TranslateService) { 
-        
+    }
+
+    private loadDefaultConfiguration() {
+        this._configuration = this.getDefaultHostObject();
+        this.updateHostObject();
+    }
+
+    private getDefaultSlide(): ISlideEditor {
+        let a = new ISlideEditor();
+        a.id = 0;
+
+        return a;
     }
 
     private getDefaultHostObject(): ISlideShow {
-        return { slideshowConfig: new ISlideshowEditor(), slides: Array<ISlideEditor>() };
+        return { slideshowConfig: new ISlideshowEditor(), slides: [this.getDefaultSlide()] };
     }
 
     private updateHostObject() {
         
         this.hostEvents.emit({
             action: 'set-configuration',
-            configuration: this.hostObject
+            configuration: this.configuration
         });
     }
     onSlideFieldChange(key, event){
@@ -66,10 +76,10 @@ export class SlideshowEditorComponent implements OnInit {
         
         if(key.indexOf('.') > -1){
             let keyObj = key.split('.');
-            this.hostObject.slides[this.currentSlideindex][keyObj[0]][keyObj[1]] = value;
+            this.configuration.slides[this.currentSlideindex][keyObj[0]][keyObj[1]] = value;
         }
         else{
-            this.hostObject.slides[this.currentSlideindex][key] = value;
+            this.configuration.slides[this.currentSlideindex][key] = value;
         }
 
         this.updateHostObject();
@@ -81,27 +91,21 @@ export class SlideshowEditorComponent implements OnInit {
        
         if(key.indexOf('.') > -1){
             let keyObj = key.split('.');
-            this.hostObject.slideshowConfig[keyObj[0]][keyObj[1]] = value;
+            this.configuration.slideshowConfig[keyObj[0]][keyObj[1]] = value;
         }
-        else{
-            this.hostObject.slideshowConfig[key] = value;
+        else {
+            this.configuration.slideshowConfig[key] = value;
         }
         
-        // if(event && event.source && event.source.key){
-        //     this.hostObject.slideshowConfig[key] = event.source.key;
-        // }
-        // else{
-        //     this.hostObject.slideshowConfig[key] = event;
-        // }
-
         this.updateHostObject();
     }
 
     async ngOnInit(): Promise<void> {
+        if (!this.configuration) {
+            this.loadDefaultConfiguration();
+        }
 
         const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();
-        
-        
 
         this.SlideDropShadowStyle = [
             { key: 'Soft', value: this.translate.instant('SLIDE_EDITOR.SOFT') },
@@ -127,7 +131,6 @@ export class SlideshowEditorComponent implements OnInit {
             { key: 'inverted', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLORS_INVERTED') },
             { key: 'user', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLORS_USER') },
         ]
-        
 
         this.HeightUnitsType = [
             { key: 'REM', value: this.translate.instant('SLIDESHOW.HEIGHTUNITS_REM') },
@@ -161,25 +164,25 @@ export class SlideshowEditorComponent implements OnInit {
 
     addNewSlideClick() {
         let slide = new ISlideEditor();
-        slide.id = (this.hostObject.slides.length);
+        slide.id = (this.configuration.slides.length);
 
-        this.hostObject.slides.push( slide);   
+        this.configuration.slides.push( slide);   
     }
 
     onSlideEditClick(event){
        
-        if(this.hostObject.slideshowConfig.editSlideIndex === event.id){ //close the editor
-            this.hostObject.slideshowConfig.editSlideIndex = "-1";
+        if(this.configuration.slideshowConfig.editSlideIndex === event.id){ //close the editor
+            this.configuration.slideshowConfig.editSlideIndex = "-1";
         }
         else{ 
-            this.currentSlideindex = this.hostObject.slideshowConfig.editSlideIndex = event.id;
+            this.currentSlideindex = this.configuration.slideshowConfig.editSlideIndex = event.id;
         }
 
         this.updateHostObject();
     }
     onSlideRemoveClick(event){
-        this.hostObject.slides.splice(event.id, 1);
-        this.hostObject.slides.forEach(function(slide, index, arr) {slide.id = index; });
+        this.configuration.slides.splice(event.id, 1);
+        this.configuration.slides.forEach(function(slide, index, arr) {slide.id = index; });
     }
 
     onValueChange(event){

@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { ISlideShow, ISlideshowEditor, slide, TransitionType, ArrowShape, ISlideEditor, textColor } from '../slideshow.model';
+import { ISlideShow, ISlideshowEditor, slide, TransitionType, ArrowShape, ISlideEditor, textColor, IHostObject } from '../slideshow.model';
 import { PepStyleType, PepSizeType} from '@pepperi-addons/ngx-lib';
-import { PepButton } from '@pepperi-addons/ngx-lib/button';
 
 interface groupButtonArray {
     key: string; 
@@ -16,7 +15,7 @@ interface groupButtonArray {
 })
 export class SlideEditorComponent implements OnInit {
     
-    @Input() hostObject: ISlideShow;
+    @Input() configuration: ISlideShow;
     @Input() id: string;
     
     public title: string;
@@ -31,7 +30,7 @@ export class SlideEditorComponent implements OnInit {
     SlideTitleSize:Array<groupButtonArray>;
     SlideSubTitleSize: Array<groupButtonArray>;
     WidthSize: Array<groupButtonArray>;
-    HorizentalAlign: Array<PepButton>;
+    HorizentalAlign: Array<groupButtonArray>;
     VerticalAlign: Array<groupButtonArray>;
     SlideDropShadowStyle: Array<groupButtonArray>;
     textColors: Array<groupButtonArray>;
@@ -47,7 +46,7 @@ export class SlideEditorComponent implements OnInit {
     }
 
     async ngOnInit(): Promise<void> {
-        this.title = this.hostObject.slides[this.id].titleContent;
+        this.title = this.configuration.slides[this.id].titleContent;
 
         const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();
 
@@ -68,11 +67,11 @@ export class SlideEditorComponent implements OnInit {
             { key: 'regular', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.REGULAR') },
             { key: 'wide', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.WIDE') }
         ];
-
+    
         this.HorizentalAlign =  [
-            { key: 'left', iconName: 'text_align_left' },
-            { key: 'center', iconName: 'text_align_center' },
-            { key: 'right', iconName: 'text_align_right' }
+            { key: 'left', value: this.translate.instant('SLIDE_EDITOR.HORIZONTAL_ALIGN_DIRECTION.LEFT') },
+            { key: 'center', value: this.translate.instant('SLIDE_EDITOR.HORIZONTAL_ALIGN_DIRECTION.CENTER') },
+            { key: 'right', value: this.translate.instant('SLIDE_EDITOR.HORIZONTAL_ALIGN_DIRECTION.RIGHT') }
         ];
     
         this.VerticalAlign =  [
@@ -128,10 +127,10 @@ export class SlideEditorComponent implements OnInit {
         
         if(key.indexOf('.') > -1){
             let keyObj = key.split('.');
-            this.hostObject.slides[this.id][keyObj[0]][keyObj[1]] = value;
+            this.configuration.slides[this.id][keyObj[0]][keyObj[1]] = value;
         }
         else{
-            this.hostObject.slides[this.id][key] = value;
+            this.configuration.slides[this.id][key] = value;
         }
 
         this.updateHostObject();
@@ -141,16 +140,16 @@ export class SlideEditorComponent implements OnInit {
         
         this.hostEvents.emit({
             action: 'set-configuration',
-            configuration: this.hostObject
+            configuration: this.configuration
         });
     }
 
     onSlideshowFieldChange(key, event){
         if(event && event.source && event.source.key){
-            this.hostObject.slideshowConfig[key] = event.source.key;
+            this.configuration.slideshowConfig[key] = event.source.key;
         }
         else{
-            this.hostObject.slideshowConfig[key] = event;
+            this.configuration.slideshowConfig[key] = event;
         }
 
         this.updateHostObject();

@@ -1,4 +1,13 @@
 import { PepStyleType, PepStyleStateType, PepSizeType, PepHorizontalAlignment, PepVerticalAlignment, PepScreenSizeType} from '@pepperi-addons/ngx-lib';
+import { PageConfiguration } from '@pepperi-addons/papi-sdk';
+
+export interface IHostObject {
+    configuration: ISlideShow;
+    // pageConfiguration?: PageConfiguration;
+    // pageType?: any;
+    // context?: any;
+    // filter?: any;
+}
 
 export type HeightUnit = 'REM' | 'VH';
 export type TransitionType = 'none' | 'fade' | 'zoom' | 'slide';

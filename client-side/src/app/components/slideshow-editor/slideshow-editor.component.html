@@ -1,46 +1,46 @@
 <mat-tab-group  #tabGroup class="editor-tabs" animationDuration="0ms">
     <mat-tab label="{{'SLIDESHOW.GENERAL' | translate}}">
         <label class="body-xs normal ellipsis">{{'SLIDESHOW.HEIGHTUNITS_TITLE' | translate}}</label>
-                <pep-group-buttons [buttons]="HeightUnitsType" [selectedButtonKey]="hostObject?.slideshowConfig?.heightUnit" buttonsClass="md regular" viewType="toggle" stretch="true" (buttonClick)="onSlideshowFieldChange('heightUnit',$event)">
+                <pep-group-buttons [buttons]="HeightUnitsType" [selectedButtonKey]="configuration?.slideshowConfig?.heightUnit" buttonsClass="md regular" viewType="toggle" stretch="true" (buttonClick)="onSlideshowFieldChange('heightUnit',$event)">
                 </pep-group-buttons>
 
-                <pep-textbox [value]="hostObject?.slideshowConfig?.height" [label]="'SLIDESHOW.HEIGHT' | translate" (valueChange)="onSlideshowFieldChange('height',$event)"></pep-textbox>
+                <pep-textbox [value]="configuration?.slideshowConfig?.height" [label]="'SLIDESHOW.HEIGHT' | translate" (valueChange)="onSlideshowFieldChange('height',$event)"></pep-textbox>
                 
                 <label class="body-xs normal ellipsis">{{'SLIDESHOW.INNERPADDING_TITLE' | translate}}</label>
-                <pep-group-buttons [buttons]="InnerSpacing" [selectedButtonKey]="hostObject?.slideshowConfig?.innerPadding" buttonsClass="md regular" viewType="toggle" stretch="true" (buttonClick)="onSlideshowFieldChange('innerPadding',$event)">
+                <pep-group-buttons [buttons]="InnerSpacing" [selectedButtonKey]="configuration?.slideshowConfig?.innerPadding" buttonsClass="md regular" viewType="toggle" stretch="true" (buttonClick)="onSlideshowFieldChange('innerPadding',$event)">
                 </pep-group-buttons>
 
-                <pep-checkbox [value]="hostObject?.slideshowConfig?.isTransition" [label]="'SLIDESHOW.TRANSITION' | translate" [renderTitle]="false" (valueChange)="onSlideshowFieldChange('isTransition',$event)"></pep-checkbox>
+                <pep-checkbox [value]="configuration?.slideshowConfig?.isTransition" [label]="'SLIDESHOW.TRANSITION' | translate" [renderTitle]="false" (valueChange)="onSlideshowFieldChange('isTransition',$event)"></pep-checkbox>
                 <label class="body-xs normal ellipsis">{{'SLIDESHOW.TRANSITION_TITLE' | translate}}</label>
-                <pep-textbox [label]="'SLIDESHOW.SLIDE_DURATION' | translate" type="int" [disabled]="!hostObject?.slideshowConfig?.isTransition" 
-                             [value]="hostObject?.slideshowConfig?.transitionDuration" (valueChange)="onSlideshowFieldChange('transitionDuration',$event)"></pep-textbox>
+                <pep-textbox [label]="'SLIDESHOW.SLIDE_DURATION' | translate" type="int" [disabled]="!configuration?.slideshowConfig?.isTransition" 
+                             [value]="configuration?.slideshowConfig?.transitionDuration" (valueChange)="onSlideshowFieldChange('transitionDuration',$event)"></pep-textbox>
                 
                 <div class="split-area">
-                    <pep-select [label]="'SLIDESHOW.TRANSITION_TYPE' | translate" [value]="hostObject?.slideshowConfig?.transitionType" [options]="transitionTypes" 
+                    <pep-select [label]="'SLIDESHOW.TRANSITION_TYPE' | translate" [value]="configuration?.slideshowConfig?.transitionType" [options]="transitionTypes" 
                         (valueChange)="onSlideshowFieldChange('transitionType',$event)" [emptyOption]="false"></pep-select>
                     <pep-textbox [label]="'SLIDESHOW.TRANSITION_TIME' | translate" type="int" 
-                        [value]="hostObject?.slideshowConfig?.transitionTime" (valueChange)="onSlideshowFieldChange('transitionTime',$event)"></pep-textbox>
-                        <!-- <pep-select [label]="'SLIDESHOW.TRANSITION_TIME' | translate" [value]="hostObject?.slideshowConfig?.transitionTime" [options]="transitionTimes"
+                        [value]="configuration?.slideshowConfig?.transitionTime" (valueChange)="onSlideshowFieldChange('transitionTime',$event)"></pep-textbox>
+                        <!-- <pep-select [label]="'SLIDESHOW.TRANSITION_TIME' | translate" [value]="configuration?.slideshowConfig?.transitionTime" [options]="transitionTimes"
                         (valueChange)="onSlideshowFieldChange('transitionTime',$event)" [emptyOption]="false"></pep-select> -->
                 </div>
 
-                <pep-checkbox [value]="hostObject?.slideshowConfig?.isUseArrows" [label]="'SLIDESHOW.ARROWS' | translate" [renderTitle]="false" (valueChange)="onSlideshowFieldChange('isUseArrows',$event)"></pep-checkbox>
+                <pep-checkbox [value]="configuration?.slideshowConfig?.isUseArrows" [label]="'SLIDESHOW.ARROWS' | translate" [renderTitle]="false" (valueChange)="onSlideshowFieldChange('isUseArrows',$event)"></pep-checkbox>
                 <label class="body-xs normal ellipsis" [innerHTML]="'SLIDESHOW.ARROWS_DESC' | translate"></label>
                 
                 <label class="body-xs normal ellipsis">{{'SLIDESHOW.ARROWS_TYPE' | translate}}</label>
-                <pep-group-buttons [buttonsDisabled]="!hostObject?.slideshowConfig?.isUseArrows" [buttons]="ArrowsType" [selectedButtonKey]="hostObject?.slideshowConfig?.arrowType" buttonsClass="md regular" viewType="toggle" 
+                <pep-group-buttons [buttonsDisabled]="!configuration?.slideshowConfig?.isUseArrows" [buttons]="ArrowsType" [selectedButtonKey]="configuration?.slideshowConfig?.arrowType" buttonsClass="md regular" viewType="toggle" 
                                 stretch="true" (buttonClick)="onSlideshowFieldChange('arrowType',$event)">
                 </pep-group-buttons>
 
                 <label class="body-xs normal ellipsis">{{'SLIDESHOW.ARROWS_BUTTONS' | translate}}</label>
-                <pep-group-buttons [buttonsDisabled]="!hostObject?.slideshowConfig?.isUseArrows" [buttons]="ArrowButtons" [selectedButtonKey]="hostObject?.slideshowConfig?.arrowShape" buttonsClass="md regular" viewType="toggle" 
+                <pep-group-buttons [buttonsDisabled]="!configuration?.slideshowConfig?.isUseArrows" [buttons]="ArrowButtons" [selectedButtonKey]="configuration?.slideshowConfig?.arrowShape" buttonsClass="md regular" viewType="toggle" 
                                     stretch="true" (buttonClick)="onSlideshowFieldChange('arrowShape',$event)">
                 </pep-group-buttons>
 
                 <div class="split-area">
-                    <pep-select [disabled]="!hostObject?.slideshowConfig?.isUseArrows" [label]="'SLIDESHOW.ARROWS_STYLE' | translate" [value]="hostObject?.slideshowConfig?.arrowsStyle" [options]="buttonStyles" 
+                    <pep-select [disabled]="!configuration?.slideshowConfig?.isUseArrows" [label]="'SLIDESHOW.ARROWS_STYLE' | translate" [value]="configuration?.slideshowConfig?.arrowsStyle" [options]="buttonStyles" 
                         (valueChange)="onSlideshowFieldChange('arrowsStyle',$event)" [emptyOption]="false"></pep-select>
-                    <pep-select [disabled]="!hostObject?.slideshowConfig?.isUseArrows" [label]="'SLIDESHOW.ARROWS_COLOR' | translate" [value]="hostObject?.slideshowConfig?.arrowsColor" [options]="buttonStyles"
+                    <pep-select [disabled]="!configuration?.slideshowConfig?.isUseArrows" [label]="'SLIDESHOW.ARROWS_COLOR' | translate" [value]="configuration?.slideshowConfig?.arrowsColor" [options]="buttonStyles"
                         (valueChange)="onSlideshowFieldChange('arrowsColor',$event)" [emptyOption]="false"></pep-select>
                 </div>
 
@@ -48,26 +48,26 @@
                 <label class="body-xs normal" [innerHTML]="'SLIDESHOW.CONTROLLERS_DESC' | translate"></label>
 
                 <pep-checkbox class="body-sm" 
-                              [disabled]="!hostObject?.slideshowConfig?.isTransition" 
-                              [value]="hostObject?.slideshowConfig?.usePauseButton && hostObject?.slideshowConfig?.isTransition" 
+                              [disabled]="!configuration?.slideshowConfig?.isTransition" 
+                              [value]="configuration?.slideshowConfig?.usePauseButton && configuration?.slideshowConfig?.isTransition" 
                               [label]="'SLIDESHOW.CONTROLLERS_PROPERTIES.PAUSE_PLAY' | translate" [renderTitle]="false" 
                               (valueChange)="onSlideshowFieldChange('usePauseButton',$event)"></pep-checkbox>
-                <pep-checkbox class="body-sm" [value]="hostObject?.slideshowConfig?.showOnMobile" 
+                <pep-checkbox class="body-sm" [value]="configuration?.slideshowConfig?.showOnMobile" 
                               [label]="'SLIDESHOW.CONTROLLERS_PROPERTIES.MOBILE' | translate" [renderTitle]="false" 
                               (valueChange)="onSlideshowFieldChange('showOnMobile',$event)"></pep-checkbox>
-                <!-- <pep-checkbox class="body-sm" [value]="hostObject?.slideshowConfig?.useInverStyle" 
+                <!-- <pep-checkbox class="body-sm" [value]="configuration?.slideshowConfig?.useInverStyle" 
                               [label]="'SLIDESHOW.CONTROLLERS_PROPERTIES.INVERT_STYLE' | translate" [renderTitle]="false" 
                               (valueChange)="onSlideshowFieldChange('useInverStyle',$event)"></pep-checkbox> -->
-                <pep-checkbox class="body-sm"  [value]="hostObject?.slideshowConfig?.showControllersInSlider" 
+                <pep-checkbox class="body-sm"  [value]="configuration?.slideshowConfig?.showControllersInSlider" 
                               [label]="'SLIDESHOW.CONTROLLERS_PROPERTIES.SHOW_CONTROLLERS' | translate" [renderTitle]="false" 
                               (valueChange)="onSlideshowFieldChange('showControllersInSlider',$event)"></pep-checkbox>
                 
                 <label class="body-xs normal ellipsis">{{'SLIDESHOW.CONTROLLER_SIZE' | translate}}</label>
-                <pep-group-buttons [buttons]="ControllerSize" [selectedButtonKey]="hostObject?.slideshowConfig?.controllerSize" buttonsClass="md regular" 
+                <pep-group-buttons [buttons]="ControllerSize" [selectedButtonKey]="configuration?.slideshowConfig?.controllerSize" buttonsClass="md regular" 
                                    (buttonClick)="onSlideshowFieldChange('controllerSize',$event)" viewType="toggle" stretch="true">
                 </pep-group-buttons>
 
-                <pep-checkbox [value]="hostObject?.slideshowConfig?.dropShadow?.useDropShadow" 
+                <pep-checkbox [value]="configuration?.slideshowConfig?.dropShadow?.useDropShadow" 
                               [label]="'SLIDE_EDITOR.DROP_SHADOW' | translate" 
                               [renderTitle]="false" 
                               (valueChange)="onSlideshowFieldChange('dropShadow.useDropShadow',$event)">
@@ -75,13 +75,13 @@
                 <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.SHADOW_INTENSITY' | translate}}</label>
                 <pep-group-buttons 
                     [buttons]="SlideDropShadowStyle" 
-                    [selectedButtonKey]="hostObject?.slideshowConfig?.dropShadow?.intensity" 
+                    [selectedButtonKey]="configuration?.slideshowConfig?.dropShadow?.intensity" 
                     buttonsClass="md regular" 
-                    [buttonsDisabled]="!hostObject?.slideshowConfig?.dropShadow?.useDropShadow"(buttonClick)="onSlideshowFieldChange('dropShadow.intensity',$event)" viewType="toggle" stretch="true">
+                    [buttonsDisabled]="!configuration?.slideshowConfig?.dropShadow?.useDropShadow"(buttonClick)="onSlideshowFieldChange('dropShadow.intensity',$event)" viewType="toggle" stretch="true">
                 </pep-group-buttons>
                 <div>
                     <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.SHADOW_INTENSITY' | translate}}</label>
-                    <mat-slider [value]="hostObject?.slideshowConfig?.dropShadow?.opacity" aria-label="unit(s)" [min]="'0'" [max]="'100'" [disabled]="!hostObject?.slideshowConfig?.dropShadow?.useDropShadow" 
+                    <mat-slider [value]="configuration?.slideshowConfig?.dropShadow?.opacity" aria-label="unit(s)" [min]="'0'" [max]="'100'" [disabled]="!configuration?.slideshowConfig?.dropShadow?.useDropShadow" 
                                 (change)="onSlideshowFieldChange('dropShadow.opacity',$event)" [thumbLabel]="'false'">
                     </mat-slider>
                 </div>
@@ -90,10 +90,10 @@
         <ng-container>
             <label class="body-xl bold ellipsis">{{'SLIDESHOW.SLIDES' | translate}}</label>
             <div #availableSlidesContainer id="availableSlides" class="available-slides">
-                <slide-editor *ngFor="let currentSlide of hostObject?.slides;" class="available-slide"
+                <slide-editor *ngFor="let currentSlide of configuration?.slides;" class="available-slide"
                     [id]="currentSlide?.id" [showActions]="true" 
                     [isDraggable]="true" (editClick)='onSlideEditClick($event);' (removeClick)='onSlideRemoveClick($event);'
-                    [hostObject]="hostObject">
+                    [configuration]="configuration">
                 </slide-editor>
             </div>
 
