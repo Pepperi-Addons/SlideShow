@@ -18,10 +18,12 @@ export class SlideshowEditorComponent implements OnInit {
     // @Input() slidesDropList = []; 
     
     @Input()
-    set hostObject(value: IHostObject) {
-        if (value && value.configuration) {
-            this._configuration = value.configuration;
+    set hostObject(value: ISlideShow) {
+        debugger;
+        if (value && value.slides.length) {
+            this._configuration = value;
         } else {
+            // TODO - NEED TO ADD DEFAULT SLIDE
             this.loadDefaultConfiguration();
         }
     }

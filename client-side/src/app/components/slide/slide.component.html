@@ -21,8 +21,8 @@
                     <label class="body-sm ellipsis" *ngIf="slide?.useSubTitle" [ngClass]="'size_'+slide?.subTitleSize">{{slide?.subTitleContent}}</label>
                 </div>
                 <div class="buttons-box">
-                    <pep-button *ngIf="slide?.firstButton.useButton" [sizeType]="slide?.buttonsSize" [value]="slide?.firstButton.label" [styleType]="slide?.firstButton.style" [styleStateType]="slide?.buttonsColor" (buttonClick)="onSlideButtonClicked('firstButton')"></pep-button>
-                    <pep-button *ngIf="slide?.secondButton.useButton" [sizeType]="slide?.buttonsSize" [value]="slide?.secondButton.label" [styleType]="slide?.secondButton.style" [styleStateType]="slide?.buttonsColor"  (buttonClick)="onSlideButtonClicked('secondButton')"></pep-button>
+                    <pep-button *ngIf="slide?.firstButton?.useButton" [sizeType]="slide?.buttonsSize" [value]="slide?.firstButton.label" [styleType]="slide?.firstButton.style" [styleStateType]="slide?.buttonsColor" (buttonClick)="onSlideButtonClicked('firstButton')"></pep-button>
+                    <pep-button *ngIf="slide?.secondButton?.useButton" [sizeType]="slide?.buttonsSize" [value]="slide?.secondButton.label" [styleType]="slide?.secondButton.style" [styleStateType]="slide?.buttonsColor"  (buttonClick)="onSlideButtonClicked('secondButton')"></pep-button>
                 </div>
             </div>
         </ng-container>

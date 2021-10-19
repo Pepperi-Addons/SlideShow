@@ -20,7 +20,7 @@ export type buttonColor = 'system' | 'system-inverted' | 'primary' | 'secondary'
 
 export class SlideButton {
     useButton: boolean = true;
-    label: string = '1st button';
+    label: string = 'Button';
     linkTo: string = '';
     style: PepStyleStateType = 'system'
 }
@@ -81,7 +81,7 @@ export class ISlideEditor {
     innerSpacing: PepSizeType = "md";
     textColor: textColor = 'inverted';
     buttonsSize: PepSizeType  = 'md';
-    buttonsColor: buttonColor= 'system';
+    buttonsColor: buttonColor= 'system-inverted';
     firstButton: SlideButton = new SlideButton();
     secondButton: SlideButton  = new SlideButton();
     gradientOverlay: Overlay = new Overlay();
