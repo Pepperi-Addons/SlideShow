@@ -1,4 +1,4 @@
-import { PepStyleType, PepStyleStateType, PepSizeType, PepHorizontalAlignment, PepVerticalAlignment, PepScreenSizeType} from '@pepperi-addons/ngx-lib';
+import { PepStyleType, PepSizeType, PepHorizontalAlignment, PepVerticalAlignment, PepScreenSizeType} from '@pepperi-addons/ngx-lib';
 import { PageConfiguration } from '@pepperi-addons/papi-sdk';
 
 export interface IHostObject {
@@ -11,29 +11,30 @@ export interface IHostObject {
 
 export type HeightUnit = 'REM' | 'VH';
 export type TransitionType = 'none' | 'fade' | 'zoom' | 'slide';
-export type ArrowType = 'arrow_back_right' | 'arrow_left' | 'arrow_left_alt';
+export type ArrowType = 'arrow_back_right' | 'arrow_right' | 'arrow_right_alt';
 export type ArrowShape = 'none' | 'regular' | 'round';
 export type WidthUnits = 'Narrow' | 'Regular' | 'Wide';
 export type Intensity = 'Soft' | 'Regular';
 export type textColor = 'system' | 'dimmed' | 'inverted' | 'strong';
-export type buttonColor = 'system' | 'system-inverted' | 'primary' | 'secondary'
+
+export type buttonColor = 'system-primary' | 'invert' | 'user-primary' ;
 
 export class SlideButton {
     useButton: boolean = true;
     label: string = 'Button';
     linkTo: string = '';
-    style: PepStyleStateType = 'system'
+    style: PepStyleType = 'weak'
 }
 
 export class Overlay {
     useGradientOverlay: boolean = true;
-    color: string = '#000';
-    opacity: string = '100';
+    color: string = 'hsl(0, 0%, 100%)';
+    opacity: string = '0';
 }
 
 export class SlideImage {
     useImage: boolean = false;
-    src: string = '';
+    src: string = 'https://www.desktopbackground.org/p/2011/02/22/161528_tilicho-lake-in-nepal-wallpapers-nature-wallpapers_1680x1050_h.jpg';
     horizontalPosition: string = '0';
     verticalPosition: string = '0';
 }
@@ -55,10 +56,10 @@ export class ISlideshowEditor {
     transitionType: TransitionType = 'fade';
     transitionTime: string = '2';
     isUseArrows: boolean = true;
-    arrowType: ArrowType = 'arrow_left';
+    arrowType: ArrowType = 'arrow_right';
     arrowShape: ArrowShape = 'regular';
-    arrowsStyle: PepStyleType = 'regular';
-    arrowsColor: PepStyleType = 'weak';
+    arrowsStyle: PepStyleType= 'weak';
+    arrowsColor: buttonColor= 'system-primary';
     usePauseButton: boolean = true;
     showOnMobile: boolean = true;
     useInverStyle: boolean = true;
@@ -81,7 +82,7 @@ export class ISlideEditor {
     innerSpacing: PepSizeType = "md";
     textColor: textColor = 'inverted';
     buttonsSize: PepSizeType  = 'md';
-    buttonsColor: buttonColor= 'system-inverted';
+    buttonColor: buttonColor= 'system-primary';
     firstButton: SlideButton = new SlideButton();
     secondButton: SlideButton  = new SlideButton();
     gradientOverlay: Overlay = new Overlay();
@@ -98,3 +99,4 @@ export interface ISlideShow{
     slideshowConfig: ISlideshowEditor,
     slides: Array<ISlideEditor>
 }
+ 

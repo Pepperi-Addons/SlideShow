@@ -64,8 +64,8 @@
                        (buttonClick)="onSlideFieldChange('buttonsSize',$event)" viewType="toggle" stretch="true">
     </pep-group-buttons>
 
-    <pep-select [label]="'SLIDE_EDITOR.BUTTON_COLOR_TITLE' | translate" [value]="configuration?.slides[id].buttonsColor" 
-                [options]="buttonColors" (valueChange)="onSlideFieldChange('buttonsColor',$event)" [emptyOption]="false" 
+    <pep-select [label]="'SLIDE_EDITOR.BUTTON_COLOR_TITLE' | translate" [value]="configuration?.slides[id].buttonColor" 
+                [options]="buttonColor" (valueChange)="onSlideFieldChange('buttonColor',$event)" [emptyOption]="false" 
                 [disabled]="false" styleType="regular"></pep-select>
 
 
@@ -73,14 +73,14 @@
     <pep-textbox [label]="'SLIDE_EDITOR.LABEL' | translate" type="string" [disabled]="!configuration?.slides[id].firstButton.useButton" [value]="configuration?.slides[id].firstButton.label" (valueChange)="onSlideFieldChange('firstButton.label',$event)"></pep-textbox>
     <pep-textbox [label]="'SLIDE_EDITOR.LINK_TO' | translate" type="link" [disabled]="!configuration?.slides[id].firstButton.useButton" [value]="configuration?.slides[id].firstButton.linkTo" (valueChange)="onSlideFieldChange('firstButton.linkTo',$event)"></pep-textbox>
     <pep-select [label]="'SLIDE_EDITOR.BUTTON_STYLE' | translate" [value]="configuration?.slides[id].firstButton.style" 
-                [options]="buttonStyles" (valueChange)="onSlideFieldChange('firstButton.style',$event)" [emptyOption]="false" 
+                [options]="buttonStyle" (valueChange)="onSlideFieldChange('firstButton.style',$event)" [emptyOption]="false" 
                 [disabled]="!configuration?.slides[id].firstButton.useButton" styleType="weak">
     </pep-select>
 
     <pep-checkbox [value]="configuration?.slides[id].secondButton.useButton" [label]="'SLIDE_EDITOR.SECOND_BUTTON' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('secondButton.useButton',$event)"></pep-checkbox>
     <pep-textbox [label]="'SLIDE_EDITOR.LABEL' | translate" type="string" [disabled]="!configuration?.slides[id].secondButton.useButton" [value]="configuration?.slides[id].secondButton.label" (valueChange)="onSlideFieldChange('secondButton.label',$event)"></pep-textbox>
     <pep-textbox [label]="'SLIDE_EDITOR.LINK_TO' | translate" type="link" [disabled]="!configuration?.slides[id].secondButton.useButton" [value]="configuration?.slides[id].secondButton.linkTo" (valueChange)="onSlideFieldChange('secondButton.linkTo',$event)"></pep-textbox>
-    <pep-select [label]="'SLIDE_EDITOR.BUTTON_STYLE' | translate" [value]="configuration?.slides[id].secondButton.style" [options]="buttonStyles"
+    <pep-select [label]="'SLIDE_EDITOR.BUTTON_STYLE' | translate" [value]="configuration?.slides[id].secondButton.style" [options]="buttonStyle"
                 (valueChange)="onSlideFieldChange('secondButton.style',$event)" [emptyOption]="false" [disabled]="!configuration?.slides[id].secondButton.useButton">
     </pep-select>
     
@@ -96,7 +96,7 @@
     </div>
 
     <pep-checkbox [value]="configuration?.slides[id].overlay.useGradientOverlay" [label]="'SLIDE_EDITOR.OVERLAY' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('overlay.useGradientOverlay',$event)"></pep-checkbox>
-    <pep-color [value]="configuration?.slides[id].buttonsColor" [label]="'SLIDE_EDITOR.OVERLAY_COLOR' | translate" [disabled]="!configuration?.slides[id].overlay.useGradientOverlay" xAlignment="left"
+    <pep-color [value]="configuration?.slides[id].buttonColor" [label]="'SLIDE_EDITOR.OVERLAY_COLOR' | translate" [disabled]="!configuration?.slides[id].overlay.useGradientOverlay" xAlignment="left"
             type="any" [showTitle]="true" [showAAComplient]="true" (valueChange)="onSlideFieldChange('overlay.useGradientOverlay',$event)">
     </pep-color>
     <div>
@@ -106,8 +106,14 @@
         </mat-slider>
     </div>
 
-    <pep-checkbox [value]="configuration?.slides[id].image.useImage" [label]="'SLIDE_EDITOR.IMAGE' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('mage.useImage',$event)"></pep-checkbox>
-    <pep-image [disabled]="!configuration?.slides[id].image.useImage" [label]="'SLIDE_EDITOR.CHOOSE_IMAGE' | translate" [showTitle]="true" [xAlignment]="'left'" [rowSpan]="2">
+    <pep-checkbox [value]="configuration?.slides[id].image.useImage" [label]="'SLIDE_EDITOR.IMAGE' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('image.useImage',$event)"></pep-checkbox>
+    <pep-image [disabled]="!configuration?.slides[id].image.useImage" 
+               [label]="'SLIDE_EDITOR.CHOOSE_IMAGE' | translate" 
+               [showTitle]="true" 
+               [xAlignment]="'left'" 
+               [rowSpan]="2"
+               [src]="configuration?.slides[id].image?.src"
+               (fileChange)="onSlideFieldChange('image.src',$event)">
     </pep-image>
     <div>
         <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.IMAGE_HORIZONTAL_POSITION' | translate}}</label>

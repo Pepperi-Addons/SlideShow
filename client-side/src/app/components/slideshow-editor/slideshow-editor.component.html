@@ -38,9 +38,9 @@
                 </pep-group-buttons>
 
                 <div class="split-area">
-                    <pep-select [disabled]="!configuration?.slideshowConfig?.isUseArrows" [label]="'SLIDESHOW.ARROWS_STYLE' | translate" [value]="configuration?.slideshowConfig?.arrowsStyle" [options]="buttonStyles" 
+                    <pep-select [disabled]="!configuration?.slideshowConfig?.isUseArrows" [label]="'SLIDESHOW.ARROWS_STYLE' | translate" [value]="configuration?.slideshowConfig?.arrowsStyle" [options]="buttonStyle" 
                         (valueChange)="onSlideshowFieldChange('arrowsStyle',$event)" [emptyOption]="false"></pep-select>
-                    <pep-select [disabled]="!configuration?.slideshowConfig?.isUseArrows" [label]="'SLIDESHOW.ARROWS_COLOR' | translate" [value]="configuration?.slideshowConfig?.arrowsColor" [options]="buttonStyles"
+                    <pep-select [disabled]="!configuration?.slideshowConfig?.isUseArrows" [label]="'SLIDESHOW.ARROWS_COLOR' | translate" [value]="configuration?.slideshowConfig?.arrowsColor" [options]="buttonColor"
                         (valueChange)="onSlideshowFieldChange('arrowsColor',$event)" [emptyOption]="false"></pep-select>
                 </div>
 

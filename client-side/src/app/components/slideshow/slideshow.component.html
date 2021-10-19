@@ -7,15 +7,13 @@
 <div *ngIf="configuration?.slides.length > 1 &&  configuration?.slideshowConfig?.isUseArrows" id="navigationCont">
        <pep-button sizeType='sm' 
                    [styleType]="configuration?.slideshowConfig?.arrowsStyle" 
-                   [styleStateType]="configuration?.slideshowConfig?.arrowsColor"
-                   [ngClass]="['rotate180' , 'arrowShape_' + configuration?.slideshowConfig?.arrowShape]" 
+                   [ngClass]="[configuration?.slideshowConfig?.arrowsColor , 'rotate180' , 'arrowShape_' + configuration?.slideshowConfig?.arrowShape]" 
                    [iconName]="configuration?.slideshowConfig?.arrowType" 
                    (buttonClick)="navigate('back')">
        </pep-button>
        <pep-button sizeType='sm' 
                    [styleType]="configuration?.slideshowConfig?.arrowsStyle" 
-                   [styleStateType]="configuration?.slideshowConfig?.arrowsColor"
-                   [ngClass]="['arrowShape_' + configuration?.slideshowConfig?.arrowShape]" 
+                   [ngClass]="[configuration?.slideshowConfig?.arrowsColor, 'arrowShape_' + configuration?.slideshowConfig?.arrowShape]" 
                    [iconName]="configuration?.slideshowConfig?.arrowType"  
                    (buttonClick)="navigate('forward')">
        </pep-button>

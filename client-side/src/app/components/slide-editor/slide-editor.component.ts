@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ISlideShow, ISlideshowEditor, slide, TransitionType, ArrowShape, ISlideEditor, textColor, IHostObject } from '../slideshow.model';
 import { PepStyleType, PepSizeType} from '@pepperi-addons/ngx-lib';
+import { PepButton } from '@pepperi-addons/ngx-lib/button';
 
 interface groupButtonArray {
     key: string; 
@@ -34,8 +35,8 @@ export class SlideEditorComponent implements OnInit {
     VerticalAlign: Array<groupButtonArray>;
     SlideDropShadowStyle: Array<groupButtonArray>;
     textColors: Array<groupButtonArray>;
-    buttonColors: Array<groupButtonArray>;
-    buttonStyles: Array<{key: PepStyleType, value: string}>;
+    buttonColor: Array<PepButton> = [];
+    buttonStyle: Array<{key: PepStyleType, value: string}>;
     InnerSpacing: Array<{key: PepSizeType, value: string}>;
 
     constructor(
@@ -92,17 +93,15 @@ export class SlideEditorComponent implements OnInit {
             { key: 'strong', value: this.translate.instant('SLIDE_EDITOR.TEXT_COLOR.STRONG') }
         ];
 
-        this.buttonColors = [
-            { key: 'system', value: this.translate.instant('SLIDE_EDITOR.TEXT_COLOR.SYSTEM') },
-            { key: 'system-inverted', value: this.translate.instant('SLIDE_EDITOR.TEXT_COLOR.DIMMED') },
-            { key: 'primary', value: this.translate.instant('SLIDE_EDITOR.TEXT_COLOR.INVERTED') },
-            { key: 'secondary', value: this.translate.instant('SLIDE_EDITOR.TEXT_COLOR.STRONG') }
-        ];
+        this.buttonColor = [
+            { key: 'system-primary', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.SYSTEM') },
+            { key: 'invert', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.INVERTED') },
+            { key: 'user-primary', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.USER') },
+        ]
 
-        this.buttonStyles = [
-            { key: 'regular', value: this.translate.instant('SLIDE_EDITOR.BUTTON_STYLES.REGULAR') },
+        this.buttonStyle = [
             { key: 'weak', value: this.translate.instant('SLIDE_EDITOR.BUTTON_STYLES.WEAK') },
-            { key: 'weak-invert', value:this.translate.instant('SLIDE_EDITOR.BUTTON_STYLES.WEAK-INVERT') },
+            { key: 'regular', value: this.translate.instant('SLIDE_EDITOR.BUTTON_STYLES.REGULAR') },
             { key: 'strong', value:this.translate.instant('SLIDE_EDITOR.BUTTON_STYLES.STRONG') }
         ];
 
@@ -123,7 +122,7 @@ export class SlideEditorComponent implements OnInit {
     }
 
     onSlideFieldChange(key, event){
-        const value = event && event.source && event.source.key ? event.source.key : event && event.source && event.source.value ? event.source.value :  event;
+        const value = key.indexOf('image') > -1 && key.indexOf('src') > -1 ? event.fileStr :  event && event.source && event.source.key ? event.source.key : event && event.source && event.source.value ? event.source.value :  event;
         
         if(key.indexOf('.') > -1){
             let keyObj = key.split('.');

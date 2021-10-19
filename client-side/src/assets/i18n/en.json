@@ -112,7 +112,9 @@
             "SYSTEM": "System",
             "SYSTEM-INVERTED": "System inverted",
             "PRIMARY": "Primary",
-            "SECONDARY": "Secondary"
+            "SECONDARY": "Secondary",
+            "INVERTED": "Inverted",
+            "USER": "User"
         },
         "WIDTH_SIZE": {
             "NARROW": "Narrow",

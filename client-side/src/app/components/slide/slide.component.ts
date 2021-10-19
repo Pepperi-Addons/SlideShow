@@ -1,6 +1,6 @@
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
-import { PepLayoutService, PepScreenSizeType, PepSizeType, PepStyleType } from '@pepperi-addons/ngx-lib';
+import { PepColorService, PepLayoutService, PepScreenSizeType, PepSizeType, PepStyleType } from '@pepperi-addons/ngx-lib';
 import { ISlideEditor, ISlideShow, ISlideshowEditor } from '../slideshow.model';
 
 @Component({
@@ -22,6 +22,7 @@ export class SlideComponent implements OnInit {
 
     constructor(
         public layoutService: PepLayoutService,
+        private pepColorService: PepColorService,
         public translate: TranslateService
     ) {
 
@@ -35,6 +36,23 @@ export class SlideComponent implements OnInit {
         return { slideshowConfig: new ISlideshowEditor(), slides: Array<ISlideEditor>() };
     }
     
+    getRGBAcolor(){
+        let rgba = 'rgba(255,255,255,0';
+            if(this.slide && this.slide?.gradientOverlay){
+            let color = this.slide?.gradientOverlay?.color;
+            let opacity = parseInt(this.slide?.gradientOverlay?.opacity);
+
+            opacity = opacity > 0 ? opacity / 100 : 0;
+            //check if allready rgba
+            
+            let hsl = this.pepColorService.hslString2hsl(color);
+            let rgb = this.pepColorService.hsl2rgb(hsl);
+            
+            rgba = 'rgba('+ rgb.r + ','  + rgb.g + ',' + rgb.b + ',' + opacity + ')';
+        }
+        return rgba;
+    }
+
     ngOnChanges(changes) { 
         if (changes) {
         }

@@ -16,11 +16,12 @@ export class SlideshowEditorComponent implements OnInit {
     @ViewChild('availableSlidesContainer', { read: ElementRef }) availableBlocksContainer: ElementRef;
 
     // @Input() slidesDropList = []; 
-    
+    ;
+
     @Input()
-    set hostObject(value: ISlideShow) {
-        if (value && value.slides.length) {
-            this._configuration = value;
+    set hostObject(value: IHostObject) {
+        if (value && value.configuration) {
+            this._configuration = value.configuration
         } else {
             // TODO - NEED TO ADD DEFAULT SLIDE
             this.loadDefaultConfiguration();
@@ -35,8 +36,8 @@ export class SlideshowEditorComponent implements OnInit {
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
     
     transitionTypes: Array<{key: TransitionType, value: string}> = [];
-    buttonStyles: Array<{key: PepStyleType, value: string}> = [];
-    buttonColors: Array<PepButton> = [];
+    buttonStyle: Array<{key: PepStyleType, value: string}> = [];
+    buttonColor: Array<PepButton> = [];
     SlideDropShadowStyle: Array<PepButton> = [];
     HeightUnitsType: Array<PepButton> = [];
     InnerSpacing: Array<{key: PepSizeType, value: string}> = [];
@@ -121,16 +122,16 @@ export class SlideshowEditorComponent implements OnInit {
             
         ]
         
-        this.buttonStyles = [
+        this.buttonStyle = [
             { key: 'weak', value: this.translate.instant('SLIDE_EDITOR.BUTTON_STYLES.WEAK') },
             { key: 'regular', value: this.translate.instant('SLIDE_EDITOR.BUTTON_STYLES.REGULAR') },
             { key: 'strong', value:this.translate.instant('SLIDE_EDITOR.BUTTON_STYLES.STRONG') }
         ];
 
-        this.buttonColors = [
-            { key: 'system', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLORS_') },
-            { key: 'inverted', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLORS_INVERTED') },
-            { key: 'user', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLORS_USER') },
+        this.buttonColor = [
+            { key: 'system-primary', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.SYSTEM') },
+            { key: 'invert', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.INVERTED') },
+            { key: 'user-primary', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.USER') },
         ]
 
         this.HeightUnitsType = [

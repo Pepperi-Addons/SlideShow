@@ -7,11 +7,10 @@ $pepperi-theme: get-pepperi-theme();
 
 .ng-component-container{
     width: inherit;
-    // background: linear-gradient(45deg, rgb(21, 24, 26) 0%, rgba(21, 24, 26, 0.35) 50%, rgba(21, 24, 26, 0) 100%);
     display: block;
     height: inherit;
     margin: 0 auto;
-
+    
     &.horAlign_right{
         ::ng-deep{
             .pep-main-area{
@@ -36,7 +35,7 @@ $pepperi-theme: get-pepperi-theme();
             }
         }
     }
-
+    
     &.inner_padding_sm{
         padding: $spacing-sm;
     }
@@ -153,6 +152,12 @@ $pepperi-theme: get-pepperi-theme();
             }
         
         }
+
+    &.backgroundImage{
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+        background-position: center !important;
+    }
 }
 
 .animation{
