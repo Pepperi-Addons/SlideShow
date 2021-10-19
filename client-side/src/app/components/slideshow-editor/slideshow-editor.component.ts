@@ -19,7 +19,6 @@ export class SlideshowEditorComponent implements OnInit {
     
     @Input()
     set hostObject(value: ISlideShow) {
-        debugger;
         if (value && value.slides.length) {
             this._configuration = value;
         } else {
