@@ -37,13 +37,25 @@ $pepperi-theme: get-pepperi-theme();
     }
     
     &.inner_padding_sm{
-        padding: $spacing-sm;
+        padding: $spacing-md;
+
+        .withArrow_margin{ 
+            margin-inline: 1.5rem;
+        }
     }
     &.inner_padding_md{
-        padding: $spacing-md;
+        padding: $spacing-lg;
+
+        .withArrow_margin{ 
+            margin-inline: 2rem;
+        }
     }
     &.inner_padding_lg{
-        padding: $spacing-lg;
+        padding: $spacing-xl;
+
+        .withArrow_margin{ 
+            padding-inline: 2.5rem;
+        }
     }
     
     .slide-box{
@@ -153,10 +165,28 @@ $pepperi-theme: get-pepperi-theme();
         
         }
 
-    &.backgroundImage{
+    .backgroundImage{
         background-repeat: no-repeat !important;
         background-size: cover !important;
-        background-position: center !important;
+        position: absolute;
+        width: 100%;
+        z-index: -1;
+
+        &.inner_margin_sm{
+            margin: calc(-1 * (#{$spacing-md}));
+            margin-inline-start: calc((-1 * #{$spacing-md}) - 1rem);
+            margin-inline-end: calc((-1 * #{$spacing-md}) - 1rem);
+        }
+        &.inner_margin_md{
+            margin: calc(-1 * (#{$spacing-lg}));
+            margin-inline-start: calc((-1 * #{$spacing-lg}) - 1rem);
+            margin-inline-end: calc((-1 * #{$spacing-lg}) - 1rem);
+        }
+        &.inner_margin_lg{
+            margin: calc(-1 * (#{$spacing-xl}));
+            margin-inline-start: calc((-1 * #{$spacing-xl}) - 1rem);
+            margin-inline-end: calc((-1 * #{$spacing-xl}) - 1rem);
+        }
     }
 }
 

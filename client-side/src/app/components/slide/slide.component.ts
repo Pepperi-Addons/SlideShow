@@ -1,7 +1,7 @@
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
 import { PepColorService, PepLayoutService, PepScreenSizeType, PepSizeType, PepStyleType } from '@pepperi-addons/ngx-lib';
-import { ISlideEditor, ISlideShow, ISlideshowEditor } from '../slideshow.model';
+import { ISlideEditor, ISlideShow, ISlideshowEditor, Overlay } from '../slideshow.model';
 
 @Component({
     selector: 'slide',
@@ -36,21 +36,34 @@ export class SlideComponent implements OnInit {
         return { slideshowConfig: new ISlideshowEditor(), slides: Array<ISlideEditor>() };
     }
     
-    getRGBAcolor(){
+    getRGBAcolor(colObj: Overlay, opac = null){
         let rgba = 'rgba(255,255,255,0';
-            if(this.slide && this.slide?.gradientOverlay){
-            let color = this.slide?.gradientOverlay?.color;
-            let opacity = parseInt(this.slide?.gradientOverlay?.opacity);
+            if(colObj){
+                let color = colObj.color;
+                let opacity = opac != null ? opac : parseInt(colObj.opacity);
 
-            opacity = opacity > 0 ? opacity / 100 : 0;
-            //check if allready rgba
-            
-            let hsl = this.pepColorService.hslString2hsl(color);
-            let rgb = this.pepColorService.hsl2rgb(hsl);
-            
-            rgba = 'rgba('+ rgb.r + ','  + rgb.g + ',' + rgb.b + ',' + opacity + ')';
+                opacity = opacity > 0 ? opacity / 100 : 0;
+                //check if allready rgba
+                
+                let hsl = this.pepColorService.hslString2hsl(color);
+                let rgb = this.pepColorService.hsl2rgb(hsl);
+                
+                rgba = 'rgba('+ rgb.r + ','  + rgb.g + ',' + rgb.b + ',' + opacity + ')';
         }
         return rgba;
+    }
+
+    getBackground(){
+        // todo - right left center ( 0 , color , 0 )
+        let gradient = this.slide?.gradientOverlay;
+
+        let alignTo = this.slide?.horizontalAlign != 'center' ? this.slide?.horizontalAlign : 'left';
+        let imageSrc = this.slide?.image?.useImage ? 'url('+this.slide?.image?.src + ')' : '';
+        let gradStr = this.slide?.gradientOverlay?.useGradientOverlay ? (this.slide?.horizontalAlign != 'center' ? this.getRGBAcolor(gradient) +' , '+ this.getRGBAcolor(gradient,0) : this.getRGBAcolor(gradient,0) +' , '+ this.getRGBAcolor(gradient) +' , '+ this.getRGBAcolor(gradient,0)) : '';
+        
+        gradStr = gradStr != '' ? 'linear-gradient(to ' + alignTo +', ' +  gradStr +')' : '';
+        
+        return   gradStr  +  (this.slide?.image?.useImage && this.slide?.gradientOverlay?.useGradientOverlay ?  ',' : '') + imageSrc;
     }
 
     ngOnChanges(changes) { 
