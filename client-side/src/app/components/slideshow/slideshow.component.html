@@ -19,10 +19,10 @@
 </div>
 <div id="slideFooterBtn" 
      *ngIf="configuration?.slides.length > 1"
-     [ngClass]="[configuration?.slideshowConfig?.dropShadow?.useDropShadow === true ? 'with-shadow-margin' : '']">
+     [ngClass]="[configuration?.slideshowConfig?.dropShadow?.useDropShadow === true ? 'with-shadow-margin' : '',
+                 configuration?.slideshowConfig?.showControllersInSlider == false ? 'withOutSideController' : '' ]">
        <div id="dotsCont" 
             class="pep-button regular system"
-            *ngIf="configuration?.slideshowConfig?.showControllersInSlider"
             [ngClass]='configuration?.slideshowConfig?.controllerSize'>
               <span *ngFor="slide of configuration?.slides; let i = index" 
                      class="dot" 

@@ -63,6 +63,8 @@ $pepperi-theme: get-pepperi-theme();
             grid-template-rows: min-content min-content min-content;
             align-self: center;
             color: get-pep-color($pepperi-theme, color-text, color-main);
+            border: 3px dashed red;
+            max-width: fit-content;
 
             &.contentWidth_narrow{
                 width: 50%;
@@ -269,6 +271,10 @@ $pepperi-theme: get-pepperi-theme();
     .ng-component-container{
         box-shadow: 4.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.38);
     }
+
+    &.withOutSideController{
+        padding-bottom: 3rem;
+    }
 }
 
 .drop-shadow_Soft{
@@ -280,6 +286,10 @@ $pepperi-theme: get-pepperi-theme();
                 0 8px 16px rgba(0,0,0,0.07),
                 0 16px 32px rgba(0,0,0,0.07), 
                 0 32px 64px rgba(0,0,0,0.07);
+    }
+
+    &.withOutSideController{
+        padding-bottom: 3rem;
     }
 }
 

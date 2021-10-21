@@ -28,16 +28,16 @@ export class SlideEditorComponent implements OnInit {
     @Output() removeClick: EventEmitter<any> = new EventEmitter();
     @Output() editClick: EventEmitter<any> = new EventEmitter();
 
-    SlideTitleSize:Array<groupButtonArray>;
-    SlideSubTitleSize: Array<groupButtonArray>;
-    WidthSize: Array<groupButtonArray>;
-    HorizentalAlign: Array<groupButtonArray>;
-    VerticalAlign: Array<groupButtonArray>;
-    SlideDropShadowStyle: Array<groupButtonArray>;
-    textColors: Array<groupButtonArray>;
+    SlideTitleSize:Array<groupButtonArray> = [];
+    SlideSubTitleSize: Array<groupButtonArray> = [];
+    WidthSize: Array<groupButtonArray> = [];
+    HorizentalAlign: Array<groupButtonArray> = [];
+    VerticalAlign: Array<groupButtonArray> = [];
+    SlideDropShadowStyle: Array<groupButtonArray> = [];
+    textColors: Array<groupButtonArray> = [];
     buttonColor: Array<PepButton> = [];
-    buttonStyle: Array<{key: PepStyleType, value: string}>;
-    InnerSpacing: Array<{key: PepSizeType, value: string}>;
+    buttonStyle: Array<{key: PepStyleType, value: string}> = [];
+    InnerSpacing: Array<{key: PepSizeType, value: string}> = [];
 
     constructor(
         private translate: TranslateService
