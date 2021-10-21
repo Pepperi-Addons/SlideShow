@@ -96,8 +96,8 @@
     </div>
 
     <pep-checkbox [value]="configuration?.slides[id].overlay.useGradientOverlay" [label]="'SLIDE_EDITOR.OVERLAY' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('overlay.useGradientOverlay',$event)"></pep-checkbox>
-    <pep-color [value]="configuration?.slides[id].buttonColor" [label]="'SLIDE_EDITOR.OVERLAY_COLOR' | translate" [disabled]="!configuration?.slides[id].overlay.useGradientOverlay" xAlignment="left"
-            type="any" [showTitle]="true" [showAAComplient]="true" (valueChange)="onSlideFieldChange('overlay.useGradientOverlay',$event)">
+    <pep-color [value]="configuration?.slides[id].overlay.color" [label]="'SLIDE_EDITOR.OVERLAY_COLOR' | translate" [disabled]="!configuration?.slides[id].overlay.useGradientOverlay" xAlignment="left"
+            type="any" [showTitle]="true" [showAAComplient]="true" (valueChange)="onSlideFieldChange('overlay.color',$event)">
     </pep-color>
     <div>
         <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.OVERLAY_OPACITY' | translate}}</label>
@@ -118,13 +118,13 @@
     <div>
         <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.IMAGE_HORIZONTAL_POSITION' | translate}}</label>
         <mat-slider [value]="configuration?.slides[id].image.horizontalPosition" aria-label="unit(s)" [min]="'0'" [max]="'100'" [disabled]="!configuration?.slides[id].image.useImage" 
-                    (change)="onSlideFieldChange('gradientOverlay.opacity',$event)" [thumbLabel]="'false'">
+                    (change)="onSlideFieldChange('image.horizontalPosition',$event)" [thumbLabel]="'false'">
         </mat-slider>
     </div>
     <div>
         <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.IMAGE_VERTICAL_POSITION' | translate}}</label>
         <mat-slider [value]="configuration?.slides[id].image.verticalPosition" aria-label="unit(s)" [min]="'0'" [max]="'100'" [disabled]="!configuration?.slides[id].image.useImage" 
-                    (change)="onSlideFieldChange('gradientOverlay.opacity',$event)" [thumbLabel]="'false'">
+                    (change)="onSlideFieldChange('image.verticalPosition',$event)" [thumbLabel]="'false'">
         </mat-slider>
     </div>
 </div>

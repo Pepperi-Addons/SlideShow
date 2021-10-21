@@ -35,8 +35,8 @@ export class Overlay {
 export class SlideImage {
     useImage: boolean = false;
     src: string = 'https://www.desktopbackground.org/p/2011/02/22/161528_tilicho-lake-in-nepal-wallpapers-nature-wallpapers_1680x1050_h.jpg';
-    horizontalPosition: string = '0';
-    verticalPosition: string = '0';
+    horizontalPosition: string = '50';
+    verticalPosition: string = '50';
 }
 
 export class DropShadow {
