@@ -28,20 +28,24 @@
             <div class="slide-box" [ngClass]="['contentWidth_'+slide?.contentWidth, 
                                                 'horAlign_'+slide?.horizontalAlign, 
                                                 'verAlign_'+slide?.verticalAlign, 
-                                                'textColor_'+slide?.textColor, 
                                                 'rowGap_'+slide?.innerSpacing,
                                                  slideshowConfig?.isUseArrows ? 'withArrow_margin' : '']"
-                                    [ngStyle]="{'grid-template-rows' : 'auto auto auto',
+                                    [ngStyle]="{'grid-template-rows' : 'min-content auto min-content',
                                                  'height': getSlideboxHeight()}">
                 <div *ngIf="slide?.useTitle">
-                    <label class="body-sm ellipsis" [ngClass]="'size_'+slide?.titleSize">{{slide?.titleContent}}</label>
+                    <label class="body-sm ellipsis" 
+                           [ngClass]="['size_'+slide?.titleSize,
+                                       'textColor_'+slide?.textColor]">{{slide?.titleContent}}</label>
                 </div>
-                <div class="subtitle-cont" *ngIf="slide?.useSubTitle" [ngClass]="'body-'+slide?.subTitleSize">
+                <div class="subtitle-cont" 
+                     *ngIf="slide?.useSubTitle" 
+                     [ngClass]="['body-'+slide?.subTitleSize,
+                                'textColor_'+slide?.textColor]">
                         {{slide?.subTitleContent}}
                 </div>
                 <div class="buttons-box" *ngIf="slide?.firstButton?.useButton || slide?.secondButton?.useButton">
-                    <pep-button *ngIf="slide?.firstButton?.useButton" [sizeType]="slide?.buttonsSize" [value]="slide?.firstButton.label" [styleType]="slide?.firstButton?.style" [ngClass]="slide?.buttonColor" (buttonClick)="onSlideButtonClicked('firstButton')"></pep-button>
-                    <pep-button *ngIf="slide?.secondButton?.useButton" [sizeType]="slide?.buttonsSize" [value]="slide?.secondButton.label" [styleType]="slide?.secondButton?.style" [ngClass]="slide?.buttonColor"  (buttonClick)="onSlideButtonClicked('secondButton')"></pep-button>
+                    <pep-button *ngIf="slide?.firstButton?.useButton" [sizeType]="slide?.buttonsSize" [value]="slide?.firstButton.label" [styleType]="slide?.firstButton?.style" [classNames]="slide?.buttonColor" (buttonClick)="onSlideButtonClicked('firstButton')"></pep-button>
+                    <pep-button *ngIf="slide?.secondButton?.useButton" [sizeType]="slide?.buttonsSize" [value]="slide?.secondButton.label" [styleType]="slide?.secondButton?.style" [classNames]="slide?.buttonColor"  (buttonClick)="onSlideButtonClicked('secondButton')"></pep-button>
                 </div>
             </div>
         </ng-container>

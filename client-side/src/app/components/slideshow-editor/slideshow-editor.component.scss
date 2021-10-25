@@ -99,22 +99,10 @@
         }
     }
 
-    .split-area{
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        align-items: stretch;
-        column-gap: .75rem;
-
-        pep-select{
-            display: block;
-            overflow: hidden;
-        }
-
-        pep-textbox,
-        pep-select{
-            width: 100%;
-        }
+    .split-area {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
     }
 
     mat-slider{

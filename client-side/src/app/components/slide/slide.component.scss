@@ -108,27 +108,27 @@ $pepperi-theme: get-pepperi-theme();
                 grid-row-gap: 1rem;
             }
 
-            &.textColor_system{
+            .textColor_system{
                 //color: #fff;
                 color: get-pep-color($pepperi-theme, color-text, color-regular);
 
             }
-            &.textColor_dimmed{
+            .textColor_dimmed{
                 //color: yellow;
                 color: get-pep-color($pepperi-theme, color-text, color-dimmed);
             }
-            &.textColor_inverted{
+            .textColor_inverted{
                 //color: blue;
                 color: get-pep-color($pepperi-theme, color-text, color-invert);
 
             }
-            &.textColor_strong{
+            .textColor_strong{
                 //color: #000;
                 color: get-pep-color($pepperi-theme, color-text, color-strong);
             }
 
             .buttons-box{
-
+                z-index: 2;
                 pep-button{
                     display: inline;;
                     

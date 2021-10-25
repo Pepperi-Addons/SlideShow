@@ -103,7 +103,7 @@
             "INVERTED": "Inverted",
             "STRONG": "Strong"
         },"BUTTON_STYLES": {
-            "REGULAR": "System",
+            "REGULAR": "Regular",
             "WEAK": "weak",
             "WEAK-INVERT": "Weak invert",
             "STRONG": "Strong"
