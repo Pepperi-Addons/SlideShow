@@ -63,9 +63,11 @@ $pepperi-theme: get-pepperi-theme();
             grid-template-rows: min-content min-content min-content;
             align-self: center;
             color: get-pep-color($pepperi-theme, color-text, color-main);
-            border: 3px dashed red;
             max-width: fit-content;
-
+            
+            .subtitle-cont{
+                overflow: hidden;
+            }
             &.contentWidth_narrow{
                 width: 50%;
             }

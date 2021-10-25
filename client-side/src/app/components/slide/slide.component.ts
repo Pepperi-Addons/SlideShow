@@ -66,6 +66,12 @@ export class SlideComponent implements OnInit {
         return   gradStr  +  (this.slide?.image?.useImage && this.slide?.gradientOverlay?.useGradientOverlay ?  ',' : '') + imageSrc;
     }
 
+    getSlideboxHeight() {
+            let height = parseInt(this.slideshowConfig.height);
+            let remTodecrease =  8 * (100 / document.documentElement.clientHeight);
+            return (height - remTodecrease).toString() + this.slideshowConfig.heightUnit;
+    }
+
     ngOnChanges(changes) { 
         if (changes) {
         }

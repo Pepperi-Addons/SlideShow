@@ -31,8 +31,8 @@
                                                 'textColor_'+slide?.textColor, 
                                                 'rowGap_'+slide?.innerSpacing,
                                                  slideshowConfig?.isUseArrows ? 'withArrow_margin' : '']"
-                                    [ngStyle]="{'grid-template-rows' : '3rem auto 3rem',
-                                                 'height': '14rem'}">
+                                    [ngStyle]="{'grid-template-rows' : 'auto auto auto',
+                                                 'height': getSlideboxHeight()}">
                 <div *ngIf="slide?.useTitle">
                     <label class="body-sm ellipsis" [ngClass]="'size_'+slide?.titleSize">{{slide?.titleContent}}</label>
                 </div>
