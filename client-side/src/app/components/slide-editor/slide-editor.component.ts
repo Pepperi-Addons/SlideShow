@@ -31,7 +31,7 @@ export class SlideEditorComponent implements OnInit {
     SlideTitleSize:Array<groupButtonArray> = [];
     SlideSubTitleSize: Array<groupButtonArray> = [];
     WidthSize: Array<groupButtonArray> = [];
-    HorizentalAlign: Array<groupButtonArray> = [];
+    HorizentalAlign: Array<PepButton> = [];
     VerticalAlign: Array<groupButtonArray> = [];
     SlideDropShadowStyle: Array<groupButtonArray> = [];
     textColors: Array<groupButtonArray> = [];
@@ -68,12 +68,18 @@ export class SlideEditorComponent implements OnInit {
             { key: 'regular', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.REGULAR') },
             { key: 'wide', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.WIDE') }
         ];
-    
+        
         this.HorizentalAlign =  [
-            { key: 'left', value: this.translate.instant('SLIDE_EDITOR.HORIZONTAL_ALIGN_DIRECTION.LEFT') },
-            { key: 'center', value: this.translate.instant('SLIDE_EDITOR.HORIZONTAL_ALIGN_DIRECTION.CENTER') },
-            { key: 'right', value: this.translate.instant('SLIDE_EDITOR.HORIZONTAL_ALIGN_DIRECTION.RIGHT') }
+            { key: 'left', iconName: 'text_align_right' },
+            { key: 'center', iconName: 'text_align_center' },
+            { key: 'right', iconName: 'text_align_left' },
         ];
+
+        // this.HorizentalAlign =  [
+        //     { key: 'left', value: this.translate.instant('SLIDE_EDITOR.HORIZONTAL_ALIGN_DIRECTION.LEFT') },
+        //     { key: 'center', value: this.translate.instant('SLIDE_EDITOR.HORIZONTAL_ALIGN_DIRECTION.CENTER') },
+        //     { key: 'right', value: this.translate.instant('SLIDE_EDITOR.HORIZONTAL_ALIGN_DIRECTION.RIGHT') }
+        // ];
     
         this.VerticalAlign =  [
             { key: 'top', value: this.translate.instant('SLIDE_EDITOR.VERTICAL_ALIGN_DIRECTION.TOP') },
