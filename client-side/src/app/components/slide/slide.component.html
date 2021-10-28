@@ -5,16 +5,14 @@
 <div #mainSlideCont 
      class="ng-component-container animation" 
      [ngStyle]="{'height': slideshowConfig.height + slideshowConfig.heightUnit}" 
-     [ngClass]="['horAlign_'+slide?.horizontalAlign, 
-                 'verAlign_'+slide?.verticalAlign,
+     [ngClass]="[ 'horAlign_' + slide?.horizontalAlign,
+                 'verAlign_' + slide?.verticalAlign,
                  'inner_padding_' + slideshowConfig.innerPadding,
                  slideshowConfig.transitionType]">
-                
-    <pep-page-layout [ngStyle]="{'-webkit-animation-duration':  slideshowConfig.transitionTime + 's',
-                                 'animation-duration': slideshowConfig.transitionTime + 's'}" 
-                      class="animation" 
-                      [ngClass]="[slideshowConfig.transitionType]">
-        <ng-container pep-main-area>
+       <div [ngStyle]="{'-webkit-animation-duration':  slideshowConfig.transitionTime + 's',
+       'animation-duration': slideshowConfig.transitionTime + 's' }" 
+class="animation" 
+[ngClass]="[slideshowConfig.transitionType]">        
             <div *ngIf="slide?.image?.useImage || slide?.gradientOverlay?.useGradientOverlay || slide?.overlay?.useGradientOverlay"
                 class="backgroundImage"
                 [ngClass]="['inner_margin_' + slideshowConfig.innerPadding ]"
@@ -30,8 +28,8 @@
                                                 'verAlign_'+slide?.verticalAlign, 
                                                 'rowGap_'+slide?.innerSpacing,
                                                  slideshowConfig?.isUseArrows ? 'withArrow_margin' : '']"
-                                    [ngStyle]="{'grid-template-rows' : 'min-content auto min-content',
-                                                 'height': getSlideboxHeight()}">
+                                    [ngStyle]="{'grid-template-rows' : 'min-content auto min-content'
+                                                 }">
                 <div *ngIf="slide?.useTitle">
                     <label class="body-sm ellipsis" 
                            [ngClass]="['size_'+slide?.titleSize,
@@ -41,14 +39,13 @@
                      *ngIf="slide?.useSubTitle" 
                      [ngClass]="['body-'+slide?.subTitleSize,
                                 'textColor_'+slide?.textColor]">
-                        {{slide?.subTitleContent}}
+                        {{slide?.subTitleContent}} 
                 </div>
                 <div class="buttons-box" *ngIf="slide?.firstButton?.useButton || slide?.secondButton?.useButton">
                     <pep-button *ngIf="slide?.firstButton?.useButton" [sizeType]="slide?.buttonsSize" [value]="slide?.firstButton.label" [styleType]="slide?.firstButton?.style" [classNames]="slide?.buttonColor" (buttonClick)="onSlideButtonClicked('firstButton')"></pep-button>
                     <pep-button *ngIf="slide?.secondButton?.useButton" [sizeType]="slide?.buttonsSize" [value]="slide?.secondButton.label" [styleType]="slide?.secondButton?.style" [classNames]="slide?.buttonColor"  (buttonClick)="onSlideButtonClicked('secondButton')"></pep-button>
                 </div>
             </div>
-        </ng-container>
-    </pep-page-layout> 
+       </div>
 </div>
 </div>

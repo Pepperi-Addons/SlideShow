@@ -61,9 +61,9 @@ $pepperi-theme: get-pepperi-theme();
     .slide-box{
             display: grid;
             grid-template-rows: min-content min-content min-content;
-            align-self: center;
+            // align-self: center;
+            width: 100%;
             color: get-pep-color($pepperi-theme, color-text, color-main);
-            max-width: fit-content;
             
             .subtitle-cont{
                 overflow: hidden;
@@ -178,18 +178,18 @@ $pepperi-theme: get-pepperi-theme();
 
         &.inner_margin_sm{
             margin: calc(-1 * (#{$spacing-md}));
-            margin-inline-start: calc((-1 * #{$spacing-md}) - 1rem);
-            margin-inline-end: calc((-1 * #{$spacing-md}) - 1rem);
+            // margin-inline-start: calc((-1 * #{$spacing-md}) - 1rem);
+            // margin-inline-end: calc((-1 * #{$spacing-md}) - 1rem);
         }
         &.inner_margin_md{
             margin: calc(-1 * (#{$spacing-lg}));
-            margin-inline-start: calc((-1 * #{$spacing-lg}) - 1rem);
-            margin-inline-end: calc((-1 * #{$spacing-lg}) - 1rem);
+            // margin-inline-start: calc((-1 * #{$spacing-lg}) - 1rem);
+            // margin-inline-end: calc((-1 * #{$spacing-lg}) - 1rem);
         }
         &.inner_margin_lg{
             margin: calc(-1 * (#{$spacing-xl}));
-            margin-inline-start: calc((-1 * #{$spacing-xl}) - 1rem);
-            margin-inline-end: calc((-1 * #{$spacing-xl}) - 1rem);
+            // margin-inline-start: calc((-1 * #{$spacing-xl}) - 1rem);
+            // margin-inline-end: calc((-1 * #{$spacing-xl}) - 1rem);
         }
     }
 }
@@ -197,6 +197,9 @@ $pepperi-theme: get-pepperi-theme();
 .animation{
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
+    height: 100%;
+    width: 100%;
+    display: flex;
 }
 
 .none{
