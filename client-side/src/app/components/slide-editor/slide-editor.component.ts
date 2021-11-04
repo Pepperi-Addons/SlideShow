@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { ISlideShow, ISlideshowEditor, slide, TransitionType, ArrowShape, ISlideEditor, textColor, IHostObject } from '../slideshow.model';
-import { PepStyleType, PepSizeType} from '@pepperi-addons/ngx-lib';
+import { ISlideShow, ISlideshowEditor, slide, TransitionType, ArrowShape, ISlideEditor, textColor, IHostObject, Overlay } from '../slideshow.model';
+import { PepStyleType, PepSizeType, PepColorService} from '@pepperi-addons/ngx-lib';
 import { PepButton } from '@pepperi-addons/ngx-lib/button';
 
 interface groupButtonArray {
@@ -40,7 +40,8 @@ export class SlideEditorComponent implements OnInit {
     InnerSpacing: Array<{key: PepSizeType, value: string}> = [];
 
     constructor(
-        private translate: TranslateService
+        private translate: TranslateService,
+        private pepColorService: PepColorService
         // private utilitiesService: PepUtilitiesService
     ) { 
 
@@ -74,12 +75,6 @@ export class SlideEditorComponent implements OnInit {
             { key: 'center', iconName: 'text_align_center' },
             { key: 'right', iconName: 'text_align_left' },
         ];
-
-        // this.HorizentalAlign =  [
-        //     { key: 'left', value: this.translate.instant('SLIDE_EDITOR.HORIZONTAL_ALIGN_DIRECTION.LEFT') },
-        //     { key: 'center', value: this.translate.instant('SLIDE_EDITOR.HORIZONTAL_ALIGN_DIRECTION.CENTER') },
-        //     { key: 'right', value: this.translate.instant('SLIDE_EDITOR.HORIZONTAL_ALIGN_DIRECTION.RIGHT') }
-        // ];
     
         this.VerticalAlign =  [
             { key: 'top', value: this.translate.instant('SLIDE_EDITOR.VERTICAL_ALIGN_DIRECTION.TOP') },
@@ -160,7 +155,33 @@ export class SlideEditorComponent implements OnInit {
         this.updateHostObject();
     }
 
-    // onHideInChange(event: DataViewScreenSize[]) {
-    //     this.hideInChange.emit(event);
-    // }
+    getSliderBackground( color){
+        let alignTo = 'right';
+
+        let col: Overlay = new Overlay();
+
+        col.color = color;
+        col.opacity = '100';
+
+        let gradStr =  this.getRGBAcolor(col,0) +' , '+ this.getRGBAcolor(col); 
+        
+        return 'linear-gradient(to ' + alignTo +', ' +  gradStr +')';
+    }
+
+    getRGBAcolor(colObj: Overlay, opac = null){
+        let rgba = 'rgba(255,255,255,0';
+            if(colObj){
+                let color = colObj.color;
+                let opacity = opac != null ? opac : parseInt(colObj.opacity);
+
+                opacity = opacity > 0 ? opacity / 100 : 0;
+                //check if allready rgba
+                
+                let hsl = this.pepColorService.hslString2hsl(color);
+                let rgb = this.pepColorService.hsl2rgb(hsl);
+                
+                rgba = 'rgba('+ rgb.r + ','  + rgb.g + ',' + rgb.b + ',' + opacity + ')';
+        }
+        return rgba;
+    }
 }

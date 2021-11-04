@@ -8,10 +8,10 @@ import { PepCheckboxModule } from '@pepperi-addons/ngx-lib/checkbox';
 import { PepTextboxModule } from '@pepperi-addons/ngx-lib/textbox';
 import { TranslateModule, TranslateLoader, TranslateService, TranslateStore } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
+import { PepSliderModule} from '@pepperi-addons/ngx-lib/slider';
 import { PepFileService, PepAddonService, PepNgxLibModule } from '@pepperi-addons/ngx-lib';
 import { config } from '../addon.config';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatSliderModule } from '@angular/material/slider';
 import { PepColorModule } from '@pepperi-addons/ngx-lib/color';
 import { PepGroupButtonsModule } from '@pepperi-addons/ngx-lib/group-buttons';
 import { PepImageModule } from '@pepperi-addons/ngx-lib/image';
@@ -27,7 +27,7 @@ import { PepTextareaModule } from '@pepperi-addons/ngx-lib/textarea';
         PepMenuModule,
         PepTextboxModule,
         PepCheckboxModule,
-        //HttpClientModule,
+        PepSliderModule,
         PepNgxLibModule,
         PepSelectModule,
         MatDialogModule,
@@ -36,7 +36,6 @@ import { PepTextareaModule } from '@pepperi-addons/ngx-lib/textarea';
         PepColorModule,
         PepImageModule,
         PepTextareaModule,
-        MatSliderModule,
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,

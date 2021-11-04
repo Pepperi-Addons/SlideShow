@@ -84,28 +84,34 @@
                 (valueChange)="onSlideFieldChange('secondButton.style',$event)" [emptyOption]="false" [disabled]="!configuration?.slides[id].secondButton.useButton">
     </pep-select>
     
-    <pep-checkbox [value]="configuration?.slides[id].gradientOverlay.useGradientOverlay" [label]="'SLIDE_EDITOR.GRADIENT_OVERLAY' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('gradientOverlay.useGradientOverlay',$event)"></pep-checkbox>
-    <pep-color [value]="configuration?.slides[id].gradientOverlay.color" [label]="'SLIDE_EDITOR.GRADIENT_OVERLAY_COLOR' | translate" [disabled]="!configuration?.slides[id].gradientOverlay.useGradientOverlay" xAlignment="left"
+    <pep-checkbox [value]="configuration?.slides[id].gradientOverlay?.useGradientOverlay" [label]="'SLIDE_EDITOR.GRADIENT_OVERLAY' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('gradientOverlay.useGradientOverlay',$event)"></pep-checkbox>
+    <pep-color [value]="configuration?.slides[id].gradientOverlay?.color" [label]="'SLIDE_EDITOR.GRADIENT_OVERLAY_COLOR' | translate" [disabled]="!configuration?.slides[id].gradientOverlay.useGradientOverlay" xAlignment="left"
             type="any" [showTitle]="true" [showAAComplient]="true" (valueChange)="onSlideFieldChange('gradientOverlay.color',$event)">
     </pep-color>
-    <div>
-        <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.GRADIENT_OVERLAY_OPACITY' | translate}}</label>
-        <mat-slider [value]="configuration?.slides[id].gradientOverlay.opacity" aria-label="unit(s)" [min]="'0'" [max]="'100'" [disabled]="!configuration?.slides[id].gradientOverlay.opacity" 
-                    (change)="onSlideFieldChange('gradientOverlay.opacity',$event)" [thumbLabel]="'false'">
-        </mat-slider>
-    </div>
-
+    <pep-slider
+        [label]="'SLIDE_EDITOR.GRADIENT_OVERLAY_OPACITY' | translate" 
+        [hint]="configuration?.slides[id].gradientOverlay.opacity?.toString()" 
+        [minValue]="0" 
+        [background]="getSliderBackground(configuration?.slides[id].gradientOverlay?.color)"
+        [maxValue]="100"
+        [disabled]="!configuration?.slides[id].gradientOverlay?.opacity" 
+        [value]="configuration?.slides[id].gradientOverlay?.opacity"
+        (valueChange)="onSlideFieldChange('gradientOverlay.opacity',$event)">
+    </pep-slider>
     <pep-checkbox [value]="configuration?.slides[id].overlay.useGradientOverlay" [label]="'SLIDE_EDITOR.OVERLAY' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('overlay.useGradientOverlay',$event)"></pep-checkbox>
     <pep-color [value]="configuration?.slides[id].overlay.color" [label]="'SLIDE_EDITOR.OVERLAY_COLOR' | translate" [disabled]="!configuration?.slides[id].overlay.useGradientOverlay" xAlignment="left"
             type="any" [showTitle]="true" [showAAComplient]="true" (valueChange)="onSlideFieldChange('overlay.color',$event)">
     </pep-color>
-    <div>
-        <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.OVERLAY_OPACITY' | translate}}</label>
-        <mat-slider [value]="configuration?.slides[id].overlay.opacity" aria-label="unit(s)" [min]="'0'" [max]="'100'" [disabled]="!configuration?.slides[id].overlay.opacity" 
-                    (change)="onSlideFieldChange('overlay.opacity',$event)" [thumbLabel]="'false'">
-        </mat-slider>
-    </div>
-
+    <pep-slider
+        [label]="'SLIDE_EDITOR.OVERLAY_OPACITY' | translate" 
+        [hint]="configuration?.slides[id].overlay?.opacity?.toString()" 
+        [minValue]="0" 
+        [background]="getSliderBackground(configuration?.slides[id].overlay?.color)"
+        [maxValue]="100"
+        [disabled]="!configuration?.slides[id]?.overlay?.opacity" 
+        [value]="configuration?.slides[id]?.overlay?.opacity"
+        (valueChange)="onSlideFieldChange('overlay.opacity',$event)">
+    </pep-slider>
     <pep-checkbox [value]="configuration?.slides[id].image.useImage" [label]="'SLIDE_EDITOR.IMAGE' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('image.useImage',$event)"></pep-checkbox>
     <pep-image [disabled]="!configuration?.slides[id].image.useImage" 
                [label]="'SLIDE_EDITOR.CHOOSE_IMAGE' | translate" 
@@ -115,17 +121,23 @@
                [src]="configuration?.slides[id].image?.src"
                (fileChange)="onSlideFieldChange('image.src',$event)">
     </pep-image>
-    <div>
-        <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.IMAGE_HORIZONTAL_POSITION' | translate}}</label>
-        <mat-slider [value]="configuration?.slides[id].image.horizontalPosition" aria-label="unit(s)" [min]="'0'" [max]="'100'" [disabled]="!configuration?.slides[id].image.useImage" 
-                    (change)="onSlideFieldChange('image.horizontalPosition',$event)" [thumbLabel]="'false'">
-        </mat-slider>
-    </div>
-    <div>
-        <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.IMAGE_VERTICAL_POSITION' | translate}}</label>
-        <mat-slider [value]="configuration?.slides[id].image.verticalPosition" aria-label="unit(s)" [min]="'0'" [max]="'100'" [disabled]="!configuration?.slides[id].image.useImage" 
-                    (change)="onSlideFieldChange('image.verticalPosition',$event)" [thumbLabel]="'false'">
-        </mat-slider>
-    </div>
+    <pep-slider
+        [label]="'SLIDE_EDITOR.IMAGE_HORIZONTAL_POSITION' | translate" 
+        [hint]="configuration?.slides[id].image.horizontalPosition?.toString()" 
+        [minValue]="0" 
+        [maxValue]="100"
+        [disabled]="!configuration?.slides[id].image.useImage" 
+        [value]="configuration?.slides[id].image.horizontalPosition"
+        (valueChange)="onSlideFieldChange('image.horizontalPosition',$event)">
+    </pep-slider>
+    <pep-slider
+        [label]="'SLIDE_EDITOR.IMAGE_VERTICAL_POSITION' | translate" 
+        [hint]="configuration?.slides[id].image.verticalPosition?.toString()" 
+        [minValue]="0" 
+        [maxValue]="100"
+        [disabled]="!configuration?.slides[id].image.useImage" 
+        [value]="configuration?.slides[id].image.verticalPosition"
+        (valueChange)="onSlideFieldChange('image.verticalPosition',$event)">
+    </pep-slider>
 </div>
 </div>

@@ -11,7 +11,6 @@ import { HttpClient } from '@angular/common/http';
 import { PepFileService, PepAddonService, PepNgxLibModule } from '@pepperi-addons/ngx-lib';
 import { config } from '../addon.config';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatSliderModule } from '@angular/material/slider';
 import { PepColorModule } from '@pepperi-addons/ngx-lib/color';
 import { PepGroupButtonsModule } from '@pepperi-addons/ngx-lib/group-buttons';
 import { PepImageModule } from '@pepperi-addons/ngx-lib/image';
@@ -37,7 +36,6 @@ import { PepPageLayoutModule } from '@pepperi-addons/ngx-lib/page-layout';
         PepColorModule,
         PepImageModule,
         PepTextareaModule,
-        MatSliderModule,
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,

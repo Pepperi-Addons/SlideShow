@@ -105,23 +105,13 @@
         gap: 1rem;
     }
 
-    mat-slider{
-        width: 100%;
-    }
-
-    ::ng-deep .mat-accent {
-        .mat-slider-thumb{
-            background-color: gray !important;
-        }
-        .mat-slider-track-fill {
-            background-image: linear-gradient(to right, white, black);
-            background: linear-gradient(to right, white, black);
-        }
-    }
-
     pep-group-buttons{
         ::ng-deep pep-icon{
             max-height: 1rem;
         }
     }
+
+    ::ng-deep .pep-slider-container{
+        margin-bottom: 1rem;
+    }   
 }
