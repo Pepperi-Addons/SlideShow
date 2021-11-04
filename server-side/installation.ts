@@ -14,7 +14,7 @@ import MyService from './my.service';
 
 export async function install(client: Client, request: Request): Promise<any> {
     const res = await runMigration(client);
-    return {success:true,resultObject:{res}}
+    return res;
 }
 
 export async function uninstall(client: Client, request: Request): Promise<any> {
@@ -22,8 +22,9 @@ export async function uninstall(client: Client, request: Request): Promise<any> 
 }
 
 export async function upgrade(client: Client, request: Request): Promise<any> {
-    const res = await runMigration(client);
-    return {success:true,resultObject:{res}}
+    // const res = await runMigration(client);
+    // return res;
+    return {success:true,resultObject:{}}
 }
 
 export async function downgrade(client: Client, request: Request): Promise<any> {
@@ -50,9 +51,8 @@ async function runMigration(client){
 
         const service = new MyService(client);
         const result = await service.upsertRelation(pageComponentRelation);
-        return result;
-        
+        return {success:true, resultObject: {result} };
     } catch(e) {
-        return { success: false };
+        return { success: false, resultObject: {e} };
     }
 }
