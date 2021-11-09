@@ -72,6 +72,13 @@ export class SlideComponent implements OnInit {
             return (height - remTodecrease).toString() + this.slideshowConfig.heightUnit;
     }
 
+    getSlideContentHeight(){
+        let height = parseFloat(this.slideshowConfig?.height) + ( this.slideshowConfig?.showControllersInSlider === true ? -2 : 0);
+        return height.toString() + this.slideshowConfig?.heightUnit;
+        
+        
+    }
+
     ngOnChanges(changes) { 
         if (changes) {
         }

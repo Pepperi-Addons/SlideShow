@@ -1,18 +1,19 @@
 <div  *ngIf="showSlide" 
+      [ngStyle]="{'height': slideshowConfig?.showControllersInSlider ? slideshowConfig?.height + slideshowConfig?.heightUnit : 'unset'}" 
       [ngClass]="[slideshowConfig?.dropShadow?.useDropShadow === true ? 'drop-shadow_'+ slideshowConfig?.dropShadow?.intensity : '',
                  slideshowConfig?.showControllersInSlider == false ? 'withOutSideController' : '' ]">
 
 <div #mainSlideCont 
      class="ng-component-container animation" 
-     [ngStyle]="{'height': slideshowConfig.height + slideshowConfig.heightUnit}" 
+     [ngStyle]="{'height': getSlideContentHeight()}" 
      [ngClass]="[ 'horAlign_' + slide?.horizontalAlign,
                  'verAlign_' + slide?.verticalAlign,
                  'inner_padding_' + slideshowConfig.innerPadding,
                  slideshowConfig.transitionType]">
        <div [ngStyle]="{'-webkit-animation-duration':  slideshowConfig.transitionTime + 's',
-       'animation-duration': slideshowConfig.transitionTime + 's' }" 
-class="animation" 
-[ngClass]="[slideshowConfig.transitionType]">        
+                      'animation-duration': slideshowConfig.transitionTime + 's' }" 
+                      class="animation" 
+                     [ngClass]="[slideshowConfig.transitionType]">        
             <div *ngIf="slide?.image?.useImage || slide?.gradientOverlay?.useGradientOverlay || slide?.overlay?.useGradientOverlay"
                 class="backgroundImage"
                 [ngClass]="['inner_margin_' + slideshowConfig.innerPadding ]"

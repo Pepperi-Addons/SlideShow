@@ -33,19 +33,6 @@ export class SlideshowComponent implements OnInit {
         return this._configuration;
     }
 
-    // private _hostObject: IHostObject;
-    // @Input()
-    // set hostObject(value: IHostObject) {
-    //     this._hostObject = value;
-
-    //     if (!value || !value.configuration) {
-    //         this.setDefaultHostObject();
-    //     }
-    // }
-    // get hostObject(): IHostObject {
-    //     return this._hostObject;
-    // }
-
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
 
     public isPause = false;
@@ -62,24 +49,6 @@ export class SlideshowComponent implements OnInit {
         });
 
     }
-    
-    // private updateHostObject() {  
-    //     this.hostEvents.emit({
-    //         action: 'set-configuration',
-    //         configuration: this.configuration
-    //     });
-    // }
-
-    // private getDefaultSlide(): ISlideEditor {
-    //     let a = new ISlideEditor();
-    //     a.id = 0;
-
-    //     return a;
-    // }
-
-    // private getDefaultHostObject(): ISlideShow {
-    //     return { slideshowConfig: new ISlideshowEditor(), slides: [this.getDefaultSlide()] };
-    // }
 
     private raiseBlockLoadedEvent() {
         this.hostEvents.emit({action: 'block-loaded'});
@@ -87,13 +56,6 @@ export class SlideshowComponent implements OnInit {
     
     ngOnInit() {
         this.raiseBlockLoadedEvent();
-        // if(!this.configuration.slides || this.configuration.slides.length === 0){ // add default slides
-        //     let a = new ISlideEditor();
-        //     a.id = 0;
-        //     this.configuration.slides.push( a);
-
-        //     this.updateHostObject();
-        // }
     
         this.showSlides();
     }
@@ -141,6 +103,13 @@ export class SlideshowComponent implements OnInit {
             this.slideIndex = this.configuration.slides.length -1;
         }
         
+      }
+
+      getSliderFooterTop(){
+          let sliderHeight = parseFloat(this.configuration?.slideshowConfig?.height);
+          let footerPos = this.configuration?.slideshowConfig?.showControllersInSlider ? sliderHeight - 2.5 : sliderHeight + 0.5;
+          
+          return footerPos.toString() + this.configuration?.slideshowConfig?.heightUnit;
       }
 
 
