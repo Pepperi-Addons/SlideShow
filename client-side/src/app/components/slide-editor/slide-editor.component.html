@@ -3,7 +3,7 @@
         <pep-button classNames="lock-events" sizeType="xs" iconName="system_move"></pep-button>
     </div>
     <div *ngIf="title !== ''" class="title-container">
-        <span class="body-sm ellipsis">{{id}}.&nbsp;</span>
+        <span class="body-sm ellipsis">{{id+1}}.&nbsp;</span>
         <span class="body-sm color-link bold ellipsis" title="{{title}}">{{title}}</span>
     </div>
     <div class="actions" *ngIf="showActions">
@@ -113,14 +113,18 @@
         (valueChange)="onSlideFieldChange('overlay.opacity',$event)">
     </pep-slider>
     <pep-checkbox [value]="configuration?.slides[id].image.useImage" [label]="'SLIDE_EDITOR.IMAGE' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('image.useImage',$event)"></pep-checkbox>
-    <pep-image [disabled]="!configuration?.slides[id].image.useImage" 
+    <!-- <pep-image [disabled]="true || !configuration?.slides[id].image.useImage" 
                [label]="'SLIDE_EDITOR.CHOOSE_IMAGE' | translate" 
                [showTitle]="true" 
                [xAlignment]="'left'" 
                [rowSpan]="2"
                [src]="configuration?.slides[id].image?.src"
                (fileChange)="onSlideFieldChange('image.src',$event)">
-    </pep-image>
+    </pep-image> -->
+    <pep-textbox [label]="'SLIDE_EDITOR.CHOOSE_IMAGE' | translate" 
+                  type="link" 
+                  [value]="configuration?.slides[id].image?.src" 
+                  (valueChange)="onSlideFieldChange('image.src',$event)"></pep-textbox>
     <pep-slider
         [label]="'SLIDE_EDITOR.IMAGE_HORIZONTAL_POSITION' | translate" 
         [hint]="configuration?.slides[id].image.horizontalPosition?.toString()" 

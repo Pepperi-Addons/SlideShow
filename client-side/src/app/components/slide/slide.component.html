@@ -1,7 +1,7 @@
 <div  *ngIf="showSlide" 
-      [ngStyle]="{'height': slideshowConfig?.showControllersInSlider ? slideshowConfig?.height + slideshowConfig?.heightUnit : 'unset'}" 
-      [ngClass]="[slideshowConfig?.dropShadow?.useDropShadow === true ? 'drop-shadow_'+ slideshowConfig?.dropShadow?.intensity : '',
-                 slideshowConfig?.showControllersInSlider == false ? 'withOutSideController' : '' ]">
+      [ngStyle]="{'height': slideshowConfig?.showControllersInSlider ? slideshowConfig?.height + slideshowConfig?.heightUnit : 'unset',
+                'box-shadow': slideshowConfig?.dropShadow?.useDropShadow === true ? getSlideShadow() : ''}" 
+      [ngClass]="[slideshowConfig?.showControllersInSlider == false ? 'withOutSideController' : '' ]">
 
 <div #mainSlideCont 
      class="ng-component-container animation" 
@@ -31,10 +31,13 @@
                                                  slideshowConfig?.isUseArrows ? 'withArrow_margin' : '']"
                                     [ngStyle]="{'grid-template-rows' : 'min-content auto min-content'
                                                  }">
-                <div *ngIf="slide?.useTitle">
-                    <label class="body-sm ellipsis" 
+                <div *ngIf="slide?.useTitle"
+                class="body-sm ellipsis" 
+                [ngClass]="['size_'+slide?.titleSize,
+                            'textColor_'+slide?.textColor]">{{slide?.titleContent}}
+                    <!-- <label class="body-sm ellipsis" 
                            [ngClass]="['size_'+slide?.titleSize,
-                                       'textColor_'+slide?.textColor]">{{slide?.titleContent}}</label>
+                                       'textColor_'+slide?.textColor]">{{slide?.titleContent}}</label> -->
                 </div>
                 <div class="subtitle-cont" 
                      *ngIf="slide?.useSubTitle" 

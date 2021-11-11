@@ -66,6 +66,14 @@ export class SlideComponent implements OnInit {
         return   gradStr  +  (this.slide?.image?.useImage && this.slide?.gradientOverlay?.useGradientOverlay ?  ',' : '') + imageSrc;
     }
 
+    getSlideShadow(){
+
+        let shadow = this.slideshowConfig?.dropShadow?.type === 'Regular' ? '13px 8px 12px' : '7px 4px 12px';
+        let color = ' rgb(0 0 0 / ' + this.slideshowConfig?.dropShadow?.intensity.toString() + '%)';
+      
+        return shadow + color;
+    }
+
     getSlideboxHeight() {
             let height = parseInt(this.slideshowConfig.height);
             let remTodecrease =  8 * (100 / document.documentElement.clientHeight);

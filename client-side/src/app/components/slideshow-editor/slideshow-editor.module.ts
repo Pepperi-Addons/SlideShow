@@ -19,7 +19,7 @@ import { PepDialogService } from '@pepperi-addons/ngx-lib/dialog';
 import { PepPageLayoutModule } from '@pepperi-addons/ngx-lib/page-layout';
 import { MatDialogModule } from '@angular/material/dialog';
 import { pepIconTextAlignCenter, pepIconTextAlignLeft, pepIconTextAlignRight, pepIconArrowBackRight, pepIconArrowBackLeft, pepIconArrowBack, pepIconArrowLeftAlt,pepIconArrowDown, pepIconArrowUp, PepIconModule, pepIconNumberPlus, PepIconRegistry, pepIconSystemBin, pepIconSystemBolt, pepIconSystemClose, pepIconSystemEdit, pepIconSystemMove } from '@pepperi-addons/ngx-lib/icon';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { config } from '../addon.config';
 
 const pepIcons = [
@@ -59,7 +59,8 @@ const pepIcons = [
         PepColorModule,
         PepImageModule,
         PepTextareaModule,
-
+        DragDropModule,
+        
         // When not using module as sub-addon please remark this for not loading twice resources
         TranslateModule.forChild({
             loader: {
