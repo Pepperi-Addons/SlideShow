@@ -117,7 +117,7 @@ export class SlideshowEditorComponent implements OnInit {
             { key: 'none', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.NONE') },
             { key: 'fade', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.FADE') },
             { key: 'slide', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.SLIDE') },
-            { key: 'zoom', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.ZOOM') }
+            { key: 'blur', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.BLUR') }
             
         ]
         

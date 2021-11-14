@@ -211,31 +211,9 @@ $pepperi-theme: get-pepperi-theme();
     animation-name: fade;
   }
 
-  .zoom{
-    -webkit-animation-name: zoom;
-    animation-name: zoom;
-  }
-
-  .slide:before {
-    content:"";
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform-origin: center;
-    transform:translate(-50%,-50%);
-    border-radius:50%;
-    box-shadow:0 0 0 200vh #000;
-    transition:2s all;
-    -webkit-animation-name: slide;
-    -webkit-animation-duration: 2s;
-    -webkit-animation-timing-function: ease;
-    -webkit-animation-delay: 0;
-    -webkit-animation-iteration-count: 1; 
-    animation-name: slide;
-    animation-duration: 2s;
-    animation-timing-function: ease;
-    animation-delay: 0;
-    animation-iteration-count: 1; 
+  .blur{
+    -webkit-animation-name: blur;
+    animation-name: blur;
   }
 
 @-webkit-keyframes fade {
@@ -248,26 +226,15 @@ $pepperi-theme: get-pepperi-theme();
     to {opacity: 1}
   }
 
-  @-webkit-keyframes zoom {
+  @-webkit-keyframes blur {
     from { -webkit-filter: blur(15px)}
-    to { -webkit-filter: blur(0px);}
+    to { -webkit-filter: blur(-1px)}
   }
 
-  @keyframes zoom {
+  @keyframes blur {
     from { filter: blur(15px)}
-    to { filter: blur(0px);}
+    to { filter: blur(-1px)}
   }
-
-  @keyframes slide {
-    0% { 
-      width: 20%;
-      height: 0;
-    }
-    100% {
-      width: 200%;
-      height: 200%;
-    }
-   }
 
 
 

@@ -34,7 +34,7 @@
             "NONE": "None",
             "FADE": "Fade",
             "SLIDE": "Slide",
-            "ZOOM": "Zoom"
+            "BLUR": "Blur"
         },
         "TRANSITION_TIME": "Transition time (s)",
         "ARROWS": "Arrows",

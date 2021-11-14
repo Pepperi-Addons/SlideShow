@@ -61,6 +61,7 @@ export class SlideshowComponent implements OnInit {
     }
 
     showSlides() {
+
         if (this.configuration) {
             if (!this.configuration.slideshowConfig.isTransition || this.configuration.slideshowConfig.transitionType === 'none') {
                 this.isPause = true;
@@ -107,10 +108,17 @@ export class SlideshowComponent implements OnInit {
 
       getSliderFooterTop(){
           let sliderHeight = parseFloat(this.configuration?.slideshowConfig?.height);
-          let footerPos = this.configuration?.slideshowConfig?.showControllersInSlider ? sliderHeight - 2.5 : sliderHeight + 0.5;
+          let numToDec = this.configuration?.slideshowConfig?.showControllersInSlider ? -2.5 : 0.5; 
+          numToDec = this.configuration?.slideshowConfig?.heightUnit === 'VH' ? this.convertREMToVH(numToDec) : numToDec;
+          
+          let footerPos = sliderHeight +  numToDec;
           
           return footerPos.toString() + this.configuration?.slideshowConfig?.heightUnit;
       }
+
+      convertREMToVH(rem) {
+	    return rem * 16 * (100 / document.documentElement.clientHeight);
+}
 
 
 

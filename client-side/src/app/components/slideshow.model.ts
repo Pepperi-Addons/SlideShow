@@ -10,7 +10,7 @@ export interface IHostObject {
 }
 
 export type HeightUnit = 'REM' | 'VH';
-export type TransitionType = 'none' | 'fade' | 'zoom' | 'slide';
+export type TransitionType = 'none' | 'fade' | 'blur' | 'slide';
 export type ArrowType = 'arrow_back_right' | 'arrow_right' | 'arrow_right_alt';
 export type ArrowShape = 'none' | 'regular' | 'round';
 export type WidthUnits = 'Narrow' | 'Regular' | 'Wide';
@@ -23,17 +23,23 @@ export class SlideButton {
     useButton: boolean = true;
     label: string = 'Button';
     linkTo: string = '';
-    style: PepStyleType = 'weak'
+    style: PepStyleType = 'regular'
 }
 
 export class Overlay {
-    useGradientOverlay: boolean = true;
-    color: string = 'hsl(0, 0%, 100%)';
-    opacity: string = '0';
+    useGradientOverlay: boolean;
+    color: string;
+    opacity: string ;
+
+    constructor(use: boolean = false, color: string = 'hsl(0, 7%, 67%)' ,opacity: string = '50'){
+        this.useGradientOverlay = use;
+        this.color = color;
+        this.opacity = opacity;
+    }
 }
 
 export class SlideImage {
-    useImage: boolean = true;
+    useImage: boolean = false;
     src: string =  '';
     horizontalPosition: string = '50';
     verticalPosition: string = '50';
@@ -86,7 +92,7 @@ export class ISlideEditor {
     buttonColor: buttonColor= 'system-primary';
     firstButton: SlideButton = new SlideButton();
     secondButton: SlideButton  = new SlideButton();
-    gradientOverlay: Overlay = new Overlay();
+    gradientOverlay: Overlay = new Overlay(true, 'hsl(0, 100%, 0%)', '75');
     overlay: Overlay = new Overlay();
     image: SlideImage = new SlideImage();
 }

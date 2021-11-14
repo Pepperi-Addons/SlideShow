@@ -32,6 +32,10 @@ export class SlideComponent implements OnInit {
 
     }
     
+    ngOnInit() {
+        this.slideIndex = this.slide.id;
+    }
+    
     private getDefaultHostObject(): ISlideShow {
         return { slideshowConfig: new ISlideshowEditor(), slides: Array<ISlideEditor>() };
     }
@@ -67,33 +71,40 @@ export class SlideComponent implements OnInit {
     }
 
     getSlideShadow(){
-
         let shadow = this.slideshowConfig?.dropShadow?.type === 'Regular' ? '13px 8px 12px' : '7px 4px 12px';
         let color = ' rgb(0 0 0 / ' + this.slideshowConfig?.dropShadow?.intensity.toString() + '%)';
       
         return shadow + color;
     }
 
-    getSlideboxHeight() {
-            let height = parseInt(this.slideshowConfig.height);
-            let remTodecrease =  8 * (100 / document.documentElement.clientHeight);
-            return (height - remTodecrease).toString() + this.slideshowConfig.heightUnit;
-    }
+    // getSlideboxHeight() {
+    //         let height = parseInt(this.slideshowConfig.height);
+    //         let remTodecrease =  8 * (100 / document.documentElement.clientHeight);
+    //         return (height - remTodecrease).toString() + this.slideshowConfig.heightUnit;
+    // }
 
     getSlideContentHeight(){
-        let height = parseFloat(this.slideshowConfig?.height) + ( this.slideshowConfig?.showControllersInSlider === true ? -2 : 0);
+
+        let height = parseFloat(this.slideshowConfig?.height) ;
+        let numToDec = this.slideshowConfig?.showControllersInSlider ? -2 : -0.5; 
+            numToDec = this.slideshowConfig?.heightUnit === 'VH' ? this.convertREMToVH(numToDec) : numToDec;
+            height = height + numToDec;
+
         return height.toString() + this.slideshowConfig?.heightUnit;
-        
-        
+           
     }
+
+    convertVH2REM(vh){
+       return 16 * (vh * (100 / document.documentElement.clientHeight));
+    }
+
+    convertREMToVH(rem) {
+	    return rem * 16 * (100 / document.documentElement.clientHeight);
+}
 
     ngOnChanges(changes) { 
         if (changes) {
         }
-    }
-
-    ngOnInit() {
-        this.slideIndex = this.slide.id;
     }
 
     onSlideButtonClicked(btnName: string){

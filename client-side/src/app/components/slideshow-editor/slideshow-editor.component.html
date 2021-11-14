@@ -97,7 +97,7 @@
                     [id]="currentSlide?.id" [showActions]="true" 
                     [isDraggable]="true" (editClick)='onSlideEditClick($event);' (removeClick)='onSlideRemoveClick($event);'
                     [configuration]="configuration"
-                    cdkDrag style="cursor: grab;" (cdkDragStarted)="onDragStart($event)" (cdkDragEnded)="onDragEnd($event)">
+                    cdkDrag [cdkDragDisabled]="currentSlide?.id == configuration?.slideshowConfig?.editSlideIndex" style="cursor: grab;" (cdkDragStarted)="onDragStart($event)" (cdkDragEnded)="onDragEnd($event)">
                 </slide-editor>
             </div>
 
