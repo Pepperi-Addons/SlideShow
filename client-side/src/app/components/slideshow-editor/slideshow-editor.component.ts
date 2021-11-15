@@ -1,4 +1,4 @@
-import { CdkDragEnd, CdkDragStart } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDragEnd, CdkDragStart, moveItemInArray } from '@angular/cdk/drag-drop';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -15,16 +15,14 @@ export class SlideshowEditorComponent implements OnInit {
     
     @ViewChild('availableSlidesContainer', { read: ElementRef }) availableBlocksContainer: ElementRef;
 
-    // @Input() slidesDropList = []; 
-    ;
-
     @Input()
     set hostObject(value: IHostObject) {
         if (value && value.configuration) {
             this._configuration = value.configuration
         } else {
-            // TODO - NEED TO ADD DEFAULT SLIDE
-            this.loadDefaultConfiguration();
+            if(this.blockLoaded){
+                this.loadDefaultConfiguration();
+            }
         }
     }
     
@@ -34,7 +32,8 @@ export class SlideshowEditorComponent implements OnInit {
     }
 
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
-    
+    blockLoaded = false;
+
     transitionTypes: Array<{key: TransitionType, value: string}> = [];
     buttonStyle: Array<{key: PepStyleType, value: string}> = [];
     buttonColor: Array<PepButton> = [];
@@ -118,7 +117,7 @@ export class SlideshowEditorComponent implements OnInit {
             { key: 'none', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.NONE') },
             { key: 'fade', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.FADE') },
             { key: 'slide', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.SLIDE') },
-            { key: 'zoom', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.ZOOM') }
+            { key: 'blur', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.BLUR') }
             
         ]
         
@@ -162,6 +161,9 @@ export class SlideshowEditorComponent implements OnInit {
             { key: 'md', value: this.translate.instant('GROUP_SIZE.MD') }
         ];
 
+        // When finish load raise block-editor-loaded.
+        this.hostEvents.emit({action: 'block-editor-loaded'});
+        this.blockLoaded = true;
     }
 
     addNewSlideClick() {
@@ -189,5 +191,23 @@ export class SlideshowEditorComponent implements OnInit {
 
     onValueChange(event){
 
+    }
+
+    drop(event: CdkDragDrop<string[]>) {
+        if (event.previousContainer === event.container) {
+         moveItemInArray(this.configuration.slides, event.previousIndex, event.currentIndex);
+         for(let index = 0 ; index < this.configuration.slides.length; index++){
+            this.configuration.slides[index].id = index;
+         }
+          this.updateHostObject();
+        } 
+    }
+
+    onDragStart(event: CdkDragStart) {
+        //this.galleryService.changeCursorOnDragStart();
+    }
+
+    onDragEnd(event: CdkDragEnd) {
+        //this.galleryService.changeCursorOnDragEnd();
     }
 }

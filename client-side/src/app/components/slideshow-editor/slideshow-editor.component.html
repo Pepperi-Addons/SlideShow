@@ -72,31 +72,32 @@
                               [renderTitle]="false" 
                               (valueChange)="onSlideshowFieldChange('dropShadow.useDropShadow',$event)">
                 </pep-checkbox>
-                <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.SHADOW_INTENSITY' | translate}}</label>
+                <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.SHADOW_TYPE' | translate}}</label>
                 <pep-group-buttons 
                     [buttons]="SlideDropShadowStyle" 
-                    [selectedButtonKey]="configuration?.slideshowConfig?.dropShadow?.intensity" 
+                    [selectedButtonKey]="configuration?.slideshowConfig?.dropShadow?.type" 
                     buttonsClass="md regular" 
-                    [buttonsDisabled]="!configuration?.slideshowConfig?.dropShadow?.useDropShadow"(buttonClick)="onSlideshowFieldChange('dropShadow.intensity',$event)" viewType="toggle" stretch="true">
+                    [buttonsDisabled]="!configuration?.slideshowConfig?.dropShadow?.useDropShadow"(buttonClick)="onSlideshowFieldChange('dropShadow.type',$event)" viewType="toggle" stretch="true">
                 </pep-group-buttons>
                     <pep-slider
                     [label]="'SLIDE_EDITOR.SHADOW_INTENSITY' | translate" 
-                    [hint]="configuration?.slideshowConfig?.dropShadow?.opacity?.toString()" 
+                    [hint]="configuration?.slideshowConfig?.dropShadow?.intensity?.toString()" 
                     [minValue]="0" 
                     [maxValue]="100"
                     [disabled]="!configuration?.slideshowConfig?.dropShadow?.useDropShadow" 
                     [value]="configuration?.slideshowConfig?.dropShadow?.opacity"
-                    (valueChange)="onSlideshowFieldChange('dropShadow.opacity',$event)">
+                    (valueChange)="onSlideshowFieldChange('dropShadow.intensity',$event)">
                 </pep-slider>
     </mat-tab>
-    <mat-tab label="{{'SLIDESHOW.CONTENT' | translate}}">
+    <mat-tab cdkDropListGroup label="{{'SLIDESHOW.CONTENT' | translate}}">
         <ng-container>
             <label class="body-xl bold ellipsis">{{'SLIDESHOW.SLIDES' | translate}}</label>
-            <div #availableSlidesContainer id="availableSlides" class="available-slides">
+            <div (cdkDropListDropped)="drop($event)"  cdkDropList #availableSlidesContainer id="availableSlides" class="available-slides">
                 <slide-editor *ngFor="let currentSlide of configuration?.slides;" class="available-slide"
                     [id]="currentSlide?.id" [showActions]="true" 
                     [isDraggable]="true" (editClick)='onSlideEditClick($event);' (removeClick)='onSlideRemoveClick($event);'
-                    [configuration]="configuration">
+                    [configuration]="configuration"
+                    cdkDrag [cdkDragDisabled]="currentSlide?.id == configuration?.slideshowConfig?.editSlideIndex" style="cursor: grab;" (cdkDragStarted)="onDragStart($event)" (cdkDragEnded)="onDragEnd($event)">
                 </slide-editor>
             </div>
 

@@ -1,19 +1,20 @@
 <div  *ngIf="showSlide" 
-      [ngStyle]="{'height': slideshowConfig?.showControllersInSlider ? slideshowConfig?.height + slideshowConfig?.heightUnit : 'unset'}" 
-      [ngClass]="[slideshowConfig?.dropShadow?.useDropShadow === true ? 'drop-shadow_'+ slideshowConfig?.dropShadow?.intensity : '',
-                 slideshowConfig?.showControllersInSlider == false ? 'withOutSideController' : '' ]">
+      [ngStyle]="{'height': slideshowConfig?.height + slideshowConfig?.heightUnit,
+                'box-shadow': slideshowConfig?.dropShadow?.useDropShadow === true ? getSlideShadow() : ''}" 
+      [ngClass]="[slideshowConfig?.showControllersInSlider == false ? 'withOutSideController' : '' ]">
 
 <div #mainSlideCont 
      class="ng-component-container animation" 
-     [ngStyle]="{'height': getSlideContentHeight()}" 
+     [ngStyle]="{'height': getSlideContentHeight(),
+     '-webkit-animation-duration':  slideshowConfig.transitionTime + 's',
+     'animation-duration': slideshowConfig.transitionTime + 's'}" 
      [ngClass]="[ 'horAlign_' + slide?.horizontalAlign,
                  'verAlign_' + slide?.verticalAlign,
-                 'inner_padding_' + slideshowConfig.innerPadding,
-                 slideshowConfig.transitionType]">
+                 'inner_padding_' + slideshowConfig.innerPadding, slideshowConfig.transitionType,]">
        <div [ngStyle]="{'-webkit-animation-duration':  slideshowConfig.transitionTime + 's',
                       'animation-duration': slideshowConfig.transitionTime + 's' }" 
                       class="animation" 
-                     [ngClass]="[slideshowConfig.transitionType]">        
+                     [ngClass]="[]">        
             <div *ngIf="slide?.image?.useImage || slide?.gradientOverlay?.useGradientOverlay || slide?.overlay?.useGradientOverlay"
                 class="backgroundImage"
                 [ngClass]="['inner_margin_' + slideshowConfig.innerPadding ]"
@@ -31,10 +32,13 @@
                                                  slideshowConfig?.isUseArrows ? 'withArrow_margin' : '']"
                                     [ngStyle]="{'grid-template-rows' : 'min-content auto min-content'
                                                  }">
-                <div *ngIf="slide?.useTitle">
-                    <label class="body-sm ellipsis" 
+                <div *ngIf="slide?.useTitle"
+                class="body-sm ellipsis" 
+                [ngClass]="['size_'+slide?.titleSize,
+                            'textColor_'+slide?.textColor]">{{slide?.titleContent}}
+                    <!-- <label class="body-sm ellipsis" 
                            [ngClass]="['size_'+slide?.titleSize,
-                                       'textColor_'+slide?.textColor]">{{slide?.titleContent}}</label>
+                                       'textColor_'+slide?.textColor]">{{slide?.titleContent}}</label> -->
                 </div>
                 <div class="subtitle-cont" 
                      *ngIf="slide?.useSubTitle" 

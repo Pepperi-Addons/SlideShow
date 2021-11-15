@@ -34,7 +34,7 @@
             "NONE": "None",
             "FADE": "Fade",
             "SLIDE": "Slide",
-            "ZOOM": "Zoom"
+            "BLUR": "Blur"
         },
         "TRANSITION_TIME": "Transition time (s)",
         "ARROWS": "Arrows",
@@ -97,6 +97,7 @@
         "SOFT": "Soft",
         "REGULAR": "Regular",
         "SHADOW_INTENSITY": "Shadow Intensity",
+        "SHADOW_TYPE": "Shadow Type",
         "TEXT_COLOR": {
             "SYSTEM": "System",
             "DIMMED": "Dimmed",

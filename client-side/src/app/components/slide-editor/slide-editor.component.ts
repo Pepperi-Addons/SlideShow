@@ -123,7 +123,8 @@ export class SlideEditorComponent implements OnInit {
     }
 
     onSlideFieldChange(key, event){
-        const value = key.indexOf('image') > -1 && key.indexOf('src') > -1 ? event.fileStr :  event && event.source && event.source.key ? event.source.key : event && event.source && event.source.value ? event.source.value :  event;
+        //const value = key.indexOf('image') > -1 && key.indexOf('src') > -1 ? event.fileStr :  event && event.source && event.source.key ? event.source.key : event && event.source && event.source.value ? event.source.value :  event;
+        const value = event && event.source && event.source.key ? event.source.key : event && event.source && event.source.value ? event.source.value :  event;
         
         if(key.indexOf('.') > -1){
             let keyObj = key.split('.');
