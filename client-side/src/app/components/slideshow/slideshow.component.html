@@ -1,3 +1,4 @@
+<div [ngStyle]="{'height': getSlideShowHeight() }">
 <div *ngIf="configuration?.slides.length > 1 &&  configuration?.slideshowConfig?.isUseArrows"
        id="navigationCont"
        [ngStyle]="{'top': ( configuration?.slideshowConfig?.height / 2 ) + configuration?.slideshowConfig?.heightUnit}">
@@ -13,7 +14,7 @@
                      [iconName]="configuration?.slideshowConfig?.arrowType"  
                      (buttonClick)="navigate('forward')">
          </pep-button>
-  </div>
+</div>
 <slide *ngFor="let currentSlide of configuration?.slides" 
        [showSlide]="slideIndex == currentSlide.id"
        [slide]="currentSlide" 
@@ -21,7 +22,7 @@
 </slide>
 
 <div id="slideFooterBtn" 
-     *ngIf="configuration?.slides.length > 1"
+     *ngIf="configuration?.slides.length > 1 && (!isMobileView || configuration?.slideshowConfig?.showOnMobile)"
      [ngStyle]="{'top': getSliderFooterTop() }"
      [ngClass]="[configuration?.slideshowConfig?.dropShadow?.useDropShadow === true ? 'with-shadow-margin' : '' ]">
        <div id="dotsCont" 
@@ -37,6 +38,7 @@
               <pep-button *ngIf="!isPause" [sizeType]='configuration?.slideshowConfig?.controllerSize' styleType="regular" iconName="system_pause" (buttonClick)="setRunState($event)"></pep-button>
               <pep-button *ngIf="isPause" [sizeType]='configuration?.slideshowConfig?.controllerSize' styleType="regular" iconName="system_play" (buttonClick)="setRunState($event)"></pep-button>
        </ng-container>
+</div>
 </div>
 
 

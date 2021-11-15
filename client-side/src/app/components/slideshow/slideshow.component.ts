@@ -16,6 +16,7 @@ import { NgtscCompilerHost } from '@angular/compiler-cli/src/ngtsc/file_system';
 export class SlideshowComponent implements OnInit {
     @ViewChild('mainSlideCont', { static: true }) slideContainer: ElementRef;
     screenSize: PepScreenSizeType;
+    isMobileView = false; // TODO - GET THIS PARAM FROM PAGE BUILDER
 
     @Input()
     set hostObject(value: IHostObject) {
@@ -118,9 +119,11 @@ export class SlideshowComponent implements OnInit {
 
       convertREMToVH(rem) {
 	    return rem * 16 * (100 / document.documentElement.clientHeight);
-}
-
-
-
-
+      }  
+      
+      getSlideShowHeight(){
+          let heightToAdd = this.configuration?.slideshowConfig.heightUnit === 'REM' ? 2.75 : this.convertREMToVH(2.75);
+          heightToAdd = this.configuration?.slideshowConfig?.showControllersInSlider ?  0 : heightToAdd;
+          return (parseFloat(this.configuration?.slideshowConfig.height) + heightToAdd).toString() + this.configuration?.slideshowConfig.heightUnit;
+      }
 }

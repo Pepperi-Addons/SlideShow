@@ -19,8 +19,6 @@
                 class="backgroundImage"
                 [ngClass]="['inner_margin_' + slideshowConfig.innerPadding ]"
                 [ngStyle]="{'background' : getBackground(),
-                             'background-position-y' : slide?.image?.verticalPosition + '%',
-                             'background-position-x' : slide?.image?.horizontalPosition + '%',
                              'box-shadow': slide?.overlay?.useGradientOverlay ?  'inset 0 0 0 100vh ' + getRGBAcolor(slide?.overlay) : 'unset' ,
                              'height': slideshowConfig.height + slideshowConfig.heightUnit}">
       

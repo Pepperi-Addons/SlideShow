@@ -85,7 +85,7 @@
                     [minValue]="0" 
                     [maxValue]="100"
                     [disabled]="!configuration?.slideshowConfig?.dropShadow?.useDropShadow" 
-                    [value]="configuration?.slideshowConfig?.dropShadow?.opacity"
+                    [value]="configuration?.slideshowConfig?.dropShadow?.intensity"
                     (valueChange)="onSlideshowFieldChange('dropShadow.intensity',$event)">
                 </pep-slider>
     </mat-tab>
@@ -102,7 +102,7 @@
             </div>
 
             <pep-button class="add-content-button" value="{{'SLIDESHOW.ADD_SLIDE' | translate}}" styleType="regular" iconName="number_plus" iconPosition="end"
-                    (buttonClick)="addNewSlideClick()"></pep-button>
+                    (buttonClick)="addNewSlideClick()" [disabled]="configuration?.slides.length > 9"></pep-button>
         </ng-container>
     </mat-tab>
 </mat-tab-group>

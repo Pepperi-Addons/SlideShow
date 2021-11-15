@@ -62,19 +62,22 @@ export class SlideComponent implements OnInit {
         let gradient = this.slide?.gradientOverlay;
 
         let alignTo = this.slide?.horizontalAlign == 'center' ? 'center' : this.slide?.horizontalAlign == 'right' ? 'left' : 'right';
-        let imageSrc = this.slide?.image?.useImage ? 'url('+this.slide?.image?.src + ')' : '';
+        let imagePosition = this.slide?.image?.horizontalPosition + '% ' + this.slide?.image?.verticalPosition + '%';
+        let imageSrc = this.slide?.image?.useImage ? 'url('+this.slide?.image?.src + ')' + ' ' + imagePosition : '';
         let gradStr = this.slide?.gradientOverlay?.useGradientOverlay ? (this.slide?.horizontalAlign != 'center' ? this.getRGBAcolor(gradient) +' , '+ this.getRGBAcolor(gradient,0) : this.getRGBAcolor(gradient,0) +' , '+ this.getRGBAcolor(gradient) +' , '+ this.getRGBAcolor(gradient,0)) : '';
         
+
         gradStr = gradStr != '' ? 'linear-gradient(to ' + alignTo +', ' +  gradStr +')' : '';
         
         return   gradStr  +  (this.slide?.image?.useImage && this.slide?.gradientOverlay?.useGradientOverlay ?  ',' : '') + imageSrc;
     }
 
     getSlideShadow(){
-        let shadow = this.slideshowConfig?.dropShadow?.type === 'Regular' ? '13px 8px 12px' : '7px 4px 12px';
-        let color = ' rgb(0 0 0 / ' + this.slideshowConfig?.dropShadow?.intensity.toString() + '%)';
-      
-        return shadow + color;
+        
+        let intensity = this.slideshowConfig?.dropShadow?.intensity.toString();
+        let shadow = this.slideshowConfig?.dropShadow?.type === 'Soft' ? '0px 3px 6px 0px rgba(0, 0, 0, '+ intensity +'),0px 4px 8px 0px rgba(0, 0, 0, '+ intensity +'),0px 6px 12px 0px rgba(0, 0, 0, '+ intensity +')' :
+                                                                       '0px 8px 16px 0px rgba(0, 0, 0, '+ intensity +'), 0px 12px 24px 0px rgba(0, 0, 0, '+ intensity +'),0px 24px 48px 0px rgba(0, 0, 0, '+ intensity +')'
+        return shadow;
     }
 
     // getSlideboxHeight() {
