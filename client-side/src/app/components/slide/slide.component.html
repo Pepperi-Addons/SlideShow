@@ -10,7 +10,7 @@
      'animation-duration': slideshowConfig.transitionTime + 's'}" 
      [ngClass]="[ 'horAlign_' + slide?.horizontalAlign,
                  'verAlign_' + slide?.verticalAlign,
-                 'inner_padding_' + slideshowConfig.innerPadding, slideshowConfig.transitionType,]">
+                 'inner_padding_' + slideshowConfig.innerPadding, slideshowConfig.transitionType]">
        <div [ngStyle]="{'-webkit-animation-duration':  slideshowConfig.transitionTime + 's',
                       'animation-duration': slideshowConfig.transitionTime + 's' }" 
                       class="animation" 

@@ -1,4 +1,4 @@
-<div [ngStyle]="{'height': getSlideShowHeight() }">
+<div [ngStyle]="{'height': getSlideShowHeight() }" style="display: grid; grid-template-columns: 1fr 0px">
 <div *ngIf="configuration?.slides.length > 1 &&  configuration?.slideshowConfig?.isUseArrows"
        id="navigationCont"
        [ngStyle]="{'top': ( configuration?.slideshowConfig?.height / 2 ) + configuration?.slideshowConfig?.heightUnit}">
@@ -16,9 +16,13 @@
          </pep-button>
 </div>
 <slide *ngFor="let currentSlide of configuration?.slides" 
-       [showSlide]="slideIndex == currentSlide.id"
+       [showSlide]="true || slideIndex == currentSlide.id"
        [slide]="currentSlide" 
-       [slideshowConfig]="configuration?.slideshowConfig">
+       [slideshowConfig]="configuration?.slideshowConfig"
+       [ngStyle]="{'z-index': slideIndex == currentSlide.id ? -1 : -2,
+                   '-webkit-animation-duration':  configuration?.slideshowConfig?.transitionTime + 's',
+                   'animation-duration': configuration?.slideshowConfig?.transitionTime + 's'}"
+       [ngClass]="slideIndex == currentSlide.id ? configuration?.slideshowConfig?.transitionType : ''">
 </slide>
 
 <div id="slideFooterBtn" 
