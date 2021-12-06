@@ -52,7 +52,16 @@
 // };
 
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-const webpack = require('webpack');
+const mf = require("@angular-architects/module-federation/webpack");
+const path = require("path");
+const share = mf.share;
+
+const sharedMappings = new mf.SharedMappings();
+sharedMappings.register(
+    path.join(__dirname, './tsconfig.json'),
+    [
+        /* mapped paths to share */
+    ]);
 
 module.exports = {
     output: {
@@ -62,6 +71,11 @@ module.exports = {
     optimization: {
         // Only needed to bypass a temporary bug
         runtimeChunk: false
+    },   
+    resolve: {
+        alias: {
+        ...sharedMappings.getAliases(),
+        }
     },
     plugins: [
         // new webpack.ProvidePlugin({
@@ -74,15 +88,16 @@ module.exports = {
                 './SlideshowModule': './src/app/components/slideshow/index',
                 './SlideshowEditorModule': './src/app/components/slideshow-editor/index'
             },
-            shared: {
-                    "@angular/core": { eager: true, singleton: true, strictVersion: false },
-                    "@angular/common": { eager: true, singleton: true, strictVersion: false },
-                    "@angular/common/http": { eager: true, singleton: true, strictVersion: false },
-                    "rxjs": { eager: true, singleton: true, strictVersion: false },
-                    "@ngx-translate/core": { eager: true, singleton: true, strictVersion: false },
-                    "@angular/router": { eager: true, singleton: true,  strictVersion: false },
-                    "@pepperi-addons/ngx-lib": { eager: true, singleton: true,  strictVersion: false }
-                }
+            shared: share({
+                "@angular/core": { eager: true, singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
+                "@angular/common": { eager: true, singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
+                "@angular/common/http": { eager: true, singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
+                "@angular/router": { eager: true, singleton: true, strictVersion: true, requiredVersion: 'auto' },
+                "@pepperi-addons/ngx-lib": {eager: true,  singleton: true, strictVersion: true, requiredVersion: 'auto' },
+                
+                ...sharedMappings.getDescriptors()
+            })
         }),
+        sharedMappings.getPlugin()
     ]
 };
