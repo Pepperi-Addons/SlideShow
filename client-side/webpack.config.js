@@ -93,7 +93,6 @@ module.exports = {
                 "@angular/common": { eager: true, singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
                 "@angular/common/http": { eager: true, singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
                 "@angular/router": { eager: true, singleton: true, strictVersion: true, requiredVersion: 'auto' },
-                "@pepperi-addons/ngx-lib": {eager: true,  singleton: true, strictVersion: true, requiredVersion: 'auto' },
                 
                 ...sharedMappings.getDescriptors()
             })
