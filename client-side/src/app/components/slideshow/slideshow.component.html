@@ -16,13 +16,15 @@
          </pep-button>
 </div>
 <slide *ngFor="let currentSlide of configuration?.slides" 
-       [showSlide]="true || slideIndex == currentSlide.id"
+       [showSlide]="slideIndex == currentSlide.id"
        [slide]="currentSlide" 
        [slideshowConfig]="configuration?.slideshowConfig"
-       [ngStyle]="{'z-index': slideIndex == currentSlide.id ? -1 : -2,
+       [ngClass]="[configuration?.slideshowConfig?.transitionType , slideIndex == currentSlide.id ? 'activeSlide' : '']"
+       [ngStyle]="{'transition-duration':  configuration?.slideshowConfig?.transitionTime + 's'}">
+       <!-- [ngStyle]="{'z-index': slideIndex == currentSlide.id ? 2 : 1,
                    '-webkit-animation-duration':  configuration?.slideshowConfig?.transitionTime + 's',
                    'animation-duration': configuration?.slideshowConfig?.transitionTime + 's'}"
-       [ngClass]="slideIndex == currentSlide.id ? configuration?.slideshowConfig?.transitionType : ''">
+       [ngClass]="slideIndex == currentSlide.id ? configuration?.slideshowConfig?.transitionType : ''"> -->
 </slide>
 
 <div id="slideFooterBtn" 

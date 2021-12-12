@@ -1,20 +1,13 @@
-<div  *ngIf="showSlide" 
-      [ngStyle]="{'height': slideshowConfig?.height + slideshowConfig?.heightUnit,
+<div  [ngStyle]="{'height': slideshowConfig?.height + slideshowConfig?.heightUnit,
                 'box-shadow': slideshowConfig?.dropShadow?.useDropShadow === true ? getSlideShadow() : ''}" 
-      [ngClass]="[slideshowConfig?.showControllersInSlider == false ? 'withOutSideController' : '' ]">
+      [ngClass]="[slideshowConfig?.showControllersInSlider == false ? 'withOutSideController' : '']">
 
 <div #mainSlideCont 
-     class="ng-component-container animation" 
-     [ngStyle]="{'height': getSlideContentHeight(),
-     '-webkit-animation-duration':  slideshowConfig.transitionTime + 's',
-     'animation-duration': slideshowConfig.transitionTime + 's'}" 
+     class="ng-component-container" 
+     [ngStyle]="{'height': getSlideContentHeight()}" 
      [ngClass]="[ 'horAlign_' + slide?.horizontalAlign,
                  'verAlign_' + slide?.verticalAlign,
-                 'inner_padding_' + slideshowConfig.innerPadding, slideshowConfig.transitionType]">
-       <div [ngStyle]="{'-webkit-animation-duration':  slideshowConfig.transitionTime + 's',
-                      'animation-duration': slideshowConfig.transitionTime + 's' }" 
-                      class="animation" 
-                     [ngClass]="[]">        
+                 'inner_padding_' + slideshowConfig.innerPadding]">      
             <div *ngIf="slide?.image?.useImage || slide?.gradientOverlay?.useGradientOverlay || slide?.overlay?.useGradientOverlay"
                 class="backgroundImage"
                 [ngClass]="['inner_margin_' + slideshowConfig.innerPadding ]"
@@ -49,6 +42,5 @@
                     <pep-button *ngIf="slide?.secondButton?.useButton" [sizeType]="slide?.buttonsSize" [value]="slide?.secondButton.label" [styleType]="slide?.secondButton?.style" [classNames]="slide?.buttonColor"  (buttonClick)="onSlideButtonClicked('secondButton')"></pep-button>
                 </div>
             </div>
-       </div>
 </div>
 </div>

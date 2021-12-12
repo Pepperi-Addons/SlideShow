@@ -57,14 +57,13 @@ export class SlideshowComponent implements OnInit {
     
     ngOnInit() {
         this.raiseBlockLoadedEvent();
-    
         this.showSlides();
     }
 
     showSlides() {
 
         if (this.configuration) {
-            if (!this.configuration.slideshowConfig.isTransition || this.configuration.slideshowConfig.transitionType === 'none') {
+            if (!this.configuration.slideshowConfig.isTransition) {
                 this.isPause = true;
                 clearTimeout(this.timer);
             }

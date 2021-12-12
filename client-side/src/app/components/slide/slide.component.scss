@@ -193,48 +193,9 @@ $pepperi-theme: get-pepperi-theme();
     }
 }
 
-.animation{
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
-    height: 100%;
-    width: 100%;
-    display: flex;
-}
 
-.none{
-    -webkit-animation-name: unset;
-    animation-name: unset;
-}
 
-.fade {
-    -webkit-animation-name: fade;
-    animation-name: fade;
-  }
 
-  .blur{
-    -webkit-animation-name: blur;
-    animation-name: blur;
-  }
-
-@-webkit-keyframes fade {
-    from {opacity: 0.3}
-    to {opacity: 1}
-  }
-
-  @keyframes fade {
-    from {opacity: 0.3}
-    to {opacity: 1}
-  }
-
-  @-webkit-keyframes blur {
-    from { -webkit-filter: blur(15px)}
-    to { -webkit-filter: blur(-1px)}
-  }
-
-  @keyframes blur {
-    from { filter: blur(15px)}
-    to { filter: blur(-1px)}
-  }
 
 
 
