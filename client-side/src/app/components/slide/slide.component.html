@@ -25,11 +25,9 @@
                                                  }">
                 <div *ngIf="slide?.useTitle"
                 class="body-sm ellipsis" 
-                [ngClass]="['size_'+slide?.titleSize,
+                [ngClass]="['title-'+slide?.titleSize,
+                            slide?.titleWeight,
                             'textColor_'+slide?.textColor]">{{slide?.titleContent}}
-                    <!-- <label class="body-sm ellipsis" 
-                           [ngClass]="['size_'+slide?.titleSize,
-                                       'textColor_'+slide?.textColor]">{{slide?.titleContent}}</label> -->
                 </div>
                 <div class="subtitle-cont" 
                      *ngIf="slide?.useSubTitle" 

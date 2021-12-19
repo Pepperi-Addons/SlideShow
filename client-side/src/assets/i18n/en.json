@@ -2,7 +2,6 @@
     "Ok": "Ok",
     "Select_Label": "Select Label",
     "Title_Addon": "Hello Addon",
-    "Title_Sub_Addon_1": "Hello Block 1",
     "Open_Dialog": "Open Dialog",
     "Dialog_Body": "Dialog from sub addon 1",
     "Dialog_Title": "Dialog",
@@ -69,6 +68,7 @@
         "SUBTITLE_CONTENT": "Subtitle text",
         "CONTENT": "Content",
         "MAIN_TITLE_SIZE": "Main title size",
+        "MAIN_TITLE_WEIGHT": "Title font weight",
         "SUB_TITLE": "Subtitle",
         "SUB_TITLE_SIZE": "Sub title size",
         "CONTENT_BLOCK_WIDTH": "Content block width",
@@ -98,6 +98,11 @@
         "REGULAR": "Regular",
         "SHADOW_INTENSITY": "Shadow Intensity",
         "SHADOW_TYPE": "Shadow Type",
+        "FONT_WEIGHT": {
+            "NORMAL": "Normal",
+            "BOLD": "Bold",
+            "BOLDER": "Bolder"
+        },
         "TEXT_COLOR": {
             "SYSTEM": "System",
             "DIMMED": "Dimmed",

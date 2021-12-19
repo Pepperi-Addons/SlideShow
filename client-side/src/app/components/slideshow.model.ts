@@ -16,7 +16,7 @@ export type ArrowShape = 'none' | 'regular' | 'round';
 export type WidthUnits = 'Narrow' | 'Regular' | 'Wide';
 export type Intensity = 'Soft' | 'Regular';
 export type textColor = 'system' | 'dimmed' | 'inverted' | 'strong';
-
+export type FontWeight = 'normal' | 'bold' | 'bolder';
 export type buttonColor = 'system-primary' | 'invert' | 'user-primary' ;
 
 export class SlideButton {
@@ -80,6 +80,7 @@ export class ISlideEditor {
     useTitle: boolean = true;
     titleContent: string = 'Title';
     titleSize: PepSizeType = 'lg';
+    titleWeight: FontWeight = 'normal';
     useSubTitle: boolean = true;
     subTitleContent: string = 'Sub title';
     subTitleSize: PepSizeType = 'md';

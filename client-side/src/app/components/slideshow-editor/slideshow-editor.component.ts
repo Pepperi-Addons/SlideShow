@@ -37,7 +37,7 @@ export class SlideshowEditorComponent implements OnInit {
     transitionTypes: Array<{key: TransitionType, value: string}> = [];
     buttonStyle: Array<{key: PepStyleType, value: string}> = [];
     buttonColor: Array<PepButton> = [];
-    SlideDropShadowStyle: Array<PepButton> = [];
+    DropShadowStyle: Array<PepButton> = [];
     HeightUnitsType: Array<PepButton> = [];
     InnerSpacing: Array<{key: PepSizeType, value: string}> = [];
     ArrowsType: Array<PepButton> = [];
@@ -108,7 +108,7 @@ export class SlideshowEditorComponent implements OnInit {
 
         const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();
 
-        this.SlideDropShadowStyle = [
+        this.DropShadowStyle = [
             { key: 'Soft', value: this.translate.instant('SLIDE_EDITOR.SOFT') },
             { key: 'Regular', value: this.translate.instant('SLIDE_EDITOR.REGULAR') }
         ];

@@ -7,7 +7,7 @@ $pepperi-theme: get-pepperi-theme();
 
 .ng-component-container{
     width: inherit;
-    display: block;
+    display: flex;
     height: inherit;
     margin: 0 auto;
     
@@ -139,31 +139,18 @@ $pepperi-theme: get-pepperi-theme();
             // font-family: Inter;
             // font-weight: normal;
             // letter-spacing: 0.19px;
-        
-            &.size_xl{
-                font-size: 4.5rem !important;
-                line-height: 4.5rem !important;
-                height: 5rem;
+            &.title-md{
+                font-size: calc(#{$fs-md} * 1.75) !important;   
             }
-            &.size_lg{
-                font-size: 3.5rem !important;
-                line-height: 3.5rem !important;
-                height: 4rem;
+            &.title-lg{
+                font-size: calc(#{$fs-lg} * 2.75) !important; 
+                height: calc(#{$fs-lg} * 2.25);  
+                line-height: calc(#{$fs-lg} * 2.25) !important;  
             }
-            &.size_md{
-                font-size: 2.5rem !important;
-                line-height: 2.5rem !important;
-                height: 3rem;
-            }
-            &.size_sm{
-                font-size: 1.5rem !important;
-                line-height: 1.5rem !important;
-                height: 2rem;
-            }
-            &.size_xs{
-                font-size: .75rem !important;
-                line-height: .75rem !important;
-                height: 1.25rem;
+            &.title-xl{
+                font-size: calc(#{$fs-xl} * 3.5) !important; 
+                height: calc(#{$fs-xl} * 2.75); 
+                line-height: calc(#{$fs-xl} * 2.75) !important;     
             }
         
         }

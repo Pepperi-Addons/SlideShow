@@ -28,12 +28,13 @@ export class SlideEditorComponent implements OnInit {
     @Output() removeClick: EventEmitter<any> = new EventEmitter();
     @Output() editClick: EventEmitter<any> = new EventEmitter();
 
-    SlideTitleSize:Array<groupButtonArray> = [];
-    SlideSubTitleSize: Array<groupButtonArray> = [];
+    TitleSize:Array<groupButtonArray> = [];
+    TitleWeight:Array<groupButtonArray> = [];
+    SubTitleSize: Array<groupButtonArray> = [];
     WidthSize: Array<groupButtonArray> = [];
     HorizentalAlign: Array<PepButton> = [];
     VerticalAlign: Array<groupButtonArray> = [];
-    SlideDropShadowStyle: Array<groupButtonArray> = [];
+    DropShadowStyle: Array<groupButtonArray> = [];
     textColors: Array<groupButtonArray> = [];
     buttonColor: Array<PepButton> = [];
     buttonStyle: Array<{key: PepStyleType, value: string}> = [];
@@ -52,17 +53,23 @@ export class SlideEditorComponent implements OnInit {
 
         const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();
 
-        this.SlideTitleSize = [
+        this.TitleSize = [
             { key: 'md', value: this.translate.instant('GROUP_SIZE.MD') },
             { key: 'lg', value: this.translate.instant('GROUP_SIZE.LG') },
             { key: 'xl', value: this.translate.instant('GROUP_SIZE.XL') },
         ];
     
-        this.SlideSubTitleSize = [
+        this.SubTitleSize = [
             { key: 'sm', value: this.translate.instant('GROUP_SIZE.SM') },
             { key: 'md', value: this.translate.instant('GROUP_SIZE.MD') },
             { key: 'lg', value: this.translate.instant('GROUP_SIZE.LG') }
         ];
+
+        this.TitleWeight = [
+            { key: 'normal', value: this.translate.instant('SLIDE_EDITOR.FONT_WEIGHT.NORMAL') },
+            { key: 'bold', value: this.translate.instant('SLIDE_EDITOR.FONT_WEIGHT.BOLD') },
+            { key: 'bolder', value: this.translate.instant('SLIDE_EDITOR.FONT_WEIGHT.BOLDER') }
+        ]
     
         this.WidthSize =  [
             { key: 'narrow', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.NARROW') },
@@ -82,7 +89,7 @@ export class SlideEditorComponent implements OnInit {
             { key: 'bottom', value: this.translate.instant('SLIDE_EDITOR.VERTICAL_ALIGN_DIRECTION.BOTTOM') }
         ];
     
-        this.SlideDropShadowStyle = [
+        this.DropShadowStyle = [
             { key: 'Soft', value: this.translate.instant('SLIDE_EDITOR.SOFT') },
             { key: 'Regular', value: this.translate.instant('SLIDE_EDITOR.REGULAR') }
         ];

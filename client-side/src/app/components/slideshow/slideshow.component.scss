@@ -112,13 +112,15 @@ slide{
     {
         transform: translateX(0);
         transition: none;
+        display: block;
         
         
         &.activeSlide{
             z-index: 2;
-            transition: transform;
+            transition: transform , display;
             transform: translateX(100%);
-            transition-timing-function: linear;   
+            transition-timing-function: linear;  
+            display: none; 
         }
         
     }

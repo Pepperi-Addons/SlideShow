@@ -74,7 +74,7 @@
                 </pep-checkbox>
                 <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.SHADOW_TYPE' | translate}}</label>
                 <pep-group-buttons 
-                    [buttons]="SlideDropShadowStyle" 
+                    [buttons]="DropShadowStyle" 
                     [selectedButtonKey]="configuration?.slideshowConfig?.dropShadow?.type" 
                     buttonsClass="md regular" 
                     [buttonsDisabled]="!configuration?.slideshowConfig?.dropShadow?.useDropShadow"(buttonClick)="onSlideshowFieldChange('dropShadow.type',$event)" viewType="toggle" stretch="true">
