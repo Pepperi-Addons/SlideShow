@@ -1,7 +1,8 @@
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
 import { PepColorService, PepLayoutService, PepScreenSizeType, PepSizeType, PepStyleType } from '@pepperi-addons/ngx-lib';
-import { ISlideEditor, ISlideShow, ISlideshowEditor, Overlay } from '../slideshow.model';
+import { ISlideEditor, ISlideShow, ISlideshowEditor } from '../slideshow.model';
+import { PepColorSettings } from '@pepperi-addons/ngx-composite-lib/color-settings';
 
 @Component({
     selector: 'slide',
@@ -40,11 +41,11 @@ export class SlideComponent implements OnInit {
         return { slideshowConfig: new ISlideshowEditor(), slides: Array<ISlideEditor>() };
     }
     
-    getRGBAcolor(colObj: Overlay, opac = null){
+    getRGBAcolor(colObj: PepColorSettings, opac = null){
         let rgba = 'rgba(255,255,255,0';
             if(colObj){
-                let color = colObj.color;
-                let opacity = opac != null ? opac : parseInt(colObj.opacity);
+                let color = colObj.value;
+                let opacity = opac != null ? opac : colObj.opacity;
 
                 opacity = opacity > 0 ? opacity / 100 : 0;
                 //check if allready rgba
@@ -64,27 +65,47 @@ export class SlideComponent implements OnInit {
         let alignTo = this.slide?.horizontalAlign == 'center' ? 'center' : this.slide?.horizontalAlign == 'right' ? 'left' : 'right';
         let imagePosition = this.slide?.image?.horizontalPosition + '% ' + this.slide?.image?.verticalPosition + '%';
         let imageSrc = this.slide?.image?.useImage ? 'url('+this.slide?.image?.src + ')' + ' ' + imagePosition : '';
-        let gradStr = this.slide?.gradientOverlay?.useGradientOverlay ? (this.slide?.horizontalAlign != 'center' ? this.getRGBAcolor(gradient) +' , '+ this.getRGBAcolor(gradient,0) : this.getRGBAcolor(gradient,0) +' , '+ this.getRGBAcolor(gradient) +' , '+ this.getRGBAcolor(gradient,0)) : '';
+        let gradStr = this.slide?.gradientOverlay?.use ? (this.slide?.horizontalAlign != 'center' ? this.getRGBAcolor(gradient) +' , '+ this.getRGBAcolor(gradient,0) : this.getRGBAcolor(gradient,0) +' , '+ this.getRGBAcolor(gradient) +' , '+ this.getRGBAcolor(gradient,0)) : '';
         
 
         gradStr = gradStr != '' ? 'linear-gradient(to ' + alignTo +', ' +  gradStr +')' : '';
         
-        return   gradStr  +  (this.slide?.image?.useImage && this.slide?.gradientOverlay?.useGradientOverlay ?  ',' : '') + imageSrc;
+        return   gradStr  +  (this.slide?.image?.useImage && this.slide?.gradientOverlay?.use ?  ',' : '') + imageSrc;
     }
 
-    getSlideShadow(){
-        
-        let intensity = this.slideshowConfig?.dropShadow?.intensity.toString();
-        let shadow = this.slideshowConfig?.dropShadow?.type === 'Soft' ? '0px 3px 6px 0px rgba(0, 0, 0, '+ intensity +'),0px 4px 8px 0px rgba(0, 0, 0, '+ intensity +'),0px 6px 12px 0px rgba(0, 0, 0, '+ intensity +')' :
-                                                                       '0px 8px 16px 0px rgba(0, 0, 0, '+ intensity +'), 0px 12px 24px 0px rgba(0, 0, 0, '+ intensity +'),0px 24px 48px 0px rgba(0, 0, 0, '+ intensity +')'
-        return shadow;
-    }
+    getGradientOverlay(){
+        let gradient = this.slide?.gradientOverlay;
+        let horAlign = this.slide?.horizontalAlign;
+        let verAlign = this.slide?.verticalAlign; // 'top' | 'middle' | 'bottom'
 
-    // getSlideboxHeight() {
-    //         let height = parseInt(this.slideshowConfig.height);
-    //         let remTodecrease =  8 * (100 / document.documentElement.clientHeight);
-    //         return (height - remTodecrease).toString() + this.slideshowConfig.heightUnit;
-    // }
+        let direction = '0';
+
+        switch(horAlign){
+            case 'left':{
+                direction = verAlign === 'top' ? '135' : verAlign === 'middle' ? '90' : '45';
+                break;
+            }
+            case 'center':{
+                direction = verAlign === 'top' ? '180' : verAlign === 'middle' ? 'circle' : '0';
+                break;
+            }
+            case 'right':{
+                direction = verAlign === 'top' ? '225' : verAlign === 'middle' ? '135' : '315';
+                break;
+            }
+        }
+            direction = direction === 'circle' ? direction : direction + 'deg';
+
+        let colorsStr =  direction ! == 'circle' ? this.getRGBAcolor(gradient,0) +' , '+ this.getRGBAcolor(gradient) :
+                                                 this.getRGBAcolor(gradient) +' , '+ this.getRGBAcolor(gradient,0);
+        let imagePosition = this.slide?.image?.horizontalPosition + '% ' + this.slide?.image?.verticalPosition + '%';
+        let imageSrc = this.slide?.image?.useImage  && this.slide?.image?.src !== '' ? ', url(' +this.slide?.image?.src + ')' + ' ' + imagePosition : '';
+        let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
+
+        return gradType + '(' + direction +' , '+ colorsStr +')' + imageSrc ;
+    
+    }
+    
 
     getSlideContentHeight(){
 

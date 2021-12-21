@@ -11,6 +11,7 @@ $pepperi-theme: get-pepperi-theme();
     height: inherit;
     margin: 0 auto;
     
+
     &.horAlign_right{
         ::ng-deep{
             .pep-main-area{
@@ -40,21 +41,21 @@ $pepperi-theme: get-pepperi-theme();
         padding: $spacing-md;
 
         .withArrow_margin{ 
-            margin-inline: 1.5rem;
+            margin-inline: 2.5rem;
         }
     }
     &.inner_padding_md{
         padding: $spacing-lg;
 
         .withArrow_margin{ 
-            margin-inline: 2rem;
+            margin-inline: 3rem;
         }
     }
     &.inner_padding_lg{
         padding: $spacing-xl;
 
         .withArrow_margin{ 
-            padding-inline: 2.5rem;
+            padding-inline: 3.5rem;
         }
     }
     
@@ -135,10 +136,6 @@ $pepperi-theme: get-pepperi-theme();
 
         div{
 
-            // color: inherit;
-            // font-family: Inter;
-            // font-weight: normal;
-            // letter-spacing: 0.19px;
             &.title-md{
                 font-size: calc(#{$fs-md} * 1.75) !important;   
             }
@@ -177,6 +174,62 @@ $pepperi-theme: get-pepperi-theme();
             // margin-inline-start: calc((-1 * #{$spacing-xl}) - 1rem);
             // margin-inline-end: calc((-1 * #{$spacing-xl}) - 1rem);
         }
+    }
+}
+
+.shadow-xs{
+    &.soft{
+        box-shadow: get-pep-shadow($pepperi-theme, shadow-xs, soft);
+    }
+    &.regular{
+        box-shadow: get-pep-shadow($pepperi-theme, shadow-xs, regular);
+    }
+    &.hard{
+        box-shadow: get-pep-shadow($pepperi-theme, shadow-xs, hard);
+    }
+}
+.shadow-sm{
+    &.soft{
+        box-shadow: get-pep-shadow($pepperi-theme, shadow-sm, soft);
+    }
+    &.regular{
+        box-shadow: get-pep-shadow($pepperi-theme, shadow-sm, regular);
+    }
+    &.hard{
+        box-shadow: get-pep-shadow($pepperi-theme, shadow-sm, hard);
+    }
+}
+.shadow-md{
+    &.soft{
+        box-shadow: get-pep-shadow($pepperi-theme, shadow-md, soft);
+    }
+    &.regular{
+        box-shadow: get-pep-shadow($pepperi-theme, shadow-md, regular);
+    }
+    &.hard{
+        box-shadow: get-pep-shadow($pepperi-theme, shadow-md, hard);
+    }
+}
+.shadow-lg{
+    &.soft{
+        box-shadow: get-pep-shadow($pepperi-theme, shadow-lg, soft);
+    }
+    &.regular{
+        box-shadow: get-pep-shadow($pepperi-theme, shadow-lg, regular);
+    }
+    &.hard{
+        box-shadow: get-pep-shadow($pepperi-theme, shadow-lg, hard);
+    }
+}
+.shadow-xl{
+    &.soft{
+        box-shadow: get-pep-shadow($pepperi-theme, shadow-xl, soft);
+    }
+    &.regular{
+        box-shadow: get-pep-shadow($pepperi-theme, shadow-xl, regular);
+    }
+    &.hard{
+        box-shadow: get-pep-shadow($pepperi-theme, shadow-xl, hard);
     }
 }
 

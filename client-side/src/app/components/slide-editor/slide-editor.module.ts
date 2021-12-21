@@ -17,6 +17,24 @@ import { PepGroupButtonsModule } from '@pepperi-addons/ngx-lib/group-buttons';
 import { PepImageModule } from '@pepperi-addons/ngx-lib/image';
 import { PepSelectModule } from '@pepperi-addons/ngx-lib/select';
 import { PepTextareaModule } from '@pepperi-addons/ngx-lib/textarea';
+import { PepShadowSettingsModule } from '@pepperi-addons/ngx-composite-lib/shadow-settings';
+import { PepColorSettingsModule } from '@pepperi-addons/ngx-composite-lib/color-settings';
+
+export function createTranslateLoader(addonService: PepAddonService) {
+    const addonStaticFolder = addonService.getAddonStaticFolder(config.AddonUUID);
+    const ngxLibTranslationResource = addonService.getNgxLibTranslationResource(config.AddonUUID);
+    const addonTranslationResource = addonService.getAddonTranslationResource(config.AddonUUID);
+    const ngxCompositeLibAssetsFolder = 'assets/ngx-composite-lib/i18n/';
+
+    return addonService.translateService.createMultiTranslateLoader([
+        ngxLibTranslationResource,
+        addonTranslationResource,
+        {
+            prefix: `${addonStaticFolder}/${ngxCompositeLibAssetsFolder}`,
+            suffix: '.ngx-composite-lib.json',
+        }
+    ]);
+}
 
 @NgModule({
     declarations: [SlideEditorComponent],
@@ -31,17 +49,26 @@ import { PepTextareaModule } from '@pepperi-addons/ngx-lib/textarea';
         PepNgxLibModule,
         PepSelectModule,
         MatDialogModule,
-        //PepPageLayoutModule,
         PepGroupButtonsModule,
         PepColorModule,
         PepImageModule,
         PepTextareaModule,
+        PepShadowSettingsModule,
+        PepColorSettingsModule,
+        
+        // TranslateModule.forChild({
+        //     loader: {
+        //         provide: TranslateLoader,
+        //         useFactory: (http: HttpClient, fileService: PepFileService, addonService: PepAddonService) => 
+        //             PepAddonService.createDefaultMultiTranslateLoader(http, fileService, addonService, config.AddonUUID),
+        //         deps: [HttpClient, PepFileService, PepAddonService],
+        //     }, isolate: false
+        // }),
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
-                useFactory: (http: HttpClient, fileService: PepFileService, addonService: PepAddonService) => 
-                    PepAddonService.createDefaultMultiTranslateLoader(http, fileService, addonService, config.AddonUUID),
-                deps: [HttpClient, PepFileService, PepAddonService],
+                useFactory: createTranslateLoader,
+                deps: [PepAddonService]
             }, isolate: false
         }),
     ],

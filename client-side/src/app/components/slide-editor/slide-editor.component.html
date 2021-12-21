@@ -8,8 +8,6 @@
     </div>
     <div class="actions" *ngIf="showActions">
         <pep-button classNames="caution" sizeType="xs" iconName="system_bin" (buttonClick)="onRemoveClick();"></pep-button>
-        <!-- <pep-menu sizeType="xs" iconName="system_view" ></pep-menu> -->
-        <!-- <hide-in [hideIn]="hideIn" (hideInChange)="onHideInChange($event)"></hide-in> -->
         <pep-button *ngIf="id != configuration?.slideshowConfig?.editSlideIndex" sizeType="xs" iconName="arrow_down" (buttonClick)="onEditClick();"></pep-button>
         <pep-button *ngIf="id == configuration?.slideshowConfig?.editSlideIndex" sizeType="xs" iconName="arrow_up" (buttonClick)="onEditClick();"></pep-button>
     </div>
@@ -93,43 +91,16 @@
                 (valueChange)="onSlideFieldChange('secondButton.style',$event)" [emptyOption]="false" [disabled]="!configuration?.slides[id].secondButton.useButton">
     </pep-select>
     
-    <pep-checkbox [value]="configuration?.slides[id].gradientOverlay?.useGradientOverlay" [label]="'SLIDE_EDITOR.GRADIENT_OVERLAY' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('gradientOverlay.useGradientOverlay',$event)"></pep-checkbox>
-    <pep-color [value]="configuration?.slides[id].gradientOverlay?.color" [label]="'SLIDE_EDITOR.GRADIENT_OVERLAY_COLOR' | translate" [disabled]="!configuration?.slides[id].gradientOverlay.useGradientOverlay" xAlignment="left"
-            type="any" [showTitle]="true" [showAAComplient]="true" (valueChange)="onSlideFieldChange('gradientOverlay.color',$event)">
-    </pep-color>
-    <pep-slider
-        [label]="'SLIDE_EDITOR.GRADIENT_OVERLAY_OPACITY' | translate" 
-        [hint]="configuration?.slides[id].gradientOverlay.opacity?.toString()" 
-        [minValue]="0" 
-        [background]="getSliderBackground(configuration?.slides[id].gradientOverlay?.color)"
-        [maxValue]="100"
-        [disabled]="!configuration?.slides[id].gradientOverlay?.opacity" 
-        [value]="configuration?.slides[id].gradientOverlay?.opacity"
-        (valueChange)="onSlideFieldChange('gradientOverlay.opacity',$event)">
-    </pep-slider>
-    <pep-checkbox [value]="configuration?.slides[id].overlay.useGradientOverlay" [label]="'SLIDE_EDITOR.OVERLAY' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('overlay.useGradientOverlay',$event)"></pep-checkbox>
-    <pep-color [value]="configuration?.slides[id].overlay.color" [label]="'SLIDE_EDITOR.OVERLAY_COLOR' | translate" [disabled]="!configuration?.slides[id].overlay.useGradientOverlay" xAlignment="left"
-            type="any" [showTitle]="true" [showAAComplient]="true" (valueChange)="onSlideFieldChange('overlay.color',$event)">
-    </pep-color>
-    <pep-slider
-        [label]="'SLIDE_EDITOR.OVERLAY_OPACITY' | translate" 
-        [hint]="configuration?.slides[id].overlay?.opacity?.toString()" 
-        [minValue]="0" 
-        [background]="getSliderBackground(configuration?.slides[id].overlay?.color)"
-        [maxValue]="100"
-        [disabled]="!configuration?.slides[id]?.overlay?.opacity" 
-        [value]="configuration?.slides[id]?.overlay?.opacity"
-        (valueChange)="onSlideFieldChange('overlay.opacity',$event)">
-    </pep-slider>
+    <pep-color-settings [title]="'SLIDE_EDITOR.GRADIENT_OVERLAY' | translate"
+                        [color]="configuration?.slides[id].gradientOverlay">
+    </pep-color-settings>
+    
+    <pep-color-settings [title]="'SLIDE_EDITOR.OVERLAY' | translate"
+                        [color]="configuration?.slides[id].overlay">
+    </pep-color-settings>
+
     <pep-checkbox [value]="configuration?.slides[id].image.useImage" [label]="'SLIDE_EDITOR.IMAGE' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('image.useImage',$event)"></pep-checkbox>
-    <!-- <pep-image [disabled]="true || !configuration?.slides[id].image.useImage" 
-               [label]="'SLIDE_EDITOR.CHOOSE_IMAGE' | translate" 
-               [showTitle]="true" 
-               [xAlignment]="'left'" 
-               [rowSpan]="2"
-               [src]="configuration?.slides[id].image?.src"
-               (fileChange)="onSlideFieldChange('image.src',$event)">
-    </pep-image> -->
+
     <pep-textbox [label]="'SLIDE_EDITOR.CHOOSE_IMAGE' | translate" 
                   type="link" 
                   [value]="configuration?.slides[id].image?.src" 

@@ -20,6 +20,8 @@ import { PepPageLayoutModule } from '@pepperi-addons/ngx-lib/page-layout';
 import { MatDialogModule } from '@angular/material/dialog';
 import { pepIconTextAlignCenter, pepIconTextAlignLeft, pepIconTextAlignRight, pepIconArrowBackRight, pepIconArrowBackLeft, pepIconArrowBack, pepIconArrowLeftAlt,pepIconArrowDown, pepIconArrowUp, PepIconModule, pepIconNumberPlus, PepIconRegistry, pepIconSystemBin, pepIconSystemBolt, pepIconSystemClose, pepIconSystemEdit, pepIconSystemMove } from '@pepperi-addons/ngx-lib/icon';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { PepShadowSettingsModule } from '@pepperi-addons/ngx-composite-lib/shadow-settings';
+import { PepColorSettingsModule } from '@pepperi-addons/ngx-composite-lib/color-settings';
 import { config } from '../addon.config';
 
 const pepIcons = [
@@ -39,6 +41,22 @@ const pepIcons = [
     pepIconArrowDown,
     pepIconArrowUp
 ];
+
+export function createTranslateLoader(addonService: PepAddonService) {
+    const addonStaticFolder = addonService.getAddonStaticFolder(config.AddonUUID);
+    const ngxLibTranslationResource = addonService.getNgxLibTranslationResource(config.AddonUUID);
+    const addonTranslationResource = addonService.getAddonTranslationResource(config.AddonUUID);
+    const ngxCompositeLibAssetsFolder = 'assets/ngx-composite-lib/i18n/';
+
+    return addonService.translateService.createMultiTranslateLoader([
+        ngxLibTranslationResource,
+        addonTranslationResource,
+        {
+            prefix: `${addonStaticFolder}/${ngxCompositeLibAssetsFolder}`,
+            suffix: '.ngx-composite-lib.json',
+        }
+    ]);
+}
 
 @NgModule({
     declarations: [SlideshowEditorComponent],
@@ -60,14 +78,23 @@ const pepIcons = [
         PepImageModule,
         PepTextareaModule,
         DragDropModule,
+        PepColorSettingsModule,
+        PepShadowSettingsModule,
         
         // When not using module as sub-addon please remark this for not loading twice resources
+        // TranslateModule.forChild({
+        //     loader: {
+        //         provide: TranslateLoader,
+        //         useFactory: (http: HttpClient, fileService: PepFileService, addonService: PepAddonService) => 
+        //             PepAddonService.createDefaultMultiTranslateLoader(http, fileService, addonService, config.AddonUUID),
+        //         deps: [HttpClient, PepFileService, PepAddonService],
+        //     }, isolate: false
+        // }),
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
-                useFactory: (http: HttpClient, fileService: PepFileService, addonService: PepAddonService) => 
-                    PepAddonService.createDefaultMultiTranslateLoader(http, fileService, addonService, config.AddonUUID),
-                deps: [HttpClient, PepFileService, PepAddonService],
+                useFactory: createTranslateLoader,
+                deps: [PepAddonService]
             }, isolate: false
         }),
         

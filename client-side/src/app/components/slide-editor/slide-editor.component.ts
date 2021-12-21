@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { ISlideShow, ISlideshowEditor, slide, TransitionType, ArrowShape, ISlideEditor, textColor, IHostObject, Overlay } from '../slideshow.model';
+import { ISlideShow, ISlideshowEditor, slide, TransitionType, ArrowShape, ISlideEditor, textColor, IHostObject } from '../slideshow.model';
 import { PepStyleType, PepSizeType, PepColorService} from '@pepperi-addons/ngx-lib';
 import { PepButton } from '@pepperi-addons/ngx-lib/button';
+import { PepColorSettings } from '@pepperi-addons/ngx-composite-lib/color-settings';
 
 interface groupButtonArray {
     key: string; 
@@ -34,7 +35,7 @@ export class SlideEditorComponent implements OnInit {
     WidthSize: Array<groupButtonArray> = [];
     HorizentalAlign: Array<PepButton> = [];
     VerticalAlign: Array<groupButtonArray> = [];
-    DropShadowStyle: Array<groupButtonArray> = [];
+    
     textColors: Array<groupButtonArray> = [];
     buttonColor: Array<PepButton> = [];
     buttonStyle: Array<{key: PepStyleType, value: string}> = [];
@@ -87,11 +88,6 @@ export class SlideEditorComponent implements OnInit {
             { key: 'top', value: this.translate.instant('SLIDE_EDITOR.VERTICAL_ALIGN_DIRECTION.TOP') },
             { key: 'middle', value: this.translate.instant('SLIDE_EDITOR.VERTICAL_ALIGN_DIRECTION.MIDDLE') },
             { key: 'bottom', value: this.translate.instant('SLIDE_EDITOR.VERTICAL_ALIGN_DIRECTION.BOTTOM') }
-        ];
-    
-        this.DropShadowStyle = [
-            { key: 'Soft', value: this.translate.instant('SLIDE_EDITOR.SOFT') },
-            { key: 'Regular', value: this.translate.instant('SLIDE_EDITOR.REGULAR') }
         ];
         
         this.textColors = [  
@@ -166,21 +162,21 @@ export class SlideEditorComponent implements OnInit {
     getSliderBackground( color){
         let alignTo = 'right';
 
-        let col: Overlay = new Overlay();
+        let col: PepColorSettings = new PepColorSettings();
 
-        col.color = color;
-        col.opacity = '100';
+        col.value = color;
+        col.opacity = 100;
 
         let gradStr =  this.getRGBAcolor(col,0) +' , '+ this.getRGBAcolor(col); 
         
         return 'linear-gradient(to ' + alignTo +', ' +  gradStr +')';
     }
 
-    getRGBAcolor(colObj: Overlay, opac = null){
+    getRGBAcolor(colObj: PepColorSettings, opac = null){
         let rgba = 'rgba(255,255,255,0';
             if(colObj){
-                let color = colObj.color;
-                let opacity = opac != null ? opac : parseInt(colObj.opacity);
+                let color = colObj.value;
+                let opacity = opac != null ? opac : colObj.opacity;
 
                 opacity = opacity > 0 ? opacity / 100 : 0;
                 //check if allready rgba

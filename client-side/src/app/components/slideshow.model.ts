@@ -1,6 +1,7 @@
 import { PepStyleType, PepSizeType, PepHorizontalAlignment, PepVerticalAlignment, PepScreenSizeType} from '@pepperi-addons/ngx-lib';
 import { PageConfiguration } from '@pepperi-addons/papi-sdk';
-
+import { PepShadowSettings} from "@pepperi-addons/ngx-composite-lib/shadow-settings";
+import { PepColorSettings } from "@pepperi-addons/ngx-composite-lib/color-settings";
 export interface IHostObject {
     configuration: ISlideShow;
     // pageConfiguration?: PageConfiguration;
@@ -26,31 +27,12 @@ export class SlideButton {
     style: PepStyleType = 'regular'
 }
 
-export class Overlay {
-    useGradientOverlay: boolean;
-    color: string;
-    opacity: string ;
-
-    constructor(use: boolean = false, color: string = 'hsl(0, 7%, 67%)' ,opacity: string = '50'){
-        this.useGradientOverlay = use;
-        this.color = color;
-        this.opacity = opacity;
-    }
-}
-
 export class SlideImage {
     useImage: boolean = false;
     src: string =  '';
     horizontalPosition: string = '50';
     verticalPosition: string = '50';
 }
-
-export class DropShadow {
-    useDropShadow: boolean = true;
-    type: Intensity = 'Regular';
-    intensity:  number = 50;
-}
-
 
 //export interface ISlideshowEditor {
 export class ISlideshowEditor {
@@ -72,7 +54,7 @@ export class ISlideshowEditor {
     useInverStyle: boolean = true;
     showControllersInSlider: boolean = true;
     controllerSize: PepSizeType = 'sm';
-    dropShadow: DropShadow = new DropShadow();
+    dropShadow: PepShadowSettings = new PepShadowSettings();
 }
 
 export class ISlideEditor {
@@ -93,8 +75,8 @@ export class ISlideEditor {
     buttonColor: buttonColor= 'system-primary';
     firstButton: SlideButton = new SlideButton();
     secondButton: SlideButton  = new SlideButton();
-    gradientOverlay: Overlay = new Overlay(true, 'hsl(0, 100%, 0%)', '75');
-    overlay: Overlay = new Overlay();
+    gradientOverlay: PepColorSettings = new PepColorSettings();
+    overlay: PepColorSettings = new PepColorSettings();
     image: SlideImage = new SlideImage();
 }
 

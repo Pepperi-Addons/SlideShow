@@ -4,16 +4,19 @@
 //$pepperi-theme: get-pepperi-theme();
 
 #navigationCont{
-    position: absolute;
-    top: 50%;
-    width: 100%;
+    align-items: center;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0 1rem;
-    transform: translate(0, -50%);
-    z-index: 100;
-    
+    //padding: 1rem;
+
+    pep-button{
+        position: absolute;
+        margin-inline: 1rem;
+        z-index: 2;
+
+        &:last-of-type{
+            right: 0;
+        }
+    }
     ::ng-deep{
         .rotate180{
             transform: rotate(180deg);
@@ -75,6 +78,7 @@ slide{
     z-index: 1;
     position: absolute;
     width: 100%;
+    background-color: #fff;
     //transform: translateX(-100%) ;
     opacity: 1;
 
@@ -107,7 +111,6 @@ slide{
             -webkit-filter: blur(0);     
         }
     }
-
     &.slide
     {
         transform: translateX(0);
@@ -117,10 +120,9 @@ slide{
         
         &.activeSlide{
             z-index: 2;
-            transition: transform , display;
-            transform: translateX(100%);
+            transition: transform;
+            transform: translateX(120%);
             transition-timing-function: linear;  
-            display: none; 
         }
         
     }
