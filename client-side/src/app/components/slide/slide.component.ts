@@ -58,21 +58,6 @@ export class SlideComponent implements OnInit {
         return rgba;
     }
 
-    getBackground(){
-        // todo - right left center ( 0 , color , 0 )
-        let gradient = this.slide?.gradientOverlay;
-
-        let alignTo = this.slide?.horizontalAlign == 'center' ? 'center' : this.slide?.horizontalAlign == 'right' ? 'left' : 'right';
-        let imagePosition = this.slide?.image?.horizontalPosition + '% ' + this.slide?.image?.verticalPosition + '%';
-        let imageSrc = this.slide?.image?.useImage ? 'url('+this.slide?.image?.src + ')' + ' ' + imagePosition : '';
-        let gradStr = this.slide?.gradientOverlay?.use ? (this.slide?.horizontalAlign != 'center' ? this.getRGBAcolor(gradient) +' , '+ this.getRGBAcolor(gradient,0) : this.getRGBAcolor(gradient,0) +' , '+ this.getRGBAcolor(gradient) +' , '+ this.getRGBAcolor(gradient,0)) : '';
-        
-
-        gradStr = gradStr != '' ? 'linear-gradient(to ' + alignTo +', ' +  gradStr +')' : '';
-        
-        return   gradStr  +  (this.slide?.image?.useImage && this.slide?.gradientOverlay?.use ?  ',' : '') + imageSrc;
-    }
-
     getGradientOverlay(){
         let gradient = this.slide?.gradientOverlay;
         let horAlign = this.slide?.horizontalAlign;
