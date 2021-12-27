@@ -1,4 +1,4 @@
-<div [ngStyle]="{'height': getSlideShowHeight() }" style="display: grid; grid-template-columns: 1fr 0px">
+<div class="slideShowCont" [ngStyle]="{'height': getSlideShowHeight() }">
 <div *ngIf="configuration?.slides.length > 1 &&  configuration?.slideshowConfig?.isUseArrows"
        id="navigationCont">
          <pep-button sizeType='sm' 

@@ -107,14 +107,7 @@ export class SlideEditorComponent implements OnInit {
             { key: 'weak', value: this.translate.instant('SLIDE_EDITOR.BUTTON_STYLES.WEAK') },
             { key: 'regular', value: this.translate.instant('SLIDE_EDITOR.BUTTON_STYLES.REGULAR') },
             { key: 'strong', value:this.translate.instant('SLIDE_EDITOR.BUTTON_STYLES.STRONG') }
-        ];
-
-        this.InnerSpacing = [
-            { key: 'sm', value: this.translate.instant('GROUP_SIZE.SM') },
-            { key: 'md', value: this.translate.instant('GROUP_SIZE.MD') },
-            { key: 'lg', value: this.translate.instant('GROUP_SIZE.LG') }
-        ];
-        
+        ];   
     }
 
     onRemoveClick() {

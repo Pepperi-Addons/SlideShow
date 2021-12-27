@@ -39,7 +39,6 @@ export class SlideshowEditorComponent implements OnInit {
     buttonColor: Array<PepButton> = [];
     DropShadowStyle: Array<PepButton> = [];
     HeightUnitsType: Array<PepButton> = [];
-    InnerSpacing: Array<{key: PepSizeType, value: string}> = [];
     ArrowsType: Array<PepButton> = [];
     ArrowButtons: Array<{key: ArrowShape, value: string}> = [];
     ControllerSize: Array<PepButton> = [];
@@ -136,12 +135,6 @@ export class SlideshowEditorComponent implements OnInit {
         this.HeightUnitsType = [
             { key: 'REM', value: this.translate.instant('SLIDESHOW.HEIGHTUNITS_REM') },
             { key: 'VH', value: this.translate.instant('SLIDESHOW.HEIGHTUNITS_VH') }
-        ];
-    
-        this.InnerSpacing = [
-            { key: 'sm', value: this.translate.instant('GROUP_SIZE.SM') },
-            { key: 'md', value: this.translate.instant('GROUP_SIZE.MD') },
-            { key: 'lg', value: this.translate.instant('GROUP_SIZE.LG') }
         ];
     
         this.ArrowsType = [

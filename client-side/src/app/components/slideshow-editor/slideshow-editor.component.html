@@ -6,9 +6,10 @@
 
                 <pep-textbox [value]="configuration?.slideshowConfig?.height" [label]="'SLIDESHOW.HEIGHT' | translate" (valueChange)="onSlideshowFieldChange('height',$event)"></pep-textbox>
                 
-                <label class="body-xs normal ellipsis">{{'SLIDESHOW.INNERPADDING_TITLE' | translate}}</label>
-                <pep-group-buttons [buttons]="InnerSpacing" [selectedButtonKey]="configuration?.slideshowConfig?.innerPadding" buttonsClass="md regular" viewType="toggle" stretch="true" (buttonClick)="onSlideshowFieldChange('innerPadding',$event)">
-                </pep-group-buttons>
+                <pep-group-buttons-settings [groupType]="'sizes'" [subHeader]="'SLIDESHOW.INNERPADDING_TITLE' | translate"
+                                            [btnKey]="configuration?.slideshowConfig?.innerPadding" [excludeKeys]="['xs','xl']"
+                                            (btnkeyChange)="onSlideshowFieldChange('innerPadding',$event)">
+                </pep-group-buttons-settings>
 
                 <pep-checkbox [value]="configuration?.slideshowConfig?.isTransition" [label]="'SLIDESHOW.TRANSITION' | translate" [renderTitle]="false" (valueChange)="onSlideshowFieldChange('isTransition',$event)"></pep-checkbox>
                 <label class="body-xs normal ellipsis">{{'SLIDESHOW.TRANSITION_TITLE' | translate}}</label>
@@ -57,10 +58,10 @@
                               [label]="'SLIDESHOW.CONTROLLERS_PROPERTIES.SHOW_CONTROLLERS' | translate" [renderTitle]="false" 
                               (valueChange)="onSlideshowFieldChange('showControllersInSlider',$event)"></pep-checkbox>
                 
-                <label class="body-xs normal ellipsis">{{'SLIDESHOW.CONTROLLER_SIZE' | translate}}</label>
-                <pep-group-buttons [buttons]="ControllerSize" [selectedButtonKey]="configuration?.slideshowConfig?.controllerSize" buttonsClass="md regular" 
-                                   (buttonClick)="onSlideshowFieldChange('controllerSize',$event)" viewType="toggle" stretch="true">
-                </pep-group-buttons>
+                <pep-group-buttons-settings [groupType]="'sizes'" [subHeader]="'SLIDESHOW.CONTROLLER_SIZE' | translate" 
+                              [btnKey]="configuration?.slideshowConfig?.controllerSize" [excludeKeys]="['xs','lg','xl']"
+                              (btnkeyChange)="onSlideshowFieldChange('controllerSize',$event)">
+                </pep-group-buttons-settings>
 
                 <pep-shadow-settings [shadow]="configuration?.slideshowConfig?.dropShadow"></pep-shadow-settings>
     </mat-tab>

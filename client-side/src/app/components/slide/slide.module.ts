@@ -31,7 +31,6 @@ import { PepPageLayoutModule } from '@pepperi-addons/ngx-lib/page-layout';
         PepNgxLibModule,
         PepSelectModule,
         MatDialogModule,
-        //PepPageLayoutModule,
         PepGroupButtonsModule,
         PepColorModule,
         PepImageModule,

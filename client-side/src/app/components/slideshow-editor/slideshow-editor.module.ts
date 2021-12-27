@@ -12,6 +12,7 @@ import { PepAddonService, PepCustomizationService, PepFileService, PepHttpServic
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateModule, TranslateLoader, TranslateService, TranslateStore } from '@ngx-translate/core';
 import { PepGroupButtonsModule } from '@pepperi-addons/ngx-lib/group-buttons';
+import { PepGroupButtonsSettingsModule } from '@pepperi-addons/ngx-composite-lib/group-buttons-settings';
 import { PepColorModule } from '@pepperi-addons/ngx-lib/color';
 import { PepImageModule } from '@pepperi-addons/ngx-lib/image';
 import { PepTextareaModule, } from '@pepperi-addons/ngx-lib/textarea';
@@ -72,6 +73,7 @@ export function createTranslateLoader(addonService: PepAddonService) {
         MatDialogModule,
         PepPageLayoutModule,
         PepGroupButtonsModule,
+        PepGroupButtonsSettingsModule,
         MatTabsModule,
         SlideEditorModule,
         PepColorModule,
