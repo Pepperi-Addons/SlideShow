@@ -19,6 +19,8 @@ import { PepSelectModule } from '@pepperi-addons/ngx-lib/select';
 import { PepTextareaModule } from '@pepperi-addons/ngx-lib/textarea';
 import { PepShadowSettingsModule } from '@pepperi-addons/ngx-composite-lib/shadow-settings';
 import { PepColorSettingsModule } from '@pepperi-addons/ngx-composite-lib/color-settings';
+import { PepNgxCompositeLibModule } from '@pepperi-addons/ngx-composite-lib/';
+import { PepGroupButtonsSettingsModule } from '@pepperi-addons/ngx-composite-lib/group-buttons-settings';
 
 export function createTranslateLoader(addonService: PepAddonService) {
     const addonStaticFolder = addonService.getAddonStaticFolder(config.AddonUUID);
@@ -55,6 +57,8 @@ export function createTranslateLoader(addonService: PepAddonService) {
         PepTextareaModule,
         PepShadowSettingsModule,
         PepColorSettingsModule,
+        PepNgxCompositeLibModule,
+        PepGroupButtonsSettingsModule,
         
         // TranslateModule.forChild({
         //     loader: {

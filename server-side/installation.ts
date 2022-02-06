@@ -44,9 +44,265 @@ async function runMigration(client){
             ComponentName: 'SlideshowComponent',
             ModuleName: 'SlideshowModule',
             EditorComponentName: 'SlideshowEditorComponent',
-            EditorModuleName: 'SlideshowEditorModule'
-        };
-
+            EditorModuleName: 'SlideshowEditorModule',
+            Schema: {
+                "Fields": {
+                    "slideshowConfig": {
+                        "Type": "Object",
+                        "Fields": {
+                            "heightUnit": {
+                                "Type": "String",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "height": {
+                                "Type": "String",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "innerPadding": {
+                                "Type": "String",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "isTransition": {
+                                "Type": "Bool",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "transitionDuration": {
+                                "Type": "Integer",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "transitionType": {
+                                "Type": "String",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "transitionTime": {
+                                "Type": "String",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "isUseArrows": {
+                                "Type": "Bool",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "arrowType": {
+                                "Type": "String",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "arrowShape": {
+                                "Type": "String",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "arrowsStyle": {
+                                "Type": "String",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "arrowsColor": {
+                                "Type": "String",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "usePauseButton": {
+                                "Type": "Bool",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "showOnMobile": {
+                                "Type": "Bool",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "useInverStyle": {
+                                "Type": "Bool",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "showControllersInSlider": {
+                                "Type": "Bool",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "controllerSize": {
+                                "Type": "String",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "dropShadow": { 
+                                "Type": "Object",
+                                "Fields": {
+                                    "use": {
+                                        "Type": "Bool",
+                                        "SupportScreenSizes": true, 
+                                    },
+                                    "size": {
+                                        "Type": "String",
+                                        "SupportScreenSizes": true, 
+                                    },
+                                    "intensity": {
+                                        "Type": "String",
+                                        "SupportScreenSizes": true, 
+                                    }
+                                }
+                            }
+                            }
+                    },
+                    "slides": {
+                        "Type": "Array",
+                        "Items": {
+                            "slide": {
+                                "Type": "Object",
+                                "Fields": {
+                                    "useTitle": {
+                                        "Type": "Bool",
+                                        "ConfigurationPerScreenSize": true
+                                    },
+                                    "titleContent": {
+                                        "Type": "String",
+                                        "ConfigurationPerScreenSize": true
+                                    },
+                                    "titleSize": {
+                                        "Type": "String",
+                                        "ConfigurationPerScreenSize": true
+                                    },
+                                    "titleWeight": {
+                                        "Type": "String",
+                                        "ConfigurationPerScreenSize": true
+                                    },
+                                    "useSubTitle": {
+                                        "Type": "Bool",
+                                        "ConfigurationPerScreenSize": true
+                                    },
+                                    "subTitleContent": {
+                                        "Type": "String",
+                                        "ConfigurationPerScreenSize": true
+                                    },
+                                    "subTitleSize": {
+                                        "Type": "String",
+                                        "ConfigurationPerScreenSize": true
+                                    },
+                                    "contentWidth": {
+                                        "Type": "String",
+                                        "ConfigurationPerScreenSize": true
+                                    },
+                                    "horizontalAlign": {
+                                        "Type": "String",
+                                        "ConfigurationPerScreenSize": true
+                                    },
+                                    "verticalAlign": {
+                                        "Type": "String",
+                                        "ConfigurationPerScreenSize": true
+                                    },
+                                    "innerSpacing": {
+                                        "Type": "String",
+                                        "ConfigurationPerScreenSize": true
+                                    },
+                                    "textColor": {
+                                        "Type": "String",
+                                        "ConfigurationPerScreenSize": true
+                                    },
+                                    "buttonsSize": {
+                                        "Type": "String",
+                                        "ConfigurationPerScreenSize": true
+                                    },
+                                    "buttonColor": {
+                                        "Type": "String",
+                                        "ConfigurationPerScreenSize": true
+                                    },
+                                    "firstButton": {
+                                        "Type": "Object",
+                                        "Fields": {
+                                            "useButton": {
+                                                "Type": "Bool",
+                                                "SupportScreenSizes": true, 
+                                            },
+                                            "label": {
+                                                "Type": "String",
+                                                "SupportScreenSizes": true, 
+                                            },
+                                            "linkTo": {
+                                                "Type": "String",
+                                                "SupportScreenSizes": true, 
+                                            },
+                                            "style": {
+                                                "Type": "String",
+                                                "SupportScreenSizes": true, 
+                                            }
+                                        }
+                                    },
+                                    "secondButton": {
+                                        "Type": "Object",
+                                        "Fields": {
+                                            "useButton": {
+                                                "Type": "Bool",
+                                                "SupportScreenSizes": true, 
+                                            },
+                                            "label": {
+                                                "Type": "String",
+                                                "SupportScreenSizes": true, 
+                                            },
+                                            "linkTo": {
+                                                "Type": "String",
+                                                "SupportScreenSizes": true, 
+                                            },
+                                            "style": {
+                                                "Type": "String",
+                                                "SupportScreenSizes": true, 
+                                            }
+                                        }
+                                    },
+                                    "gradientOverlay": { 
+                                        "Type": "Object",
+                                        "Fields": {
+                                            "use": {
+                                                "Type": "Bool",
+                                                "SupportScreenSizes": true, 
+                                            },
+                                            "value": {
+                                                "Type": "String",
+                                                "SupportScreenSizes": true, 
+                                            },
+                                            "opacity": {
+                                                "Type": "Integer",
+                                                "SupportScreenSizes": true, 
+                                            }
+                                        }
+                                    },
+                                    "overlay": { 
+                                        "Type": "Object",
+                                        "Fields": {
+                                            "use": {
+                                                "Type": "Bool",
+                                                "SupportScreenSizes": true, 
+                                            },
+                                            "value": {
+                                                "Type": "String",
+                                                "SupportScreenSizes": true, 
+                                            },
+                                            "opacity": {
+                                                "Type": "Integer",
+                                                "SupportScreenSizes": true, 
+                                            }
+                                        }
+                                    },
+                                    "image": {
+                                        "Type": "Object",
+                                        "Fields": {
+                                            "useImage": {
+                                                "Type": "Bool",
+                                                "SupportScreenSizes": true, 
+                                            },
+                                            "src": {
+                                                "Type": "String",
+                                                "SupportScreenSizes": true, 
+                                            },
+                                            "horizontalPosition": {
+                                                "Type": "String",
+                                                "SupportScreenSizes": true, 
+                                            },
+                                            "verticalPosition": {
+                                                "Type": "String",
+                                                "SupportScreenSizes": true, 
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+             }
+            }; 
         // pageComponentRelation.Key = `${pageComponentRelation.Name}_${pageComponentRelation.AddonUUID}_${pageComponentRelation.RelationName}`;
 
         const service = new MyService(client);

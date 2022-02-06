@@ -14,20 +14,20 @@
     <div class="editorCont" *ngIf="id == configuration?.slideshowConfig?.editSlideIndex">
    <pep-checkbox [value]="configuration?.slides[id].useTitle" [label]="'SLIDE_EDITOR.TITLE' | translate" [renderTitle]="false" 
     (valueChange)="onSlideFieldChange('useTitle',$event)"></pep-checkbox>
-    <pep-textbox [label]="'SLIDE_EDITOR.TITLE_CONTENT' | translate" type="string" [disabled]="!configuration?.slides[id].useTitle" [value]="configuration?.slides[id].titleContent" (valueChange)="onSlideFieldChange('titleContent',$event)"></pep-textbox>
+    <pep-textbox [label]="'SLIDE_EDITOR.TITLE_CONTENT' | translate" type="string" 
+                 [disabled]="!configuration?.slides[id].useTitle" [value]="configuration?.slides[id].titleContent" 
+                 (valueChange)="onSlideFieldChange('titleContent',$event)">
+    </pep-textbox>
       
-    <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.MAIN_TITLE_SIZE' | translate}}</label>
-    <pep-group-buttons [buttons]="TitleSize" [selectedButtonKey]="configuration?.slides[id].titleSize" buttonsClass="md regular" viewType="toggle" stretch="true"
-                       (buttonClick)="onSlideFieldChange('titleSize',$event)" [buttonsDisabled]="!configuration?.slides[id].useTitle"></pep-group-buttons>
-    
-    <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.MAIN_TITLE_WEIGHT' | translate}}</label>
-    <pep-group-buttons [buttons]="TitleWeight" 
-                        [selectedButtonKey]="configuration?.slides[id].titleWeight" 
-                        buttonsClass="md regular" 
-                                           (buttonClick)="onSlideFieldChange('titleWeight',$event)" 
-                                           viewType="toggle" 
-                                           stretch="true">
-    </pep-group-buttons>
+    <pep-group-buttons-settings 
+        [groupType]="'custom'" [subHeader]="'SLIDE_EDITOR.MAIN_TITLE_SIZE' | translate" [btnsArray]="TitleSize"
+        [disabled]="!configuration?.slides[id].useTitle" [btnKey]="configuration?.slides[id].titleSize">
+    </pep-group-buttons-settings>
+
+    <pep-group-buttons-settings 
+        [groupType]="'custom'" [subHeader]="'SLIDE_EDITOR.MAIN_TITLE_WEIGHT' | translate" [btnsArray]="TitleWeight"
+        [disabled]="!configuration?.slides[id].useTitle" [btnKey]="configuration?.slides[id].titleWeight">
+    </pep-group-buttons-settings>
 
     <pep-checkbox [value]="configuration?.slides[id].useSubTitle" [label]="'SLIDE_EDITOR.SUB_TITLE' | translate" [renderTitle]="false" 
     (valueChange)="onSlideFieldChange('useSubTitle',$event)"></pep-checkbox>
@@ -36,31 +36,30 @@
                   rowSpan="2" (valueChange)="onSlideFieldChange('subTitleContent',$event)">
     </pep-textarea>
 
-    <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.SUB_TITLE_SIZE' | translate}}</label>
-    <pep-group-buttons [buttons]="SubTitleSize" [selectedButtonKey]="configuration?.slides[id].subTitleSize" buttonsClass="md regular" 
-                       [buttonsDisabled]="!configuration?.slides[id].useSubTitle" (buttonClick)="onSlideFieldChange('subTitleSize',$event)" viewType="toggle" stretch="true">
-    </pep-group-buttons>
+    <pep-group-buttons-settings 
+    [groupType]="'custom'" [subHeader]="'SLIDE_EDITOR.SUB_TITLE_SIZE' | translate" [btnsArray]="SubTitleSize"
+    [disabled]="!configuration?.slides[id].useSubTitle" [btnKey]="configuration?.slides[id].subTitleSize">
+    </pep-group-buttons-settings>
 
-    <label class="body-xl bold ellipsis">{{'SLIDE_EDITOR.CONTENT' | translate}}</label><br>
-    <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.CONTENT_BLOCK_WIDTH' | translate}}</label>
-    <pep-group-buttons [buttons]="WidthSize" [selectedButtonKey]="configuration?.slides[id].contentWidth" buttonsClass="md regular" 
-                       (buttonClick)="onSlideFieldChange('contentWidth',$event)" viewType="toggle" stretch="true">
-    </pep-group-buttons>
+    <pep-group-buttons-settings 
+    [groupType]="'custom'" [header]="'SLIDE_EDITOR.CONTENT' | translate" [subHeader]="'SLIDE_EDITOR.CONTENT_BLOCK_WIDTH' | translate" [btnsArray]="WidthSize"
+    [btnKey]="configuration?.slides[id].contentWidth">
+    </pep-group-buttons-settings>
 
-    <label class="body-xs normal ellipsis">{{'SLIDESHOW.INNERSPACING_TITLE' | translate}}</label>
-    <pep-group-buttons [buttons]="InnerSpacing" [selectedButtonKey]="configuration?.slides[id].innerSpacing" buttonsClass="md regular" 
-                        viewType="toggle" stretch="true" (buttonClick)="onSlideFieldChange('innerSpacing',$event)">
-    </pep-group-buttons>
+    <pep-group-buttons-settings 
+    [groupType]="'custom'" [subHeader]="'SLIDESHOW.INNERSPACING_TITLE' | translate" [btnsArray]="InnerSpacing"
+    [btnKey]="configuration?.slides[id].innerSpacing">
+    </pep-group-buttons-settings>
 
-    <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.HORIZONTAL_ALIGN' | translate}}</label>
-    <pep-group-buttons [buttons]="HorizentalAlign" [selectedButtonKey]="configuration?.slides[id].horizontalAlign" buttonsClass="md regular" 
-                        (buttonClick)="onSlideFieldChange('horizontalAlign',$event)" viewType="toggle" stretch="true">
-    </pep-group-buttons>
+    <pep-group-buttons-settings [groupType]="'horizontal-align'" [subHeader]="'SLIDE_EDITOR.HORIZONTAL_ALIGN' | translate"
+                                [btnKey]="configuration?.slides[id].horizontalAlign"
+                                (btnkeyChange)="onSlideFieldChange('horizontalAlign',$event)">
+    </pep-group-buttons-settings>
 
-    <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.VERTICAL_ALIGN' | translate}}</label>
-    <pep-group-buttons [buttons]="VerticalAlign" [selectedButtonKey]="configuration?.slides[id].verticalAlign" buttonsClass="md regular" 
-                        (buttonClick)="onSlideFieldChange('verticalAlign',$event)" viewType="toggle" stretch="true">
-    </pep-group-buttons>
+    <pep-group-buttons-settings [groupType]="'vertical-align'" [subHeader]="'SLIDE_EDITOR.VERTICAL_ALIGN' | translate"
+    [btnKey]="configuration?.slides[id].verticalAlign"
+    (btnkeyChange)="onSlideFieldChange('verticalAlign',$event)">
+    </pep-group-buttons-settings>
 
     <pep-select [label]="'SLIDE_EDITOR.TEXT_COLOR_TITLE' | translate" [value]="configuration?.slides[id].textColor" [options]="textColors"
                 (valueChange)="onSlideFieldChange('textColor',$event)" [emptyOption]="false" [disabled]="false"></pep-select>

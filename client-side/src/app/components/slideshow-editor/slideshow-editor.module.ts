@@ -23,6 +23,7 @@ import { pepIconTextAlignCenter, pepIconTextAlignLeft, pepIconTextAlignRight, pe
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { PepShadowSettingsModule } from '@pepperi-addons/ngx-composite-lib/shadow-settings';
 import { PepColorSettingsModule } from '@pepperi-addons/ngx-composite-lib/color-settings';
+import { PepNgxCompositeLibModule } from '@pepperi-addons/ngx-composite-lib/';
 import { config } from '../addon.config';
 
 const pepIcons = [
@@ -81,6 +82,7 @@ export function createTranslateLoader(addonService: PepAddonService) {
         PepTextareaModule,
         DragDropModule,
         PepColorSettingsModule,
+        PepNgxCompositeLibModule,
         PepShadowSettingsModule,
         
         // When not using module as sub-addon please remark this for not loading twice resources

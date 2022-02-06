@@ -1,12 +1,21 @@
 <mat-tab-group  #tabGroup class="editor-tabs" animationDuration="0ms">
     <mat-tab label="{{'SLIDESHOW.GENERAL' | translate}}">
-        <label class="body-xs normal ellipsis">{{'SLIDESHOW.HEIGHTUNITS_TITLE' | translate}}</label>
-                <pep-group-buttons [buttons]="HeightUnitsType" [selectedButtonKey]="configuration?.slideshowConfig?.heightUnit" buttonsClass="md regular" viewType="toggle" stretch="true" (buttonClick)="onSlideshowFieldChange('heightUnit',$event)">
-                </pep-group-buttons>
+                <pep-group-buttons-settings 
+                    pepResetConfigurationField="slideshowConfig?.heightUnit" [resetPosition]="'bottom-end'" [resetHostEvents]="hostEvents"
+                    [groupType]="'custom'" [subHeader]="'SLIDESHOW.HEIGHTUNITS_TITLE' | translate" [btnsArray]="HeightUnitsType"
+                    [btnKey]="configuration?.slideshowConfig?.heightUnit">
+                </pep-group-buttons-settings>
 
-                <pep-textbox [value]="configuration?.slideshowConfig?.height" [label]="'SLIDESHOW.HEIGHT' | translate" (valueChange)="onSlideshowFieldChange('height',$event)"></pep-textbox>
+                <pep-textbox 
+                        pepResetConfigurationField="slideshowConfig?.height" [resetPosition]="'bottom-end'" [resetHostEvents]="hostEvents"
+                        [value]="configuration?.slideshowConfig?.height" 
+                        [label]="'SLIDESHOW.HEIGHT' | translate" 
+                        (valueChange)="onSlideshowFieldChange('height',$event)">
+                </pep-textbox>
                 
-                <pep-group-buttons-settings [groupType]="'sizes'" [subHeader]="'SLIDESHOW.INNERPADDING_TITLE' | translate"
+                <pep-group-buttons-settings 
+                                            pepResetConfigurationField="slideshowConfig?.innerPadding" [resetPosition]="'bottom-end'" [resetHostEvents]="hostEvents"
+                                            [groupType]="'sizes'" [subHeader]="'SLIDESHOW.INNERPADDING_TITLE' | translate"
                                             [btnKey]="configuration?.slideshowConfig?.innerPadding" [excludeKeys]="['xs','xl']"
                                             (btnkeyChange)="onSlideshowFieldChange('innerPadding',$event)">
                 </pep-group-buttons-settings>
@@ -25,16 +34,15 @@
 
                 <pep-checkbox [value]="configuration?.slideshowConfig?.isUseArrows" [label]="'SLIDESHOW.ARROWS' | translate" [renderTitle]="false" (valueChange)="onSlideshowFieldChange('isUseArrows',$event)"></pep-checkbox>
                 <label class="body-xs normal ellipsis" [innerHTML]="'SLIDESHOW.ARROWS_DESC' | translate"></label>
-                
-                <label class="body-xs normal ellipsis">{{'SLIDESHOW.ARROWS_TYPE' | translate}}</label>
-                <pep-group-buttons [buttonsDisabled]="!configuration?.slideshowConfig?.isUseArrows" [buttons]="ArrowsType" [selectedButtonKey]="configuration?.slideshowConfig?.arrowType" buttonsClass="md regular" viewType="toggle" 
-                                stretch="true" (buttonClick)="onSlideshowFieldChange('arrowType',$event)">
-                </pep-group-buttons>
 
-                <label class="body-xs normal ellipsis">{{'SLIDESHOW.ARROWS_BUTTONS' | translate}}</label>
-                <pep-group-buttons [buttonsDisabled]="!configuration?.slideshowConfig?.isUseArrows" [buttons]="ArrowButtons" [selectedButtonKey]="configuration?.slideshowConfig?.arrowShape" buttonsClass="md regular" viewType="toggle" 
-                                    stretch="true" (buttonClick)="onSlideshowFieldChange('arrowShape',$event)">
-                </pep-group-buttons>
+                <pep-group-buttons-settings [groupType]="'custom'" [subHeader]="'SLIDESHOW.ARROWS_TYPE' | translate" 
+                    [btnsArray]="ArrowsType" [disabled]="!configuration?.slideshowConfig?.isUseArrows" 
+                    [btnKey]="configuration?.slideshowConfig?.arrowType">
+                </pep-group-buttons-settings>
+
+                <pep-group-buttons-settings [groupType]="'custom'" [subHeader]="'SLIDESHOW.ARROWS_BUTTONS' | translate" [btnsArray]="ArrowButtons"
+                    [disabled]="!configuration?.slideshowConfig?.isUseArrows" [btnKey]="configuration?.slideshowConfig?.arrowShape">
+                </pep-group-buttons-settings>
 
                 <div class="split-area">
                     <pep-select [disabled]="!configuration?.slideshowConfig?.isUseArrows" [label]="'SLIDESHOW.ARROWS_STYLE' | translate" [value]="configuration?.slideshowConfig?.arrowsStyle" [options]="buttonStyle" 
@@ -58,7 +66,8 @@
                               [label]="'SLIDESHOW.CONTROLLERS_PROPERTIES.SHOW_CONTROLLERS' | translate" [renderTitle]="false" 
                               (valueChange)="onSlideshowFieldChange('showControllersInSlider',$event)"></pep-checkbox>
                 
-                <pep-group-buttons-settings [groupType]="'sizes'" [subHeader]="'SLIDESHOW.CONTROLLER_SIZE' | translate" 
+                <pep-group-buttons-settings pepResetConfigurationField="slideshowConfig?.controllerSize" [resetPosition]="'bottom-end'" [resetHostEvents]="hostEvents"
+                              [groupType]="'sizes'" [subHeader]="'SLIDESHOW.CONTROLLER_SIZE' | translate" 
                               [btnKey]="configuration?.slideshowConfig?.controllerSize" [excludeKeys]="['xs','lg','xl']"
                               (btnkeyChange)="onSlideshowFieldChange('controllerSize',$event)">
                 </pep-group-buttons-settings>

@@ -1,9 +1,6 @@
-@import '~@pepperi-addons/ngx-lib/theming';
-@import 'ngx-lib/src/core/style/abstracts/variables';
-//@import 'ngx-lib/src/core/style/abstracts/mixins';
-@include pepperi-theme();
-// Get the theme object.
-$pepperi-theme: get-pepperi-theme();
+@use '~@pepperi-addons/ngx-lib/src/core/style/abstracts/variables' as ngx-variables;
+@use '~@pepperi-addons/ngx-lib/src/core/style/abstracts/functions' as ngx-functions;
+@use '~@pepperi-addons/ngx-lib/src/core/style/abstracts/mixins' as ngx-mixins;
 
 .ng-component-container{
     width: inherit;
@@ -38,21 +35,21 @@ $pepperi-theme: get-pepperi-theme();
     }
     
     &.inner_padding_sm{
-        padding: $spacing-md;
+        padding: ngx-variables.$spacing-md;
 
         .withArrow_margin{ 
             margin-inline: 2.5rem;
         }
     }
     &.inner_padding_md{
-        padding: $spacing-lg;
+        padding: ngx-variables.$spacing-lg;
 
         .withArrow_margin{ 
             margin-inline: 3rem;
         }
     }
     &.inner_padding_lg{
-        padding: $spacing-xl;
+        padding: ngx-variables.$spacing-xl;
 
         .withArrow_margin{ 
             padding-inline: 3.5rem;
@@ -64,7 +61,7 @@ $pepperi-theme: get-pepperi-theme();
             grid-template-rows: min-content min-content min-content;
             // align-self: center;
             width: 100%;
-            color: get-pep-color($pepperi-theme, color-text, color-main);
+            color: ngx-functions.get-pep-color(color-text, color-main);
             
             .subtitle-cont{
                 overflow: hidden;
@@ -89,13 +86,13 @@ $pepperi-theme: get-pepperi-theme();
                 text-align: right;
             }
 
-            &.verAlign_top{
+            &.verAlign_start{
                 align-self: start;
             }
-            &.verAlign_middle{
+            &.verAlign_center{
                 align-self: center;
             }
-            &.verAlign_bottom{
+            &.verAlign_end{
                 align-self: end;
             }
 
@@ -110,16 +107,16 @@ $pepperi-theme: get-pepperi-theme();
             }
 
             .textColor_system{
-                color: get-pep-color($pepperi-theme, color-text, color-regular);
+                color: ngx-functions.get-pep-color(color-text, color-regular);
             }
             .textColor_dimmed{
-                color: get-pep-color($pepperi-theme, color-text, color-dimmed);
+                color: ngx-functions.get-pep-color(color-text, color-dimmed);
             }
             .textColor_inverted{
-                color: get-pep-color($pepperi-theme, color-text, color-invert);
+                color: ngx-functions.get-pep-color(color-text, color-invert);
             }
             .textColor_strong{
-                color: get-pep-color($pepperi-theme, color-text, color-strong);
+                color: ngx-functions.get-pep-color(color-text, color-strong);
             }
 
             .buttons-box{
@@ -137,17 +134,17 @@ $pepperi-theme: get-pepperi-theme();
         div{
 
             &.title-md{
-                font-size: calc(#{$fs-md} * 1.75) !important;   
+                font-size: calc(#{ngx-variables.$fs-md} * 1.75) !important;   
             }
             &.title-lg{
-                font-size: calc(#{$fs-lg} * 2.75) !important; 
-                height: calc(#{$fs-lg} * 2.25);  
-                line-height: calc(#{$fs-lg} * 2.25) !important;  
+                font-size: calc(#{ngx-variables.$fs-lg} * 2.75) !important; 
+                height: calc(#{ngx-variables.$fs-lg} * 2.25);  
+                line-height: calc(#{ngx-variables.$fs-lg} * 2.25) !important;  
             }
             &.title-xl{
-                font-size: calc(#{$fs-xl} * 3.5) !important; 
-                height: calc(#{$fs-xl} * 2.75); 
-                line-height: calc(#{$fs-xl} * 2.75) !important;     
+                font-size: calc(#{ngx-variables.$fs-xl} * 3.5) !important; 
+                height: calc(#{ngx-variables.$fs-xl} * 2.75); 
+                line-height: calc(#{ngx-variables.$fs-xl} * 2.75) !important;     
             }
         
         }
@@ -160,76 +157,76 @@ $pepperi-theme: get-pepperi-theme();
         z-index: -1;
 
         &.inner_margin_sm{
-            margin: calc(-1 * (#{$spacing-md}));
-            // margin-inline-start: calc((-1 * #{$spacing-md}) - 1rem);
-            // margin-inline-end: calc((-1 * #{$spacing-md}) - 1rem);
+            margin: calc(-1 * (#{ngx-variables.$spacing-md}));
+            // margin-inline-start: calc((-1 * #{ngx-variables.$spacing-md}) - 1rem);
+            // margin-inline-end: calc((-1 * #{ngx-variables.$spacing-md}) - 1rem);
         }
         &.inner_margin_md{
-            margin: calc(-1 * (#{$spacing-lg}));
-            // margin-inline-start: calc((-1 * #{$spacing-lg}) - 1rem);
-            // margin-inline-end: calc((-1 * #{$spacing-lg}) - 1rem);
+            margin: calc(-1 * (#{ngx-variables.$spacing-lg}));
+            // margin-inline-start: calc((-1 * #{ngx-variables.$spacing-lg}) - 1rem);
+            // margin-inline-end: calc((-1 * #{ngx-variables.$spacing-lg}) - 1rem);
         }
         &.inner_margin_lg{
-            margin: calc(-1 * (#{$spacing-xl}));
-            // margin-inline-start: calc((-1 * #{$spacing-xl}) - 1rem);
-            // margin-inline-end: calc((-1 * #{$spacing-xl}) - 1rem);
+            margin: calc(-1 * (#{ngx-variables.$spacing-xl}));
+            // margin-inline-start: calc((-1 * #{ngx-variables.$spacing-xl}) - 1rem);
+            // margin-inline-end: calc((-1 * #{ngx-variables.$spacing-xl}) - 1rem);
         }
     }
 }
 
 .shadow-xs{
     &.soft{
-        box-shadow: get-pep-shadow($pepperi-theme, shadow-xs, soft);
+        box-shadow: ngx-functions.get-pep-shadow(shadow-xs, soft);
     }
     &.regular{
-        box-shadow: get-pep-shadow($pepperi-theme, shadow-xs, regular);
+        box-shadow: ngx-functions.get-pep-shadow(shadow-xs, regular);
     }
     &.hard{
-        box-shadow: get-pep-shadow($pepperi-theme, shadow-xs, hard);
+        box-shadow: ngx-functions.get-pep-shadow(shadow-xs, hard);
     }
 }
 .shadow-sm{
     &.soft{
-        box-shadow: get-pep-shadow($pepperi-theme, shadow-sm, soft);
+        box-shadow: ngx-functions.get-pep-shadow(shadow-sm, soft);
     }
     &.regular{
-        box-shadow: get-pep-shadow($pepperi-theme, shadow-sm, regular);
+        box-shadow: ngx-functions.get-pep-shadow(shadow-sm, regular);
     }
     &.hard{
-        box-shadow: get-pep-shadow($pepperi-theme, shadow-sm, hard);
+        box-shadow: ngx-functions.get-pep-shadow(shadow-sm, hard);
     }
 }
 .shadow-md{
     &.soft{
-        box-shadow: get-pep-shadow($pepperi-theme, shadow-md, soft);
+        box-shadow: ngx-functions.get-pep-shadow(shadow-md, soft);
     }
     &.regular{
-        box-shadow: get-pep-shadow($pepperi-theme, shadow-md, regular);
+        box-shadow: ngx-functions.get-pep-shadow(shadow-md, regular);
     }
     &.hard{
-        box-shadow: get-pep-shadow($pepperi-theme, shadow-md, hard);
+        box-shadow: ngx-functions.get-pep-shadow(shadow-md, hard);
     }
 }
 .shadow-lg{
     &.soft{
-        box-shadow: get-pep-shadow($pepperi-theme, shadow-lg, soft);
+        box-shadow: ngx-functions.get-pep-shadow(shadow-lg, soft);
     }
     &.regular{
-        box-shadow: get-pep-shadow($pepperi-theme, shadow-lg, regular);
+        box-shadow: ngx-functions.get-pep-shadow(shadow-lg, regular);
     }
     &.hard{
-        box-shadow: get-pep-shadow($pepperi-theme, shadow-lg, hard);
+        box-shadow: ngx-functions.get-pep-shadow(shadow-lg, hard);
     }
 }
 .shadow-xl{
     &.soft{
-        box-shadow: get-pep-shadow($pepperi-theme, shadow-xl, soft);
+        box-shadow: ngx-functions.get-pep-shadow(shadow-xl, soft);
     }
     &.regular{
-        box-shadow: get-pep-shadow($pepperi-theme, shadow-xl, regular);
+        box-shadow: ngx-functions.get-pep-shadow(shadow-xl, regular);
     }
     &.hard{
-        box-shadow: get-pep-shadow($pepperi-theme, shadow-xl, hard);
+        box-shadow: ngx-functions.get-pep-shadow(shadow-xl, hard);
     }
 }
 

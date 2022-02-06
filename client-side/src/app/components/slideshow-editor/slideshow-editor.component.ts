@@ -17,7 +17,7 @@ export class SlideshowEditorComponent implements OnInit {
 
     @Input()
     set hostObject(value: IHostObject) {
-        if (value && value.configuration) {
+        if (value && value.configuration && Object.keys(value.configuration).length > 0) {
             this._configuration = value.configuration
         } else {
             if(this.blockLoaded){
@@ -40,7 +40,7 @@ export class SlideshowEditorComponent implements OnInit {
     DropShadowStyle: Array<PepButton> = [];
     HeightUnitsType: Array<PepButton> = [];
     ArrowsType: Array<PepButton> = [];
-    ArrowButtons: Array<{key: ArrowShape, value: string}> = [];
+    ArrowButtons: Array<PepButton> = [];// Array<{key: ArrowShape, value: string}> = [];
     ControllerSize: Array<PepButton> = [];
     
     currentSlideindex = 0;
@@ -97,7 +97,17 @@ export class SlideshowEditorComponent implements OnInit {
             this.configuration.slideshowConfig[key] = value;
         }
         
-        this.updateHostObject();
+        //this.updateHostObject();
+        this.updateHostObjectField(`slideshowConfig.${key}`, value);
+    }
+
+    private updateHostObjectField(fieldKey: string, value: any) {
+        
+        this.hostEvents.emit({
+            action: 'set-configuration-field',
+            key: fieldKey,
+            value: value
+        });
     }
 
     async ngOnInit(): Promise<void> {
@@ -133,20 +143,20 @@ export class SlideshowEditorComponent implements OnInit {
         ]
 
         this.HeightUnitsType = [
-            { key: 'REM', value: this.translate.instant('SLIDESHOW.HEIGHTUNITS_REM') },
-            { key: 'VH', value: this.translate.instant('SLIDESHOW.HEIGHTUNITS_VH') }
+            { key: 'REM', value: this.translate.instant('SLIDESHOW.HEIGHTUNITS_REM'), callback: (event: any) => this.onSlideshowFieldChange('heightUnit',event) },
+            { key: 'VH', value: this.translate.instant('SLIDESHOW.HEIGHTUNITS_VH'), callback: (event: any) => this.onSlideshowFieldChange('heightUnit',event) }
         ];
     
         this.ArrowsType = [
-            { key: 'arrow_back_right', iconName: 'arrow_back_right' },
-            { key: 'arrow_right', iconName: 'arrow_right' },
-            { key: 'arrow_right_alt', iconName: 'arrow_right_alt' }
+            { key: 'arrow_back_right', iconName: 'arrow_back_right', callback: (event: any) => this.onSlideshowFieldChange('ArrowsType',event) },
+            { key: 'arrow_right', iconName: 'arrow_right', callback: (event: any) => this.onSlideshowFieldChange('ArrowsType',event) },
+            { key: 'arrow_right_alt', iconName: 'arrow_right_alt', callback: (event: any) => this.onSlideshowFieldChange('ArrowsType',event) }
         ];
     
         this.ArrowButtons = [
             // { key: 'none', value: this.translate.instant('GROUP_SIZE.NONE') },
-            { key: 'regular', value: this.translate.instant('SLIDESHOW.ARROW_BUTTON.REGULAR') },
-            { key: 'round', value: this.translate.instant('SLIDESHOW.ARROW_BUTTON.ROUND') }
+            { key: 'regular', value: this.translate.instant('SLIDESHOW.ARROW_BUTTON.REGULAR'), callback: (event: any) => this.onSlideshowFieldChange('arrowShape',event) },
+            { key: 'round', value: this.translate.instant('SLIDESHOW.ARROW_BUTTON.ROUND'), callback: (event: any) => this.onSlideshowFieldChange('arrowShape',event) }
         ];
     
         this.ControllerSize = [

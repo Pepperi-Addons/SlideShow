@@ -29,17 +29,17 @@ export class SlideEditorComponent implements OnInit {
     @Output() removeClick: EventEmitter<any> = new EventEmitter();
     @Output() editClick: EventEmitter<any> = new EventEmitter();
 
-    TitleSize:Array<groupButtonArray> = [];
-    TitleWeight:Array<groupButtonArray> = [];
-    SubTitleSize: Array<groupButtonArray> = [];
-    WidthSize: Array<groupButtonArray> = [];
+    TitleSize: Array<PepButton> = [];
+    TitleWeight: Array<PepButton> = [];
+    SubTitleSize: Array<PepButton> = [];
+    WidthSize:  Array<PepButton> = [];
     HorizentalAlign: Array<PepButton> = [];
     VerticalAlign: Array<groupButtonArray> = [];
     
     textColors: Array<groupButtonArray> = [];
     buttonColor: Array<PepButton> = [];
     buttonStyle: Array<{key: PepStyleType, value: string}> = [];
-    InnerSpacing: Array<{key: PepSizeType, value: string}> = [];
+    InnerSpacing: Array<PepButton> = [];
 
     constructor(
         private translate: TranslateService,
@@ -55,33 +55,38 @@ export class SlideEditorComponent implements OnInit {
         const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();
 
         this.TitleSize = [
-            { key: 'md', value: this.translate.instant('GROUP_SIZE.MD') },
-            { key: 'lg', value: this.translate.instant('GROUP_SIZE.LG') },
-            { key: 'xl', value: this.translate.instant('GROUP_SIZE.XL') },
+            { key: 'md', value: this.translate.instant('GROUP_SIZE.MD'), callback: (event: any) => this.onSlideFieldChange('titleSize',event) },
+            { key: 'lg', value: this.translate.instant('GROUP_SIZE.LG'), callback: (event: any) => this.onSlideFieldChange('titleSize',event) },
+            { key: 'xl', value: this.translate.instant('GROUP_SIZE.XL'), callback: (event: any) => this.onSlideFieldChange('titleSize',event) },
         ];
     
         this.SubTitleSize = [
-            { key: 'sm', value: this.translate.instant('GROUP_SIZE.SM') },
-            { key: 'md', value: this.translate.instant('GROUP_SIZE.MD') },
-            { key: 'lg', value: this.translate.instant('GROUP_SIZE.LG') }
+            { key: 'sm', value: this.translate.instant('GROUP_SIZE.SM'), callback: (event: any) => this.onSlideFieldChange('subTitleSize',event) },
+            { key: 'md', value: this.translate.instant('GROUP_SIZE.MD') , callback: (event: any) => this.onSlideFieldChange('subTitleSize',event) },
+            { key: 'lg', value: this.translate.instant('GROUP_SIZE.LG'), callback: (event: any) => this.onSlideFieldChange('subTitleSize',event) }
         ];
 
+        this.InnerSpacing = [
+            { key: 'sm', value: this.translate.instant('GROUP_SIZE.SM'), callback: (event: any) => this.onSlideFieldChange('innerSpacing',event) },
+            { key: 'md', value: this.translate.instant('GROUP_SIZE.MD') , callback: (event: any) => this.onSlideFieldChange('innerSpacing',event) },
+            { key: 'lg', value: this.translate.instant('GROUP_SIZE.LG'), callback: (event: any) => this.onSlideFieldChange('innerSpacing',event) }
+        ]
         this.TitleWeight = [
-            { key: 'normal', value: this.translate.instant('SLIDE_EDITOR.FONT_WEIGHT.NORMAL') },
-            { key: 'bold', value: this.translate.instant('SLIDE_EDITOR.FONT_WEIGHT.BOLD') },
-            { key: 'bolder', value: this.translate.instant('SLIDE_EDITOR.FONT_WEIGHT.BOLDER') }
+            { key: 'normal', value: this.translate.instant('SLIDE_EDITOR.FONT_WEIGHT.NORMAL'), callback: (event: any) => this.onSlideFieldChange('titleWeight',event) },
+            { key: 'bold', value: this.translate.instant('SLIDE_EDITOR.FONT_WEIGHT.BOLD'), callback: (event: any) => this.onSlideFieldChange('titleWeight',event) },
+            { key: 'bolder', value: this.translate.instant('SLIDE_EDITOR.FONT_WEIGHT.BOLDER'), callback: (event: any) => this.onSlideFieldChange('titleWeight',event) }
         ]
     
         this.WidthSize =  [
-            { key: 'narrow', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.NARROW') },
-            { key: 'regular', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.REGULAR') },
-            { key: 'wide', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.WIDE') }
+            { key: 'narrow', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.NARROW'), callback: (event: any) => this.onSlideFieldChange('contentWidth',event) },
+            { key: 'regular', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.REGULAR'), callback: (event: any) => this.onSlideFieldChange('contentWidth',event) },
+            { key: 'wide', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.WIDE'), callback: (event: any) => this.onSlideFieldChange('contentWidth',event) },
         ];
         
         this.HorizentalAlign =  [
             { key: 'left', iconName: 'text_align_right' },
             { key: 'center', iconName: 'text_align_center' },
-            { key: 'right', iconName: 'text_align_left' },
+            { key: 'right', iconName: 'text_align_left' }
         ];
     
         this.VerticalAlign =  [

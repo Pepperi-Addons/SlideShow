@@ -1,13 +1,6 @@
-@import 'ngx-lib/src/core/style/abstracts/variables';
-@import 'ngx-lib/src/core/style/abstracts/mixins';
-// @import '../../../../../../../../page-builder/client-side/src/mixins.scss';
-
-// Define pepperi lib theme and include theme styles for pepperi components.
-@import '~@pepperi-addons/ngx-lib/theming';
-@include pepperi-theme();
-
-// Get the theme object.
-$pepperi-theme: get-pepperi-theme();
+@use '~@pepperi-addons/ngx-lib/src/core/style/abstracts/variables' as ngx-variables;
+@use '~@pepperi-addons/ngx-lib/src/core/style/abstracts/functions' as ngx-functions;
+@use '~@pepperi-addons/ngx-lib/src/core/style/abstracts/mixins' as ngx-mixins;
 
 :host {
      display: block;
@@ -18,10 +11,10 @@ $pepperi-theme: get-pepperi-theme();
     display: grid;
     grid-template-columns: auto 1fr auto;
     padding-top: .4rem;
-    border-radius: $border-radius-md;
-    padding-inline: $spacing-sm;
+    border-radius: ngx-variables.$border-radius-md;
+    padding-inline: ngx-variables.$spacing-sm;
     margin-bottom: .5rem;
-    @include state-regular-default($pepperi-theme, true);
+    @include ngx-mixins.state-regular-default(true);
 
     .editorCont{
         padding-top: .75rem;
@@ -32,7 +25,7 @@ $pepperi-theme: get-pepperi-theme();
     .title-container {
         margin-top: .15rem;
         overflow-x: hidden;
-        margin-inline: $spacing-sm;
+        margin-inline: ngx-variables.$spacing-sm;
     
         .title {
             display: block;
@@ -44,7 +37,7 @@ $pepperi-theme: get-pepperi-theme();
 
 .actions {
     display: inline-flex;
-    gap: $spacing-xs;
+    gap: ngx-variables.$spacing-xs;
 }
 
 pep-checkbox{
