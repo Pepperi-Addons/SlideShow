@@ -64,11 +64,10 @@
     <pep-select [label]="'SLIDE_EDITOR.TEXT_COLOR_TITLE' | translate" [value]="configuration?.slides[id].textColor" [options]="textColors"
                 (valueChange)="onSlideFieldChange('textColor',$event)" [emptyOption]="false" [disabled]="false"></pep-select>
 
-    <label class="body-xl bold ellipsis">{{'SLIDE_EDITOR.BUTTONS' | translate}}</label><br>
-    <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.BUTTON_SIZE' | translate}}</label>
-    <pep-group-buttons [buttons]="TitleSize" [selectedButtonKey]="configuration?.slides[id].buttonsSize" buttonsClass="md regular" 
-                       (buttonClick)="onSlideFieldChange('buttonsSize',$event)" viewType="toggle" stretch="true">
-    </pep-group-buttons>
+    <pep-group-buttons-settings [header]="'SLIDE_EDITOR.BUTTONS' | translate" [subHeader]="'SLIDE_EDITOR.BUTTON_SIZE' | translate"
+    [groupType]="'custom'" [btnsArray]="ButtonsSize"
+    [btnKey]="configuration?.slides[id].buttonsSize">
+    </pep-group-buttons-settings>
 
     <pep-select [label]="'SLIDE_EDITOR.BUTTON_COLOR_TITLE' | translate" [value]="configuration?.slides[id].buttonColor" 
                 [options]="buttonColor" (valueChange)="onSlideFieldChange('buttonColor',$event)" [emptyOption]="false" 

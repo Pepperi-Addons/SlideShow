@@ -71,19 +71,19 @@ export class SlideshowEditorComponent implements OnInit {
             configuration: this.configuration
         });
     }
-    onSlideFieldChange(key, event){
-        const value = event && event.source && event.source.key ? event.source.key : event && event.source && event.source.value ? event.source.value :  event;
+    // onSlideFieldChange(key, event){
+    //     const value = event && event.source && event.source.key ? event.source.key : event && event.source && event.source.value ? event.source.value :  event;
         
-        if(key.indexOf('.') > -1){
-            let keyObj = key.split('.');
-            this.configuration.slides[this.currentSlideindex][keyObj[0]][keyObj[1]] = value;
-        }
-        else{
-            this.configuration.slides[this.currentSlideindex][key] = value;
-        }
+    //     if(key.indexOf('.') > -1){
+    //         let keyObj = key.split('.');
+    //         this.configuration.slides[this.currentSlideindex][keyObj[0]][keyObj[1]] = value;
+    //     }
+    //     else{
+    //         this.configuration.slides[this.currentSlideindex][key] = value;
+    //     }
 
-        this.updateHostObject();
-    }
+    //     this.updateHostObject();
+    // }
 
     onSlideshowFieldChange(key, event){
 

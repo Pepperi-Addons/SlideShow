@@ -1,5 +1,5 @@
 <div class="slideShowCont" [ngStyle]="{'height': getSlideShowHeight() }">
-<div *ngIf="configuration?.slides.length > 1 &&  configuration?.slideshowConfig?.isUseArrows"
+<div *ngIf="configuration?.slides?.length > 1 &&  configuration?.slideshowConfig?.isUseArrows"
        id="navigationCont">
          <pep-button sizeType='sm' 
                      [styleType]="configuration?.slideshowConfig?.arrowsStyle" 
@@ -23,7 +23,7 @@
 </slide>
 
 <div id="slideFooterBtn" 
-     *ngIf="configuration?.slides.length > 1 && (!isMobileView || configuration?.slideshowConfig?.showOnMobile)"
+     *ngIf="configuration?.slides?.length > 1 && (!isMobileView || configuration?.slideshowConfig?.showOnMobile)"
      [ngStyle]="{'top': getSliderFooterTop() }"
      [ngClass]="[configuration?.slideshowConfig?.dropShadow?.use === true ? 'with-shadow-margin' : '' ]">
        <div id="dotsCont" 

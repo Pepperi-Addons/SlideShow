@@ -32,6 +32,7 @@ export class SlideEditorComponent implements OnInit {
     TitleSize: Array<PepButton> = [];
     TitleWeight: Array<PepButton> = [];
     SubTitleSize: Array<PepButton> = [];
+    ButtonsSize: Array<PepButton> = [];
     WidthSize:  Array<PepButton> = [];
     HorizentalAlign: Array<PepButton> = [];
     VerticalAlign: Array<groupButtonArray> = [];
@@ -58,6 +59,12 @@ export class SlideEditorComponent implements OnInit {
             { key: 'md', value: this.translate.instant('GROUP_SIZE.MD'), callback: (event: any) => this.onSlideFieldChange('titleSize',event) },
             { key: 'lg', value: this.translate.instant('GROUP_SIZE.LG'), callback: (event: any) => this.onSlideFieldChange('titleSize',event) },
             { key: 'xl', value: this.translate.instant('GROUP_SIZE.XL'), callback: (event: any) => this.onSlideFieldChange('titleSize',event) },
+        ];
+
+        this.ButtonsSize = [
+            { key: 'md', value: this.translate.instant('GROUP_SIZE.MD'), callback: (event: any) => this.onSlideFieldChange('buttonsSize',event) },
+            { key: 'lg', value: this.translate.instant('GROUP_SIZE.LG'), callback: (event: any) => this.onSlideFieldChange('buttonsSize',event) },
+            { key: 'xl', value: this.translate.instant('GROUP_SIZE.XL'), callback: (event: any) => this.onSlideFieldChange('buttonsSize',event) },
         ];
     
         this.SubTitleSize = [
@@ -135,27 +142,38 @@ export class SlideEditorComponent implements OnInit {
             this.configuration.slides[this.id][key] = value;
         }
 
-        this.updateHostObject();
+        //this.updateHostObject();
+        debugger;
+        this.updateHostObjectField(`slides[${this.id}].${key}`, value);
     }
 
-    private updateHostObject() {
+    private updateHostObjectField(fieldKey: string, value: any) {
         
         this.hostEvents.emit({
-            action: 'set-configuration',
-            configuration: this.configuration
+            action: 'set-configuration-field',
+            key: fieldKey,
+            value: value
         });
     }
 
-    onSlideshowFieldChange(key, event){
-        if(event && event.source && event.source.key){
-            this.configuration.slideshowConfig[key] = event.source.key;
-        }
-        else{
-            this.configuration.slideshowConfig[key] = event;
-        }
+    // private updateHostObject() {
+        
+    //     this.hostEvents.emit({
+    //         action: 'set-configuration',
+    //         configuration: this.configuration
+    //     });
+    // }
 
-        this.updateHostObject();
-    }
+    // onSlideshowFieldChange(key, event){
+    //     if(event && event.source && event.source.key){
+    //         this.configuration.slideshowConfig[key] = event.source.key;
+    //     }
+    //     else{
+    //         this.configuration.slideshowConfig[key] = event;
+    //     }
+
+    //     this.updateHostObject();
+    // }
 
     getSliderBackground( color){
         let alignTo = 'right';

@@ -62,7 +62,7 @@ export class SlideshowComponent implements OnInit {
 
     showSlides() {
 
-        if (this.configuration) {
+        if (this.configuration && Object.keys(this.configuration).length > 0) {
             if (!this.configuration.slideshowConfig.isTransition) {
                 this.isPause = true;
                 clearTimeout(this.timer);
@@ -121,8 +121,10 @@ export class SlideshowComponent implements OnInit {
       }  
       
       getSlideShowHeight(){
-          let heightToAdd = this.configuration?.slideshowConfig.heightUnit === 'REM' ? 2.75 : this.convertREMToVH(2.75);
-          heightToAdd = this.configuration?.slideshowConfig?.showControllersInSlider ?  0 : heightToAdd;
-          return (parseFloat(this.configuration?.slideshowConfig.height) + heightToAdd).toString() + this.configuration?.slideshowConfig.heightUnit;
+          if(this.configuration && Object.keys(this.configuration).length > 0){
+            let heightToAdd = this.configuration?.slideshowConfig.heightUnit === 'REM' ? 2.75 : this.convertREMToVH(2.75);
+            heightToAdd = this.configuration?.slideshowConfig?.showControllersInSlider ?  0 : heightToAdd;
+            return (parseFloat(this.configuration?.slideshowConfig.height) + heightToAdd).toString() + this.configuration?.slideshowConfig.heightUnit;
+          }
       }
 }
