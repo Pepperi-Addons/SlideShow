@@ -143,8 +143,8 @@ export class SlideEditorComponent implements OnInit {
         }
 
         //this.updateHostObject();
-        //this.updateHostObjectField(`slides[${this.id}].${key}`, value);
-        this.updateHostObjectField(`slides[${this.id}][${key}]`, value);
+        this.updateHostObjectField(`slides[${this.id}].${key}`, value);
+        //this.updateHostObjectField(`slides[${this.id}][${key}]`, value);
     }
 
     private updateHostObjectField(fieldKey: string, value: any) {

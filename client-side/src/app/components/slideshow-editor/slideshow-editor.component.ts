@@ -64,6 +64,19 @@ export class SlideshowEditorComponent implements OnInit {
         return { slideshowConfig: new ISlideshowEditor(), slides: [this.getDefaultSlide()] };
     }
 
+    public onHostObjectChange(event) {
+        if(event && event.action){
+            if(event.action === 'set-configuration'){
+                this._configuration = event.configuration;
+                this.updateHostObject();
+            }
+            if(event.action === 'set-configuration-field'){
+                this._configuration = event.configuration;
+                this.updateHostObjectField(event.key, event.value);
+            }
+        }
+    }
+
     private updateHostObject() {
         
         this.hostEvents.emit({

@@ -78,7 +78,7 @@
         <ng-container>
             <label class="body-xl bold ellipsis">{{'SLIDESHOW.SLIDES' | translate}}</label>
             <div (cdkDropListDropped)="drop($event)"  cdkDropList #availableSlidesContainer id="availableSlides" class="available-slides">
-                <slide-editor *ngFor="let currentSlide of configuration?.slides;" class="available-slide"
+                <slide-editor *ngFor="let currentSlide of configuration?.slides;" class="available-slide" (hostEvents)='onHostObjectChange($event)'
                     [id]="currentSlide?.id" [showActions]="true" 
                     [isDraggable]="true" (editClick)='onSlideEditClick($event);' (removeClick)='onSlideRemoveClick($event);'
                     [configuration]="configuration"
