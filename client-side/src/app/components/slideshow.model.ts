@@ -70,7 +70,7 @@ export class ISlideEditor {
     horizontalAlign: PepHorizontalAlignment = 'left';
     verticalAlign: PepVerticalAlignment = 'middle';
     innerSpacing: PepSizeType = "md";
-    textColor: textColor = 'inverted';
+    textColor: textColor = 'system';
     buttonsSize: PepSizeType  = 'md';
     buttonColor: buttonColor= 'system-primary';
     firstButton: SlideButton = new SlideButton();

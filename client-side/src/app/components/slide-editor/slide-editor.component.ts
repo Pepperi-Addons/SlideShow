@@ -142,9 +142,9 @@ export class SlideEditorComponent implements OnInit {
             this.configuration.slides[this.id][key] = value;
         }
 
-        this.updateHostObject();
-
-        this.updateHostObjectField(`slides[${this.id}].${key}`, value);
+        //this.updateHostObject();
+        //this.updateHostObjectField(`slides[${this.id}].${key}`, value);
+        this.updateHostObjectField(`slides[${this.id}][${key}]`, value);
     }
 
     private updateHostObjectField(fieldKey: string, value: any) {
@@ -156,13 +156,13 @@ export class SlideEditorComponent implements OnInit {
         });
     }
 
-     private updateHostObject() {
+    //  private updateHostObject() {
         
-         this.hostEvents.emit({
-             action: 'set-configuration',
-             configuration: this.configuration
-         });
-     }
+    //      this.hostEvents.emit({
+    //          action: 'set-configuration',
+    //          configuration: this.configuration
+    //      });
+    //  }
 
     // onSlideshowFieldChange(key, event){
     //     if(event && event.source && event.source.key){

@@ -20,6 +20,8 @@
         padding-top: .75rem;
         grid-column: 1 / 4;
         grid-row: 2 / 4;
+        display: grid;
+        gap: 1rem;
     }
 
     .title-container {
