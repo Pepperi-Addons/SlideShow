@@ -62,7 +62,7 @@ async function runMigration(client){
                                 "Type": "String",
                                 "ConfigurationPerScreenSize": true
                             },
-                            "isTransition": {
+                            /*"isTransition": {
                                 "Type": "Bool",
                                 "ConfigurationPerScreenSize": true
                             },
@@ -134,27 +134,27 @@ async function runMigration(client){
                                         "ConfigurationPerScreenSize": true, 
                                     }
                                 }
-                            }
-                            }
+                            }*/
+                        }
                     },
                     "slides": {
                         "Type": "Array",
                         "Items": {
                             "Type": "Object",
                             "Fields": {
-                                "useTitle": {
+                                /*"useTitle": {
                                     "Type": "Bool",
                                     "ConfigurationPerScreenSize": true
                                 },
                                 "titleContent": {
                                     "Type": "String",
                                     "ConfigurationPerScreenSize": true
-                                },
+                                },*/
                                 "titleSize": {
                                     "Type": "String",
                                     "ConfigurationPerScreenSize": true
                                 },
-                                "titleWeight": {
+                                /*"titleWeight": {
                                     "Type": "String",
                                     "ConfigurationPerScreenSize": true
                                 },
@@ -165,7 +165,7 @@ async function runMigration(client){
                                 "subTitleContent": {
                                     "Type": "String",
                                     "ConfigurationPerScreenSize": true
-                                },
+                                },*/
                                 "subTitleSize": {
                                     "Type": "String",
                                     "ConfigurationPerScreenSize": true
@@ -182,19 +182,19 @@ async function runMigration(client){
                                     "Type": "String",
                                     "ConfigurationPerScreenSize": true
                                 },
-                                "innerSpacing": {
+                                /*"innerSpacing": {
                                     "Type": "String",
                                     "ConfigurationPerScreenSize": true
                                 },
                                 "textColor": {
                                     "Type": "String",
                                     "ConfigurationPerScreenSize": true
-                                },
+                                },*/
                                 "buttonsSize": {
                                     "Type": "String",
                                     "ConfigurationPerScreenSize": true
                                 },
-                                "buttonColor": {
+                                /*"buttonColor": {
                                     "Type": "String",
                                     "ConfigurationPerScreenSize": true
                                 },
@@ -273,17 +273,17 @@ async function runMigration(client){
                                             "ConfigurationPerScreenSize": true, 
                                         }
                                     }
-                                },
+                                },*/
                                 "image": {
                                     "Type": "Object",
                                     "Fields": {
                                         "useImage": {
                                             "Type": "Bool",
-                                            "ConfigurationPerScreenSize": true, 
+                                            "ConfigurationPerScreenSize": false, 
                                         },
                                         "src": {
                                             "Type": "String",
-                                            "ConfigurationPerScreenSize": true, 
+                                            "ConfigurationPerScreenSize": false, 
                                         },
                                         "horizontalPosition": {
                                             "Type": "String",
