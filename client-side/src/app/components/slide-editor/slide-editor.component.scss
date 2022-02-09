@@ -135,7 +135,11 @@ pep-group-buttons{
     }
 }
 
-pep-slider{
-    margin-bottom: 1rem;
-}
+::ng-deep .pep-slider-container{
+    margin-bottom: 0rem !important;
+} 
+
+// pep-slider{
+//     margin-bottom: 1rem;
+// }
 

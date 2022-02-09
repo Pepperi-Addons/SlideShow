@@ -71,7 +71,7 @@ export class SlideshowEditorComponent implements OnInit {
                 this.updateHostObject();
             }
             if(event.action === 'set-configuration-field'){
-                this._configuration = event.configuration;
+                //this._configuration = event.configuration;
                 this.updateHostObjectField(event.key, event.value);
             }
         }

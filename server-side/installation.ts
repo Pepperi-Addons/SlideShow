@@ -123,15 +123,15 @@ async function runMigration(client){
                                 "Fields": {
                                     "use": {
                                         "Type": "Bool",
-                                        "SupportScreenSizes": true, 
+                                        "ConfigurationPerScreenSize": true, 
                                     },
                                     "size": {
                                         "Type": "String",
-                                        "SupportScreenSizes": true, 
+                                        "ConfigurationPerScreenSize": true, 
                                     },
                                     "intensity": {
                                         "Type": "String",
-                                        "SupportScreenSizes": true, 
+                                        "ConfigurationPerScreenSize": true, 
                                     }
                                 }
                             }
@@ -203,19 +203,19 @@ async function runMigration(client){
                                     "Fields": {
                                         "useButton": {
                                             "Type": "Bool",
-                                            "SupportScreenSizes": true, 
+                                            "ConfigurationPerScreenSize": true, 
                                         },
                                         "label": {
                                             "Type": "String",
-                                            "SupportScreenSizes": true, 
+                                            "ConfigurationPerScreenSize": true, 
                                         },
                                         "linkTo": {
                                             "Type": "String",
-                                            "SupportScreenSizes": true, 
+                                            "ConfigurationPerScreenSize": true, 
                                         },
                                         "style": {
                                             "Type": "String",
-                                            "SupportScreenSizes": true, 
+                                            "ConfigurationPerScreenSize": true, 
                                         }
                                     }
                                 },
@@ -224,19 +224,19 @@ async function runMigration(client){
                                     "Fields": {
                                         "useButton": {
                                             "Type": "Bool",
-                                            "SupportScreenSizes": true, 
+                                            "ConfigurationPerScreenSize": true, 
                                         },
                                         "label": {
                                             "Type": "String",
-                                            "SupportScreenSizes": true, 
+                                            "ConfigurationPerScreenSize": true, 
                                         },
                                         "linkTo": {
                                             "Type": "String",
-                                            "SupportScreenSizes": true, 
+                                            "ConfigurationPerScreenSize": true, 
                                         },
                                         "style": {
                                             "Type": "String",
-                                            "SupportScreenSizes": true, 
+                                            "ConfigurationPerScreenSize": true, 
                                         }
                                     }
                                 },
@@ -245,15 +245,15 @@ async function runMigration(client){
                                     "Fields": {
                                         "use": {
                                             "Type": "Bool",
-                                            "SupportScreenSizes": true, 
+                                            "ConfigurationPerScreenSize": true, 
                                         },
                                         "value": {
                                             "Type": "String",
-                                            "SupportScreenSizes": true, 
+                                            "ConfigurationPerScreenSize": true, 
                                         },
                                         "opacity": {
                                             "Type": "Integer",
-                                            "SupportScreenSizes": true, 
+                                            "ConfigurationPerScreenSize": true, 
                                         }
                                     }
                                 },
@@ -262,15 +262,15 @@ async function runMigration(client){
                                     "Fields": {
                                         "use": {
                                             "Type": "Bool",
-                                            "SupportScreenSizes": true, 
+                                            "ConfigurationPerScreenSize": true, 
                                         },
                                         "value": {
                                             "Type": "String",
-                                            "SupportScreenSizes": true, 
+                                            "ConfigurationPerScreenSize": true, 
                                         },
                                         "opacity": {
                                             "Type": "Integer",
-                                            "SupportScreenSizes": true, 
+                                            "ConfigurationPerScreenSize": true, 
                                         }
                                     }
                                 },
@@ -279,19 +279,19 @@ async function runMigration(client){
                                     "Fields": {
                                         "useImage": {
                                             "Type": "Bool",
-                                            "SupportScreenSizes": true, 
+                                            "ConfigurationPerScreenSize": true, 
                                         },
                                         "src": {
                                             "Type": "String",
-                                            "SupportScreenSizes": true, 
+                                            "ConfigurationPerScreenSize": true, 
                                         },
                                         "horizontalPosition": {
                                             "Type": "String",
-                                            "SupportScreenSizes": true, 
+                                            "ConfigurationPerScreenSize": true, 
                                         },
                                         "verticalPosition": {
                                             "Type": "String",
-                                            "SupportScreenSizes": true, 
+                                            "ConfigurationPerScreenSize": true, 
                                         }
                                     }
                                 }
