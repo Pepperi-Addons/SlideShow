@@ -138,12 +138,12 @@
             }
             &.title-lg{
                 font-size: calc(#{ngx-variables.$fs-lg} * 2.75) !important; 
-                height: calc(#{ngx-variables.$fs-lg} * 2.25);  
+                height: calc(#{ngx-variables.$fs-lg} * 2.75) !important;  
                 line-height: calc(#{ngx-variables.$fs-lg} * 2.25) !important;  
             }
             &.title-xl{
                 font-size: calc(#{ngx-variables.$fs-xl} * 3.5) !important; 
-                height: calc(#{ngx-variables.$fs-xl} * 2.75); 
+                height: calc(#{ngx-variables.$fs-xl} * 3.5) !important; 
                 line-height: calc(#{ngx-variables.$fs-xl} * 2.75) !important;     
             }
         
