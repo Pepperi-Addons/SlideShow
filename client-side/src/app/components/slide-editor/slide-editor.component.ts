@@ -18,6 +18,8 @@ interface groupButtonArray {
 export class SlideEditorComponent implements OnInit {
     
     @Input() configuration: ISlideShow;
+    @Input() configurationSource: ISlideShow;
+    
     @Input() id: string;
     
     public title: string;

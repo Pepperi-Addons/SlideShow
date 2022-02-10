@@ -16,16 +16,22 @@ export class SlideshowEditorComponent implements OnInit {
     @ViewChild('availableSlidesContainer', { read: ElementRef }) availableBlocksContainer: ElementRef;
 
     @Input()
-    set hostObject(value: IHostObject) {
+    //set hostObject(value: IHostObject) {
+    set hostObject(value: any) {
         if (value && value.configuration && Object.keys(value.configuration).length > 0) {
             this._configuration = value.configuration
+            if(value.configurationSource && Object.keys(value.configuration).length > 0){
+                this.configurationSource = value.configurationSource;
+            }
         } else {
             if(this.blockLoaded){
                 this.loadDefaultConfiguration();
             }
         }
     }
-    
+    // the source config used to do if need to show the Reset button or not
+    public configurationSource: ISlideShow;
+
     private _configuration: ISlideShow;
     get configuration(): ISlideShow {
         return this._configuration;
