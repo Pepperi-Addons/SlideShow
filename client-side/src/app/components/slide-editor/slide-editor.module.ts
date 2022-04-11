@@ -21,6 +21,7 @@ import { PepShadowSettingsModule } from '@pepperi-addons/ngx-composite-lib/shado
 import { PepColorSettingsModule } from '@pepperi-addons/ngx-composite-lib/color-settings';
 import { PepNgxCompositeLibModule } from '@pepperi-addons/ngx-composite-lib/';
 import { PepGroupButtonsSettingsModule } from '@pepperi-addons/ngx-composite-lib/group-buttons-settings';
+import { AssetsButtonModule } from '../assets-button/assets-button.module';
 
 export function createTranslateLoader(addonService: PepAddonService) {
     const addonStaticFolder = addonService.getAddonStaticFolder(config.AddonUUID);
@@ -59,6 +60,7 @@ export function createTranslateLoader(addonService: PepAddonService) {
         PepColorSettingsModule,
         PepNgxCompositeLibModule,
         PepGroupButtonsSettingsModule,
+        AssetsButtonModule,
         
         // TranslateModule.forChild({
         //     loader: {

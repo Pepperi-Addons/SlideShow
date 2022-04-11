@@ -94,14 +94,15 @@ export function createTranslateLoader(addonService: PepAddonService) {
         //         deps: [HttpClient, PepFileService, PepAddonService],
         //     }, isolate: false
         // }),
+        
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
-                useFactory: createTranslateLoader,
+                useFactory: (addonService: PepAddonService) => 
+                    PepAddonService.createMultiTranslateLoader(addonService, ['ngx-lib', 'ngx-composite-lib'], config.AddonUUID),
                 deps: [PepAddonService]
             }, isolate: false
-        }),
-        
+        }), 
     ],
     exports: [SlideshowEditorComponent],
     providers: [
@@ -114,13 +115,13 @@ export function createTranslateLoader(addonService: PepAddonService) {
         PepDialogService
     ]
 })
-export class SlideshowEditorModule { 
+export class SlideshowEditorModule {
     constructor(
         translate: TranslateService,
         private pepIconRegistry: PepIconRegistry,
-        private addonService: PepAddonService,
+        private pepAddonService: PepAddonService
     ) {
-        this.addonService.setDefaultTranslateLang(translate);
+        this.pepAddonService.setDefaultTranslateLang(translate);
         this.pepIconRegistry.registerIcons(pepIcons);
     }
 }

@@ -1,28 +1,29 @@
 <mat-tab-group  #tabGroup class="editor-tabs" animationDuration="0ms">
     <mat-tab label="{{'SLIDESHOW.GENERAL' | translate}}">
-                <pep-group-buttons-settings 
+        
+        <pep-group-buttons-settings 
                     pepResetConfigurationField="slideshowConfig?.heightUnit" [hideReset]="configuration?.slideshowConfig?.heightUnit === configurationSource?.slideshowConfig?.heightUnit" 
                     [resetHostEvents]="hostEvents"
                     [groupType]="'custom'" [subHeader]="'SLIDESHOW.HEIGHTUNITS_TITLE' | translate" [btnsArray]="HeightUnitsType"
                     [btnKey]="configuration?.slideshowConfig?.heightUnit">
-                </pep-group-buttons-settings>
+        </pep-group-buttons-settings>
 
-                <pep-textbox 
+        <pep-textbox 
                         pepResetConfigurationField="slideshowConfig?.height" [hideReset]="configuration?.slideshowConfig?.height === configurationSource?.slideshowConfig?.height"
                          [resetHostEvents]="hostEvents"
                         [value]="configuration?.slideshowConfig?.height" 
                         [label]="'SLIDESHOW.HEIGHT' | translate" 
                         (valueChange)="onSlideshowFieldChange('height',$event)">
-                </pep-textbox>
+        </pep-textbox>
                 
-                <pep-group-buttons-settings 
-                                            pepResetConfigurationField="slideshowConfig?.innerPadding" [hideReset]="configuration?.slideshowConfig?.innerPadding === configurationSource?.slideshowConfig?.innerPadding"
-                                             [resetHostEvents]="hostEvents"
-                                            [groupType]="'sizes'" [subHeader]="'SLIDESHOW.INNERPADDING_TITLE' | translate"
-                                            [btnKey]="configuration?.slideshowConfig?.innerPadding" [excludeKeys]="['xs','xl']"
-                                            (btnkeyChange)="onSlideshowFieldChange('innerPadding',$event)">
-                </pep-group-buttons-settings>
-
+        <pep-group-buttons-settings 
+                    pepResetConfigurationField="slideshowConfig?.innerPadding" [hideReset]="configuration?.slideshowConfig?.innerPadding === configurationSource?.slideshowConfig?.innerPadding"
+                    [resetHostEvents]="hostEvents"
+                    [groupType]="'sizes'" [subHeader]="'SLIDESHOW.INNERPADDING_TITLE' | translate"
+                    [btnKey]="configuration?.slideshowConfig?.innerPadding" [excludeKeys]="['xs','xl']"
+                    (btnkeyChange)="onSlideshowFieldChange('innerPadding',$event)">
+        </pep-group-buttons-settings>
+        
                 <pep-checkbox [value]="configuration?.slideshowConfig?.isTransition" [label]="'SLIDESHOW.TRANSITION' | translate" [renderTitle]="false" (valueChange)="onSlideshowFieldChange('isTransition',$event)"></pep-checkbox>
                 <label class="body-xs normal ellipsis">{{'SLIDESHOW.TRANSITION_TITLE' | translate}}</label>
                 <pep-textbox [label]="'SLIDESHOW.SLIDE_DURATION' | translate" type="int" [disabled]="!configuration?.slideshowConfig?.isTransition" 
@@ -53,10 +54,11 @@
                     <pep-select [disabled]="!configuration?.slideshowConfig?.isUseArrows" [label]="'SLIDESHOW.ARROWS_COLOR' | translate" [value]="configuration?.slideshowConfig?.arrowsColor" [options]="buttonColor"
                         (valueChange)="onSlideshowFieldChange('arrowsColor',$event)" [emptyOption]="false"></pep-select>
                 </div>
-
+                <div>
                 <label class="body-xl bold ellipsis">{{'SLIDESHOW.CONTROLLERS' | translate}}</label>
                 <label class="body-xs normal" [innerHTML]="'SLIDESHOW.CONTROLLERS_DESC' | translate"></label>
-
+                </div>
+                <div>
                 <pep-checkbox class="body-sm" 
                               [disabled]="!configuration?.slideshowConfig?.isTransition" 
                               [value]="configuration?.slideshowConfig?.usePauseButton && configuration?.slideshowConfig?.isTransition" 
@@ -68,7 +70,7 @@
                 <pep-checkbox class="body-sm"  [value]="configuration?.slideshowConfig?.showControllersInSlider" 
                               [label]="'SLIDESHOW.CONTROLLERS_PROPERTIES.SHOW_CONTROLLERS' | translate" [renderTitle]="false" 
                               (valueChange)="onSlideshowFieldChange('showControllersInSlider',$event)"></pep-checkbox>
-                
+                </div>
                 <pep-group-buttons-settings pepResetConfigurationField="slideshowConfig?.controllerSize" [hideReset]="configuration?.slideshowConfig?.controllerSize === configurationSource?.slideshowConfig?.controllerSize"
                                [resetHostEvents]="hostEvents"
                               [groupType]="'sizes'" [subHeader]="'SLIDESHOW.CONTROLLER_SIZE' | translate" 

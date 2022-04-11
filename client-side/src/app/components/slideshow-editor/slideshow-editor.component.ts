@@ -209,6 +209,7 @@ export class SlideshowEditorComponent implements OnInit {
     onSlideRemoveClick(event){
         this.configuration.slides.splice(event.id, 1);
         this.configuration.slides.forEach(function(slide, index, arr) {slide.id = index; });
+        this.updateHostObject();
     }
 
     onValueChange(event){

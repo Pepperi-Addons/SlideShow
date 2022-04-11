@@ -206,4 +206,11 @@ export class SlideEditorComponent implements OnInit {
         }
         return rgba;
     }
+
+    onHostEvents(event: any) {
+        if(event?.url){
+            this.configuration.slides[this.id]['image']['src'] = event.url;
+            this.updateHostObjectField(`slides[${this.id}].image.src`, event.url);
+        }     
+    }
 }

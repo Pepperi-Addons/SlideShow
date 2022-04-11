@@ -91,6 +91,7 @@
         "OVERLAY_OPACITY": "Overlay",
         "IMAGE": "Image",
         "CHOOSE_IMAGE": "Choose image",
+        "OPEN_ASSETS_MANAGER": "Open Assets manager",
         "IMAGE_HORIZONTAL_POSITION": "Horizontal Position",
         "IMAGE_VERTICAL_POSITION": "Vertical Position",
         "DROP_SHADOW": "Drop Shadow",

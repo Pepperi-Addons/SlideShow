@@ -117,10 +117,14 @@
 
     <pep-checkbox [value]="configuration?.slides[id].image.useImage" [label]="'SLIDE_EDITOR.IMAGE' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('image.useImage',$event)"></pep-checkbox>
 
-    <pep-textbox [label]="'SLIDE_EDITOR.CHOOSE_IMAGE' | translate" 
+    <assets-button [imageURL]="configuration?.slides[id].image?.src"
+                   [disabled]="!configuration?.slides[id].image.useImage" 
+                   (hostEvents)="onHostEvents($event);"></assets-button>
+
+    <!-- <pep-textbox [label]="'SLIDE_EDITOR.CHOOSE_IMAGE' | translate" 
                   type="link" 
                   [value]="configuration?.slides[id].image?.src" 
-                  (valueChange)="onSlideFieldChange('image.src',$event)"></pep-textbox>
+                  (valueChange)="onSlideFieldChange('image.src',$event)"></pep-textbox> -->
     <pep-slider
         pepResetConfigurationField="slides[{{id}}].image.horizontalPosition" [hideReset]="configuration.slides[id].image.horizontalPosition === configurationSource?.slides[id].image.horizontalPosition"
          [resetHostEvents]="hostEvents" 
