@@ -23,22 +23,6 @@ import { PepNgxCompositeLibModule } from '@pepperi-addons/ngx-composite-lib/';
 import { PepGroupButtonsSettingsModule } from '@pepperi-addons/ngx-composite-lib/group-buttons-settings';
 import { AssetsButtonModule } from '../assets-button/assets-button.module';
 
-export function createTranslateLoader(addonService: PepAddonService) {
-    const addonStaticFolder = addonService.getAddonStaticFolder(config.AddonUUID);
-    const ngxLibTranslationResource = addonService.getNgxLibTranslationResource(config.AddonUUID);
-    const addonTranslationResource = addonService.getAddonTranslationResource(config.AddonUUID);
-    const ngxCompositeLibAssetsFolder = 'assets/ngx-composite-lib/i18n/';
-
-    return addonService.translateService.createMultiTranslateLoader([
-        ngxLibTranslationResource,
-        addonTranslationResource,
-        {
-            prefix: `${addonStaticFolder}/${ngxCompositeLibAssetsFolder}`,
-            suffix: '.ngx-composite-lib.json',
-        }
-    ]);
-}
-
 @NgModule({
     declarations: [SlideEditorComponent],
     imports: [
@@ -62,22 +46,23 @@ export function createTranslateLoader(addonService: PepAddonService) {
         PepGroupButtonsSettingsModule,
         AssetsButtonModule,
         
-        // TranslateModule.forChild({
-        //     loader: {
-        //         provide: TranslateLoader,
-        //         useFactory: (http: HttpClient, fileService: PepFileService, addonService: PepAddonService) => 
-        //             PepAddonService.createDefaultMultiTranslateLoader(http, fileService, addonService, config.AddonUUID),
-        //         deps: [HttpClient, PepFileService, PepAddonService],
-        //     }, isolate: false
-        // }),
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
-                useFactory: createTranslateLoader,
+                useFactory: (addonService: PepAddonService) => 
+                    PepAddonService.createMultiTranslateLoader(addonService, ['ngx-lib', 'ngx-composite-lib'], config.AddonUUID),
                 deps: [PepAddonService]
             }, isolate: false
         }),
     ],
     exports: [SlideEditorComponent]
 })
-export class SlideEditorModule { }
+
+export class SlideEditorModule {
+    constructor(
+        translate: TranslateService,
+        private pepAddonService: PepAddonService
+    ) {
+        this.pepAddonService.setDefaultTranslateLang(translate);
+    }
+}

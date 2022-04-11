@@ -44,22 +44,6 @@ const pepIcons = [
     pepIconArrowUp
 ];
 
-export function createTranslateLoader(addonService: PepAddonService) {
-    const addonStaticFolder = addonService.getAddonStaticFolder(config.AddonUUID);
-    const ngxLibTranslationResource = addonService.getNgxLibTranslationResource(config.AddonUUID);
-    const addonTranslationResource = addonService.getAddonTranslationResource(config.AddonUUID);
-    const ngxCompositeLibAssetsFolder = 'assets/ngx-composite-lib/i18n/';
-
-    return addonService.translateService.createMultiTranslateLoader([
-        ngxLibTranslationResource,
-        addonTranslationResource,
-        {
-            prefix: `${addonStaticFolder}/${ngxCompositeLibAssetsFolder}`,
-            suffix: '.ngx-composite-lib.json',
-        }
-    ]);
-}
-
 @NgModule({
     declarations: [SlideshowEditorComponent],
     imports: [
@@ -85,16 +69,6 @@ export function createTranslateLoader(addonService: PepAddonService) {
         PepNgxCompositeLibModule,
         PepShadowSettingsModule,
         
-        // When not using module as sub-addon please remark this for not loading twice resources
-        // TranslateModule.forChild({
-        //     loader: {
-        //         provide: TranslateLoader,
-        //         useFactory: (http: HttpClient, fileService: PepFileService, addonService: PepAddonService) => 
-        //             PepAddonService.createDefaultMultiTranslateLoader(http, fileService, addonService, config.AddonUUID),
-        //         deps: [HttpClient, PepFileService, PepAddonService],
-        //     }, isolate: false
-        // }),
-        
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
@@ -102,7 +76,7 @@ export function createTranslateLoader(addonService: PepAddonService) {
                     PepAddonService.createMultiTranslateLoader(addonService, ['ngx-lib', 'ngx-composite-lib'], config.AddonUUID),
                 deps: [PepAddonService]
             }, isolate: false
-        }), 
+        }),
     ],
     exports: [SlideshowEditorComponent],
     providers: [
@@ -115,6 +89,7 @@ export function createTranslateLoader(addonService: PepAddonService) {
         PepDialogService
     ]
 })
+
 export class SlideshowEditorModule {
     constructor(
         translate: TranslateService,
