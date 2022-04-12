@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { PepFileService, PepAddonService, PepNgxLibModule } from '@pepperi-addons/ngx-lib';
 import { config } from '../addon.config';
 import { PepButtonModule } from '@pepperi-addons/ngx-lib/button';
-import { PepAddonBlockLoaderModule } from '@pepperi-addons/ngx-composite-lib/addon-block-loader';
+import { PepRemoteLoaderModule } from '@pepperi-addons/ngx-lib/remote-loader';
 
 @NgModule({
     declarations: [AssetsButtonComponent],
@@ -14,7 +14,7 @@ import { PepAddonBlockLoaderModule } from '@pepperi-addons/ngx-composite-lib/add
         CommonModule,
         PepNgxLibModule,
         PepButtonModule,
-        PepAddonBlockLoaderModule,
+        PepRemoteLoaderModule,
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
