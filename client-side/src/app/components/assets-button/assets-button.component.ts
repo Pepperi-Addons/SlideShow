@@ -47,7 +47,7 @@ export class AssetsButtonComponent implements OnInit {
         if(!this.disabled){
             this.dialogRef = this.pepRemoteLoaderService.loadAddonBlockInDialog({
                 container: this.viewContainerRef,
-                name: 'AssetPicker',
+                name: 'Assets',
                 hostObject: this.assetsHostObject,
                 hostEventsCallback: (event) => { this.onHostEvents(event); }
             });
