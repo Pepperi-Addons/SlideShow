@@ -7,14 +7,30 @@ If the result of your code is 'false' then return:
 {success:false, erroeMessage:{the reason why it is false}}
 The error Message is importent! it will be written in the audit log and help the user to understand what happen
 */
+const SLIDESHOW_TABLE_NAME = '';
 
 import { Client, Request } from '@pepperi-addons/debug-server'
 import { Relation } from '@pepperi-addons/papi-sdk';
 import MyService from './my.service';
+import { DimxRelations, SlideshowScheme } from './metadata';
+import { servicesVersion } from 'typescript';
+ 
+ 
 
 export async function install(client: Client, request: Request): Promise<any> {
-    const res = await runMigration(client);
-    return res;
+
+    const slideshowRelationsRes = await runMigration(client);
+    //const dimxRes = await createDimxRelations(client);
+    //const dimxSchemeRes = await addDimxScheme(client);
+   
+    return {
+        success: slideshowRelationsRes.success,
+        errorMessage: `slideshowRelationsRes: ${slideshowRelationsRes.errorMessage}`
+    };
+    // return {
+    //     success: slideshowRelationsRes.success && dimxRes.success && dimxSchemeRes.success,
+    //     errorMessage: `slideshowRelationsRes: ${slideshowRelationsRes.errorMessage}, userDeviceResourceRes: ${dimxRes.errorMessage}, userDeviceResourceRes: ${dimxSchemeRes.errorMessage}`
+    // };
 }
 
 export async function uninstall(client: Client, request: Request): Promise<any> {
@@ -209,9 +225,19 @@ async function runMigration(client){
                                             "Type": "String",
                                             "ConfigurationPerScreenSize": true, 
                                         },
-                                        "linkTo": {
-                                            "Type": "String",
-                                            "ConfigurationPerScreenSize": true, 
+                                        "script": {
+                                            "Type": "Object",
+                                             "Fields": {
+                                                "Key": {
+                                                    "Type": "String",
+                                                    "ConfigurationPerScreenSize": false, 
+                                                },
+                                                "Data": {
+                                                    "Type": "Object",
+                                                    "Fields": {
+                                                        "TODO - ADD THE PARAMS"
+                                                    }
+                                                }
                                         },
                                         "style": {
                                             "Type": "String",
@@ -230,9 +256,19 @@ async function runMigration(client){
                                             "Type": "String",
                                             "ConfigurationPerScreenSize": true, 
                                         },
-                                        "linkTo": {
-                                            "Type": "String",
-                                            "ConfigurationPerScreenSize": true, 
+                                        "script": {
+                                            "Type": "Object",
+                                             "Fields": {
+                                                "Key": {
+                                                    "Type": "String",
+                                                    "ConfigurationPerScreenSize": false, 
+                                                },
+                                                "Data": {
+                                                    "Type": "Object",
+                                                    "Fields": {
+                                                        "TODO - ADD THE PARAMS"
+                                                    }
+                                                }
                                         },
                                         "style": {
                                             "Type": "String",
@@ -305,8 +341,52 @@ async function runMigration(client){
 
         const service = new MyService(client);
         const result = await service.upsertRelation(pageComponentRelation);
-        return {success:true, resultObject: {result} };
+        return {success:true, errorMessage: '' };
     } catch(e) {
-        return { success: false, resultObject: {e} };
+        return { success: false, errorMessage: e.message || '' };
     }
 }
+
+async function createDimxRelations(client) {
+    
+    let relations: Relation[] = DimxRelations;
+    let relationName = '';
+
+    try {
+        const service = new MyService(client);
+
+        relations.forEach(async (relation) => {
+            relationName = relation.RelationName;
+            const result = await service.upsertRelation(relation);
+        });
+        return {
+            success: true,
+            errorMessage: ''
+        }
+    }
+    catch (err) {
+        return {
+            success: false,
+            errorMessage: relationName + ' ' + (err ? err : 'Unknown Error Occured'),
+        }
+    }
+}
+
+async function addDimxScheme(client) {
+    try {
+        const service = new MyService(client);
+        service.papiClient.addons.data.schemes.post(SlideshowScheme);
+        return {
+            success: true,
+            errorMessage: ''
+        }
+    }
+    catch (err) {
+            return {
+                success: false,
+                errorMessage: `Error in creating slideshow scheme for dimx . error - ${err}`
+            }
+    }
+}
+
+

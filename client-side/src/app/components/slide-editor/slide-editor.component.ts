@@ -1,9 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewContainerRef } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ISlideShow, ISlideshowEditor, slide, TransitionType, ArrowShape, ISlideEditor, textColor, IHostObject } from '../slideshow.model';
 import { PepStyleType, PepSizeType, PepColorService} from '@pepperi-addons/ngx-lib';
 import { PepButton } from '@pepperi-addons/ngx-lib/button';
 import { PepColorSettings } from '@pepperi-addons/ngx-composite-lib/color-settings';
+import { MatDialogRef } from '@angular/material/dialog';
+import { PepRemoteLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
 
 interface groupButtonArray {
     key: string; 
@@ -27,10 +29,19 @@ export class SlideEditorComponent implements OnInit {
     @Input() isDraggable = false;
     @Input() showActions = true;
 
+    private _pageParameters: any = {};
+    @Input()
+    set pageParameters(value: any) {
+        this._pageParameters = value;
+    }
+
+
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
     @Output() removeClick: EventEmitter<any> = new EventEmitter();
     @Output() editClick: EventEmitter<any> = new EventEmitter();
 
+    dialogRef: MatDialogRef<any>;
+    
     TitleSize: Array<PepButton> = [];
     TitleWeight: Array<PepButton> = [];
     SubTitleSize: Array<PepButton> = [];
@@ -46,7 +57,9 @@ export class SlideEditorComponent implements OnInit {
 
     constructor(
         private translate: TranslateService,
-        private pepColorService: PepColorService
+        private pepColorService: PepColorService,
+        private viewContainerRef: ViewContainerRef,
+        private addonBlockLoaderService: PepRemoteLoaderService
         // private utilitiesService: PepUtilitiesService
     ) { 
 
@@ -149,12 +162,13 @@ export class SlideEditorComponent implements OnInit {
         //this.updateHostObjectField(`slides[${this.id}][${key}]`, value);
     }
 
-    private updateHostObjectField(fieldKey: string, value: any) {
+    private updateHostObjectField(fieldKey: string, value: any, updatePageConfiguration = false) {
         
         this.hostEvents.emit({
             action: 'set-configuration-field',
             key: fieldKey,
-            value: value
+            value: value,
+            updatePageConfiguration: updatePageConfiguration
         });
     }
 
@@ -212,5 +226,33 @@ export class SlideEditorComponent implements OnInit {
             this.configuration.slides[this.id]['image']['src'] = event.url;
             this.updateHostObjectField(`slides[${this.id}].image.src`, event.url);
         }     
+    }
+
+    openScriptPickerDialog(btnName: string) {
+        const script = this.configuration.slides[this.id][btnName].script;
+
+        const fields = {};
+        Object.keys(this._pageParameters).forEach(paramKey => {
+            fields[paramKey] = {
+                Type: 'String'
+        }
+        });
+        
+        script['fields'] = fields;
+        
+        this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
+            container: this.viewContainerRef,
+            name: 'ScriptPicker',
+            hostObject: this.configuration.slides[this.id][btnName].script,
+            hostEventsCallback: (event) => { 
+                if (event.action === 'script-picked') {
+                    this.configuration.slides[this.id][btnName].script = event.data;
+                    this.updateHostObjectField(`slides[${this.id}][${btnName}].script`, event.data, true);
+                    this.dialogRef.close();
+                } else if (event.action === 'close') {
+                    this.dialogRef.close();
+                }
+            }
+        });
     }
 }

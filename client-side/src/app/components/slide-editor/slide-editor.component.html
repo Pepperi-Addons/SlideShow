@@ -92,7 +92,13 @@
 
     <pep-checkbox [value]="configuration?.slides[id].firstButton.useButton" [label]="'SLIDE_EDITOR.FIRST_BUTTON' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('firstButton.useButton',$event)"></pep-checkbox>
     <pep-textbox [label]="'SLIDE_EDITOR.LABEL' | translate" type="string" [disabled]="!configuration?.slides[id].firstButton.useButton" [value]="configuration?.slides[id].firstButton.label" (valueChange)="onSlideFieldChange('firstButton.label',$event)"></pep-textbox>
-    <pep-textbox [label]="'SLIDE_EDITOR.LINK_TO' | translate" type="link" [disabled]="!configuration?.slides[id].firstButton.useButton" [value]="configuration?.slides[id].firstButton.linkTo" (valueChange)="onSlideFieldChange('firstButton.linkTo',$event)"></pep-textbox>
+
+    <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.ACTION' | translate}}</label>
+    <pep-button class="script-button" 
+                [value]="configuration?.slides[id].firstButton?.script?.runScriptData?.ScriptKey ? configuration?.slides[id].firstButton?.script?.runScriptData?.ScriptKey : ('SLIDE_EDITOR.CHOOSE_SCRIPT' | translate)" 
+                (buttonClick)="openScriptPickerDialog('firstButton');">
+    </pep-button>
+
     <pep-select [label]="'SLIDE_EDITOR.BUTTON_STYLE' | translate" [value]="configuration?.slides[id].firstButton.style" 
                 [options]="buttonStyle" (valueChange)="onSlideFieldChange('firstButton.style',$event)" [emptyOption]="false" 
                 [disabled]="!configuration?.slides[id].firstButton.useButton" styleType="weak">
@@ -100,7 +106,12 @@
 
     <pep-checkbox [value]="configuration?.slides[id].secondButton.useButton" [label]="'SLIDE_EDITOR.SECOND_BUTTON' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('secondButton.useButton',$event)"></pep-checkbox>
     <pep-textbox [label]="'SLIDE_EDITOR.LABEL' | translate" type="string" [disabled]="!configuration?.slides[id].secondButton.useButton" [value]="configuration?.slides[id].secondButton.label" (valueChange)="onSlideFieldChange('secondButton.label',$event)"></pep-textbox>
-    <pep-textbox [label]="'SLIDE_EDITOR.LINK_TO' | translate" type="link" [disabled]="!configuration?.slides[id].secondButton.useButton" [value]="configuration?.slides[id].secondButton.linkTo" (valueChange)="onSlideFieldChange('secondButton.linkTo',$event)"></pep-textbox>
+
+    <label class="body-xs normal ellipsis">{{'SLIDE_EDITOR.ACTION' | translate}}</label>
+    <pep-button class="script-button" 
+                [value]="configuration?.slides[id].secondButton?.script?.runScriptData?.ScriptKey ? configuration?.slides[id].secondButton?.script?.runScriptData?.ScriptKey: ('SLIDE_EDITOR.CHOOSE_SCRIPT' | translate)" 
+                (buttonClick)="openScriptPickerDialog('secondButton');">
+    </pep-button>
     <pep-select [label]="'SLIDE_EDITOR.BUTTON_STYLE' | translate" [value]="configuration?.slides[id].secondButton.style" [options]="buttonStyle"
                 (valueChange)="onSlideFieldChange('secondButton.style',$event)" [emptyOption]="false" [disabled]="!configuration?.slides[id].secondButton.useButton">
     </pep-select>
@@ -119,7 +130,8 @@
 
     <assets-button [imageURL]="configuration?.slides[id].image?.src"
                    [disabled]="!configuration?.slides[id].image.useImage" 
-                   (hostEvents)="onHostEvents($event);"></assets-button>
+                   (hostEvents)="onHostEvents($event);">
+    </assets-button>
 
     <!-- <pep-textbox [label]="'SLIDE_EDITOR.CHOOSE_IMAGE' | translate" 
                   type="link" 

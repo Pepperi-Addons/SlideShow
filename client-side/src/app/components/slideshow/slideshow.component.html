@@ -19,7 +19,8 @@
        [slide]="currentSlide" 
        [slideshowConfig]="configuration?.slideshowConfig"
        [ngClass]="[configuration?.slideshowConfig?.transitionType , slideIndex == currentSlide.id ? 'activeSlide' : '']"
-       [ngStyle]="{'transition-duration':  configuration?.slideshowConfig?.transitionTime + 's'}">
+       [ngStyle]="{'transition-duration':  configuration?.slideshowConfig?.transitionTime + 's'}"
+       (slideClick)="onSlideClicked($event)">
 </slide>
 
 <div id="slideFooterBtn" 

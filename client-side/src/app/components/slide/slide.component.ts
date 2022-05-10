@@ -13,6 +13,8 @@ import { PepColorSettings } from '@pepperi-addons/ngx-composite-lib/color-settin
 export class SlideComponent implements OnInit {
     @ViewChild('mainSlideCont', { static: true }) slideContainer: ElementRef;
 
+    @Output() slideClick: EventEmitter<any> = new EventEmitter<any>();
+
     screenSize: PepScreenSizeType;
     
     @Input() slideshowConfig: ISlideshowEditor;
@@ -129,10 +131,10 @@ export class SlideComponent implements OnInit {
     }
 
     onSlideButtonClicked(btnName: string){
-        if(this.slide[btnName] && this.slide[btnName].linkTo != ''){
-            var linkTo = window.open('', '_blank');
-            linkTo.location.href = this.slide[btnName].linkTo;
+        const runScriptData = this.slide[btnName] && this.slide[btnName].script?.runScriptData;
+        if (runScriptData) {
+                // Implement script click
+                this.slideClick.emit(runScriptData);
+            }
         }
-    }
-
 }

@@ -23,7 +23,7 @@ export type buttonColor = 'system-primary' | 'invert' | 'user-primary' ;
 export class SlideButton {
     useButton: boolean = true;
     label: string = 'Button';
-    linkTo: string = '';
+    script: any = {};
     style: PepStyleType = 'regular'
 }
 

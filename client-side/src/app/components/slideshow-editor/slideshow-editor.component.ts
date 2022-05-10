@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { PepStyleType, PepSizeType} from '@pepperi-addons/ngx-lib';
 import { IPepButtonClickEvent, PepButton } from '@pepperi-addons/ngx-lib/button';
 import { ISlideShow, ISlideshowEditor, slide, TransitionType, ArrowShape, ISlideEditor, textColor, IHostObject } from '../slideshow.model';
+import { PageConfiguration, PageConfigurationParameterBase } from '@pepperi-addons/papi-sdk';
 
 @Component({
     selector: 'slideshow-editor',
@@ -28,6 +29,10 @@ export class SlideshowEditorComponent implements OnInit {
                 this.loadDefaultConfiguration();
             }
         }
+        
+        this._pageParameters = value?.pageParameters || {};
+        this._pageConfiguration = value?.pageConfiguration || this.defaultPageConfiguration;
+
     }
     // the source config used to do if need to show the Reset button or not
     public configurationSource: ISlideShow;
@@ -36,6 +41,15 @@ export class SlideshowEditorComponent implements OnInit {
     get configuration(): ISlideShow {
         return this._configuration;
     }
+
+     // All the page parameters to set in page configuration when needed (for ScriptPicker addon usage).
+     private _pageParameters: any;
+     get pageParameters(): any {
+         return this._pageParameters;
+     }
+ 
+     private defaultPageConfiguration: PageConfiguration = { "Parameters": [] };
+     private _pageConfiguration: PageConfiguration = this.defaultPageConfiguration;
 
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
     blockLoaded = false;
@@ -80,6 +94,11 @@ export class SlideshowEditorComponent implements OnInit {
                 //this._configuration = event.configuration;
                 this.updateHostObjectField(event.key, event.value);
             }
+            // Update page configuration only if updatePageConfiguration
+            if (event.updatePageConfiguration) {
+                this.updatePageConfigurationObject();
+            }
+            
         }
     }
 
@@ -90,19 +109,6 @@ export class SlideshowEditorComponent implements OnInit {
             configuration: this.configuration
         });
     }
-    // onSlideFieldChange(key, event){
-    //     const value = event && event.source && event.source.key ? event.source.key : event && event.source && event.source.value ? event.source.value :  event;
-        
-    //     if(key.indexOf('.') > -1){
-    //         let keyObj = key.split('.');
-    //         this.configuration.slides[this.currentSlideindex][keyObj[0]][keyObj[1]] = value;
-    //     }
-    //     else{
-    //         this.configuration.slides[this.currentSlideindex][key] = value;
-    //     }
-
-    //     this.updateHostObject();
-    // }
 
     onSlideshowFieldChange(key, event){
 
@@ -184,7 +190,7 @@ export class SlideshowEditorComponent implements OnInit {
         ];
 
         // When finish load raise block-editor-loaded.
-        this.hostEvents.emit({action: 'block-editor-loaded'});
+        //this.hostEvents.emit({action: 'block-editor-loaded'});
         this.blockLoaded = true;
     }
 
@@ -232,5 +238,53 @@ export class SlideshowEditorComponent implements OnInit {
 
     onDragEnd(event: CdkDragEnd) {
         //this.galleryService.changeCursorOnDragEnd();
+    }
+
+    private getPageConfigurationParametersNames(): Array<string> {
+        const parameters = new Set<string>();
+        // Array of actions buttons
+        const scriptBtns = ['firstButton','secondButton'];
+
+        // Go for all slides scripts and add parameters to page configuration if Source is dynamic.
+        for (let index = 0; index < this.configuration.slides.length; index++) {
+            const slide = this.configuration.slides[index];
+            scriptBtns.forEach(actButton => {
+                debugger;
+                if (slide[actButton]?.script?.runScriptData) {
+                    Object.keys(slide[actButton]?.script.runScriptData?.ScriptData).forEach(paramKey => {
+                        const param = slide[actButton]?.script.runScriptData.ScriptData[paramKey];
+            
+                        if (!parameters.has(param.Value) && param.Source === 'dynamic') {
+                            parameters.add(param.Value);
+                        }
+                    });
+                }
+            });
+        }
+
+        // Return the parameters as array.
+        return [...parameters];
+    }
+
+    private updatePageConfigurationObject() {
+        const params = this.getPageConfigurationParametersNames();
+        this._pageConfiguration = this.defaultPageConfiguration;
+
+        // Add the parameter to page configuration.
+        for (let paramIndex = 0; paramIndex < params.length; paramIndex++) {
+            const param = params[paramIndex];
+            
+            this._pageConfiguration.Parameters.push({
+                Key: param,
+                Type: 'String',
+                Consume: true,
+                Produce: false
+            });
+        }
+
+        this.hostEvents.emit({
+            action: 'set-page-configuration',
+            pageConfiguration: this._pageConfiguration
+        });
     }
 }

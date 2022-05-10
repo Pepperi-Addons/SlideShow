@@ -29,6 +29,8 @@ export class SlideshowComponent implements OnInit {
         // }
     }
     
+    private _parameters: any;
+    
     private _configuration: ISlideShow; // = this.getDefaultHostObject();
     get configuration(): ISlideShow {
         return this._configuration;
@@ -120,11 +122,45 @@ export class SlideshowComponent implements OnInit {
 	    return rem * 16 * (100 / document.documentElement.clientHeight);
       }  
       
-      getSlideShowHeight(){
-          if(this.configuration && Object.keys(this.configuration).length > 0){
-            let heightToAdd = this.configuration?.slideshowConfig.heightUnit === 'REM' ? 2.75 : this.convertREMToVH(2.75);
-            heightToAdd = this.configuration?.slideshowConfig?.showControllersInSlider ?  0 : heightToAdd;
-            return (parseFloat(this.configuration?.slideshowConfig.height) + heightToAdd).toString() + this.configuration?.slideshowConfig.heightUnit;
-          }
-      }
+    getSlideShowHeight(){
+        if(this.configuration && Object.keys(this.configuration).length > 0){
+        let heightToAdd = this.configuration?.slideshowConfig.heightUnit === 'REM' ? 2.75 : this.convertREMToVH(2.75);
+        heightToAdd = this.configuration?.slideshowConfig?.showControllersInSlider ?  0 : heightToAdd;
+        return (parseFloat(this.configuration?.slideshowConfig.height) + heightToAdd).toString() + this.configuration?.slideshowConfig.heightUnit;
+        }
+    }
+
+    private getScriptParams(scriptData: any) {
+        const res = {};
+        
+        if (scriptData) {
+            // Go for all the script data and parse the params.
+            Object.keys(scriptData).forEach(paramKey => {
+                const scriptDataParam = scriptData[paramKey];
+                
+                // If the param source is dynamic get the value from the _parameters with the param value as key, else it's a simple param.
+                if (scriptDataParam.Source === 'dynamic') {
+                    res[paramKey] = this._parameters[scriptDataParam.Value] || '';
+                } else { // if (scriptDataParam.Source === 'static')
+                    res[paramKey] = scriptDataParam.Value;
+                }
+            });
+        }
+
+        return res;
+    }
+
+    onSlideClicked(event){
+        // Parse the params if exist.
+        const params = this.getScriptParams(event.ScriptData);
+    
+        this.hostEvents.emit({
+            action: 'emit-event',
+            eventKey: 'RunScript',
+            eventData: {
+                ScriptKey: event.ScriptKey,
+                ScriptParams: params
+            }
+        });
+    }
 }
