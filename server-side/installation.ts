@@ -12,7 +12,7 @@ const SLIDESHOW_TABLE_NAME = '';
 import { Client, Request } from '@pepperi-addons/debug-server'
 import { Relation } from '@pepperi-addons/papi-sdk';
 import MyService from './my.service';
-import { DimxRelations, SlideshowScheme } from './metadata';
+import { blockName, DimxRelations, SlideshowScheme } from './metadata';
 import { servicesVersion } from 'typescript';
  
  
@@ -20,17 +20,13 @@ import { servicesVersion } from 'typescript';
 export async function install(client: Client, request: Request): Promise<any> {
 
     const slideshowRelationsRes = await runMigration(client);
-    //const dimxRes = await createDimxRelations(client);
-    //const dimxSchemeRes = await addDimxScheme(client);
+    const dimxRes = await createDimxRelations(client);
+    const dimxSchemeRes = await addDimxScheme(client);
    
     return {
-        success: slideshowRelationsRes.success,
-        errorMessage: `slideshowRelationsRes: ${slideshowRelationsRes.errorMessage}`
+        success: slideshowRelationsRes.success && dimxRes.success && dimxSchemeRes.success,
+        errorMessage: `slideshowRelationsRes: ${slideshowRelationsRes.errorMessage}, userDeviceResourceRes: ${dimxRes.errorMessage}, userDeviceResourceRes: ${dimxSchemeRes.errorMessage}`
     };
-    // return {
-    //     success: slideshowRelationsRes.success && dimxRes.success && dimxSchemeRes.success,
-    //     errorMessage: `slideshowRelationsRes: ${slideshowRelationsRes.errorMessage}, userDeviceResourceRes: ${dimxRes.errorMessage}, userDeviceResourceRes: ${dimxSchemeRes.errorMessage}`
-    // };
 }
 
 export async function uninstall(client: Client, request: Request): Promise<any> {
@@ -51,16 +47,16 @@ async function runMigration(client){
     try {
         const pageComponentRelation: Relation = {
             RelationName: "PageBlock",
-            Name:"Slideshow",
-            Description:"Slideshow",
+            Name: blockName,
+            Description: `${blockName} block`,
             Type: "NgComponent",
             SubType: "NG11",
             AddonUUID: client.AddonUUID,
-            AddonRelativeURL: "slideshow",
-            ComponentName: 'SlideshowComponent',
-            ModuleName: 'SlideshowModule',
-            EditorComponentName: 'SlideshowEditorComponent',
-            EditorModuleName: 'SlideshowEditorModule',
+            AddonRelativeURL: blockName.toLowerCase(),
+            ComponentName: `${blockName}Component`,
+            ModuleName: `${blockName}Module`,
+            EditorComponentName: `${blockName}EditorComponent`,
+            EditorModuleName: `${blockName}EditorModule`,
             Schema: {
                 "Fields": {
                     "slideshowConfig": {

@@ -1,11 +1,11 @@
 import config from '../addon.config.json';
 import { AddonDataScheme, Relation } from '@pepperi-addons/papi-sdk';
 
-const blockName = 'Slideshow';
+export const blockName = 'Slideshow';
 
 export const DimxRelations: Relation[] = [{
         AddonUUID: config.AddonUUID,
-        Name: `${blockName}`,
+        Name: `${blockName}Import`,
         RelationName: 'DataImportResource',
         Type: 'AddonAPI',
         Description: `${blockName} Import Relation`,
@@ -13,7 +13,7 @@ export const DimxRelations: Relation[] = [{
     },
     {
         AddonUUID: config.AddonUUID,
-        Name: `${blockName}`,
+        Name: `${blockName}Export`,
         RelationName: 'DataExportResource',
         Type: 'AddonAPI',
         Description: `${blockName} Export Relation`,
@@ -21,8 +21,8 @@ export const DimxRelations: Relation[] = [{
     }];
 
 export const SlideshowScheme: AddonDataScheme = {
-    Name: '',
-    Type: 'data',
+    Name: blockName,
+    Type: 'meta_data',
     Fields: {
         'slideshowConfig': {
             'Type': 'Object',
