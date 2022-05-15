@@ -249,7 +249,6 @@ export class SlideshowEditorComponent implements OnInit {
         for (let index = 0; index < this.configuration.slides.length; index++) {
             const slide = this.configuration.slides[index];
             scriptBtns.forEach(actButton => {
-                debugger;
                 if (slide[actButton]?.script?.runScriptData) {
                     Object.keys(slide[actButton]?.script.runScriptData?.ScriptData).forEach(paramKey => {
                         const param = slide[actButton]?.script.runScriptData.ScriptData[paramKey];
