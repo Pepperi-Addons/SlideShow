@@ -229,7 +229,7 @@ export class SlideEditorComponent implements OnInit {
     }
 
     openScriptPickerDialog(btnName: string) {
-        const script = this.configuration.slides[this.id][btnName].script;
+        const script = this.configuration.slides[this.id][btnName].script || {};
 
         const fields = {};
         Object.keys(this._pageParameters).forEach(paramKey => {

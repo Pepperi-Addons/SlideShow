@@ -10,24 +10,13 @@ export async function foo(client: Client, request: Request) {
     // return res
 };
 
-export function export_mapping(client: Client, request: Request) {
-    
-    if (request.method == 'POST') {
-        let body = request.body;
-        console.log(`exporting gallery: ${JSON.stringify(body)}`);
-        return body; 
-    }
-    else if (request.method == 'GET') {
-        throw new Error(`Method ${request.method} not supported`);       
-    }
-}
-
-export function import_mapping(client: Client, request: Request) {
+export function import_fix_object(client: Client, request: Request) {
 
     if (request.method == 'POST') {
-        let body = request.body;
-        console.log(`import gallery: ${JSON.stringify(body)}`);
-        return body; 
+        let object = request.body['Object'];
+        //need to return the object & not the body.Object
+        console.log(`import gallery: ${JSON.stringify(object)}`);
+        return object; 
     }
     else if (request.method == 'GET') {
         throw new Error(`Method ${request.method} not supported`);       
