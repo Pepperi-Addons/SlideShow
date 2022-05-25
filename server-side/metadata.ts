@@ -9,7 +9,8 @@ export const DimxRelations: Relation[] = [{
         RelationName: 'DataImportResource',
         Type: 'AddonAPI',
         Description: `${blockName} Import Relation`,
-        FFixRelativeURL: '/api/import_fix_object'
+        FixRelativeURL: '/api/import_fix_object',
+        AddonRelativeURL: ''
     },
     {
         AddonUUID: config.AddonUUID,
