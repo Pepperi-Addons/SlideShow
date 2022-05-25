@@ -5,7 +5,7 @@ import { PepStyleType, PepSizeType, PepColorService} from '@pepperi-addons/ngx-l
 import { PepButton } from '@pepperi-addons/ngx-lib/button';
 import { PepColorSettings } from '@pepperi-addons/ngx-composite-lib/color-settings';
 import { MatDialogRef } from '@angular/material/dialog';
-import { PepRemoteLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
+import { PepAddonBlockLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
 
 interface groupButtonArray {
     key: string; 
@@ -59,7 +59,7 @@ export class SlideEditorComponent implements OnInit {
         private translate: TranslateService,
         private pepColorService: PepColorService,
         private viewContainerRef: ViewContainerRef,
-        private addonBlockLoaderService: PepRemoteLoaderService
+        private addonBlockLoaderService: PepAddonBlockLoaderService
         // private utilitiesService: PepUtilitiesService
     ) { 
 

@@ -1,7 +1,7 @@
 import { TranslateService } from '@ngx-translate/core';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef } from "@angular/core";
 import { MatDialogRef } from '@angular/material/dialog';
-import { PepRemoteLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
+import { PepAddonBlockLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
 
 @Component({
     selector: 'assets-button',
@@ -30,7 +30,7 @@ export class AssetsButtonComponent implements OnInit {
     constructor(
         private viewContainerRef: ViewContainerRef,
         public translate: TranslateService,
-        private pepRemoteLoaderService: PepRemoteLoaderService) {
+        private addonBlockLoaderService: PepAddonBlockLoaderService) {
 
     }
 
@@ -45,7 +45,7 @@ export class AssetsButtonComponent implements OnInit {
 
     onOpenAssetsDialog() {
         if(!this.disabled){
-            this.dialogRef = this.pepRemoteLoaderService.loadAddonBlockInDialog({
+            this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
                 container: this.viewContainerRef,
                 name: 'Assets',
                 hostObject: this.assetsHostObject,
