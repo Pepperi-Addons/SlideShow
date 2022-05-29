@@ -134,17 +134,19 @@
         div{
 
             &.title-md{
-                font-size: calc(#{ngx-variables.$fs-md} * 1.75) !important;   
+                font-size: calc(#{ngx-variables.$fs-md} * 1.75) !important;  
+                height: calc(#{ngx-variables.$fs-lg} * 1.75) !important;  
+                line-height: calc(#{ngx-variables.$fs-lg} * 1.75) !important;  
             }
             &.title-lg{
                 font-size: calc(#{ngx-variables.$fs-lg} * 2.75) !important; 
                 height: calc(#{ngx-variables.$fs-lg} * 2.75) !important;  
-                line-height: calc(#{ngx-variables.$fs-lg} * 2.25) !important;  
+                line-height: calc(#{ngx-variables.$fs-lg} * 2.75) !important;  
             }
             &.title-xl{
                 font-size: calc(#{ngx-variables.$fs-xl} * 3.5) !important; 
                 height: calc(#{ngx-variables.$fs-xl} * 3.5) !important; 
-                line-height: calc(#{ngx-variables.$fs-xl} * 2.75) !important;     
+                line-height: calc(#{ngx-variables.$fs-xl} * 3.5) !important;     
             }
         
         }
