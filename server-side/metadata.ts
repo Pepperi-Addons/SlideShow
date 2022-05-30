@@ -232,8 +232,14 @@ export const SlideshowScheme: AddonDataScheme = {
                             'useImage': {
                                 'Type': 'Bool'
                             },
-                            'src': {
-                                'Type': 'String' 
+                            "asset": {
+                                "Type": "Resource",
+                                "Resource": "Assets", // todo - need to change to resource adal table name
+                                "AddonUUID": "ad909780-0c23-401e-8e8e-f514cc4f6aa2",
+                       
+                            },
+                            'assetURL': {
+                                'Type': 'Object'
                             },
                             'horizontalPosition': {
                                 'Type': 'String' 

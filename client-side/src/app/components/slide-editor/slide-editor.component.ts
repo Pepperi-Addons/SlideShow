@@ -100,9 +100,9 @@ export class SlideEditorComponent implements OnInit {
         ]
     
         this.WidthSize =  [
-            { key: 'narrow', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.NARROW'), callback: (event: any) => this.onSlideFieldChange('contentWidth',event) },
-            { key: 'regular', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.REGULAR'), callback: (event: any) => this.onSlideFieldChange('contentWidth',event) },
-            { key: 'wide', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.WIDE'), callback: (event: any) => this.onSlideFieldChange('contentWidth',event) },
+            { key: 'Narrow', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.NARROW'), callback: (event: any) => this.onSlideFieldChange('contentWidth',event) },
+            { key: 'Regular', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.REGULAR'), callback: (event: any) => this.onSlideFieldChange('contentWidth',event) },
+            { key: 'Wide', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.WIDE'), callback: (event: any) => this.onSlideFieldChange('contentWidth',event) },
         ];
         
         this.HorizentalAlign =  [
@@ -223,8 +223,11 @@ export class SlideEditorComponent implements OnInit {
 
     onHostEvents(event: any) {
         if(event?.url){
-            this.configuration.slides[this.id]['image']['src'] = event.url;
-            this.updateHostObjectField(`slides[${this.id}].image.src`, event.url);
+            this.configuration.slides[this.id]['image'].asset = event.key;
+            this.configuration.slides[this.id]['image'].assetURL = event.url;
+
+            this.updateHostObjectField(`slides[${this.id}].image.assetURL`, event.url);
+            this.updateHostObjectField(`slides[${this.id}].image.asset`, event.key);
         }     
     }
 

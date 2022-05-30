@@ -29,7 +29,8 @@ export class SlideButton {
 
 export class SlideImage {
     useImage: boolean = false;
-    src: string =  '';
+    asset: string = '';
+    assetURL: string = '';
     horizontalPosition: string = '50';
     verticalPosition: string = '50';
 }
@@ -68,7 +69,7 @@ export class ISlideEditor {
     subTitleSize: PepSizeType = 'md';
     contentWidth: WidthUnits = 'Regular';
     horizontalAlign: PepHorizontalAlignment = 'left';
-    verticalAlign: PepVerticalAlignment = 'middle';
+    verticalAlign: 'start' | 'middle' | 'end' = 'end';//  PepVerticalAlignment = 'middle';
     innerSpacing: PepSizeType = "md";
     textColor: textColor = 'system';
     buttonsSize: PepSizeType  = 'md';

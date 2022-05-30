@@ -68,7 +68,7 @@
 
     <pep-group-buttons-settings 
                 pepResetConfigurationField="slides[{{id}}].verticalAlign" [hideReset]="configuration.slides[id].verticalAlign === configurationSource?.slides[id].verticalAlign"
-                 [resetHostEvents]="hostEvents" 
+                [resetHostEvents]="hostEvents" 
                 [groupType]="'vertical-align'" [subHeader]="'SLIDE_EDITOR.VERTICAL_ALIGN' | translate"
                 [btnKey]="configuration?.slides[id].verticalAlign"
                 (btnkeyChange)="onSlideFieldChange('verticalAlign',$event)">
@@ -128,15 +128,15 @@
 
     <pep-checkbox [value]="configuration?.slides[id].image.useImage" [label]="'SLIDE_EDITOR.IMAGE' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('image.useImage',$event)"></pep-checkbox>
 
-    <assets-button [imageURL]="configuration?.slides[id].image?.src"
+    <assets-button [imageURL]="configuration?.slides[id].image?.assetURL"
                    [disabled]="!configuration?.slides[id].image.useImage" 
                    (hostEvents)="onHostEvents($event);">
     </assets-button>
 
     <!-- <pep-textbox [label]="'SLIDE_EDITOR.CHOOSE_IMAGE' | translate" 
                   type="link" 
-                  [value]="configuration?.slides[id].image?.src" 
-                  (valueChange)="onSlideFieldChange('image.src',$event)"></pep-textbox> -->
+                  [value]="configuration?.slides[id].image?.assetURL" 
+                  (valueChange)="onSlideFieldChange('image.assetURL',$event)"></pep-textbox> -->
     <pep-slider
         pepResetConfigurationField="slides[{{id}}].image.horizontalPosition" [hideReset]="configuration.slides[id].image.horizontalPosition === configurationSource?.slides[id].image.horizontalPosition"
          [resetHostEvents]="hostEvents" 

@@ -313,8 +313,16 @@ async function runMigration(client){
                                             "Type": "Bool",
                                             "ConfigurationPerScreenSize": false, 
                                         },
-                                        "src": {
-                                            "Type": "String",
+                                        "asset": {
+                                            "Type": "Resource",
+                                            "Fields": {
+                                                "url": {
+                                                    "Type": "String"
+                                                },
+                                                "key": {
+                                                    "Type": "String"
+                                                }
+                                            },
                                             "ConfigurationPerScreenSize": false, 
                                         },
                                         "horizontalPosition": {

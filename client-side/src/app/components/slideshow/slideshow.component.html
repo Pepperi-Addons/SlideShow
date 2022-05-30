@@ -30,7 +30,7 @@
        <div id="dotsCont" 
             class="pep-button regular system"
             [ngClass]='configuration?.slideshowConfig?.controllerSize'>
-              <span *ngFor="slide of configuration?.slides; let i = index" 
+              <span *ngFor="let slide of configuration?.slides; let i = index" 
                      class="dot" 
                      (click)="setSlideIndex(i)" 
                      [ngClass]="{'active': i ===  slideIndex}">

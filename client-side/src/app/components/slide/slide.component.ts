@@ -69,15 +69,15 @@ export class SlideComponent implements OnInit {
 
         switch(horAlign){
             case 'left':{
-                direction = verAlign === 'top' ? '135' : verAlign === 'middle' ? '90' : '45';
+                direction = verAlign === 'start' ? '135' : verAlign === 'middle' ? '90' : '45';
                 break;
             }
             case 'center':{
-                direction = verAlign === 'top' ? '180' : verAlign === 'middle' ? 'circle' : '0';
+                direction = verAlign === 'start' ? '180' : verAlign === 'middle' ? 'circle' : '0';
                 break;
             }
             case 'right':{
-                direction = verAlign === 'top' ? '225' : verAlign === 'middle' ? '135' : '315';
+                direction = verAlign === 'start' ? '225' : verAlign === 'middle' ? '135' : '315';
                 break;
             }
         }
@@ -86,7 +86,7 @@ export class SlideComponent implements OnInit {
         let colorsStr =  direction ! == 'circle' ? this.getRGBAcolor(gradient,0) +' , '+ this.getRGBAcolor(gradient) :
                                                  this.getRGBAcolor(gradient) +' , '+ this.getRGBAcolor(gradient,0);
         let imagePosition = this.slide?.image?.horizontalPosition + '% ' + this.slide?.image?.verticalPosition + '%';
-        let imageSrc = this.slide?.image?.useImage  && this.slide?.image?.src !== '' ? 'url(' +this.slide?.image?.src + ')' + ' ' + imagePosition : '';
+        let imageSrc = this.slide?.image?.useImage  && this.slide?.image?.assetURL !== '' ? 'url(' +this.slide?.image?.assetURL + ')' + ' ' + imagePosition : '';
         let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
 
         let gradStr = this.slide.gradientOverlay.use ? gradType + '(' + direction +' , '+ colorsStr +')' : '';

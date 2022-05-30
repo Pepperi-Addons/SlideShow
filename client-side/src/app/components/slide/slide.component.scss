@@ -66,13 +66,13 @@
             .subtitle-cont{
                 overflow: hidden;
             }
-            &.contentWidth_narrow{
+            &.contentWidth_Narrow{
                 width: 50%;
             }
-            &.contentWidth_regular{
+            &.contentWidth_Regular{
                 width: 75%;
             }
-            &.contentWidth_wide{
+            &.contentWidth_Wide{
                 width: 100%;
             }
 
@@ -90,7 +90,7 @@
                 align-self: start;
             }
             &.verAlign_center{
-                align-self: center;
+                align-self: middle;
             }
             &.verAlign_end{
                 align-self: end;

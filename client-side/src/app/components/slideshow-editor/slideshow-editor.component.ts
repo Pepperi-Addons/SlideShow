@@ -198,7 +198,8 @@ export class SlideshowEditorComponent implements OnInit {
         let slide = new ISlideEditor();
         slide.id = (this.configuration.slides.length);
 
-        this.configuration.slides.push( slide);   
+        this.configuration.slides.push( slide); 
+        this.updateHostObject();  
     }
 
     onSlideEditClick(event){
