@@ -226,7 +226,7 @@ export class SlideEditorComponent implements OnInit {
             this.configuration.slides[this.id]['image'].asset = event.key;
             this.configuration.slides[this.id]['image'].assetURL = event.url;
 
-            this.updateHostObjectField(`slides[${this.id}].image.assetURL`, event.url);
+            this.updateHostObjectField(`slides[${this.id}].image.assetURL`, encodeURI(event.url));
             this.updateHostObjectField(`slides[${this.id}].image.asset`, event.key);
         }     
     }
@@ -249,7 +249,7 @@ export class SlideEditorComponent implements OnInit {
             hostObject: this.configuration.slides[this.id][btnName].script,
             hostEventsCallback: (event) => { 
                 if (event.action === 'script-picked') {
-                    this.configuration.slides[this.id][btnName].script = event.data;
+                    this.configuration.slides[this.id][btnName].script = event.data || {};
                     this.updateHostObjectField(`slides[${this.id}][${btnName}].script`, event.data, true);
                     this.dialogRef.close();
                 } else if (event.action === 'close') {

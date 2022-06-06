@@ -81,7 +81,7 @@
             pepResetConfigurationField="slides[{{id}}].buttonsSize" [hideReset]="configuration.slides[id].buttonsSize === configurationSource?.slides[id].buttonsSize"
              [resetHostEvents]="hostEvents" 
             [header]="'SLIDE_EDITOR.BUTTONS' | translate" [subHeader]="'SLIDE_EDITOR.BUTTON_SIZE' | translate"
-            [groupType]="'custom'" [btnsArray]="ButtonsSize"
+            [groupType]="'sizes'" [excludeKeys]="['xs']"
             [btnKey]="configuration?.slides[id].buttonsSize">
     </pep-group-buttons-settings>
 
