@@ -5,14 +5,15 @@
 
 <div #mainSlideCont 
      class="ng-component-container" 
-     [ngStyle]="{'height': getSlideContentHeight()}" 
+     [ngStyle]="{'height': getSlideContentHeight(),
+                 'background' : getGradientOverlay()}" 
      [ngClass]="[ 'horAlign_' + slide?.horizontalAlign,
                  'verAlign_' + slide?.verticalAlign,
                  'inner_padding_' + slideshowConfig.innerPadding]">      
             <div *ngIf="slide?.image?.useImage || slide?.gradientOverlay?.use || slide?.overlay?.use"
                 class="backgroundImage"
                 [ngClass]="['inner_margin_' + slideshowConfig.innerPadding ]"
-                [ngStyle]="{'background' : getGradientOverlay(),
+                [ngStyle]="{'background' : getAssetWithPos(),
                              'box-shadow': slide?.overlay?.use ?  'inset 0 0 0 100vh ' + getRGBAcolor(slide?.overlay) : 'unset' ,
                              'height': slideshowConfig.height + slideshowConfig.heightUnit}">
       

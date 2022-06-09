@@ -10,6 +10,9 @@
     
 
     &.horAlign_right{
+
+        justify-content: end;
+
         ::ng-deep{
             .pep-main-area{
                 display: grid !important;
@@ -18,6 +21,9 @@
         }
     }
     &.horAlign_center{
+
+        justify-content: center;
+
         ::ng-deep{
             .pep-main-area{
                 display: grid !important;
@@ -26,6 +32,9 @@
         }
     }
     &.horAlign_left{
+
+        justify-content: start;
+        
         ::ng-deep{
             .pep-main-area{
                 display: grid !important;

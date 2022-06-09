@@ -73,15 +73,19 @@ export class SlideshowEditorComponent implements OnInit {
         this.updateHostObject();
     }
 
-    private getDefaultSlide(): ISlideEditor {
-        let a = new ISlideEditor();
-        a.id = 0;
+    private getDefaultSlide() {
+        let arr: Array<ISlideEditor> = [];
+        
+        for(let i = 0 ; i < 2 ; i++){
+            arr.push(new ISlideEditor());
+            arr[i].id = i;
+        }
 
-        return a;
+        return arr;
     }
 
     private getDefaultHostObject(): ISlideShow {
-        return { slideshowConfig: new ISlideshowEditor(), slides: [this.getDefaultSlide()] };
+        return { slideshowConfig: new ISlideshowEditor(), slides: this.getDefaultSlide() };
     }
 
     public onHostObjectChange(event) {

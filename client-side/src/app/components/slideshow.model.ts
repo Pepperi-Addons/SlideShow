@@ -24,7 +24,12 @@ export class SlideButton {
     useButton: boolean = true;
     label: string = 'Button';
     script: any = {};
-    style: PepStyleType = 'regular'
+    style: PepStyleType = 'regular';
+
+    constructor(useButton = true) {
+        this.useButton = useButton;
+
+      }
 }
 
 export class SlideImage {
@@ -42,7 +47,7 @@ export class ISlideshowEditor {
     height: string = '16';
     innerPadding: PepSizeType = "md";
     isTransition: boolean = true;
-    transitionDuration: number = 3;
+    transitionDuration: number = 5;
     transitionType: TransitionType = 'fade';
     transitionTime: string = '2';
     isUseArrows: boolean = true;
@@ -69,13 +74,13 @@ export class ISlideEditor {
     subTitleSize: PepSizeType = 'md';
     contentWidth: WidthUnits = 'Regular';
     horizontalAlign: PepHorizontalAlignment = 'left';
-    verticalAlign: 'start' | 'middle' | 'end' = 'end';//  PepVerticalAlignment = 'middle';
+    verticalAlign: 'start' | 'middle' | 'end' = 'start';//  PepVerticalAlignment = 'middle';
     innerSpacing: PepSizeType = "md";
     textColor: textColor = 'system';
     buttonsSize: PepSizeType  = 'md';
     buttonColor: buttonColor= 'system-primary';
-    firstButton: SlideButton = new SlideButton();
-    secondButton: SlideButton  = new SlideButton();
+    firstButton: SlideButton = new SlideButton(true);
+    secondButton: SlideButton  = new SlideButton(false);
     gradientOverlay: PepColorSettings = new PepColorSettings();
     overlay: PepColorSettings = new PepColorSettings();
     image: SlideImage = new SlideImage();

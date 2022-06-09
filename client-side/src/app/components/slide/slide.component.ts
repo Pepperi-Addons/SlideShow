@@ -59,7 +59,17 @@ export class SlideComponent implements OnInit {
         }
         return rgba;
     }
+    getAssetWithPos(){
+        let imagePosition = this.slide?.image?.horizontalPosition + '% ' + this.slide?.image?.verticalPosition + '%';
+        let imageSrc = this.slide?.image?.useImage  && this.slide?.image?.assetURL !== '' ? 'url(' +this.slide?.image?.assetURL + ')' + ' ' + imagePosition : '';
 
+        if(imageSrc != ''){
+            return imageSrc ;
+        }
+        else{
+            return 'unset';
+        }
+    }
     getGradientOverlay(){
         let gradient = this.slide?.gradientOverlay;
         let horAlign = this.slide?.horizontalAlign;
@@ -85,19 +95,23 @@ export class SlideComponent implements OnInit {
 
         let colorsStr =  direction ! == 'circle' ? this.getRGBAcolor(gradient,0) +' , '+ this.getRGBAcolor(gradient) :
                                                  this.getRGBAcolor(gradient) +' , '+ this.getRGBAcolor(gradient,0);
-        let imagePosition = this.slide?.image?.horizontalPosition + '% ' + this.slide?.image?.verticalPosition + '%';
-        let imageSrc = this.slide?.image?.useImage  && this.slide?.image?.assetURL !== '' ? 'url(' +this.slide?.image?.assetURL + ')' + ' ' + imagePosition : '';
+        //let imagePosition = this.slide?.image?.horizontalPosition + '% ' + this.slide?.image?.verticalPosition + '%';
+        //let imageSrc = this.slide?.image?.useImage  && this.slide?.image?.assetURL !== '' ? 'url(' +this.slide?.image?.assetURL + ')' + ' ' + imagePosition : '';
         let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
 
         let gradStr = this.slide.gradientOverlay.use ? gradType + '(' + direction +' , '+ colorsStr +')' : '';
-        if(gradStr != '' && imageSrc != ''){
-            return gradStr + ',' + imageSrc;
-        }
-        else if(gradStr != '' && imageSrc == ''){
+        // if(gradStr != '' && imageSrc != ''){
+        //     return gradStr + ',' + imageSrc;
+        // }
+        // else if(gradStr != '' && imageSrc == ''){
+        //     return gradStr ;
+        // }
+        // else if(gradStr == '' && imageSrc != ''){
+        //     return imageSrc ;
+        // }
+
+        if(gradStr != ''){
             return gradStr ;
-        }
-        else if(gradStr == '' && imageSrc != ''){
-            return imageSrc ;
         }
         else{
             return 'unset';
@@ -109,7 +123,7 @@ export class SlideComponent implements OnInit {
     getSlideContentHeight(){
 
         let height = parseFloat(this.slideshowConfig?.height) ;
-        let numToDec = this.slideshowConfig?.showControllersInSlider ? -2 : -0.5; 
+        let numToDec = this.slideshowConfig?.showControllersInSlider ? 0 : -0.5; 
             numToDec = this.slideshowConfig?.heightUnit === 'VH' ? this.convertREMToVH(numToDec) : numToDec;
             height = height + numToDec;
 
