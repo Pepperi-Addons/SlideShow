@@ -4,7 +4,7 @@ import { ISlideShow, ISlideshowEditor, slide, TransitionType, ArrowShape, ISlide
 import { PepStyleType, PepSizeType, PepColorService} from '@pepperi-addons/ngx-lib';
 import { PepButton } from '@pepperi-addons/ngx-lib/button';
 import { PepColorSettings } from '@pepperi-addons/ngx-composite-lib/color-settings';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { PepAddonBlockLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
 
 interface groupButtonArray {
@@ -243,9 +243,14 @@ export class SlideEditorComponent implements OnInit {
         
         script['fields'] = fields;
         
+        //const dialogConfig = new MatDialogConfig();
+        //dialogConfig.height = '500px';
+
         this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
             container: this.viewContainerRef,
             name: 'ScriptPicker',
+            size: 'large',
+            //config: dialogConfig,
             hostObject: this.configuration.slides[this.id][btnName].script,
             hostEventsCallback: (event) => { 
                 if (event.action === 'script-picked') {

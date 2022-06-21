@@ -117,11 +117,13 @@
     </pep-select>
     
     <pep-color-settings [title]="'SLIDE_EDITOR.GRADIENT_OVERLAY' | translate"
+                        [checkAAComplient]="false"
                         [color]="configuration?.slides[id].gradientOverlay"
                         (colorChange)="onSlideFieldChange('gradientOverlay',$event)">
     </pep-color-settings>
     
     <pep-color-settings [title]="'SLIDE_EDITOR.OVERLAY' | translate"
+                        [checkAAComplient]="false"
                         [color]="configuration?.slides[id].overlay"
                         (colorChange)="onSlideFieldChange('overlay',$event)">
     </pep-color-settings>

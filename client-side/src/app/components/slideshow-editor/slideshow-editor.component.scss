@@ -10,6 +10,11 @@
     }
 
     ::ng-deep {
+
+        .pep-reset-configuration-field-container{
+            margin-bottom: 0 !important;
+        }
+        
         .mat-tab-header-pagination{
             display: none;
         }
