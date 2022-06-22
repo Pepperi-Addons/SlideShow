@@ -37,7 +37,8 @@
                                 'textColor_'+slide?.textColor]">
                         {{slide?.subTitleContent}} 
                 </div>
-                <div class="buttons-box" *ngIf="slide?.firstButton?.useButton || slide?.secondButton?.useButton">
+                <div class="buttons-box" *ngIf="slide?.firstButton?.useButton || slide?.secondButton?.useButton"
+                     [ngStyle]="{'justify-content' : slide?.horizontalAlign}">
                     <pep-button *ngIf="slide?.firstButton?.useButton" [sizeType]="slide?.buttonsSize" [value]="slide?.firstButton.label" [styleType]="slide?.firstButton?.style" [classNames]="slide?.buttonColor" (buttonClick)="onSlideButtonClicked('firstButton')"></pep-button>
                     <pep-button *ngIf="slide?.secondButton?.useButton" [sizeType]="slide?.buttonsSize" [value]="slide?.secondButton.label" [styleType]="slide?.secondButton?.style" [classNames]="slide?.buttonColor"  (buttonClick)="onSlideButtonClicked('secondButton')"></pep-button>
                 </div>

@@ -34,7 +34,7 @@
     &.horAlign_left{
 
         justify-content: start;
-        
+
         ::ng-deep{
             .pep-main-area{
                 display: grid !important;
@@ -130,12 +130,11 @@
 
             .buttons-box{
                 z-index: 2;
+                display: flex;
+                gap: 1rem;
+                
                 pep-button{
-                    display: inline;;
-                    
-                    &:first-of-type{
-                        margin-inline-end: 1rem;
-                    }
+                    display: inline;
                 }
             }
         }

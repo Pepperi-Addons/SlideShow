@@ -113,8 +113,8 @@
             "STRONG": "Strong"
         },"BUTTON_STYLES": {
             "REGULAR": "Regular",
-            "WEAK": "weak",
-            "WEAK-INVERT": "Weak invert",
+            "WEAK": "Weak",
+            "WEAK_INVERT": "Weak Inverted",
             "STRONG": "Strong"
         },
         "BUTTON_COLOR": {
