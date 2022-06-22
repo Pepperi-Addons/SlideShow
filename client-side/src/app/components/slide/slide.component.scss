@@ -131,8 +131,8 @@
             .buttons-box{
                 z-index: 2;
                 display: flex;
-                gap: 1rem;
-                
+                gap: ngx-variables.$spacing-sm;
+
                 pep-button{
                     display: inline;
                 }

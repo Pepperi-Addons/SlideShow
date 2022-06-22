@@ -95,20 +95,10 @@ export class SlideComponent implements OnInit {
 
         let colorsStr =  direction ! == 'circle' ? this.getRGBAcolor(gradient,0) +' , '+ this.getRGBAcolor(gradient) :
                                                  this.getRGBAcolor(gradient) +' , '+ this.getRGBAcolor(gradient,0);
-        //let imagePosition = this.slide?.image?.horizontalPosition + '% ' + this.slide?.image?.verticalPosition + '%';
-        //let imageSrc = this.slide?.image?.useImage  && this.slide?.image?.assetURL !== '' ? 'url(' +this.slide?.image?.assetURL + ')' + ' ' + imagePosition : '';
-        let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
+        
+                                                 let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
 
         let gradStr = this.slide.gradientOverlay.use ? gradType + '(' + direction +' , '+ colorsStr +')' : '';
-        // if(gradStr != '' && imageSrc != ''){
-        //     return gradStr + ',' + imageSrc;
-        // }
-        // else if(gradStr != '' && imageSrc == ''){
-        //     return gradStr ;
-        // }
-        // else if(gradStr == '' && imageSrc != ''){
-        //     return imageSrc ;
-        // }
 
         if(gradStr != ''){
             return gradStr ;
