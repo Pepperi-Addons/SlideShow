@@ -1,21 +1,21 @@
 {
-  "AddonUUID": "f93658be-17b6-4c92-9df3-4e6c7151e038",
-  "AddonVersion": "0.7.2",
-  "DebugPort": 4500,
-  "WebappBaseUrl": "https://app.sandbox.pepperi.com",
-  "DefaultEditor": "main",
-  "Endpoints": [
-    "installation.ts",
-    "api.ts"
-  ],
-  "Editors": [
-    "main"
-  ],
-  "PublishConfig": {
-    "ClientStack": "ng10",
-    "Dependencies": {
-      "assets_manager_client": "0.0.19",
-      "cpi-node-scripts": "0.0.87"
+    "AddonUUID": "f93658be-17b6-4c92-9df3-4e6c7151e038",
+    "AddonVersion": "0.7.113",
+    "DebugPort": 4500,
+    "WebappBaseUrl": "https://app.sandbox.pepperi.com",
+    "DefaultEditor": "main",
+    "Endpoints": [
+        "installation.ts",
+        "api.ts"
+    ],
+    "Editors": [
+        "main"
+    ],
+    "PublishConfig": {
+        "ClientStack": "ng14",
+        "Dependencies": {
+            "assets_manager_client": "0.0.19",
+            "cpi-node-scripts": "0.0.87"
+        }
     }
-  }
 }

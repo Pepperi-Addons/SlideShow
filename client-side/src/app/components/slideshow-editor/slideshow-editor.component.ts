@@ -1,11 +1,10 @@
 import { CdkDragDrop, CdkDragEnd, CdkDragStart, moveItemInArray } from '@angular/cdk/drag-drop';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { PepStyleType, PepSizeType} from '@pepperi-addons/ngx-lib';
-import { IPepButtonClickEvent, PepButton } from '@pepperi-addons/ngx-lib/button';
-import { ISlideShow, ISlideshowEditor, slide, TransitionType, ArrowShape, ISlideEditor, textColor, IHostObject } from '../slideshow.model';
-import { PageConfiguration, PageConfigurationParameterBase } from '@pepperi-addons/papi-sdk';
+import { PepStyleType} from '@pepperi-addons/ngx-lib';
+import { PepButton } from '@pepperi-addons/ngx-lib/button';
+import { ISlideShow, ISlideshowEditor, TransitionType, ISlideEditor } from '../slideshow.model';
+import { PageConfiguration } from '@pepperi-addons/papi-sdk';
 
 @Component({
     selector: 'slideshow-editor',
@@ -42,14 +41,14 @@ export class SlideshowEditorComponent implements OnInit {
         return this._configuration;
     }
 
-     // All the page parameters to set in page configuration when needed (for ScriptPicker addon usage).
-     private _pageParameters: any;
-     get pageParameters(): any {
-         return this._pageParameters;
-     }
- 
-     private defaultPageConfiguration: PageConfiguration = { "Parameters": [] };
-     private _pageConfiguration: PageConfiguration = this.defaultPageConfiguration;
+    // All the page parameters to set in page configuration when needed (for ScriptPicker addon usage).
+    private _pageParameters: any;
+    get pageParameters(): any {
+        return this._pageParameters;
+    }
+
+    private defaultPageConfiguration: PageConfiguration = { "Parameters": [] };
+    private _pageConfiguration: PageConfiguration = this.defaultPageConfiguration;
 
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
     blockLoaded = false;
@@ -156,8 +155,7 @@ export class SlideshowEditorComponent implements OnInit {
             { key: 'fade', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.FADE') },
             { key: 'slide', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.SLIDE') },
             { key: 'blur', value: this.translate.instant('SLIDESHOW.TRANSITIONTYPES.BLUR') }
-            
-        ]
+        ];
         
         this.buttonStyle = [
             { key: 'weak', value: this.translate.instant('SLIDE_EDITOR.BUTTON_STYLES.WEAK') },
@@ -169,7 +167,7 @@ export class SlideshowEditorComponent implements OnInit {
             { key: 'system-primary', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.SYSTEM') },
             { key: 'invert', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.INVERTED') },
             { key: 'user-primary', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.USER') },
-        ]
+        ];
 
         this.HeightUnitsType = [
             { key: 'REM', value: this.translate.instant('SLIDESHOW.HEIGHTUNITS_REM'), callback: (event: any) => this.onSlideshowFieldChange('heightUnit',event) },
@@ -206,7 +204,7 @@ export class SlideshowEditorComponent implements OnInit {
         this.updateHostObject();  
     }
 
-    onSlideEditClick(event){
+    onSlideEditClick(event) {
        
         if(this.configuration.slideshowConfig.editSlideIndex === event.id){ //close the editor
             this.configuration.slideshowConfig.editSlideIndex = "-1";
@@ -217,13 +215,14 @@ export class SlideshowEditorComponent implements OnInit {
 
         this.updateHostObject();
     }
+
     onSlideRemoveClick(event){
         this.configuration.slides.splice(event.id, 1);
         this.configuration.slides.forEach(function(slide, index, arr) {slide.id = index; });
         this.updateHostObject();
     }
 
-    onValueChange(event){
+    onValueChange(event) {
 
     }
 

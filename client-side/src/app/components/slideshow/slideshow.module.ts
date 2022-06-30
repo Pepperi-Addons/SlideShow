@@ -5,13 +5,14 @@ import { TranslateLoader, TranslateModule, TranslateService, TranslateStore } fr
 import { PepSelectModule } from '@pepperi-addons/ngx-lib/select';
 import { PepButtonModule } from '@pepperi-addons/ngx-lib/button';
 import { PepHttpService, PepFileService, PepNgxLibModule, PepAddonService, PepCustomizationService } from '@pepperi-addons/ngx-lib';
-import { SlideshowComponent } from './slideshow.component';
-import { SlideModule } from '../slide/slide.module';
-// import { PepperiTableComponent } from './pepperi-table.component'
 import { PepDialogService } from '@pepperi-addons/ngx-lib/dialog';
 import { PepPageLayoutModule } from '@pepperi-addons/ngx-lib/page-layout';
-import { config } from '../addon.config';
 import { pepIconArrowBackRight, PepIconModule, PepIconRegistry, pepIconSystemPause , pepIconSystemPlay, pepIconArrowLeft, pepIconArrowRight} from '@pepperi-addons/ngx-lib/icon';
+
+import { config } from '../addon.config';
+
+import { SlideshowComponent } from './slideshow.component';
+import { SlideModule } from '../slide/slide.module';
 
 const pepIcons = [
     pepIconArrowBackRight,
@@ -27,32 +28,25 @@ const pepIcons = [
     ],
     imports: [
         CommonModule,
-        HttpClientModule,
         SlideModule,
-        // When not using module as sub-addon please remark this for not loading twice resources
-        TranslateModule.forChild({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: (http: HttpClient, fileService: PepFileService, addonService: PepAddonService) => 
-                    PepAddonService.createDefaultMultiTranslateLoader(http, fileService, addonService, config.AddonUUID),
-                deps: [HttpClient, PepFileService, PepAddonService],
-            }, isolate: false
-        }),
         PepNgxLibModule,
         PepButtonModule,
         PepSelectModule,
         PepPageLayoutModule,
-        PepIconModule
-        ],
+        PepIconModule,
+        // When not using module as sub-addon please remark this for not loading twice resources
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: (addonService: PepAddonService) => 
+                    PepAddonService.createMultiTranslateLoader(addonService, ['ngx-lib', 'ngx-composite-lib'], config.AddonUUID),
+                deps: [PepAddonService]
+            }, isolate: false
+        })
+    ],
     exports:[SlideshowComponent],
     providers: [
-        HttpClient,
         TranslateStore,
-        PepHttpService,
-        PepAddonService,
-        PepFileService,
-        PepCustomizationService,
-        PepDialogService
     ]
 })
 export class SlideshowModule {

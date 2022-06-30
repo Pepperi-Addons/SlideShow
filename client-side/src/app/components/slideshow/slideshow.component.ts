@@ -1,9 +1,7 @@
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
 import { PepLayoutService, PepScreenSizeType } from '@pepperi-addons/ngx-lib';
-import { SlideshowService } from './index';
 import { IHostObject, ISlideEditor, ISlideShow, ISlideshowEditor } from '../slideshow.model';
-import { NgtscCompilerHost } from '@angular/compiler-cli/src/ngtsc/file_system';
 
 
 @Component({
@@ -43,7 +41,6 @@ export class SlideshowComponent implements OnInit {
     private timer: any;
 
     constructor(
-        public addonService: SlideshowService,
         public layoutService: PepLayoutService,
         public translate: TranslateService
     ) {

@@ -1,2 +1,2 @@
-export * from './slideshow-editor.component';
-export * from './slideshow-editor.module';
+export * from '../slideshow-editor/slideshow-editor.component';
+export * from '../slideshow-editor/slideshow-editor.module';

@@ -1,5 +1,4 @@
 import { PepStyleType, PepSizeType, PepHorizontalAlignment, PepVerticalAlignment, PepScreenSizeType} from '@pepperi-addons/ngx-lib';
-import { PageConfiguration } from '@pepperi-addons/papi-sdk';
 import { PepShadowSettings} from "@pepperi-addons/ngx-composite-lib/shadow-settings";
 import { PepColorSettings } from "@pepperi-addons/ngx-composite-lib/color-settings";
 export interface IHostObject {

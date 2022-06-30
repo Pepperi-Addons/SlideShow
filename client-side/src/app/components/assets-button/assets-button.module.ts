@@ -2,8 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AssetsButtonComponent } from './assets-button.component';
 import { TranslateModule, TranslateLoader, TranslateService, TranslateStore } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
-import { PepFileService, PepAddonService, PepNgxLibModule } from '@pepperi-addons/ngx-lib';
+import { PepAddonService, PepNgxLibModule } from '@pepperi-addons/ngx-lib';
 import { config } from '../addon.config';
 import { PepButtonModule } from '@pepperi-addons/ngx-lib/button';
 import { PepRemoteLoaderModule } from '@pepperi-addons/ngx-lib/remote-loader';
@@ -18,9 +17,9 @@ import { PepRemoteLoaderModule } from '@pepperi-addons/ngx-lib/remote-loader';
         TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
-                useFactory: (http: HttpClient, fileService: PepFileService, addonService: PepAddonService) => 
-                    PepAddonService.createDefaultMultiTranslateLoader(http, fileService, addonService, config.AddonUUID),
-                deps: [HttpClient, PepFileService, PepAddonService],
+                useFactory: (addonService: PepAddonService) => 
+                    PepAddonService.createMultiTranslateLoader(addonService, ['ngx-lib', 'ngx-composite-lib'], config.AddonUUID),
+                deps: [PepAddonService]
             }, isolate: false
         }),
     ],
