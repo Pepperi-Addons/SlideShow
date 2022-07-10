@@ -1,7 +1,7 @@
-const { shareAll, share, withModuleFederationPlugin } = require('@angular-architects/module-federation/webpack');
+const { shareAll, withModuleFederationPlugin } = require('@angular-architects/module-federation/webpack');
 const blockName = 'slideshow';
 
-module.exports = withModuleFederationPlugin({
+const webpackConfig = withModuleFederationPlugin({
     name: blockName,
     filename: `${blockName}.js`,
     exposes: {
@@ -10,11 +10,13 @@ module.exports = withModuleFederationPlugin({
     },
     shared: {
         ...shareAll({ strictVersion: true, requiredVersion: 'auto' }),
-    },
-    // shared: share({
-    //     "@angular/core": { strictVersion: true, requiredVersion: 'auto' }, 
-    //     "@angular/common": { strictVersion: true, requiredVersion: 'auto' }, 
-    //     "@angular/common/http": { strictVersion: true, requiredVersion: 'auto' }, 
-    //     "@angular/router": { strictVersion: true, requiredVersion: 'auto' },
-    // })
+    }
 });
+
+module.exports = {
+    ...webpackConfig,
+    output: {
+        ...webpackConfig.output,
+        uniqueName: blockName,
+    },
+};
