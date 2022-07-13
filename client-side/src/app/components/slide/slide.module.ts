@@ -39,7 +39,7 @@ import { SlideComponent } from './slide.component';
             loader: {
                 provide: TranslateLoader,
                 useFactory: (addonService: PepAddonService) => 
-                    PepAddonService.createMultiTranslateLoader(addonService, ['ngx-lib', 'ngx-composite-lib'], config.AddonUUID),
+                    PepAddonService.createMultiTranslateLoader(config.AddonUUID, addonService, ['ngx-lib', 'ngx-composite-lib']),
                 deps: [PepAddonService]
             }, isolate: false
         }),
