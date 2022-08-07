@@ -1,16 +1,13 @@
 <mat-tab-group  #tabGroup class="editor-tabs" animationDuration="0ms">
     <mat-tab label="{{'SLIDESHOW.GENERAL' | translate}}">
-        
-        <pep-group-buttons-settings 
-                    pepResetConfigurationField="slideshowConfig?.heightUnit" [hideReset]="configuration?.slideshowConfig?.heightUnit === configurationSource?.slideshowConfig?.heightUnit" 
-                    [resetHostEvents]="hostEvents"
-                    [groupType]="'custom'" [subHeader]="'SLIDESHOW.HEIGHTUNITS_TITLE' | translate" [btnsArray]="HeightUnitsType"
-                    [btnKey]="configuration?.slideshowConfig?.heightUnit">
-        </pep-group-buttons-settings>
-
+        <div>
+            <pep-checkbox class="checkbox-as-title" [value]="configuration?.slideshowConfig?.fillHeight" [label]="'SLIDESHOW.FILL_HEIGHT_SECTION_TITLE' | translate" [renderTitle]="false" (valueChange)="onSlideshowFieldChange('fillHeight',$event)"></pep-checkbox>
+            <span class="header-title body-xs checkbox-description">{{('SLIDESHOW.FILL_HEIGHT_SECTION_DESCRIPTION' | translate)}}</span>
+        </div>
         <pep-textbox 
                         pepResetConfigurationField="slideshowConfig?.height" [hideReset]="configuration?.slideshowConfig?.height === configurationSource?.slideshowConfig?.height"
-                         [resetHostEvents]="hostEvents"
+                        [resetHostEvents]="hostEvents"
+                        [disabled]="configuration?.slideshowConfig?.fillHeight" 
                         [value]="configuration?.slideshowConfig?.height" 
                         [label]="'SLIDESHOW.HEIGHT' | translate" 
                         (valueChange)="onSlideshowFieldChange('height',$event)">
@@ -67,7 +64,7 @@
                 <pep-checkbox class="body-sm" [value]="configuration?.slideshowConfig?.showOnMobile" 
                               [label]="'SLIDESHOW.CONTROLLERS_PROPERTIES.MOBILE' | translate" [renderTitle]="false" 
                               (valueChange)="onSlideshowFieldChange('showOnMobile',$event)"></pep-checkbox>
-                <pep-checkbox class="body-sm"  [value]="configuration?.slideshowConfig?.showControllersInSlider" 
+                <pep-checkbox class="body-sm"  [value]="configuration?.slideshowConfig?.showControllersInSlider"
                               [label]="'SLIDESHOW.CONTROLLERS_PROPERTIES.SHOW_CONTROLLERS' | translate" [renderTitle]="false" 
                               (valueChange)="onSlideshowFieldChange('showControllersInSlider',$event)"></pep-checkbox>
                 </div>
@@ -77,8 +74,10 @@
                               [btnKey]="configuration?.slideshowConfig?.controllerSize" [excludeKeys]="['xs','lg','xl']"
                               (btnkeyChange)="onSlideshowFieldChange('controllerSize',$event)">
                 </pep-group-buttons-settings>
-
-                <pep-shadow-settings [shadow]="configuration?.slideshowConfig?.dropShadow"></pep-shadow-settings>
+                
+                <pep-shadow-settings [shadow]="configuration?.slideshowConfig?.dropShadow"
+                                     (shadowChange)="onSlideshowFieldChange('dropShadow',$event)">
+                </pep-shadow-settings>
     </mat-tab>
     <mat-tab cdkDropListGroup label="{{'SLIDESHOW.CONTENT' | translate}}">
         <ng-container>

@@ -44,6 +44,7 @@ export class SlideImage {
 export class ISlideshowEditor {
     editSlideIndex: string = "-1";
     heightUnit: HeightUnit = "REM";
+    fillHeight: boolean = false;
     height: string = '16';
     innerPadding: PepSizeType = "md";
     isTransition: boolean = true;

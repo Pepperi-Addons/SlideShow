@@ -58,7 +58,7 @@ export class SlideshowEditorComponent implements OnInit {
     buttonStyle: Array<{key: PepStyleType, value: string}> = [];
     buttonColor: Array<PepButton> = [];
     DropShadowStyle: Array<PepButton> = [];
-    HeightUnitsType: Array<PepButton> = [];
+
     ArrowsType: Array<PepButton> = [];
     ArrowButtons: Array<PepButton> = [];// Array<{key: ArrowShape, value: string}> = [];
     ControllerSize: Array<PepButton> = [];
@@ -170,16 +170,11 @@ export class SlideshowEditorComponent implements OnInit {
             { key: 'invert', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.INVERTED') },
             { key: 'user-primary', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.USER') },
         ]
-
-        this.HeightUnitsType = [
-            { key: 'REM', value: this.translate.instant('SLIDESHOW.HEIGHTUNITS_REM'), callback: (event: any) => this.onSlideshowFieldChange('heightUnit',event) },
-            { key: 'VH', value: this.translate.instant('SLIDESHOW.HEIGHTUNITS_VH'), callback: (event: any) => this.onSlideshowFieldChange('heightUnit',event) }
-        ];
     
         this.ArrowsType = [
-            { key: 'arrow_back_right', iconName: 'arrow_back_right', callback: (event: any) => this.onSlideshowFieldChange('ArrowsType',event) },
-            { key: 'arrow_right', iconName: 'arrow_right', callback: (event: any) => this.onSlideshowFieldChange('ArrowsType',event) },
-            { key: 'arrow_right_alt', iconName: 'arrow_right_alt', callback: (event: any) => this.onSlideshowFieldChange('ArrowsType',event) }
+            { key: 'arrow_back_right', iconName: 'arrow_back_right', callback: (event: any) => this.onSlideshowFieldChange('arrowType',event) },
+            { key: 'arrow_right', iconName: 'arrow_right', callback: (event: any) => this.onSlideshowFieldChange('arrowType',event) },
+            { key: 'arrow_right_alt', iconName: 'arrow_right_alt', callback: (event: any) => this.onSlideshowFieldChange('arrowType',event) }
         ];
     
         this.ArrowButtons = [

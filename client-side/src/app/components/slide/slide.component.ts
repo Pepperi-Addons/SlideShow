@@ -111,23 +111,11 @@ export class SlideComponent implements OnInit {
     
 
     getSlideContentHeight(){
-
-        let height = parseFloat(this.slideshowConfig?.height) ;
         let numToDec = this.slideshowConfig?.showControllersInSlider ? 0 : -0.5; 
-            numToDec = this.slideshowConfig?.heightUnit === 'VH' ? this.convertREMToVH(numToDec) : numToDec;
-            height = height + numToDec;
+        let height = parseFloat(this.slideshowConfig?.height) + numToDec;
 
-        return height.toString() + this.slideshowConfig?.heightUnit;
-           
+        return height.toString() + this.slideshowConfig?.heightUnit;   
     }
-
-    convertVH2REM(vh){
-       return 16 * (vh * (100 / document.documentElement.clientHeight));
-    }
-
-    convertREMToVH(rem) {
-	    return rem * 16 * (100 / document.documentElement.clientHeight);
-}
 
     ngOnChanges(changes) { 
         if (changes) {

@@ -1,7 +1,7 @@
-//@import '~@pepperi-addons/ngx-lib/theming';
-//@include pepperi-theme();
-// Get the theme object.
-//$pepperi-theme: get-pepperi-theme();
+@use '~@pepperi-addons/ngx-lib/src/core/style/abstracts/variables' as ngx-variables;
+@use '~@pepperi-addons/ngx-lib/src/core/style/abstracts/functions' as ngx-functions;
+@use '~@pepperi-addons/ngx-lib/src/core/style/abstracts/mixins' as ngx-mixins;
+
 .slideShowCont {
     position: relative;
     overflow-x: hidden;
@@ -83,8 +83,10 @@
         z-index: 1;
         position: absolute;
         width: 100%;
+        height: inherit;
         background-color: #fff;
         //transform: translateX(-100%) ;
+        
         opacity: 1;
 
         &.none{
@@ -130,6 +132,62 @@
                 transition-timing-function: linear;  
             }
             
+        }
+    }
+
+    &.shadow-xs{
+        &.soft{
+            box-shadow: ngx-functions.get-pep-shadow(shadow-xs, soft);
+        }
+        &.regular{
+            box-shadow: ngx-functions.get-pep-shadow(shadow-xs, regular);
+        }
+        &.hard{
+            box-shadow: ngx-functions.get-pep-shadow(shadow-xs, hard);
+        }
+    }
+    &.shadow-sm{
+        &.soft{
+            box-shadow: ngx-functions.get-pep-shadow(shadow-sm, soft);
+        }
+        &.regular{
+            box-shadow: ngx-functions.get-pep-shadow(shadow-sm, regular);
+        }
+        &.hard{
+            box-shadow: ngx-functions.get-pep-shadow(shadow-sm, hard);
+        }
+    }
+    &.shadow-md{
+        &.soft{
+            box-shadow: ngx-functions.get-pep-shadow(shadow-md, soft);
+        }
+        &.regular{
+            box-shadow: ngx-functions.get-pep-shadow(shadow-md, regular);
+        }
+        &.hard{
+            box-shadow: ngx-functions.get-pep-shadow(shadow-md, hard);
+        }
+    }
+    &.shadow-lg{
+        &.soft{
+            box-shadow: ngx-functions.get-pep-shadow(shadow-lg, soft);
+        }
+        &.regular{
+            box-shadow: ngx-functions.get-pep-shadow(shadow-lg, regular);
+        }
+        &.hard{
+            box-shadow: ngx-functions.get-pep-shadow(shadow-lg, hard);
+        }
+    }
+    &.shadow-xl{
+        &.soft{
+            box-shadow: ngx-functions.get-pep-shadow(shadow-xl, soft);
+        }
+        &.regular{
+            box-shadow: ngx-functions.get-pep-shadow(shadow-xl, regular);
+        }
+        &.hard{
+            box-shadow: ngx-functions.get-pep-shadow(shadow-xl, hard);
         }
     }
 }

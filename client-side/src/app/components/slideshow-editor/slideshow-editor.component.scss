@@ -9,6 +9,11 @@
         margin-bottom: 1rem;
     }
 
+    .checkbox-description{
+        margin-top: -.5rem;
+        display: block;
+    }
+
     ::ng-deep {
 
         .pep-reset-configuration-field-container{
@@ -55,6 +60,10 @@
                     }
                 }
             }
+        }
+
+        .mat-slider-disabled{
+            opacity: 0.6;
         }
     }
 
