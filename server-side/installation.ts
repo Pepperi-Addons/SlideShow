@@ -57,6 +57,9 @@ async function runMigration(client){
             ModuleName: `${blockName}Module`,
             EditorComponentName: `${blockName}EditorComponent`,
             EditorModuleName: `${blockName}EditorModule`,
+            ElementsModule: 'WebComponents',
+            ElementName: `slideshow-element-${client.AddonUUID}`,
+            EditorElementName: `slideshow-editor-element-${client.AddonUUID}`,
             Schema: {
                 "Fields": {
                     "slideshowConfig": {
@@ -340,9 +343,8 @@ async function runMigration(client){
                     }
                 }
              }
-            }; 
-        // pageComponentRelation.Key = `${pageComponentRelation.Name}_${pageComponentRelation.AddonUUID}_${pageComponentRelation.RelationName}`;
-
+        }; 
+        
         const service = new MyService(client);
         const result = await service.upsertRelation(pageComponentRelation);
         return {success:true, errorMessage: '' };
