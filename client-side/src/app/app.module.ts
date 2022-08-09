@@ -56,7 +56,7 @@ export class AppModule implements DoBootstrap {
     }
 
     ngDoBootstrap() {
-        customElements.define(`gallery-element-${config.AddonUUID}`, createCustomElement(SlideshowComponent, {injector: this.injector}));
-        customElements.define(`gallery-editor-element-${config.AddonUUID}`, createCustomElement(SlideshowEditorComponent, {injector: this.injector}));
+        customElements.define(`slideshow-element-${config.AddonUUID}`, createCustomElement(SlideshowComponent, {injector: this.injector}));
+        customElements.define(`slideshow-editor-element-${config.AddonUUID}`, createCustomElement(SlideshowEditorComponent, {injector: this.injector}));
     }
 }
