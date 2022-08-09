@@ -5,7 +5,7 @@
 
 <div #mainSlideCont 
      class="ng-component-container" 
-     [ngStyle]="{'height': slideshowConfig.fillHeight ? 'inherit' : getSlideContentHeight(),
+     [ngStyle]="{'height': slideshowConfig.fillHeight ? 'inherit' : this.slideshowConfig?.height + this.slideshowConfig?.heightUnit,
                  'background' : getGradientOverlay()}" 
      [ngClass]="[ 'horAlign_' + slide?.horizontalAlign,
                  'verAlign_' + slide?.verticalAlign,

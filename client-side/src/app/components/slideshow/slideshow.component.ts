@@ -119,7 +119,7 @@ export class SlideshowComponent implements OnInit {
       
     getSlideShowHeight(){
         if(this.configuration && Object.keys(this.configuration).length > 0){
-            let heightToAdd =  2.75;
+            let heightToAdd = this.configuration?.slideshowConfig.controllerSize == 'sm' ? 2.75 : 3.25;
             heightToAdd = this.configuration?.slideshowConfig?.showControllersInSlider ?  0 : heightToAdd;
             return (parseFloat(this.configuration?.slideshowConfig.height) + heightToAdd).toString() + this.configuration?.slideshowConfig.heightUnit;
         }
