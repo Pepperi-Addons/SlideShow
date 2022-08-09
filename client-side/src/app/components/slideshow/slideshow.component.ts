@@ -49,13 +49,8 @@ export class SlideshowComponent implements OnInit {
         });
 
     }
-
-    private raiseBlockLoadedEvent() {
-        this.hostEvents.emit({action: 'block-loaded'});
-    }
     
     ngOnInit() {
-        this.raiseBlockLoadedEvent();
         this.showSlides();
     }
 
