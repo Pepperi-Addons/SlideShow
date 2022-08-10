@@ -29,7 +29,7 @@
                 <div class="split-area">
                     <pep-select [label]="'SLIDESHOW.TRANSITION_TYPE' | translate" [value]="configuration?.slideshowConfig?.transitionType" [options]="transitionTypes" 
                         (valueChange)="onSlideshowFieldChange('transitionType',$event)" [emptyOption]="false"></pep-select>
-                    <pep-textbox [label]="'SLIDESHOW.TRANSITION_TIME' | translate" type="int" 
+                    <pep-textbox [label]="'SLIDESHOW.TRANSITION_TIME' | translate" type="real" 
                         [value]="configuration?.slideshowConfig?.transitionTime" (valueChange)="onSlideshowFieldChange('transitionTime',$event)"></pep-textbox>
                 </div>
 

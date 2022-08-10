@@ -50,7 +50,7 @@ export class ISlideshowEditor {
     isTransition: boolean = true;
     transitionDuration: number = 5;
     transitionType: TransitionType = 'fade';
-    transitionTime: string = '2';
+    transitionTime: string = '0.75';
     isUseArrows: boolean = true;
     arrowType: ArrowType = 'arrow_right';
     arrowShape: ArrowShape = 'regular';

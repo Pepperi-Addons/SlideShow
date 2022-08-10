@@ -34,8 +34,7 @@
 
 <div id="slideFooterBtn" 
      *ngIf="configuration?.slides?.length > 1 && (!isMobileView || configuration?.slideshowConfig?.showOnMobile)"
-     [ngStyle]="{'bottom': configuration?.slideshowConfig?.showControllersInSlider ? 
-                (configuration?.slideshowConfig?.controllerSize === 'sm' ? '0.5rem' : '0.75rem') : '0rem'}"
+     [ngStyle]="{'bottom': configuration?.slideshowConfig?.showControllersInSlider ? '0.5rem': '0rem'}"
      [ngClass]="[configuration?.slideshowConfig?.dropShadow?.use === true ? 'with-shadow-margin' : '' ]">
        <div id="dotsCont" 
             class="pep-button regular system"
