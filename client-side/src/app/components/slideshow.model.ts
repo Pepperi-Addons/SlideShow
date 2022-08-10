@@ -21,14 +21,15 @@ export type FontWeight = 'normal' | 'bold' | 'bolder';
 export type buttonColor = 'system-primary' | 'invert' | 'user-primary' ;
 
 export class SlideButton {
-    useButton: boolean = true;
+    useButton: boolean;
     label: string = 'Button';
     script: any = {};
-    style: PepStyleType = 'regular';
+    style: PepStyleType;
 
-    constructor(useButton = true) {
+    constructor(useButton = true, label = 'Yess', style: PepStyleType = 'weak-invert') {
         this.useButton = useButton;
-
+        this.label = label;
+        this.style = style;
       }
 }
 
@@ -53,11 +54,11 @@ export class ISlideshowEditor {
     transitionTime: string = '0.75';
     isUseArrows: boolean = true;
     arrowType: ArrowType = 'arrow_right';
-    arrowShape: ArrowShape = 'regular';
+    arrowShape: ArrowShape = 'round';
     arrowsStyle: PepStyleType= 'weak';
     arrowsColor: buttonColor= 'system-primary';
     usePauseButton: boolean = true;
-    showOnMobile: boolean = true;
+    showOnMobile: boolean = false;
     useInverStyle: boolean = true;
     showControllersInSlider: boolean = true;
     controllerSize: PepSizeType = 'sm';
@@ -68,7 +69,7 @@ export class ISlideEditor {
     id: number;
     useTitle: boolean = true;
     titleContent: string = 'Title';
-    titleSize: PepSizeType = 'lg';
+    titleSize: PepSizeType = 'md';
     titleWeight: FontWeight = 'normal';
     useSubTitle: boolean = true;
     subTitleContent: string = 'Sub title';
@@ -80,8 +81,8 @@ export class ISlideEditor {
     textColor: textColor = 'system';
     buttonsSize: PepSizeType  = 'md';
     buttonColor: buttonColor= 'system-primary';
-    firstButton: SlideButton = new SlideButton(true);
-    secondButton: SlideButton  = new SlideButton(false);
+    firstButton: SlideButton = new SlideButton(true, 'Yess', 'weak-invert');
+    secondButton: SlideButton  = new SlideButton(false, 'Noo', 'strong');
     gradientOverlay: PepColorSettings = new PepColorSettings();
     overlay: PepColorSettings = new PepColorSettings();
     image: SlideImage = new SlideImage();

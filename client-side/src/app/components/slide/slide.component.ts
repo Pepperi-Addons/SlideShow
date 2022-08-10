@@ -108,7 +108,6 @@ export class SlideComponent implements OnInit {
         }
     
     }
-    
 
     getSlideContentHeight(){
         let numToDec = this.slideshowConfig?.showControllersInSlider ? 0 : -0.5; 
