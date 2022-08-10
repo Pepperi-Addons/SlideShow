@@ -1,4 +1,4 @@
-import { Component, DoBootstrap, Injector, NgModule } from '@angular/core';
+import { Component, DoBootstrap, Injector, NgModule, Type } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { createCustomElement } from '@angular/elements';
 import { BrowserModule } from '@angular/platform-browser';
@@ -55,8 +55,14 @@ export class AppModule implements DoBootstrap {
         this.pepAddonService.setDefaultTranslateLang(translate);
     }
 
+    private defineCustomElement(elementName: string, component: Type<any>) {
+        if (!customElements.get(elementName)) {  
+            customElements.define(elementName, createCustomElement(component, {injector: this.injector}));
+        }
+    }
+    
     ngDoBootstrap() {
-        customElements.define(`slideshow-element-${config.AddonUUID}`, createCustomElement(SlideshowComponent, {injector: this.injector}));
-        customElements.define(`slideshow-editor-element-${config.AddonUUID}`, createCustomElement(SlideshowEditorComponent, {injector: this.injector}));
+        this.defineCustomElement(`slideshow-element-${config.AddonUUID}`, SlideshowComponent);
+        this.defineCustomElement(`slideshow-editor-element-${config.AddonUUID}`, SlideshowEditorComponent);
     }
 }
