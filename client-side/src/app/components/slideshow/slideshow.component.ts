@@ -103,24 +103,29 @@ export class SlideshowComponent implements OnInit {
       getSliderFooterTop(){
           let sliderHeight = parseFloat(this.configuration?.slideshowConfig?.height);
           let numToDec = this.configuration?.slideshowConfig?.showControllersInSlider ? -2.5 : 0.5; 
-          numToDec = this.configuration?.slideshowConfig?.heightUnit === 'VH' ? this.convertREMToVH(numToDec) : numToDec;
           
           let footerPos = sliderHeight +  numToDec;
           
           return footerPos.toString() + this.configuration?.slideshowConfig?.heightUnit;
-      }
-
-      convertREMToVH(rem) {
-	    return rem * 16 * (100 / document.documentElement.clientHeight);
-      }  
+      } 
       
     getSlideShowHeight(){
         if(this.configuration && Object.keys(this.configuration).length > 0){
-        let heightToAdd = this.configuration?.slideshowConfig.heightUnit === 'REM' ? 2.75 : this.convertREMToVH(2.75);
-        heightToAdd = this.configuration?.slideshowConfig?.showControllersInSlider ?  0 : heightToAdd;
-        return (parseFloat(this.configuration?.slideshowConfig.height) + heightToAdd).toString() + this.configuration?.slideshowConfig.heightUnit;
+            let heightToAdd = this.configuration?.slideshowConfig.controllerSize == 'sm' ? 2.75 : 3.25;
+            heightToAdd = this.configuration?.slideshowConfig?.showControllersInSlider ?  0 : heightToAdd;
+            return (parseFloat(this.configuration?.slideshowConfig.height) + heightToAdd).toString() + this.configuration?.slideshowConfig.heightUnit;
         }
     }
+
+    getSlideHeight(){
+        let retHeight = 'inherit';
+        if(this.configuration?.slideshowConfig?.fillHeight && !this.configuration?.slideshowConfig?.showControllersInSlider){
+            retHeight = 'calc(100%  - 3rem)';
+        }
+
+        return retHeight;
+    }
+    // ? '95%' : 'inherit'
 
     private getScriptParams(scriptData: any) {
         const res = {};

@@ -1,11 +1,11 @@
-<div  [ngStyle]="{'height': slideshowConfig?.height + slideshowConfig?.heightUnit}" 
+<div  [ngStyle]="{'height': slideshowConfig.fillHeight ? '100%' : (slideshowConfig?.height + slideshowConfig?.heightUnit)}" 
       [ngClass]="[slideshowConfig?.showControllersInSlider == false ? 'withOutSideController' : '',
-                 slideshowConfig?.dropShadow?.use ? 'shadow-' + this.slideshowConfig?.dropShadow?.size : '',
-                 slideshowConfig?.dropShadow?.use ? this.slideshowConfig?.dropShadow?.intensity : '']">
+                  slideshowConfig?.dropShadow?.use && (!slideshowConfig?.fillHeight || !slideshowConfig?.showControllersInSlider) ? 'shadow-' + slideshowConfig?.dropShadow?.size : '',
+                  slideshowConfig?.dropShadow?.use && (!slideshowConfig?.fillHeight || !slideshowConfig?.showControllersInSlider) ? slideshowConfig?.dropShadow?.intensity : '']">
 
 <div #mainSlideCont 
      class="ng-component-container" 
-     [ngStyle]="{'height': getSlideContentHeight(),
+     [ngStyle]="{'height': slideshowConfig.fillHeight ? 'inherit' : this.slideshowConfig?.height + this.slideshowConfig?.heightUnit,
                  'background' : getGradientOverlay()}" 
      [ngClass]="[ 'horAlign_' + slide?.horizontalAlign,
                  'verAlign_' + slide?.verticalAlign,
@@ -15,7 +15,7 @@
                 [ngClass]="['inner_margin_' + slideshowConfig.innerPadding ]"
                 [ngStyle]="{'background' : getAssetWithPos(),
                              'box-shadow': slide?.overlay?.use ?  'inset 0 0 0 100vh ' + getRGBAcolor(slide?.overlay) : 'unset' ,
-                             'height': slideshowConfig.height + slideshowConfig.heightUnit}">
+                             'height': slideshowConfig.fillHeight ? 'inherit' : (slideshowConfig.height + slideshowConfig.heightUnit)}">
       
             </div>
             <div class="slide-box" [ngClass]="['contentWidth_'+slide?.contentWidth, 

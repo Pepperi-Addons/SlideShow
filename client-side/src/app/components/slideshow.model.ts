@@ -20,14 +20,15 @@ export type FontWeight = 'normal' | 'bold' | 'bolder';
 export type buttonColor = 'system-primary' | 'invert' | 'user-primary' ;
 
 export class SlideButton {
-    useButton: boolean = true;
+    useButton: boolean;
     label: string = 'Button';
     script: any = {};
-    style: PepStyleType = 'regular';
+    style: PepStyleType;
 
-    constructor(useButton = true) {
+    constructor(useButton = true, label = 'Yess', style: PepStyleType = 'weak-invert') {
         this.useButton = useButton;
-
+        this.label = label;
+        this.style = style;
       }
 }
 
@@ -43,30 +44,33 @@ export class SlideImage {
 export class ISlideshowEditor {
     editSlideIndex: string = "-1";
     heightUnit: HeightUnit = "REM";
+    fillHeight: boolean = false;
     height: string = '16';
     innerPadding: PepSizeType = "md";
     isTransition: boolean = true;
     transitionDuration: number = 5;
     transitionType: TransitionType = 'fade';
-    transitionTime: string = '2';
+    transitionTime: string = '0.75';
     isUseArrows: boolean = true;
     arrowType: ArrowType = 'arrow_right';
-    arrowShape: ArrowShape = 'regular';
+    arrowShape: ArrowShape = 'round';
     arrowsStyle: PepStyleType= 'weak';
     arrowsColor: buttonColor= 'system-primary';
     usePauseButton: boolean = true;
-    showOnMobile: boolean = true;
+    showOnMobile: boolean = false;
     useInverStyle: boolean = true;
     showControllersInSlider: boolean = true;
     controllerSize: PepSizeType = 'sm';
     dropShadow: PepShadowSettings = new PepShadowSettings();
+    // TODO - UNCOMMIT AFTER NGX-COMPOSITE-LIB
+    //dropShadow: PepShadowSettings = new PepShadowSettings(false, 'md', 'soft');
 }
 
 export class ISlideEditor {
     id: number;
     useTitle: boolean = true;
     titleContent: string = 'Title';
-    titleSize: PepSizeType = 'lg';
+    titleSize: PepSizeType = 'md';
     titleWeight: FontWeight = 'normal';
     useSubTitle: boolean = true;
     subTitleContent: string = 'Sub title';
@@ -78,10 +82,14 @@ export class ISlideEditor {
     textColor: textColor = 'system';
     buttonsSize: PepSizeType  = 'md';
     buttonColor: buttonColor= 'system-primary';
-    firstButton: SlideButton = new SlideButton(true);
-    secondButton: SlideButton  = new SlideButton(false);
+    firstButton: SlideButton = new SlideButton(true, 'Yess', 'weak-invert');
+    secondButton: SlideButton  = new SlideButton(false, 'Noo', 'strong');
     gradientOverlay: PepColorSettings = new PepColorSettings();
+     // TODO - UNCOMMIT AFTER NGX-COMPOSITE-LIB
+    //gradientOverlay: PepColorSettings = new PepColorSettings(true, '(0, 100%, 50%)', 100);
     overlay: PepColorSettings = new PepColorSettings();
+     // TODO - UNCOMMIT AFTER NGX-COMPOSITE-LIB
+    //overlay: PepColorSettings = PepColorSettings = new PepColorSettings(true, 'hsl(0, 0%, 0%)', 100);
     image: SlideImage = new SlideImage();
 }
 

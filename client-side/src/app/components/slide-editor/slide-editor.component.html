@@ -12,7 +12,7 @@
         <pep-button *ngIf="id == configuration?.slideshowConfig?.editSlideIndex" sizeType="xs" iconName="arrow_up" (buttonClick)="onEditClick();"></pep-button>
     </div>
     <div class="editorCont" *ngIf="id == configuration?.slideshowConfig?.editSlideIndex">
-   <pep-checkbox [value]="configuration?.slides[id].useTitle" [label]="'SLIDE_EDITOR.TITLE' | translate" [renderTitle]="false" 
+   <pep-checkbox [value]="configuration?.slides[id].useTitle" [label]="getOrdinal(id+1) + ('SLIDE_EDITOR.TITLE' | translate)" [renderTitle]="false" 
         (valueChange)="onSlideFieldChange('useTitle',$event)">
     </pep-checkbox>
     <pep-textbox [label]="'SLIDE_EDITOR.TITLE_CONTENT' | translate" type="string" 
@@ -32,7 +32,7 @@
         [disabled]="!configuration?.slides[id].useTitle" [btnKey]="configuration?.slides[id].titleWeight">
     </pep-group-buttons-settings>
 
-    <pep-checkbox [value]="configuration?.slides[id].useSubTitle" [label]="'SLIDE_EDITOR.SUB_TITLE' | translate" [renderTitle]="false" 
+    <pep-checkbox [value]="configuration?.slides[id].useSubTitle" [label]="getOrdinal(id+1) + ('SLIDE_EDITOR.SUB_TITLE' | translate)" [renderTitle]="false" 
     (valueChange)="onSlideFieldChange('useSubTitle',$event)"></pep-checkbox>
     
     <pep-textarea [value]="configuration?.slides[id].subTitleContent" [label]="'SLIDE_EDITOR.SUBTITLE_CONTENT' | translate" [disabled]="!configuration?.slides[id].useSubTitle" 

@@ -14,7 +14,8 @@
   "PublishConfig": {
     "ClientStack": "ng14",
     "Dependencies": {
-      "assets_manager_client": "0.0.19",
+      "assets_manager_client": "0.7.1",
+      "pfs": "1.0.2",
       "cpi-node-scripts": "0.0.87"
     }
   }

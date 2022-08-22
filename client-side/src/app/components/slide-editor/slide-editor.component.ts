@@ -95,8 +95,8 @@ export class SlideEditorComponent implements OnInit {
         ]
         this.TitleWeight = [
             { key: 'normal', value: this.translate.instant('SLIDE_EDITOR.FONT_WEIGHT.NORMAL'), callback: (event: any) => this.onSlideFieldChange('titleWeight',event) },
-            { key: 'bold', value: this.translate.instant('SLIDE_EDITOR.FONT_WEIGHT.BOLD'), callback: (event: any) => this.onSlideFieldChange('titleWeight',event) },
-            { key: 'bolder', value: this.translate.instant('SLIDE_EDITOR.FONT_WEIGHT.BOLDER'), callback: (event: any) => this.onSlideFieldChange('titleWeight',event) }
+            { key: 'bold', value: this.translate.instant('SLIDE_EDITOR.FONT_WEIGHT.BOLD'), callback: (event: any) => this.onSlideFieldChange('titleWeight',event) }
+            // { key: 'bolder', value: this.translate.instant('SLIDE_EDITOR.FONT_WEIGHT.BOLDER'), callback: (event: any) => this.onSlideFieldChange('titleWeight',event) }
         ]
     
         this.WidthSize =  [
@@ -172,6 +172,12 @@ export class SlideEditorComponent implements OnInit {
         });
     }
 
+            
+    getOrdinal(n) {
+        var s = ["th ", "st ", "nd ", "rd "];
+        var v = n%100;
+        return n + (s[(v-20)%10] || s[v] || s[0]);
+    }
     //  private updateHostObject() {
         
     //      this.hostEvents.emit({
