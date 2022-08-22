@@ -349,7 +349,7 @@ async function runMigration(client){
         const result = await service.upsertRelation(pageComponentRelation);
         return {success:true, errorMessage: '' };
     } catch(e) {
-        return { success: false, errorMessage: e.message || '' };
+        return { success: false, errorMessage: e || '' };
     }
 }
 

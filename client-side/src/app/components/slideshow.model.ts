@@ -84,12 +84,8 @@ export class ISlideEditor {
     buttonColor: buttonColor= 'system-primary';
     firstButton: SlideButton = new SlideButton(true, 'Yess', 'weak-invert');
     secondButton: SlideButton  = new SlideButton(false, 'Noo', 'strong');
-    gradientOverlay: PepColorSettings = new PepColorSettings();
-     // TODO - UNCOMMIT AFTER NGX-COMPOSITE-LIB
-    //gradientOverlay: PepColorSettings = new PepColorSettings(true, '(0, 100%, 50%)', 100);
-    overlay: PepColorSettings = new PepColorSettings();
-     // TODO - UNCOMMIT AFTER NGX-COMPOSITE-LIB
-    //overlay: PepColorSettings = PepColorSettings = new PepColorSettings(true, 'hsl(0, 0%, 0%)', 100);
+    gradientOverlay: PepColorSettings = new PepColorSettings(true, 'hsl(0, 100%, 50%)', 100);
+    overlay: PepColorSettings = new PepColorSettings(true, 'hsl(0, 0%, 0%)', 100);
     image: SlideImage = new SlideImage();
 }
 
