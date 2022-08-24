@@ -10,16 +10,27 @@ export async function foo(client: Client, request: Request) {
     // return res
 };
 
-export function import_fix_object(client: Client, request: Request) {
-
+export function dimx_import(client: Client, request: Request) {
+    const service = new MyService(client);
     if (request.method == 'POST') {
-        let object = request.body['Object'];
-        //need to return the object & not the body.Object
-        console.log(`import gallery: ${JSON.stringify(object)}`);
-        return object; 
+        return service.importDataSource(request.body);
     }
     else if (request.method == 'GET') {
-        throw new Error(`Method ${request.method} not supported`);       
+        throw new Error(`Method ${request.method} not supported`);
+    }
+}
+
+export async function dimx_export(client:Client, request: Request): Promise<any> {
+    try {
+        const service = new MyService(client);
+        if (request.method == 'POST') {
+            return service.exportDataSource(request.body);
+        }
+        else if (request.method == 'GET') {
+            throw new Error(`Method ${request.method} not supported`);
+        }
+    } catch(err) {
+        throw err;
     }
 }
 

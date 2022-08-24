@@ -60,10 +60,8 @@ export class ISlideshowEditor {
     showOnMobile: boolean = false;
     useInverStyle: boolean = true;
     showControllersInSlider: boolean = true;
-    controllerSize: PepSizeType = 'sm';
-    dropShadow: PepShadowSettings = new PepShadowSettings();
-    // TODO - UNCOMMIT AFTER NGX-COMPOSITE-LIB
-    //dropShadow: PepShadowSettings = new PepShadowSettings(false, 'md', 'soft');
+    controllerSize: PepSizeType = 'md';
+    dropShadow: PepShadowSettings = new PepShadowSettings(false,'md','soft');
 }
 
 export class ISlideEditor {
@@ -79,7 +77,7 @@ export class ISlideEditor {
     horizontalAlign: PepHorizontalAlignment = 'left';
     verticalAlign: 'start' | 'middle' | 'end' = 'start';//  PepVerticalAlignment = 'middle';
     innerSpacing: PepSizeType = "md";
-    textColor: textColor = 'system';
+    textColor: textColor = 'inverted';
     buttonsSize: PepSizeType  = 'md';
     buttonColor: buttonColor= 'system-primary';
     firstButton: SlideButton = new SlideButton(true, 'Yess', 'weak-invert');
