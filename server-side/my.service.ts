@@ -22,15 +22,27 @@ class MyService {
         return this.papiClient.post('/addons/data/relations', relation);
     }
 
-    async importDataSource(body) {
-        console.log(`@@@@importing Slideshow: ${JSON.stringify(body)}@@@@`);
-        body.DIMXObjects = await Promise.all(body.DIMXObjects.map(async (item) => {
-            // TODO - NEED TO CHANGE THE OBJET TO RETURN.
-            // For example item.Object.Key = "TODO 123"
-            return item;
-        }));
-        console.log('returned object is:', JSON.stringify(body));
-        return body;
+    async importDataSource(body,distUUID) {
+        console.log(`!!**!!** Slideshow import body: ${JSON.stringify(body)}`);
+        console.log(`!!**!!** Slideshow import  body.Object.slides: ${JSON.stringify(body['Object'].slides)}`);
+       body['Object'].slides = await Promise.all(body['Object'].slides.map(async (slide) => {
+
+        console.log(`!!**!!** Slideshow import** slide: ${JSON.stringify(slide)}`);
+        console.log(`!!**!!** Slideshow import** distUUID: ${distUUID}`);
+
+        //check if distributor uuid included on assets pfs url
+        //if not - replace it with empty string;
+        if(slide?.image?.assetURL.indexOf(distUUID) == -1){
+            slide.image.useImage = false;
+            slide.image.asset = '';
+            slide.image.assetURL = '';
+        }
+       
+        return slide;
+    }));
+    
+    console.log('!!**!!** Slideshow import returned body:', JSON.stringify(body));
+    return body['Object'];
     }
   
 

@@ -1,5 +1,6 @@
 import MyService from './my.service'
 import { Client, Request } from '@pepperi-addons/debug-server'
+import jwt from 'jwt-decode';
 
 // add functions here
 // this function will run on the 'api/foo' endpoint
@@ -10,10 +11,16 @@ export async function foo(client: Client, request: Request) {
     // return res
 };
 
-export function dimx_import(client: Client, request: Request) {
+export async function dimx_import(client: Client, request: Request) {
+    console.log(`!!**!!** Slideshow import request.body: ${JSON.stringify(request.body)}`);
     const service = new MyService(client);
     if (request.method == 'POST') {
-        return service.importDataSource(request.body);
+        
+        const token = client.OAuthAccessToken;
+        const decodedToken: any = jwt(token);
+        const currentDistributorUUID = decodedToken["pepperi.distributoruuid"];
+
+        return await service.importDataSource(request.body,currentDistributorUUID);
     }
     else if (request.method == 'GET') {
         throw new Error(`Method ${request.method} not supported`);
