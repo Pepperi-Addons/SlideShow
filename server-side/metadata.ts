@@ -5,7 +5,7 @@ export const blockName = 'Slideshow';
 
 export const DimxRelations: Relation[] = [{
         AddonUUID: config.AddonUUID,
-        Name: `${blockName}Import`,
+        Name: `${blockName}`,
         RelationName: 'DataImportResource',
         Type: 'AddonAPI',
         Description: `${blockName} Import Relation`,
@@ -14,7 +14,7 @@ export const DimxRelations: Relation[] = [{
     },
     {
         AddonUUID: config.AddonUUID,
-        Name: `${blockName}Export`,
+        Name: `${blockName}`,
         RelationName: 'DataExportResource',
         Type: 'AddonAPI',
         Description: `${blockName} Export Relation`,
