@@ -20,7 +20,7 @@
         "SLIDES": "Slides",
         "ADD_SLIDE": "Add slide",
         "FILL_HEIGHT_SECTION_TITLE": "Fill Height",
-        "FILL_HEIGHT_SECTION_DESCRIPTION": "Set Fill Height on to make the slide to fill the section height",
+        "FILL_HEIGHT_SECTION_DESCRIPTION": "Set Fill Height on to make the section fill the relative screen size. Works only if parent Section Fill Height is set to true.",
         "HEIGHT": "Height (REM)",
         "INNERSPACING_TITLE": "Inner spacing",
         "INNERPADDING_TITLE": "Inner padding",
@@ -38,7 +38,7 @@
         "ARROWS": "Arrows",
         "ARROWS_DESC": "Arrows used the navigate the slides from start to end.<br>Arrows are hidden in mobile view.",
         "ARROWS_TYPE": "Arrows type",
-        "ARROWS_BUTTONS": "Arrows buttons",
+        "ARROWS_BUTTONS": "Arrows buttons roundness",
         "ARROWS_STYLE": "Style",
         "ARROWS_COLOR": "Color",
         "ARROW_TYPE": {
@@ -122,7 +122,9 @@
             "PRIMARY": "Primary",
             "SECONDARY": "Secondary",
             "INVERTED": "Inverted",
-            "USER": "User"
+            "USER": "User",
+            "CAUTION": "Caution",
+            "SUCCESS": "Success"
         },
         "WIDTH_SIZE": {
             "NARROW": "Narrow",

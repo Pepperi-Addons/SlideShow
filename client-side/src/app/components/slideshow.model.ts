@@ -17,7 +17,7 @@ export type WidthUnits = 'Narrow' | 'Regular' | 'Wide';
 export type Intensity = 'Soft' | 'Regular';
 export type textColor = 'system' | 'dimmed' | 'inverted' | 'strong';
 export type FontWeight = 'normal' | 'bold' | 'bolder';
-export type buttonColor = 'system-primary' | 'invert' | 'user-primary' ;
+export type buttonColor = 'system-primary' | 'invert' | 'user-primary' | 'success' | 'caution' | 'system' ;
 
 export class SlideButton {
     useButton: boolean;
@@ -55,7 +55,7 @@ export class ISlideshowEditor {
     arrowType: ArrowType = 'arrow_right';
     arrowShape: ArrowShape = 'round';
     arrowsStyle: PepStyleType= 'weak';
-    arrowsColor: buttonColor= 'system-primary';
+    arrowsColor: buttonColor= 'system';
     usePauseButton: boolean = true;
     showOnMobile: boolean = false;
     useInverStyle: boolean = true;
@@ -82,8 +82,8 @@ export class ISlideEditor {
     buttonColor: buttonColor= 'system-primary';
     firstButton: SlideButton = new SlideButton(true, 'Yess', 'weak-invert');
     secondButton: SlideButton  = new SlideButton(false, 'Noo', 'strong');
-    gradientOverlay: PepColorSettings = new PepColorSettings(true, 'hsl(0, 100%, 50%)', 100);
-    overlay: PepColorSettings = new PepColorSettings(true, 'hsl(0, 0%, 0%)', 100);
+    gradientOverlay: PepColorSettings = new PepColorSettings(true, 'hsl(0, 100%, 50%)', 75);
+    overlay: PepColorSettings = new PepColorSettings(true, 'hsl(0, 0%, 0%)', 75);
     image: SlideImage = new SlideImage();
 }
 

@@ -164,9 +164,9 @@ export class SlideshowEditorComponent implements OnInit {
         ];
 
         this.buttonColor = [
-            { key: 'system-primary', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.SYSTEM') },
-            { key: 'invert', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.INVERTED') },
-            { key: 'user-primary', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.USER') },
+            { key: 'system', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.SYSTEM') },
+            { key: 'caution', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.CAUTION') },
+            { key: 'success', value:this.translate.instant('SLIDE_EDITOR.BUTTON_COLOR.CAUTION') },
         ];
 
         this.ArrowsType = [
