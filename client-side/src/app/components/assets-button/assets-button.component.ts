@@ -47,7 +47,7 @@ export class AssetsButtonComponent implements OnInit {
         if(!this.disabled){
             this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
                 container: this.viewContainerRef,
-                name: 'Assets',
+                name: 'AssetPicker',
                 hostObject: this.assetsHostObject,
                 hostEventsCallback: (event) => { this.onHostEvents(event); }
             });
