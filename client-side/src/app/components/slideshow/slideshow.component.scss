@@ -4,7 +4,8 @@
 
 .slideShowCont {
     position: relative;
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
+    overflow: hidden; // remove the scroll y from the slide show cont
     display: grid; 
     grid-template-columns: 1fr 0px;
 
