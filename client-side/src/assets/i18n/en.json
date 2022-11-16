@@ -17,6 +17,7 @@
     "SLIDESHOW": {
         "GENERAL": "General",
         "CONTENT": "Content",
+        "ROUND_CORNER": "Round corner",
         "SLIDES": "Slides",
         "ADD_SLIDE": "Add slide",
         "FILL_HEIGHT_SECTION_TITLE": "Fill Height",

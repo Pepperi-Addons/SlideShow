@@ -4,7 +4,8 @@
                          (!configuration?.slideshowConfig?.fillHeight && configuration?.slideshowConfig?.showControllersInSlider)) ? 'shadow-' + configuration?.slideshowConfig?.dropShadow?.size : '',
                          configuration?.slideshowConfig?.dropShadow?.use && 
                          ((configuration?.slideshowConfig?.fillHeight && configuration?.slideshowConfig?.showControllersInSlider) || 
-                         (!configuration?.slideshowConfig?.fillHeight && configuration?.slideshowConfig?.showControllersInSlider)) ? configuration?.slideshowConfig?.dropShadow?.intensity : '']">
+                         (!configuration?.slideshowConfig?.fillHeight && configuration?.slideshowConfig?.showControllersInSlider)) ? configuration?.slideshowConfig?.dropShadow?.intensity : '',
+                         configuration?.slideshowConfig?.useRoundCorners ? 'border-radius-' + configuration?.slideshowConfig?.roundCornersSize : '']">
 <div *ngIf="configuration?.slideshowConfig?.isUseArrows"
        id="navigationCont">
          <pep-button sizeType='sm'

@@ -62,6 +62,8 @@ export class ISlideshowEditor {
     showControllersInSlider: boolean = true;
     controllerSize: PepSizeType = 'md';
     dropShadow: PepShadowSettings = new PepShadowSettings(false,'md','soft');
+    useRoundCorners: boolean = false;
+    roundCornersSize: PepSizeType = 'md';
 }
 
 export class ISlideEditor {

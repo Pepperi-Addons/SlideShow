@@ -80,6 +80,16 @@
                 <pep-shadow-settings [shadow]="configuration?.slideshowConfig?.dropShadow"
                                      (shadowChange)="onSlideshowFieldChange('dropShadow',$event)">
                 </pep-shadow-settings>
+
+                <pep-checkbox [value]="configuration?.slideshowConfig?.useRoundCorners" [label]="'SLIDESHOW.ROUND_CORNER' | translate" 
+                    [renderTitle]="false" (valueChange)="onSlideshowFieldChange('useRoundCorners',$event)">
+                </pep-checkbox>
+                
+                <pep-group-buttons-settings [groupType]="'sizes'"
+                    [disabled]="!configuration?.slideshowConfig?.useRoundCorners" 
+                    [btnKey]="configuration?.slideshowConfig?.roundCornersSize" [excludeKeys]="['xs']"
+                    (btnkeyChange)="onSlideshowFieldChange('roundCornersSize',$event)">
+                </pep-group-buttons-settings>
     </mat-tab>
     <mat-tab cdkDropListGroup label="{{'SLIDESHOW.CONTENT' | translate}}">
         <ng-container>
