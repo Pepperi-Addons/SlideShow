@@ -175,12 +175,6 @@ export class SlideEditorComponent implements OnInit {
         });
     }
 
-            
-    getOrdinal(n) {
-        var s = ["th ", "st ", "nd ", "rd "];
-        var v = n%100;
-        return n + (s[(v-20)%10] || s[v] || s[0]);
-    }
     //  private updateHostObject() {
         
     //      this.hostEvents.emit({

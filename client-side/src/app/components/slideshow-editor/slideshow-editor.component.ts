@@ -78,9 +78,27 @@ export class SlideshowEditorComponent implements OnInit {
         for(let i = 0 ; i < 2 ; i++){
             arr.push(new ISlideEditor());
             arr[i].id = i;
+            arr[i].titleContent = this.getOrdinal(i+1) + this.translate.instant('SLIDE_EDITOR.TITLE');
         }
 
+        // for(var i=0; i < numOfCards; i++){
+        //     let card = new ICardEditor();
+        //     card.id = i;
+            
+            
+
+        //     card.title = this.getOrdinal(i+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
+        //     card.description = this.translate.instant('GALLERY_EDITOR.AWESOMETEXTFORTHE') + ' ' + this.getOrdinal(i+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
+        //     cards.push(card);
+        // }
+
         return arr;
+    }
+
+    getOrdinal(n) {
+        var s = ["th ", "st ", "nd ", "rd "];
+        var v = n%100;
+        return n + (s[(v-20)%10] || s[v] || s[0]);
     }
 
     private getDefaultHostObject(): ISlideShow {
@@ -195,7 +213,7 @@ export class SlideshowEditorComponent implements OnInit {
     addNewSlideClick() {
         let slide = new ISlideEditor();
         slide.id = (this.configuration.slides.length);
-
+        slide.titleContent = this.getOrdinal(slide.id+1) + this.translate.instant('SLIDE_EDITOR.TITLE');
         this.configuration.slides.push( slide); 
         this.updateHostObject();  
     }
