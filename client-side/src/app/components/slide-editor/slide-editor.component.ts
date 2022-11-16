@@ -87,7 +87,8 @@ export class SlideEditorComponent implements OnInit {
         this.SubTitleSize = [
             { key: 'sm', value: this.translate.instant('GROUP_SIZE.SM'), callback: (event: any) => this.onSlideFieldChange('subTitleSize',event) },
             { key: 'md', value: this.translate.instant('GROUP_SIZE.MD') , callback: (event: any) => this.onSlideFieldChange('subTitleSize',event) },
-            { key: 'lg', value: this.translate.instant('GROUP_SIZE.LG'), callback: (event: any) => this.onSlideFieldChange('subTitleSize',event) }
+            { key: 'lg', value: this.translate.instant('GROUP_SIZE.LG'), callback: (event: any) => this.onSlideFieldChange('subTitleSize',event) },
+            { key: 'xl', value: this.translate.instant('GROUP_SIZE.XL'), callback: (event: any) => this.onSlideFieldChange('subTitleSize',event) }
         ];
 
         this.InnerSpacing = [
