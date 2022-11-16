@@ -140,21 +140,25 @@
         }
 
         div{
-
-            &.title-md{
-                font-size: calc(#{ngx-variables.$fs-md} * 1.75) !important;  
-                height: calc(#{ngx-variables.$fs-lg} * 1.75) !important;  
-                line-height: calc(#{ngx-variables.$fs-lg} * 1.75) !important;  
+            &.title-sm{
+                font-size: calc(#{ngx-variables.$fs-sm} * 2.5) !important;  
+                height: calc(#{ngx-variables.$fs-lg} * 2.5) !important;  
+                line-height: calc(#{ngx-variables.$fs-lg} * 2.5) !important;  
             }
-            &.title-lg{
-                font-size: calc(#{ngx-variables.$fs-lg} * 2.75) !important; 
+            &.title-md{
+                font-size: calc(#{ngx-variables.$fs-md} * 2.75) !important;  
                 height: calc(#{ngx-variables.$fs-lg} * 2.75) !important;  
                 line-height: calc(#{ngx-variables.$fs-lg} * 2.75) !important;  
             }
+            &.title-lg{
+                font-size: calc(#{ngx-variables.$fs-lg} * 3) !important; 
+                height: calc(#{ngx-variables.$fs-lg} * 3) !important;  
+                line-height: calc(#{ngx-variables.$fs-lg} * 3) !important;  
+            }
             &.title-xl{
-                font-size: calc(#{ngx-variables.$fs-xl} * 3.5) !important; 
-                height: calc(#{ngx-variables.$fs-xl} * 3.5) !important; 
-                line-height: calc(#{ngx-variables.$fs-xl} * 3.5) !important;     
+                font-size: calc(#{ngx-variables.$fs-xl} * 3.25) !important; 
+                height: calc(#{ngx-variables.$fs-xl} * 3.25) !important; 
+                line-height: calc(#{ngx-variables.$fs-xl} * 3.25) !important;     
             }
         
         }
