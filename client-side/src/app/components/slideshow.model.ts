@@ -57,10 +57,11 @@ export class ISlideshowEditor {
     arrowsStyle: PepStyleType= 'weak';
     arrowsColor: buttonColor= 'system';
     usePauseButton: boolean = true;
-    showOnMobile: boolean = false;
+    hideOnMobile: boolean = true;
     useInverStyle: boolean = true;
     showControllersInSlider: boolean = true;
     controllerSize: PepSizeType = 'md';
+    controllerStyle: PepStyleType= 'weak';
     dropShadow: PepShadowSettings = new PepShadowSettings(false,'md','soft');
     useRoundCorners: boolean = false;
     roundCornersSize: PepSizeType = 'md';

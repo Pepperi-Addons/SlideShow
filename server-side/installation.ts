@@ -122,7 +122,7 @@ async function runMigration(client){
                                 "Type": "Bool",
                                 "ConfigurationPerScreenSize": true
                             },
-                            "showOnMobile": {
+                            "hideOnMobile": {
                                 "Type": "Bool",
                                 "ConfigurationPerScreenSize": true
                             },

@@ -5,7 +5,8 @@
                          configuration?.slideshowConfig?.dropShadow?.use && 
                          ((configuration?.slideshowConfig?.fillHeight && configuration?.slideshowConfig?.showControllersInSlider) || 
                          (!configuration?.slideshowConfig?.fillHeight && configuration?.slideshowConfig?.showControllersInSlider)) ? configuration?.slideshowConfig?.dropShadow?.intensity : '',
-                         configuration?.slideshowConfig?.useRoundCorners ? 'border-radius-' + configuration?.slideshowConfig?.roundCornersSize : '']">
+                         configuration?.slideshowConfig?.useRoundCorners ? 'border-radius-' + configuration?.slideshowConfig?.roundCornersSize : '',
+                         configuration?.slideshowConfig?.hideOnMobile ? 'hideOnMobile' : '']">
 <div *ngIf="configuration?.slideshowConfig?.isUseArrows"
        id="navigationCont">
          <pep-button sizeType='sm'
@@ -36,21 +37,29 @@
 </slide>
 
 <div id="slideFooterBtn" 
-     *ngIf="configuration?.slides?.length > 1 && (!isMobileView || configuration?.slideshowConfig?.showOnMobile)"
+     *ngIf="configuration?.slides?.length > 1 && (!isMobileView || configuration?.slideshowConfig?.hideOnMobile)"
      [ngStyle]="{'bottom': configuration?.slideshowConfig?.showControllersInSlider ? '0.5rem': '0rem'}"
      [ngClass]="[configuration?.slideshowConfig?.dropShadow?.use === true ? 'with-shadow-margin' : '' ]">
        <div id="dotsCont" 
-            class="pep-button regular system"
-            [ngClass]='configuration?.slideshowConfig?.controllerSize'>
-              <span *ngFor="let slide of configuration?.slides; let i = index" 
+            class="pep-button"
+            [ngClass]='[configuration?.slideshowConfig?.controllerSize, configuration?.slideshowConfig?.controllerStyle]'>
+            <pep-icon name="system_circle" 
+                      class="dot" 
+                      *ngFor="let slide of configuration?.slides; let i = index"
+                      (click)="setSlideIndex(i)" 
+                      [ngClass]="{'active': i ===  slideIndex}">
+            </pep-icon>
+              <!-- <span *ngFor="let slide of configuration?.slides; let i = index" 
                      class="dot" 
                      (click)="setSlideIndex(i)" 
                      [ngClass]="{'active': i ===  slideIndex}">
-              </span>
+              </span> -->
        </div>
        <ng-container *ngIf="configuration?.slideshowConfig?.isTransition && configuration?.slideshowConfig?.usePauseButton">
-              <pep-button *ngIf="!isPause" [sizeType]='configuration?.slideshowConfig?.controllerSize' styleType="regular" iconName="system_pause" (buttonClick)="setRunState($event)"></pep-button>
-              <pep-button *ngIf="isPause" [sizeType]='configuration?.slideshowConfig?.controllerSize' styleType="regular" iconName="system_play" (buttonClick)="setRunState($event)"></pep-button>
+              <pep-button *ngIf="!isPause" [sizeType]='configuration?.slideshowConfig?.controllerSize' 
+              [styleType]="configuration?.slideshowConfig?.controllerStyle" iconName="system_pause" (buttonClick)="setRunState($event)"></pep-button>
+              <pep-button *ngIf="isPause" [sizeType]='configuration?.slideshowConfig?.controllerSize'
+              [styleType]="configuration?.slideshowConfig?.controllerStyle" iconName="system_play" (buttonClick)="setRunState($event)"></pep-button>
        </ng-container>
 </div>
 </div>

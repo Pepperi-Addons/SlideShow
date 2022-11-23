@@ -7,7 +7,7 @@ import { PepButtonModule } from '@pepperi-addons/ngx-lib/button';
 import { PepHttpService, PepFileService, PepNgxLibModule, PepAddonService, PepCustomizationService } from '@pepperi-addons/ngx-lib';
 import { PepDialogService } from '@pepperi-addons/ngx-lib/dialog';
 import { PepPageLayoutModule } from '@pepperi-addons/ngx-lib/page-layout';
-import { pepIconArrowBackRight, PepIconModule, PepIconRegistry, pepIconSystemPause , pepIconSystemPlay, pepIconArrowLeft, pepIconArrowRight} from '@pepperi-addons/ngx-lib/icon';
+import { pepIconArrowBackRight, PepIconModule, PepIconRegistry, pepIconSystemPause , pepIconSystemPlay, pepIconArrowLeft, pepIconArrowRight, pepIconSystemCircle} from '@pepperi-addons/ngx-lib/icon';
 
 import { config } from '../addon.config';
 
@@ -19,7 +19,8 @@ const pepIcons = [
     pepIconSystemPlay,
     pepIconSystemPause,
     pepIconArrowLeft,
-    pepIconArrowRight
+    pepIconArrowRight,
+    pepIconSystemCircle,
 ]
 @NgModule({
     declarations: [

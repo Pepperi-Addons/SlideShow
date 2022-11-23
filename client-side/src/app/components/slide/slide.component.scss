@@ -158,9 +158,9 @@
                     display: inline;
                 }
             }
-        }
+    }
 
-        div{
+    div{
             &.title-sm{
                 font-size: calc(#{ngx-variables.$fs-sm} * 2.5) !important;  
                 height: calc(#{ngx-variables.$fs-lg} * 2.5) !important;  
@@ -182,7 +182,7 @@
                 line-height: calc(#{ngx-variables.$fs-xl} * 3.25) !important;     
             }
         
-        }
+     }
 
     .backgroundImage{
         background-repeat: no-repeat !important;

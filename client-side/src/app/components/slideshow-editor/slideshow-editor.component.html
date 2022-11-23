@@ -58,24 +58,28 @@
                 <label class="body-xs normal" [innerHTML]="'SLIDESHOW.CONTROLLERS_DESC' | translate"></label>
                 </div>
                 <div>
-                <pep-checkbox class="body-sm" 
-                              [disabled]="!configuration?.slideshowConfig?.isTransition" 
-                              [value]="configuration?.slideshowConfig?.usePauseButton && configuration?.slideshowConfig?.isTransition" 
-                              [label]="'SLIDESHOW.CONTROLLERS_PROPERTIES.PAUSE_PLAY' | translate" [renderTitle]="false" 
-                              (valueChange)="onSlideshowFieldChange('usePauseButton',$event)"></pep-checkbox>
-                <pep-checkbox class="body-sm" [value]="configuration?.slideshowConfig?.showOnMobile" 
-                              [label]="'SLIDESHOW.CONTROLLERS_PROPERTIES.MOBILE' | translate" [renderTitle]="false" 
-                              (valueChange)="onSlideshowFieldChange('showOnMobile',$event)"></pep-checkbox>
-                <pep-checkbox class="body-sm"  [value]="configuration?.slideshowConfig?.showControllersInSlider"
-                              [label]="'SLIDESHOW.CONTROLLERS_PROPERTIES.SHOW_CONTROLLERS' | translate" [renderTitle]="false" 
-                              (valueChange)="onSlideshowFieldChange('showControllersInSlider',$event)"></pep-checkbox>
+                    <pep-checkbox class="body-sm" 
+                                [disabled]="!configuration?.slideshowConfig?.isTransition" 
+                                [value]="configuration?.slideshowConfig?.usePauseButton && configuration?.slideshowConfig?.isTransition" 
+                                [label]="'SLIDESHOW.CONTROLLERS_PROPERTIES.PAUSE_PLAY' | translate" [renderTitle]="false" 
+                                (valueChange)="onSlideshowFieldChange('usePauseButton',$event)"></pep-checkbox>
+                    <pep-checkbox class="body-sm" [value]="configuration?.slideshowConfig?.hideOnMobile" 
+                                [label]="'SLIDESHOW.CONTROLLERS_PROPERTIES.MOBILE' | translate" [renderTitle]="false" 
+                                (valueChange)="onSlideshowFieldChange('hideOnMobile',$event)"></pep-checkbox>
+                    <pep-checkbox class="body-sm"  [value]="configuration?.slideshowConfig?.showControllersInSlider"
+                                [label]="'SLIDESHOW.CONTROLLERS_PROPERTIES.SHOW_CONTROLLERS' | translate" [renderTitle]="false" 
+                                (valueChange)="onSlideshowFieldChange('showControllersInSlider',$event)"></pep-checkbox>
+    
                 </div>
                 <pep-group-buttons-settings pepResetConfigurationField="slideshowConfig?.controllerSize" [hideReset]="configuration?.slideshowConfig?.controllerSize === configurationSource?.slideshowConfig?.controllerSize"
-                               [resetHostEvents]="hostEvents"
+                              [resetHostEvents]="hostEvents"
                               [groupType]="'sizes'" [subHeader]="'SLIDESHOW.CONTROLLER_SIZE' | translate" 
                               [btnKey]="configuration?.slideshowConfig?.controllerSize" [excludeKeys]="['xs','lg','xl']"
                               (btnkeyChange)="onSlideshowFieldChange('controllerSize',$event)">
                 </pep-group-buttons-settings>
+
+                <pep-select style="margin-top:-1rem;" [label]="'SLIDESHOW.ARROWS_STYLE' | translate" [value]="configuration?.slideshowConfig?.controllerStyle" [options]="buttonStyle" 
+                        (valueChange)="onSlideshowFieldChange('controllerStyle',$event)" [emptyOption]="false"></pep-select>
                 
                 <pep-shadow-settings [shadow]="configuration?.slideshowConfig?.dropShadow"
                                      (shadowChange)="onSlideshowFieldChange('dropShadow',$event)">

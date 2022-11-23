@@ -28,7 +28,7 @@ export class SlideshowEditorComponent implements OnInit {
                 this.loadDefaultConfiguration();
             }
         }
-        
+
         this._pageParameters = value?.pageParameters || {};
         this._pageConfiguration = value?.pageConfiguration || this.defaultPageConfiguration;
 

@@ -55,7 +55,7 @@
         "CONTROLLERS_DESC": "Dots indecate the number of sildes<br>and the silde position, they are<br>clickable and will change the silde.",
         "CONTROLLERS_PROPERTIES":{
             "PAUSE_PLAY": "Show Pause/Play",
-            "MOBILE": "Show on mobile",
+            "MOBILE": "Hide on mobile",
             "INVERT_STYLE": "Invert style",
             "SHOW_CONTROLLERS": "Show controllers in slider"
         },

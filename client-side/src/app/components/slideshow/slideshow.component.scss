@@ -53,27 +53,28 @@
 
 
         #dotsCont{
-            //background: rgba(255, 255, 255, 0.5);
             border-radius: ngx-variables.$border-radius-md;
         }
 
         #dotsCont{
 
-            padding: .075rem .5rem;
+            padding: 0 .5rem;
+            display: flex;
+            align-items: center;
         
             .dot {
                 cursor: pointer;
-                margin: 0 2px;
-                border-radius: 50%;
-                display: inline-block;
+                display: flex;
+                align-items: center;;
                 transition: background-color 0.6s ease;
-                width: .75rem;
-                height: .75rem;
-                background: rgba(26, 26, 26, 0.24);
+                width: 1.25rem;
+                height: 1.25rem;
+                opacity: 0.5;
+               // background: rgba(26, 26, 26, 0.24);
             }
             
             .active, .dot:hover {
-                background-color: #717171;
+                opacity: 1 !important;
             }
         }
     }
@@ -135,6 +136,11 @@
         }
     }
 
+    &.hideOnMobile{
+        @media screen and (max-width: 360px) {
+            width: 100px !important;
+          }
+    }
     &.shadow-xs{
         &.soft{
             box-shadow: ngx-functions.get-pep-shadow(shadow-xs, soft);
