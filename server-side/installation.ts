@@ -134,10 +134,6 @@ async function runMigration(client){
                                 "Type": "Bool",
                                 "ConfigurationPerScreenSize": true
                             },
-                            "hideOnMobile": {
-                                "Type": "Bool",
-                                "ConfigurationPerScreenSize": true
-                            },
                             "useInverStyle": {
                                 "Type": "Bool",
                                 "ConfigurationPerScreenSize": true

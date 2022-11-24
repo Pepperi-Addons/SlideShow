@@ -74,9 +74,6 @@
                                 [value]="configuration?.slideshowConfig?.usePauseButton && configuration?.slideshowConfig?.isTransition" 
                                 [label]="'SLIDESHOW.CONTROLLERS_PROPERTIES.PAUSE_PLAY' | translate" [renderTitle]="false" 
                                 (valueChange)="onSlideshowFieldChange('usePauseButton',$event)"></pep-checkbox>
-                    <pep-checkbox class="body-sm" [value]="configuration?.slideshowConfig?.hideOnMobile" 
-                                [label]="'SLIDESHOW.CONTROLLERS_PROPERTIES.MOBILE' | translate" [renderTitle]="false" 
-                                (valueChange)="onSlideshowFieldChange('hideOnMobile',$event)"></pep-checkbox>
                     <pep-checkbox class="body-sm"  [value]="configuration?.slideshowConfig?.showControllersInSlider"
                                 [label]="'SLIDESHOW.CONTROLLERS_PROPERTIES.SHOW_CONTROLLERS' | translate" [renderTitle]="false" 
                                 (valueChange)="onSlideshowFieldChange('showControllersInSlider',$event)"></pep-checkbox>

@@ -5,8 +5,7 @@
                          configuration?.slideshowConfig?.dropShadow?.use && 
                          ((configuration?.slideshowConfig?.fillHeight && configuration?.slideshowConfig?.showControllersInSlider) || 
                          (!configuration?.slideshowConfig?.fillHeight && configuration?.slideshowConfig?.showControllersInSlider)) ? configuration?.slideshowConfig?.dropShadow?.intensity : '',
-                         configuration?.slideshowConfig?.useRoundCorners ? 'border-radius-' + configuration?.slideshowConfig?.roundCornersSize : '',
-                         configuration?.slideshowConfig?.hideOnMobile ? 'hideOnMobile' : '']">
+                         configuration?.slideshowConfig?.useRoundCorners ? 'border-radius-' + configuration?.slideshowConfig?.roundCornersSize : '']">
 <div *ngIf="configuration?.slideshowConfig?.isUseArrows"
        [ngStyle]="{ 'display': configuration?.slideshowConfig?.arrowsDisplay === 'hide' ? 'none' : 'flex'   }"
        id="navigationCont">
@@ -38,9 +37,8 @@
 </slide>
 
 <div id="slideFooterBtn" 
-     *ngIf="configuration?.slides?.length > 1 && (!isMobileView || configuration?.slideshowConfig?.hideOnMobile)"
-     [ngStyle]="{'bottom': configuration?.slideshowConfig?.showControllersInSlider ? '0.5rem': '0rem',
-                 'display': configuration?.slideshowConfig?.controllersDisplay === 'hide' ? 'none' : 'flex'   }"
+     *ngIf="configuration?.slides?.length > 1 && configuration?.slideshowConfig?.controllersDisplay !== 'hide'"
+     [ngStyle]="{'bottom': configuration?.slideshowConfig?.showControllersInSlider ? '0.5rem': '0rem'}"
      [ngClass]="[configuration?.slideshowConfig?.dropShadow?.use === true ? 'with-shadow-margin' : '' ]">
        <div id="dotsCont" 
             class="pep-button"

@@ -136,11 +136,6 @@
         }
     }
 
-    &.hideOnMobile{
-        @media screen and (max-width: 360px) {
-            width: 100px !important;
-          }
-    }
     &.shadow-xs{
         &.soft{
             box-shadow: ngx-functions.get-pep-shadow(shadow-xs, soft);

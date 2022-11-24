@@ -59,7 +59,6 @@ export class ISlideshowEditor {
     arrowsDisplay: DisplayStates = 'show';
     arrowsColor: buttonColor= 'system';
     usePauseButton: boolean = true;
-    hideOnMobile: boolean = true;
     useInverStyle: boolean = true;
     showControllersInSlider: boolean = true;
     controllersDisplay: DisplayStates = 'show';
