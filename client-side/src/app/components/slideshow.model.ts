@@ -18,6 +18,7 @@ export type Intensity = 'Soft' | 'Regular';
 export type textColor = 'system' | 'dimmed' | 'inverted' | 'strong';
 export type FontWeight = 'normal' | 'bold' | 'bolder';
 export type buttonColor = 'system-primary' | 'invert' | 'user-primary' | 'success' | 'caution' | 'system' ;
+export type DisplayStates = 'show' | 'hide'; 
 
 export class SlideButton {
     useButton: boolean;
@@ -55,11 +56,13 @@ export class ISlideshowEditor {
     arrowType: ArrowType = 'arrow_right';
     arrowShape: ArrowShape = 'round';
     arrowsStyle: PepStyleType= 'weak';
+    arrowsDisplay: DisplayStates = 'show';
     arrowsColor: buttonColor= 'system';
     usePauseButton: boolean = true;
     hideOnMobile: boolean = true;
     useInverStyle: boolean = true;
     showControllersInSlider: boolean = true;
+    controllersDisplay: DisplayStates = 'show';
     controllerSize: PepSizeType = 'md';
     controllerStyle: PepStyleType= 'weak';
     dropShadow: PepShadowSettings = new PepShadowSettings(false,'md','soft');

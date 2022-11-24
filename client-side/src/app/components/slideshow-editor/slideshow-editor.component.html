@@ -35,27 +35,38 @@
 
                 <pep-checkbox [value]="configuration?.slideshowConfig?.isUseArrows" [label]="'SLIDESHOW.ARROWS' | translate" [renderTitle]="false" (valueChange)="onSlideshowFieldChange('isUseArrows',$event)"></pep-checkbox>
                 <label class="body-xs normal ellipsis" [innerHTML]="'SLIDESHOW.ARROWS_DESC' | translate"></label>
+                <div>
+                <pep-group-buttons-settings 
+                        pepResetConfigurationField="slideshowConfig?.arrowsDisplay" [hideReset]="configuration?.slideshowConfig?.arrowsDisplay === configurationSource?.slideshowConfig?.arrowsDisplay"
+                        [resetHostEvents]="hostEvents" [btnsArray]="arrowsDisplayTypes"
+                        [groupType]="'custom'" [subHeader]="'SLIDESHOW.ARROWS_DISPLAY' | translate" 
+                        [btnKey]="configuration?.slideshowConfig?.arrowsDisplay"
+                        [disabled]="!configuration?.slideshowConfig?.isUseArrows"
+                        (btnkeyChange)="onSlideshowFieldChange('arrowsDisplay',$event)">
+                </pep-group-buttons-settings>
 
                 <pep-group-buttons-settings [groupType]="'custom'" [subHeader]="'SLIDESHOW.ARROWS_TYPE' | translate" 
                     [btnsArray]="ArrowsType" [disabled]="!configuration?.slideshowConfig?.isUseArrows" 
                     [btnKey]="configuration?.slideshowConfig?.arrowType">
                 </pep-group-buttons-settings>
-
+            </div>
                 <pep-group-buttons-settings [groupType]="'custom'" [subHeader]="'SLIDESHOW.ARROWS_BUTTONS' | translate" [btnsArray]="ArrowButtons"
                     [disabled]="!configuration?.slideshowConfig?.isUseArrows" [btnKey]="configuration?.slideshowConfig?.arrowShape">
                 </pep-group-buttons-settings>
 
                 <pep-select [disabled]="!configuration?.slideshowConfig?.isUseArrows" [label]="'SLIDESHOW.ARROWS_STYLE' | translate" [value]="configuration?.slideshowConfig?.arrowsStyle" [options]="buttonStyle" 
                         (valueChange)="onSlideshowFieldChange('arrowsStyle',$event)" [emptyOption]="false"></pep-select>
-                <!-- <div class="split-area">
-                    <pep-select [disabled]="!configuration?.slideshowConfig?.isUseArrows" [label]="'SLIDESHOW.ARROWS_STYLE' | translate" [value]="configuration?.slideshowConfig?.arrowsStyle" [options]="buttonStyle" 
-                        (valueChange)="onSlideshowFieldChange('arrowsStyle',$event)" [emptyOption]="false"></pep-select>
-                    <pep-select [disabled]="!configuration?.slideshowConfig?.isUseArrows" [label]="'SLIDESHOW.ARROWS_COLOR' | translate" [value]="configuration?.slideshowConfig?.arrowsColor" [options]="buttonColor"
-                        (valueChange)="onSlideshowFieldChange('arrowsColor',$event)" [emptyOption]="false"></pep-select>
-                </div> -->
+            
                 <div>
                 <label class="body-xl bold ellipsis">{{'SLIDESHOW.CONTROLLERS' | translate}}</label>
                 <label class="body-xs normal" [innerHTML]="'SLIDESHOW.CONTROLLERS_DESC' | translate"></label>
+                <pep-group-buttons-settings 
+                              pepResetConfigurationField="slideshowConfig?.controllersDisplay" [hideReset]="configuration?.slideshowConfig?.controllersDisplay === configurationSource?.slideshowConfig?.controllersDisplay"
+                              [resetHostEvents]="hostEvents" [btnsArray]="controllersDisplayTypes"
+                              [groupType]="'custom'" [subHeader]="'SLIDESHOW.CONTROLLER_DISPLAY' | translate" 
+                              [btnKey]="configuration?.slideshowConfig?.controllersDisplay"
+                              (btnkeyChange)="onSlideshowFieldChange('controllersDisplay',$event)">
+                </pep-group-buttons-settings>
                 </div>
                 <div>
                     <pep-checkbox class="body-sm" 
@@ -71,7 +82,8 @@
                                 (valueChange)="onSlideshowFieldChange('showControllersInSlider',$event)"></pep-checkbox>
     
                 </div>
-                <pep-group-buttons-settings pepResetConfigurationField="slideshowConfig?.controllerSize" [hideReset]="configuration?.slideshowConfig?.controllerSize === configurationSource?.slideshowConfig?.controllerSize"
+                <pep-group-buttons-settings 
+                              pepResetConfigurationField="slideshowConfig?.controllerSize" [hideReset]="configuration?.slideshowConfig?.controllerSize === configurationSource?.slideshowConfig?.controllerSize"
                               [resetHostEvents]="hostEvents"
                               [groupType]="'sizes'" [subHeader]="'SLIDESHOW.CONTROLLER_SIZE' | translate" 
                               [btnKey]="configuration?.slideshowConfig?.controllerSize" [excludeKeys]="['xs','lg','xl']"

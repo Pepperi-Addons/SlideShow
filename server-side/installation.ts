@@ -82,6 +82,18 @@ async function runMigration(client){
                                 "Type": "String",
                                 "ConfigurationPerScreenSize": true
                             },
+                            "controllerSize": {
+                                "Type": "String",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "controllersDisplay":{
+                                "Type": "String",
+                                "ConfigurationPerScreenSize": true
+                            },
+                            "arrowsDisplay":{
+                                "Type": "String",
+                                "ConfigurationPerScreenSize": true
+                            }
                             /*"isTransition": {
                                 "Type": "Bool",
                                 "ConfigurationPerScreenSize": true
@@ -132,10 +144,6 @@ async function runMigration(client){
                             },
                             "showControllersInSlider": {
                                 "Type": "Bool",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "controllerSize": {
-                                "Type": "String",
                                 "ConfigurationPerScreenSize": true
                             },
                             "dropShadow": { 

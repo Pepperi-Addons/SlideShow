@@ -22,7 +22,7 @@
                                                 'horAlign_'+slide?.horizontalAlign, 
                                                 'verAlign_'+slide?.verticalAlign, 
                                                 'rowGap_'+slide?.innerSpacing,
-                                                 slideshowConfig?.isUseArrows ? 'withArrow_margin' : '']"
+                                                 slideshowConfig?.isUseArrows && slideshowConfig?.arrowsDisplay !== 'hide' ? 'withArrow_margin' : '']"
                                     [ngStyle]="{'grid-template-rows' : 'min-content auto min-content'
                                                  }">
                 <div *ngIf="slide?.useTitle"

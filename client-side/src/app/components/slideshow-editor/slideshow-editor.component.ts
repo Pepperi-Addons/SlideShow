@@ -59,6 +59,8 @@ export class SlideshowEditorComponent implements OnInit {
     DropShadowStyle: Array<PepButton> = [];
 
     ArrowsType: Array<PepButton> = [];
+    controllersDisplayTypes: Array<PepButton> = [];
+    arrowsDisplayTypes: Array<PepButton> = [];
     ArrowButtons: Array<PepButton> = [];// Array<{key: ArrowShape, value: string}> = [];
     ControllerSize: Array<PepButton> = [];
     
@@ -193,7 +195,17 @@ export class SlideshowEditorComponent implements OnInit {
             { key: 'arrow_right', iconName: 'arrow_right', callback: (event: any) => this.onSlideshowFieldChange('arrowType',event) },
             { key: 'arrow_right_alt', iconName: 'arrow_right_alt', callback: (event: any) => this.onSlideshowFieldChange('arrowType',event) }
         ];
-    
+        
+        this.controllersDisplayTypes = [
+            { key: 'show', value: this.translate.instant('SLIDE_EDITOR.SHOW'), callback: (event: any) => this.onSlideshowFieldChange('controllersDisplay',event) },
+            { key: 'hide', value: this.translate.instant('SLIDE_EDITOR.HIDE'), callback: (event: any) => this.onSlideshowFieldChange('controllersDisplay',event) }
+        ]
+
+        this.arrowsDisplayTypes = [
+            { key: 'show', value: this.translate.instant('SLIDE_EDITOR.SHOW'), callback: (event: any) => this.onSlideshowFieldChange('arrowsDisplay',event) },
+            { key: 'hide', value: this.translate.instant('SLIDE_EDITOR.HIDE'), callback: (event: any) => this.onSlideshowFieldChange('arrowsDisplay',event) }
+        ]
+
         this.ArrowButtons = [
             // { key: 'none', value: this.translate.instant('GROUP_SIZE.NONE') },
             { key: 'regular', value: this.translate.instant('SLIDESHOW.ARROW_BUTTON.REGULAR'), callback: (event: any) => this.onSlideshowFieldChange('arrowShape',event) },

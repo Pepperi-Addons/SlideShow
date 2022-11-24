@@ -39,6 +39,7 @@
         "ARROWS": "Arrows",
         "ARROWS_DESC": "Arrows used the navigate the slides from start to end.<br>Arrows are hidden in mobile view.",
         "ARROWS_TYPE": "Arrows type",
+        "ARROWS_DISPLAY": "Display arrows",
         "ARROWS_BUTTONS": "Arrows buttons roundness",
         "ARROWS_STYLE": "Style",
         "ARROWS_COLOR": "Color",
@@ -59,10 +60,13 @@
             "INVERT_STYLE": "Invert style",
             "SHOW_CONTROLLERS": "Show controllers in slider"
         },
-        "CONTROLLER_SIZE": "Controller size"
+        "CONTROLLER_SIZE": "Controller size",
+        "CONTROLLER_DISPLAY": "Display controllers"
     },
 
     "SLIDE_EDITOR": {
+        "SHOW": "Show",
+        "HIDE": "Hide",
         "TITLE": "Title",
         "TITLE_CONTENT": "Title text",
         "SUBTITLE_CONTENT": "Subtitle text",
