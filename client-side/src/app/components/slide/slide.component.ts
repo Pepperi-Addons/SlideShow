@@ -70,6 +70,7 @@ export class SlideComponent implements OnInit {
             return 'unset';
         }
     }
+
     getGradientOverlay(){
         let gradient = this.slide?.gradientOverlay;
         let horAlign = this.slide?.horizontalAlign;
@@ -87,16 +88,14 @@ export class SlideComponent implements OnInit {
                 break;
             }
             case 'right':{
-                direction = verAlign === 'start' ? '225' : verAlign === 'middle' ? '135' : '315';
+                direction = verAlign === 'start' ? '225' : verAlign === 'middle' ? '270' : '315';
                 break;
             }
         }
             direction = direction === 'circle' ? direction : direction + 'deg';
 
-        let colorsStr =  direction ! == 'circle' ? this.getRGBAcolor(gradient,0) +' , '+ this.getRGBAcolor(gradient) :
-                                                 this.getRGBAcolor(gradient) +' , '+ this.getRGBAcolor(gradient,0);
-        
-                                                 let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
+        let colorsStr =  this.getRGBAcolor(gradient) +' , '+ this.getRGBAcolor(gradient,0);
+        let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
 
         let gradStr = this.slide.gradientOverlay.use ? gradType + '(' + direction +' , '+ colorsStr +')' : '';
 
