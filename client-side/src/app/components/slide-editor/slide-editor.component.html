@@ -19,12 +19,13 @@
                  [disabled]="!configuration?.slides[id].useTitle" [value]="configuration?.slides[id].titleContent" 
                  (valueChange)="onSlideFieldChange('titleContent',$event)">
     </pep-textbox>
-      
-    <pep-group-buttons-settings
+
+    <pep-group-buttons-settings 
         pepResetConfigurationField="slides[{{id}}].titleSize" [hideReset]="configuration.slides[id].titleSize === configurationSource?.slides[id].titleSize"
-         [resetHostEvents]="hostEvents"
-        [groupType]="'custom'" [subHeader]="'SLIDE_EDITOR.MAIN_TITLE_SIZE' | translate" [btnsArray]="TitleSize"
-        [disabled]="!configuration?.slides[id].useTitle" [btnKey]="configuration?.slides[id].titleSize">
+        [resetHostEvents]="hostEvents"
+        [groupType]="'sizes'" [subHeader]="'SLIDE_EDITOR.MAIN_TITLE_SIZE' | translate" 
+        [btnKey]="configuration?.slides[id].titleSize" [excludeKeys]="['xs']"
+        (btnkeyChange)="onSlideFieldChange('titleSize',$event)">
     </pep-group-buttons-settings>
 
     <pep-group-buttons-settings 
@@ -42,7 +43,7 @@
     <pep-group-buttons-settings 
         pepResetConfigurationField="slides[{{id}}].subTitleSize" [hideReset]="configuration.slides[id].subTitleSize === configurationSource?.slides[id].subTitleSize"
          [resetHostEvents]="hostEvents"
-        [groupType]="'custom'" [subHeader]="'SLIDE_EDITOR.SUB_TITLE_SIZE' | translate" [btnsArray]="SubTitleSize"
+        [groupType]="'sizes'" [subHeader]="'SLIDE_EDITOR.SUB_TITLE_SIZE' | translate" [excludeKeys]="['xs']" (btnkeyChange)="onSlideFieldChange('subTitleSize',$event)"
         [disabled]="!configuration?.slides[id].useSubTitle" [btnKey]="configuration?.slides[id].subTitleSize">
     </pep-group-buttons-settings>
 
@@ -54,8 +55,9 @@
     </pep-group-buttons-settings>
 
     <pep-group-buttons-settings 
-        [groupType]="'custom'" [subHeader]="'SLIDESHOW.INNERSPACING_TITLE' | translate" [btnsArray]="InnerSpacing"
-        [btnKey]="configuration?.slides[id].innerSpacing">
+        [groupType]="'sizes'" [subHeader]="'SLIDESHOW.INNERSPACING_TITLE' | translate" 
+        [btnKey]="configuration?.slides[id].innerSpacing" [excludeKeys]="['xl']"
+        (btnkeyChange)="onSlideFieldChange('innerSpacing',$event)">
     </pep-group-buttons-settings>
 
     <pep-group-buttons-settings 
