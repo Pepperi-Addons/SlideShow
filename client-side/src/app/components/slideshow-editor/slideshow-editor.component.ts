@@ -159,12 +159,13 @@ export class SlideshowEditorComponent implements OnInit {
     }
 
     async ngOnInit(): Promise<void> {
+        
+        const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();
+
         if (!this.configuration) {
             this.loadDefaultConfiguration();
         }
-
-        const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();
-
+        
         this.DropShadowStyle = [
             { key: 'Soft', value: this.translate.instant('SLIDE_EDITOR.SOFT') },
             { key: 'Regular', value: this.translate.instant('SLIDE_EDITOR.REGULAR') }
