@@ -70,6 +70,7 @@ export class SlideComponent implements OnInit {
             return 'unset';
         }
     }
+
     getGradientOverlay(){
         let gradient = this.slide?.gradientOverlay;
         let horAlign = this.slide?.horizontalAlign;
