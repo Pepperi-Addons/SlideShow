@@ -351,7 +351,9 @@ async function runMigration(client){
                         }
                     }
                 }
-             }
+             },
+             OnPageLoadEndpoint: "/addon-cpi/prepare_assets",
+
         }; 
         
         const service = new MyService(client);
