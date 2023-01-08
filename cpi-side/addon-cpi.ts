@@ -8,30 +8,31 @@ router.post('/prepare_assets', async (req, res)=>{
         const slides = configuration.Data.slides as any[];
         await Promise.all(slides.map(async (slide) => {
             // overwrite the slides assetURL with the local file path
-            return slide.image.assetURL = await getFilePath(slide.image.assetURL)
+            return slide.image.assetURL = await getFilePath(slide.image)
         }))
         configuration.Data.slides = slides;
     }
     res.json({Configuration: configuration});
 });
 
-async function getFilePath(url) {
+async function getFilePath(slide) {
     let fileUrl;
     // url =  "'https://pfs.pepperi.com/2234563d-b17b-4ace-b836-916b039504ae/ad909780-0c23-401e-8e8e-f514cc4f6aa2/Assets/bibi.jpeg';
     // check if the url is a valid url
-    const fixedURL = fixURLIfNeeded(url);
-    if (fixedURL && fixedURL.startsWith('http')) {
-        const filePath = new URL(fixedURL).pathname;
-        const fileName = path.basename(filePath);
+    //const fixedURL = fixURLIfNeeded(url);
+    //if (fixedURL && fixedURL.startsWith('http')) {
+        //const filePath = new URL(fixedURL).pathname;
+        //const fileName = path.basename(filePath);
         try {
-            const res = await pepperi.addons.pfs.uuid("ad909780-0c23-401e-8e8e-f514cc4f6aa2").schema("Assets").key(fileName).get();
+            const res = await pepperi.addons.pfs.uuid("ad909780-0c23-401e-8e8e-f514cc4f6aa2").schema("Assets").key(slide.asset).get();
             fileUrl = res.URL;
+            console.log(fileUrl);
             }
         catch (error) {
             console.error(error);
-            fileUrl = url;        
+            fileUrl = fixURLIfNeeded(slide.assetURL);        
         }
-    }
+    //}
     return fileUrl;
 }
 
