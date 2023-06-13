@@ -63,7 +63,7 @@ export class SlideshowComponent implements OnInit {
             const eventData = {
                 detail: {
                     eventKey: CLIENT_ACTION_ON_SLIDESHOW_LOAD,
-                    eventData: { gallery: this.configuration },
+                    eventData: { slideshow: this.configuration },
                     completion: (res: any) => {
                             if (res) {
                                 debugger;

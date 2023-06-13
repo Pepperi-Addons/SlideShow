@@ -47,8 +47,8 @@ export class SlideEditorComponent implements OnInit {
     // SubTitleSize: Array<PepButton> = [];
     //ButtonsSize: Array<PepButton> = [];
     WidthSize:  Array<PepButton> = [];
-    HorizentalAlign: Array<PepButton> = [];
-    VerticalAlign: Array<groupButtonArray> = [];
+    //HorizentalAlign: Array<PepButton> = [];
+    //VerticalAlign: Array<groupButtonArray> = [];
     
     textColors: Array<groupButtonArray> = [];
     buttonColor: Array<PepButton> = [];
@@ -67,35 +67,10 @@ export class SlideEditorComponent implements OnInit {
 
     async ngOnInit(): Promise<void> {
         
-        this.title = this.configuration.slides[this.id].titleContent;
+        this.title = this.configuration.slides[this.id].Title.Content;
 
         const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();
 
-        // this.TitleSize = [
-        //     { key: 'sm', value: this.translate.instant('GROUP_SIZE.SM'), callback: (event: any) => this.onSlideFieldChange('titleSize',event) },
-        //     { key: 'md', value: this.translate.instant('GROUP_SIZE.MD'), callback: (event: any) => this.onSlideFieldChange('titleSize',event) },
-        //     { key: 'lg', value: this.translate.instant('GROUP_SIZE.LG'), callback: (event: any) => this.onSlideFieldChange('titleSize',event) },
-        //     { key: 'xl', value: this.translate.instant('GROUP_SIZE.XL'), callback: (event: any) => this.onSlideFieldChange('titleSize',event) },
-        // ];
-
-        // this.ButtonsSize = [
-        //     { key: 'md', value: this.translate.instant('GROUP_SIZE.MD'), callback: (event: any) => this.onSlideFieldChange('buttonsSize',event) },
-        //     { key: 'lg', value: this.translate.instant('GROUP_SIZE.LG'), callback: (event: any) => this.onSlideFieldChange('buttonsSize',event) },
-        //     { key: 'xl', value: this.translate.instant('GROUP_SIZE.XL'), callback: (event: any) => this.onSlideFieldChange('buttonsSize',event) },
-        // ];
-    
-        // this.SubTitleSize = [
-        //     { key: 'sm', value: this.translate.instant('GROUP_SIZE.SM'), callback: (event: any) => this.onSlideFieldChange('subTitleSize',event) },
-        //     { key: 'md', value: this.translate.instant('GROUP_SIZE.MD') , callback: (event: any) => this.onSlideFieldChange('subTitleSize',event) },
-        //     { key: 'lg', value: this.translate.instant('GROUP_SIZE.LG'), callback: (event: any) => this.onSlideFieldChange('subTitleSize',event) },
-        //     { key: 'xl', value: this.translate.instant('GROUP_SIZE.XL'), callback: (event: any) => this.onSlideFieldChange('subTitleSize',event) }
-        // ];
-
-        // this.InnerSpacing = [
-        //     { key: 'sm', value: this.translate.instant('GROUP_SIZE.SM'), callback: (event: any) => this.onSlideFieldChange('innerSpacing',event) },
-        //     { key: 'md', value: this.translate.instant('GROUP_SIZE.MD') , callback: (event: any) => this.onSlideFieldChange('innerSpacing',event) },
-        //     { key: 'lg', value: this.translate.instant('GROUP_SIZE.LG'), callback: (event: any) => this.onSlideFieldChange('innerSpacing',event) }
-        // ]
         this.TitleWeight = [
             { key: 'normal', value: this.translate.instant('SLIDE_EDITOR.FONT_WEIGHT.NORMAL'), callback: (event: any) => this.onSlideFieldChange('titleWeight',event) },
             { key: 'bold', value: this.translate.instant('SLIDE_EDITOR.FONT_WEIGHT.BOLD'), callback: (event: any) => this.onSlideFieldChange('titleWeight',event) }
@@ -103,22 +78,22 @@ export class SlideEditorComponent implements OnInit {
         ]
     
         this.WidthSize =  [
-            { key: 'Narrow', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.NARROW'), callback: (event: any) => this.onSlideFieldChange('contentWidth',event) },
-            { key: 'Regular', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.REGULAR'), callback: (event: any) => this.onSlideFieldChange('contentWidth',event) },
-            { key: 'Wide', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.WIDE'), callback: (event: any) => this.onSlideFieldChange('contentWidth',event) },
+            { key: 'Narrow', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.NARROW'), callback: (event: any) => this.onSlideFieldChange('ContentWidth',event) },
+            { key: 'Regular', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.REGULAR'), callback: (event: any) => this.onSlideFieldChange('ContentWidth',event) },
+            { key: 'Wide', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.WIDE'), callback: (event: any) => this.onSlideFieldChange('ContentWidth',event) },
         ];
         
-        this.HorizentalAlign =  [
-            { key: 'left', iconName: 'text_align_right' },
-            { key: 'center', iconName: 'text_align_center' },
-            { key: 'right', iconName: 'text_align_left' }
-        ];
+        // this.HorizentalAlign =  [
+        //     { key: 'left', iconName: 'text_align_right' },
+        //     { key: 'center', iconName: 'text_align_center' },
+        //     { key: 'right', iconName: 'text_align_left' }
+        // ];
     
-        this.VerticalAlign =  [
-            { key: 'top', value: this.translate.instant('SLIDE_EDITOR.VERTICAL_ALIGN_DIRECTION.TOP') },
-            { key: 'middle', value: this.translate.instant('SLIDE_EDITOR.VERTICAL_ALIGN_DIRECTION.MIDDLE') },
-            { key: 'bottom', value: this.translate.instant('SLIDE_EDITOR.VERTICAL_ALIGN_DIRECTION.BOTTOM') }
-        ];
+        // this.VerticalAlign =  [
+        //     { key: 'top', value: this.translate.instant('SLIDE_EDITOR.VERTICAL_ALIGN_DIRECTION.TOP') },
+        //     { key: 'middle', value: this.translate.instant('SLIDE_EDITOR.VERTICAL_ALIGN_DIRECTION.MIDDLE') },
+        //     { key: 'bottom', value: this.translate.instant('SLIDE_EDITOR.VERTICAL_ALIGN_DIRECTION.BOTTOM') }
+        // ];
         
         this.textColors = [  
             { key: 'system', value: this.translate.instant('SLIDE_EDITOR.TEXT_COLOR.SYSTEM') },
@@ -228,10 +203,10 @@ export class SlideEditorComponent implements OnInit {
         if(event?.url){
             const encodeImgurl = "'"+ encodeURI(event.url) +"'";
             this.configuration.slides[this.id]['image'].asset = event.key;
-            this.configuration.slides[this.id]['image'].assetURL = encodeImgurl;
+            this.configuration.slides[this.id]['image'].AssetUrl = encodeImgurl;
 
-            this.updateHostObjectField(`slides[${this.id}].image.assetURL`, encodeImgurl);
-            this.updateHostObjectField(`slides[${this.id}].image.asset`, event.key);
+            this.updateHostObjectField(`slides[${this.id}].image.AssetUrl`, encodeImgurl);
+            this.updateHostObjectField(`slides[${this.id}].Image.Asset`, event.key);
         }     
     }
 

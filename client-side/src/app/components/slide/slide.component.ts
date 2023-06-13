@@ -61,8 +61,8 @@ export class SlideComponent implements OnInit {
         return rgba;
     }
     getAssetWithPos(){
-        let imagePosition = this.slide?.image?.horizontalPosition + '% ' + this.slide?.image?.verticalPosition + '%';
-        let imageSrc = this.slide?.image?.useImage  && this.slide?.image?.assetURL !== '' ? 'url(' +this.slide?.image?.assetURL + ')' + ' ' + imagePosition : '';
+        let imagePosition = this.slide?.Image?.HorizontalPosition + '% ' + this.slide?.Image?.VerticalPosition + '%';
+        let imageSrc = this.slide?.Image?.Use  && this.slide?.Image?.AssetUrl !== '' ? 'url(' +this.slide?.Image?.AssetUrl + ')' + ' ' + imagePosition : '';
 
         if(imageSrc != ''){
             return imageSrc ;
@@ -73,9 +73,9 @@ export class SlideComponent implements OnInit {
     }
 
     getGradientOverlay(){
-        let gradient = this.slide?.gradientOverlay;
-        let horAlign = this.slide?.horizontalAlign;
-        let verAlign = this.slide?.verticalAlign; // 'top' | 'middle' | 'bottom'
+        let gradient = this.slide?.GradientOverlay;
+        let horAlign = this.slide?.Alignment?.Horizontal;
+        let verAlign = this.slide?.Alignment?.Vertical; // 'top' | 'middle' | 'bottom'
 
         let direction = '0';
 
@@ -98,7 +98,7 @@ export class SlideComponent implements OnInit {
         let colorsStr =  this.getRGBAcolor(gradient) +' , '+ this.getRGBAcolor(gradient,0);
         let gradType = direction === 'circle' ? 'radial-gradient' : 'linear-gradient';
 
-        let gradStr = this.slide.gradientOverlay.use ? gradType + '(' + direction +' , '+ colorsStr +')' : '';
+        let gradStr = this.slide.GradientOverlay.use ? gradType + '(' + direction +' , '+ colorsStr +')' : '';
 
         if(gradStr != ''){
             return gradStr ;

@@ -10,7 +10,7 @@ router.post('/prepare_assets', async (req, res)=>{
         const slides = configuration.Data.slides as any[];
         await Promise.all(slides.map(async (slide) => {
             // overwrite the slides assetURL with the local file path
-            return slide.image.assetURL = await getFilePath(slide.image)
+            return slide.image.AssetUrl = await getFilePath(slide.image)
         }))
         configuration.Data.slides = slides;
     }
@@ -26,7 +26,7 @@ async function getFilePath(slide) {
             }
         catch (error) {
             console.error(error);
-            fileUrl = fixURLIfNeeded(slide.assetURL);        
+            fileUrl = fixURLIfNeeded(slide.AssetUrl);        
         }
     //}
     return fileUrl;
@@ -55,9 +55,9 @@ pepperi.events.intercept(CLIENT_ACTION_ON_SLIDE_BUTTON_CLICKED as any, {}, async
 });
 
 pepperi.events.intercept(CLIENT_ACTION_ON_SLIDESHOW_LOAD as any, {}, async (data): Promise<any> => {
-    let gallery = data.gallery;
+    let slideshow = data.slideshow;
 
-    return gallery;
+    return slideshow;
 });
 /***********************************  client events ends /***********************************/
 

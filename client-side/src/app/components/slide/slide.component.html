@@ -7,40 +7,40 @@
      class="ng-component-container" 
      [ngStyle]="{'height': slideshowConfig.Structure.FillHeight ? 'inherit' : this.slideshowConfig?.Structure.Height + this.slideshowConfig?.Structure.Unit,
                  'background' : getGradientOverlay()}" 
-     [ngClass]="[ 'horAlign_' + slide?.horizontalAlign,
-                 'verAlign_' + slide?.verticalAlign,
+     [ngClass]="[ 'horAlign_' + slide?.Alignment?.Horizontal,
+                 'verAlign_' + slide?.Alignment?.Vertical,
                  'inner_padding_' + slideshowConfig.Structure.InnerPadding]">      
-            <div *ngIf="slide?.image?.useImage || slide?.gradientOverlay?.use || slide?.overlay?.use"
+            <div *ngIf="slide?.Image?.Use || slide?.GradientOverlay?.use || slide?.Overlay?.use"
                 class="backgroundImage"
                 [ngClass]="['inner_margin_' + slideshowConfig.Structure.InnerPadding ]"
                 [ngStyle]="{'background' : getAssetWithPos(),
-                             'box-shadow': slide?.overlay?.use ?  'inset 0 0 0 100vh ' + getRGBAcolor(slide?.overlay) : 'unset' ,
+                             'box-shadow': slide?.Overlay?.use ?  'inset 0 0 0 100vh ' + getRGBAcolor(slide?.Overlay) : 'unset' ,
                              'height': slideshowConfig.Structure.FillHeight ? 'inherit' : (slideshowConfig.Structure.Height + slideshowConfig.Structure.Unit)}">
       
             </div>
-            <div class="slide-box" [ngClass]="['contentWidth_'+slide?.contentWidth, 
-                                                'horAlign_'+slide?.horizontalAlign, 
-                                                'verAlign_'+slide?.verticalAlign, 
-                                                'rowGap_'+slide?.innerSpacing,
+            <div class="slide-box" [ngClass]="['contentWidth_'+slide?.ContentWidth, 
+                                                'horAlign_'+slide?.Alignment?.Horizontal, 
+                                                'verAlign_'+slide?.Alignment?.Vertical, 
+                                                'rowGap_'+slide?.InnerSpacing,
                                                  slideshowConfig?.Arrows?.Use && slideshowConfig?.Arrows?.Display !== 'hide' ? 'withArrow_margin' : '']"
                                     [ngStyle]="{'grid-template-rows' : 'min-content auto min-content'
                                                  }">
-                <div *ngIf="slide?.useTitle"
+                <div *ngIf="slide?.Title?.Use"
                 class="body-sm ellipsis" 
-                [ngClass]="['title-'+slide?.titleSize,
-                            slide?.titleWeight,
-                            'textColor_'+slide?.textColor]">{{slide?.titleContent}}
+                [ngClass]="['title-'+slide?.Title?.Size,
+                            slide?.Title?.Weight,
+                            'textColor_'+slide?.TextColor]">{{slide?.Title?.Content}}
                 </div>
                 <div class="subtitle-cont ellipsis" 
-                     *ngIf="slide?.useSubTitle" 
-                     [ngClass]="['body-'+slide?.subTitleSize,
-                                'textColor_'+slide?.textColor]">
-                        {{slide?.subTitleContent}} 
+                     *ngIf="slide?.SubTitle?.Use" 
+                     [ngClass]="['body-'+slide?.SubTitle?.Size,
+                                'textColor_'+slide?.TextColor]">
+                        {{slide?.SubTitle.Content}} 
                 </div>
-                <div class="buttons-box" *ngIf="slide?.firstButton?.useButton || slide?.secondButton?.useButton"
-                     [ngStyle]="{'justify-content' : slide?.horizontalAlign}">
-                    <pep-button *ngIf="slide?.firstButton?.useButton" [sizeType]="slide?.buttonsSize" [value]="slide?.firstButton.label" [styleType]="slide?.firstButton?.style" [classNames]="slide?.buttonColor" (buttonClick)="onSlideButtonClicked('firstButton')"></pep-button>
-                    <pep-button *ngIf="slide?.secondButton?.useButton" [sizeType]="slide?.buttonsSize" [value]="slide?.secondButton.label" [styleType]="slide?.secondButton?.style" [classNames]="slide?.buttonColor"  (buttonClick)="onSlideButtonClicked('secondButton')"></pep-button>
+                <div class="buttons-box" *ngIf="slide?.FirstButton?.Use || slide?.SecondButton?.Use"
+                     [ngStyle]="{'justify-content' : slide?.Alignment?.Horizontal}">
+                    <pep-button *ngIf="slide?.FirstButton?.Use" [sizeType]="slide?.Button?.Size" [value]="slide?.FirstButton.Label" [styleType]="slide?.FirstButton?.Style" [classNames]="slide?.Button?.Color" (buttonClick)="onSlideButtonClicked('FirstButton')"></pep-button>
+                    <pep-button *ngIf="slide?.SecondButton?.Use" [sizeType]="slide?.Button?.Size" [value]="slide?.SecondButton.Label" [styleType]="slide?.SecondButton?.Style" [classNames]="slide?.Button?.Color"  (buttonClick)="onSlideButtonClicked('SecondButton')"></pep-button>
                 </div>
             </div>
 </div>

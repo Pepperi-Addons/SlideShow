@@ -116,162 +116,54 @@ async function runMigration(client){
                         "Items": {
                             "Type": "Object",
                             "Fields": {
-                                /*"useTitle": {
-                                    "Type": "Bool",
-                                    "ConfigurationPerScreenSize": true
-                                },
-                                "titleContent": {
-                                    "Type": "String",
-                                    "ConfigurationPerScreenSize": true
-                                },*/
-                                "titleSize": {
-                                    "Type": "String",
-                                    "ConfigurationPerScreenSize": true
-                                },
-                                /*"titleWeight": {
-                                    "Type": "String",
-                                    "ConfigurationPerScreenSize": true
-                                },
-                                "useSubTitle": {
-                                    "Type": "Bool",
-                                    "ConfigurationPerScreenSize": true
-                                },
-                                "subTitleContent": {
-                                    "Type": "String",
-                                    "ConfigurationPerScreenSize": true
-                                },*/
-                                "subTitleSize": {
-                                    "Type": "String",
-                                    "ConfigurationPerScreenSize": true
-                                },
-                                "contentWidth": {
-                                    "Type": "String",
-                                    "ConfigurationPerScreenSize": true
-                                },
-                                "horizontalAlign": {
-                                    "Type": "String",
-                                    "ConfigurationPerScreenSize": true
-                                },
-                                "verticalAlign": {
-                                    "Type": "String",
-                                    "ConfigurationPerScreenSize": true
-                                },
-                                /*"innerSpacing": {
-                                    "Type": "String",
-                                    "ConfigurationPerScreenSize": true
-                                },
-                                "textColor": {
-                                    "Type": "String",
-                                    "ConfigurationPerScreenSize": true
-                                },*/
-                                "buttonsSize": {
-                                    "Type": "String",
-                                    "ConfigurationPerScreenSize": true
-                                },
-                                /*"buttonColor": {
-                                    "Type": "String",
-                                    "ConfigurationPerScreenSize": true
-                                },
-                                "firstButton": {
+                                "Title": {
                                     "Type": "Object",
                                     "Fields": {
-                                        "useButton": {
-                                            "Type": "Bool",
-                                            "ConfigurationPerScreenSize": true, 
-                                        },
-                                        "label": {
+                                        "Size": {
                                             "Type": "String",
-                                            "ConfigurationPerScreenSize": true, 
-                                        },
-                                        "script": {
-                                            "Type": "Object",
-                                             "Fields": {
-                                                "Key": {
-                                                    "Type": "String",
-                                                    "ConfigurationPerScreenSize": false, 
-                                                },
-                                                "Data": {
-                                                    "Type": "Object",
-                                                    "Fields": {
-                                                        "TODO - ADD THE PARAMS"
-                                                    }
-                                                }
-                                        },
-                                        "style": {
-                                            "Type": "String",
-                                            "ConfigurationPerScreenSize": true, 
+                                            "ConfigurationPerScreenSize": true
                                         }
                                     }
                                 },
-                                "secondButton": {
+                                "SubTitle": {
                                     "Type": "Object",
                                     "Fields": {
-                                        "useButton": {
-                                            "Type": "Bool",
-                                            "ConfigurationPerScreenSize": true, 
-                                        },
-                                        "label": {
+                                        "Size": {
                                             "Type": "String",
-                                            "ConfigurationPerScreenSize": true, 
-                                        },
-                                        "script": {
-                                            "Type": "Object",
-                                             "Fields": {
-                                                "Key": {
-                                                    "Type": "String",
-                                                    "ConfigurationPerScreenSize": false, 
-                                                },
-                                                "Data": {
-                                                    "Type": "Object",
-                                                    "Fields": {
-                                                        "TODO - ADD THE PARAMS"
-                                                    }
-                                                }
-                                        },
-                                        "style": {
-                                            "Type": "String",
-                                            "ConfigurationPerScreenSize": true, 
+                                            "ConfigurationPerScreenSize": true
                                         }
                                     }
                                 },
-                                "gradientOverlay": { 
+                                "ContentWidth": {
+                                    "Type": "String",
+                                    "ConfigurationPerScreenSize": true
+                                },
+                                "Alignment":{
                                     "Type": "Object",
                                     "Fields": {
-                                        "use": {
-                                            "Type": "Bool",
-                                            "ConfigurationPerScreenSize": true, 
-                                        },
-                                        "value": {
+                                        "Horizontal": {
                                             "Type": "String",
-                                            "ConfigurationPerScreenSize": true, 
+                                            "ConfigurationPerScreenSize": true
                                         },
-                                        "opacity": {
-                                            "Type": "Integer",
-                                            "ConfigurationPerScreenSize": true, 
+                                        "Vertical": {
+                                            "Type": "String",
+                                            "ConfigurationPerScreenSize": true
                                         }
                                     }
                                 },
-                                "overlay": { 
+                                "Button":{
                                     "Type": "Object",
                                     "Fields": {
-                                        "use": {
-                                            "Type": "Bool",
-                                            "ConfigurationPerScreenSize": true, 
-                                        },
-                                        "value": {
+                                        "Size": {
                                             "Type": "String",
-                                            "ConfigurationPerScreenSize": true, 
-                                        },
-                                        "opacity": {
-                                            "Type": "Integer",
-                                            "ConfigurationPerScreenSize": true, 
+                                            "ConfigurationPerScreenSize": true
                                         }
                                     }
-                                },*/
+                                },
                                 "image": {
                                     "Type": "Object",
                                     "Fields": {
-                                        "useImage": {
+                                        "Use": {
                                             "Type": "Bool",
                                             "ConfigurationPerScreenSize": false, 
                                         },
@@ -287,11 +179,11 @@ async function runMigration(client){
                                             },
                                             "ConfigurationPerScreenSize": false, 
                                         },
-                                        "horizontalPosition": {
+                                        "HorizontalPosition": {
                                             "Type": "String",
                                             "ConfigurationPerScreenSize": true, 
                                         },
-                                        "verticalPosition": {
+                                        "VerticalPosition": {
                                             "Type": "String",
                                             "ConfigurationPerScreenSize": true, 
                                         }

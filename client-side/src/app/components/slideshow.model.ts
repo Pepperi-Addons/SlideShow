@@ -1,4 +1,4 @@
-import { PepStyleType, PepSizeType, PepHorizontalAlignment, PepVerticalAlignment, PepScreenSizeType} from '@pepperi-addons/ngx-lib';
+import { PepStyleType, PepSizeType, PepHorizontalAlignment} from '@pepperi-addons/ngx-lib';
 import { PepShadowSettings} from "@pepperi-addons/ngx-composite-lib/shadow-settings";
 import { PepColorSettings } from "@pepperi-addons/ngx-composite-lib/color-settings";
 export interface IHostObject {
@@ -21,24 +21,24 @@ export type buttonColor = 'system-primary' | 'invert' | 'user-primary' | 'succes
 export type DisplayStates = 'show' | 'hide'; 
 
 export class SlideButton {
-    useButton: boolean;
-    label: string = 'Button';
+    Use: boolean;
+    Label: string = 'Button';
     script: any = {};
-    style: PepStyleType;
+    Style: PepStyleType;
 
-    constructor(useButton = true, label = 'Yess', style: PepStyleType = 'weak-invert') {
-        this.useButton = useButton;
-        this.label = label;
-        this.style = style;
+    constructor(use = true, label = 'Yess', style: PepStyleType = 'weak-invert') {
+        this.Use = use;
+        this.Label = label;
+        this.Style = style;
       }
 }
 
 export class SlideImage {
-    useImage: boolean = false;
+    Use: boolean = false;
     asset: string = '';
-    assetURL: string = '';
-    horizontalPosition: string = '50';
-    verticalPosition: string = '50';
+    AssetUrl: string = '';
+    HorizontalPosition: string = '50';
+    VerticalPosition: string = '50';
 }
 
 export class Structure {
@@ -92,51 +92,66 @@ export class ISlideshowEditor {
     Arrows: Arrows = new Arrows();
     Controllers: Controllers = new Controllers();
     DropShadow: PepShadowSettings = new PepShadowSettings(false,'md','soft');
-    //HeightUnit: HeightUnit = "REM";
-    //FillHeight: boolean = false;
-    //height: string = '16';
-    //innerPadding: PepSizeType = "md";
-    //IsTransition: boolean = true;
-    //transitionDuration: number = 5;
-    //transitionType: TransitionType = 'fade';
-    //transitionTime: string = '0.75';
-    //isUseArrows: boolean = true;
-    //arrowType: ArrowType = 'arrow_right';
-    //arrowShape: ArrowShape = 'round';
-    //arrowsStyle: PepStyleType= 'weak';
-    //arrowsDisplay: DisplayStates = 'show';
-    //arrowsColor: buttonColor= 'system';
-    //usePauseButton: boolean = true;
-    //showControllersInSlider: boolean = true;
-    //controllersDisplay: DisplayStates = 'show';
-    //controllerSize: PepSizeType = 'md';
-    //controllerStyle: PepStyleType= 'weak';
-    //dropShadow: PepShadowSettings = new PepShadowSettings(false,'md','soft');
-    //useRoundCorners: boolean = false;
-    //roundCornersSize: PepSizeType = 'md';
+}
+
+export class Title {
+    Use: boolean;
+    Content: string;
+    Size: PepSizeType;
+    Weight: FontWeight;
+
+    constructor(use = true, content = 'Title', size:PepSizeType  = 'md', weight:FontWeight = 'normal'){
+        this.Use = use;
+        this.Content = content;
+        this.Size = size;
+        this.Weight = weight;
+    }
+}
+
+export class Button {
+    Size: PepSizeType  = 'md';
+    Color: buttonColor= 'system-primary';
+}
+
+export class Alignment {
+    Horizontal: PepHorizontalAlignment = 'left';
+    Vertical: 'start' | 'middle' | 'end' = 'start';
 }
 
 export class ISlideEditor {
     id: number;
-    useTitle: boolean = true;
-    titleContent: string = 'Title';
-    titleSize: PepSizeType = 'md';
-    titleWeight: FontWeight = 'normal';
-    useSubTitle: boolean = true;
-    subTitleContent: string = 'Sub title';
-    subTitleSize: PepSizeType = 'md';
-    contentWidth: WidthUnits = 'Regular';
-    horizontalAlign: PepHorizontalAlignment = 'left';
-    verticalAlign: 'start' | 'middle' | 'end' = 'start';//  PepVerticalAlignment = 'middle';
-    innerSpacing: PepSizeType = "md";
-    textColor: textColor = 'inverted';
-    buttonsSize: PepSizeType  = 'md';
-    buttonColor: buttonColor= 'system-primary';
-    firstButton: SlideButton = new SlideButton(true, 'Yess', 'weak-invert');
-    secondButton: SlideButton  = new SlideButton(false, 'Noo', 'strong');
-    gradientOverlay: PepColorSettings = new PepColorSettings(true, 'hsl(0, 100%, 50%)', 75);
-    overlay: PepColorSettings = new PepColorSettings(true, 'hsl(0, 0%, 0%)', 75);
-    image: SlideImage = new SlideImage();
+    Title = new Title();
+    SubTitle = new Title(true, 'Sub title', 'md', 'normal');
+    FirstButton: SlideButton = new SlideButton(true, 'Yess', 'weak-invert');
+    SecondButton: SlideButton  = new SlideButton(false, 'Noo', 'strong');
+    TextColor: textColor = 'inverted';
+    Button = new Button();
+    Alignment = new Alignment();
+    ContentWidth: WidthUnits = 'Regular';
+    InnerSpacing: PepSizeType = "md";
+    GradientOverlay: PepColorSettings = new PepColorSettings(true, 'hsl(0, 100%, 50%)', 75);
+    Overlay: PepColorSettings = new PepColorSettings(true, 'hsl(0, 0%, 0%)', 75);
+    Image: SlideImage = new SlideImage();
+    //useTitle: boolean = true;
+    //titleContent: string = 'Title';
+    //titleSize: PepSizeType = 'md';
+    //titleWeight: FontWeight = 'normal';
+    //useSubTitle: boolean = true;
+    //subTitleContent: string = 'Sub title';
+    //subTitleSize: PepSizeType = 'md';
+    //textColor: textColor = 'inverted';
+
+    
+    //horizontalAlign: PepHorizontalAlignment = 'left';
+    //verticalAlign: 'start' | 'middle' | 'end' = 'start';//  PepVerticalAlignment = 'middle';
+    
+   
+    //buttonsSize: PepSizeType  = 'md';
+    //buttonColor: buttonColor= 'system-primary';
+    
+    //gradientOverlay: PepColorSettings = new PepColorSettings(true, 'hsl(0, 100%, 50%)', 75);
+    
+    
 }
 
 export interface slide {

@@ -80,7 +80,7 @@ export class SlideshowEditorComponent implements OnInit {
         for(let i = 0 ; i < 2 ; i++){
             arr.push(new ISlideEditor());
             arr[i].id = i;
-            arr[i].titleContent = this.getOrdinal(i+1) + this.translate.instant('SLIDE_EDITOR.TITLE');
+            arr[i].Title.Content = this.getOrdinal(i+1) + this.translate.instant('SLIDE_EDITOR.TITLE');
         }
 
         // for(var i=0; i < numOfCards; i++){
@@ -226,7 +226,7 @@ export class SlideshowEditorComponent implements OnInit {
     addNewSlideClick() {
         let slide = new ISlideEditor();
         slide.id = (this.configuration.slides.length);
-        slide.titleContent = this.getOrdinal(slide.id+1) + this.translate.instant('SLIDE_EDITOR.TITLE');
+        slide.Title.Content = this.getOrdinal(slide.id+1) + this.translate.instant('SLIDE_EDITOR.TITLE');
         this.configuration.slides.push( slide); 
         this.updateHostObject();  
     }
@@ -274,7 +274,7 @@ export class SlideshowEditorComponent implements OnInit {
     private getPageConfigurationParametersNames(): Array<string> {
         const parameters = new Set<string>();
         // Array of actions buttons
-        const scriptBtns = ['firstButton','secondButton'];
+        const scriptBtns = ['FirstButton','SecondButton'];
 
         // Go for all slides scripts and add parameters to page configuration if Source is dynamic.
         for (let index = 0; index < this.configuration.slides.length; index++) {
