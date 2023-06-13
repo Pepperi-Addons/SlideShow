@@ -2,7 +2,7 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
 import { PepLayoutService, PepScreenSizeType } from '@pepperi-addons/ngx-lib';
 import { IHostObject, ISlideEditor, ISlideShow, ISlideshowEditor } from '../slideshow.model';
-
+import { CLIENT_ACTION_ON_SLIDESHOW_LOAD } from 'shared'
 
 @Component({
   selector: 'slideshow',
@@ -33,6 +33,9 @@ export class SlideshowComponent implements OnInit {
     get configuration(): ISlideShow {
         return this._configuration;
     }
+    set configuration(conf: ISlideShow){
+        this._configuration = conf;
+    }
 
     @Output() hostEvents: EventEmitter<any> = new EventEmitter<any>();
 
@@ -50,14 +53,42 @@ export class SlideshowComponent implements OnInit {
 
     }
     
-    ngOnInit() {
+    async ngOnInit() {
+        this.configuration = await this.onSlideshowLoad();
         this.showSlides();
+    }
+
+    onSlideshowLoad(){
+        try{
+            const eventData = {
+                detail: {
+                    eventKey: CLIENT_ACTION_ON_SLIDESHOW_LOAD,
+                    eventData: { gallery: this.configuration },
+                    completion: (res: any) => {
+                            if (res) {
+                                debugger;
+                            } else {
+                                // Show default error.
+                                debugger;
+                            }
+                        }
+                }
+            };
+
+            const customEvent = new CustomEvent('emit-event', eventData);
+            window.dispatchEvent(customEvent);
+        }
+        catch(err){
+
+        }
+
+        return this.configuration;
     }
 
     showSlides() {
 
         if (this.configuration && Object.keys(this.configuration).length > 0) {
-            if (!this.configuration.slideshowConfig.isTransition) {
+            if (!this.configuration.slideshowConfig.Transition.Use) {
                 this.isPause = true;
                 clearTimeout(this.timer);
             }
@@ -66,7 +97,7 @@ export class SlideshowComponent implements OnInit {
                 if (this.slideIndex >= slides.length) {this.slideIndex = 0}
                 
                 var that = this;
-                var duration = this.configuration.slideshowConfig.transitionDuration * 1000;
+                var duration = this.configuration.slideshowConfig.Transition.Duration * 1000;
                 this.timer = setTimeout(function(){that.slideIndex ++; that.showSlides() }, duration);
             }
         }   
@@ -101,25 +132,25 @@ export class SlideshowComponent implements OnInit {
       }
 
       getSliderFooterTop(){
-          let sliderHeight = parseFloat(this.configuration?.slideshowConfig?.height);
-          let numToDec = this.configuration?.slideshowConfig?.showControllersInSlider ? -2.5 : 0.5; 
+          let sliderHeight = parseFloat(this.configuration?.slideshowConfig?.Structure?.Height);
+          let numToDec = this.configuration?.slideshowConfig?.Controllers?.ShowInSlider ? -2.5 : 0.5; 
           
           let footerPos = sliderHeight +  numToDec;
           
-          return footerPos.toString() + this.configuration?.slideshowConfig?.heightUnit;
+          return footerPos.toString() + this.configuration?.slideshowConfig?.Structure.Unit;
       } 
       
     getSlideShowHeight(){
         if(this.configuration && Object.keys(this.configuration).length > 0){
-            let heightToAdd = this.configuration?.slideshowConfig.controllerSize == 'sm' ? 2.75 : 3.25;
-            heightToAdd = this.configuration?.slideshowConfig?.showControllersInSlider ?  0 : heightToAdd;
-            return (parseFloat(this.configuration?.slideshowConfig.height) + heightToAdd).toString() + this.configuration?.slideshowConfig.heightUnit;
+            let heightToAdd = this.configuration?.slideshowConfig?.Controllers?.Size == 'sm' ? 2.75 : 3.25;
+            heightToAdd = this.configuration?.slideshowConfig?.Controllers?.ShowInSlider ?  0 : heightToAdd;
+            return (parseFloat(this.configuration?.slideshowConfig?.Structure?.Height) + heightToAdd).toString() + this.configuration?.slideshowConfig.Structure.Unit;
         }
     }
 
     getSlideHeight(){
         let retHeight = 'inherit';
-        if(this.configuration?.slideshowConfig?.fillHeight && !this.configuration?.slideshowConfig?.showControllersInSlider){
+        if(this.configuration?.slideshowConfig?.Structure?.FillHeight && !this.configuration?.slideshowConfig?.Controllers?.ShowInSlider){
             retHeight = 'calc(100%  - 3rem)';
         }
 

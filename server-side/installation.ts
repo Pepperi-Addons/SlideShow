@@ -67,99 +67,49 @@ async function runMigration(client){
             EditorElementName: `slideshow-editor-element-${client.AddonUUID}`,
             Schema: {
                 "Fields": {
-                    "slideshowConfig": {
-                        "Type": "Object",
-                        "Fields": {
-                            "heightUnit": {
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "height": {
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "innerPadding": {
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "controllerSize": {
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "controllersDisplay":{
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "arrowsDisplay":{
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            }
-                            /*"isTransition": {
-                                "Type": "Bool",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "transitionDuration": {
-                                "Type": "Integer",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "transitionType": {
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "transitionTime": {
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "isUseArrows": {
-                                "Type": "Bool",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "arrowType": {
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "arrowShape": {
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "arrowsStyle": {
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "arrowsColor": {
-                                "Type": "String",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "usePauseButton": {
-                                "Type": "Bool",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "useInverStyle": {
-                                "Type": "Bool",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "showControllersInSlider": {
-                                "Type": "Bool",
-                                "ConfigurationPerScreenSize": true
-                            },
-                            "dropShadow": { 
-                                "Type": "Object",
-                                "Fields": {
-                                    "use": {
-                                        "Type": "Bool",
-                                        "ConfigurationPerScreenSize": true, 
-                                    },
-                                    "size": {
-                                        "Type": "String",
-                                        "ConfigurationPerScreenSize": true, 
-                                    },
-                                    "intensity": {
-                                        "Type": "String",
-                                        "ConfigurationPerScreenSize": true, 
+                    "slideshowConfig": {    
+                            "Type": "Object",
+                            "Fields": {
+                                "Structure": {
+                                        "Type": "Object",
+                                        "Fields": {
+                                        "Unit": {
+                                            "Type": "String",
+                                            "ConfigurationPerScreenSize": true
+                                        },
+                                        "Height": {
+                                            "Type": "String",
+                                            "ConfigurationPerScreenSize": true
+                                        },
+                                        "InnerPadding": {
+                                            "Type": "String",
+                                            "ConfigurationPerScreenSize": true
+                                        }
                                     }
-                                }
-                            }*/
-                        }
+                                },
+                                "Controllers": {
+                                    "Type": "Object",
+                                        "Fields": {
+                                            "Size": {
+                                                "Type": "String",
+                                                "ConfigurationPerScreenSize": true
+                                            },
+                                            "Display":{
+                                                "Type": "String",
+                                                "ConfigurationPerScreenSize": true
+                                            }
+                                        }
+                                },
+                                "Arrows": {
+                                    "Type": "Object",
+                                    "Fields": {
+                                        "Display":{
+                                            "Type": "String",
+                                            "ConfigurationPerScreenSize": true
+                                        }
+                                    }
+                                },
+                            }
                     },
                     "slides": {
                         "Type": "Array",

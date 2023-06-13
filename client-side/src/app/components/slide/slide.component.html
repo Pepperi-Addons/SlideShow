@@ -1,28 +1,28 @@
-<div  [ngStyle]="{'height': slideshowConfig.fillHeight ? '100%' : (slideshowConfig?.height + slideshowConfig?.heightUnit)}" 
-      [ngClass]="[slideshowConfig?.showControllersInSlider == false ? 'withOutSideController' : '',
-                  slideshowConfig?.dropShadow?.use && (!slideshowConfig?.fillHeight || !slideshowConfig?.showControllersInSlider) ? 'shadow-' + slideshowConfig?.dropShadow?.size : '',
-                  slideshowConfig?.dropShadow?.use && (!slideshowConfig?.fillHeight || !slideshowConfig?.showControllersInSlider) ? slideshowConfig?.dropShadow?.intensity : '']">
+<div  [ngStyle]="{'height': slideshowConfig.Structure.FillHeight ? '100%' : (slideshowConfig?.Structure.Height + slideshowConfig?.Structure.HeightUnit)}" 
+      [ngClass]="[slideshowConfig?.Controllers?.ShowInSlider == false ? 'withOutSideController' : '',
+                  slideshowConfig?.DropShadow?.use && (!slideshowConfig?.Structure?.FillHeight || !slideshowConfig?.Controllers?.ShowInSlider) ? 'shadow-' + slideshowConfig?.DropShadow?.size : '',
+                  slideshowConfig?.DropShadow?.use && (!slideshowConfig?.Structure?.FillHeight || !slideshowConfig?.Controllers?.ShowInSlider) ? slideshowConfig?.DropShadow?.intensity : '']">
 
 <div #mainSlideCont 
      class="ng-component-container" 
-     [ngStyle]="{'height': slideshowConfig.fillHeight ? 'inherit' : this.slideshowConfig?.height + this.slideshowConfig?.heightUnit,
+     [ngStyle]="{'height': slideshowConfig.Structure.FillHeight ? 'inherit' : this.slideshowConfig?.Structure.Height + this.slideshowConfig?.Structure.Unit,
                  'background' : getGradientOverlay()}" 
      [ngClass]="[ 'horAlign_' + slide?.horizontalAlign,
                  'verAlign_' + slide?.verticalAlign,
-                 'inner_padding_' + slideshowConfig.innerPadding]">      
+                 'inner_padding_' + slideshowConfig.Structure.InnerPadding]">      
             <div *ngIf="slide?.image?.useImage || slide?.gradientOverlay?.use || slide?.overlay?.use"
                 class="backgroundImage"
-                [ngClass]="['inner_margin_' + slideshowConfig.innerPadding ]"
+                [ngClass]="['inner_margin_' + slideshowConfig.Structure.InnerPadding ]"
                 [ngStyle]="{'background' : getAssetWithPos(),
                              'box-shadow': slide?.overlay?.use ?  'inset 0 0 0 100vh ' + getRGBAcolor(slide?.overlay) : 'unset' ,
-                             'height': slideshowConfig.fillHeight ? 'inherit' : (slideshowConfig.height + slideshowConfig.heightUnit)}">
+                             'height': slideshowConfig.Structure.FillHeight ? 'inherit' : (slideshowConfig.Structure.Height + slideshowConfig.Structure.Unit)}">
       
             </div>
             <div class="slide-box" [ngClass]="['contentWidth_'+slide?.contentWidth, 
                                                 'horAlign_'+slide?.horizontalAlign, 
                                                 'verAlign_'+slide?.verticalAlign, 
                                                 'rowGap_'+slide?.innerSpacing,
-                                                 slideshowConfig?.isUseArrows && slideshowConfig?.arrowsDisplay !== 'hide' ? 'withArrow_margin' : '']"
+                                                 slideshowConfig?.Arrows?.Use && slideshowConfig?.Arrows?.Display !== 'hide' ? 'withArrow_margin' : '']"
                                     [ngStyle]="{'grid-template-rows' : 'min-content auto min-content'
                                                  }">
                 <div *ngIf="slide?.useTitle"

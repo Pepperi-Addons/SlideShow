@@ -61,7 +61,7 @@ export class SlideshowEditorComponent implements OnInit {
     ArrowsType: Array<PepButton> = [];
     controllersDisplayTypes: Array<PepButton> = [];
     arrowsDisplayTypes: Array<PepButton> = [];
-    ArrowButtons: Array<PepButton> = [];// Array<{key: ArrowShape, value: string}> = [];
+    ArrowButtons: Array<PepButton> = [];
     ControllerSize: Array<PepButton> = [];
     
     currentSlideindex = 0;
@@ -192,25 +192,25 @@ export class SlideshowEditorComponent implements OnInit {
         ];
 
         this.ArrowsType = [
-            { key: 'arrow_back_right', iconName: 'arrow_back_right', callback: (event: any) => this.onSlideshowFieldChange('arrowType',event) },
-            { key: 'arrow_right', iconName: 'arrow_right', callback: (event: any) => this.onSlideshowFieldChange('arrowType',event) },
-            { key: 'arrow_right_alt', iconName: 'arrow_right_alt', callback: (event: any) => this.onSlideshowFieldChange('arrowType',event) }
+            { key: 'arrow_back_right', iconName: 'arrow_back_right', callback: (event: any) => this.onSlideshowFieldChange('Arrows.Type',event) },
+            { key: 'arrow_right', iconName: 'arrow_right', callback: (event: any) => this.onSlideshowFieldChange('Arrows.Type',event) },
+            { key: 'arrow_right_alt', iconName: 'arrow_right_alt', callback: (event: any) => this.onSlideshowFieldChange('Arrows.Type',event) }
         ];
         
         this.controllersDisplayTypes = [
-            { key: 'show', value: this.translate.instant('SLIDE_EDITOR.SHOW'), callback: (event: any) => this.onSlideshowFieldChange('controllersDisplay',event) },
-            { key: 'hide', value: this.translate.instant('SLIDE_EDITOR.HIDE'), callback: (event: any) => this.onSlideshowFieldChange('controllersDisplay',event) }
+            { key: 'show', value: this.translate.instant('SLIDE_EDITOR.SHOW'), callback: (event: any) => this.onSlideshowFieldChange('Controllers.Display',event) },
+            { key: 'hide', value: this.translate.instant('SLIDE_EDITOR.HIDE'), callback: (event: any) => this.onSlideshowFieldChange('Controllers.Display',event) }
         ]
 
         this.arrowsDisplayTypes = [
-            { key: 'show', value: this.translate.instant('SLIDE_EDITOR.SHOW'), callback: (event: any) => this.onSlideshowFieldChange('arrowsDisplay',event) },
-            { key: 'hide', value: this.translate.instant('SLIDE_EDITOR.HIDE'), callback: (event: any) => this.onSlideshowFieldChange('arrowsDisplay',event) }
+            { key: 'show', value: this.translate.instant('SLIDE_EDITOR.SHOW'), callback: (event: any) => this.onSlideshowFieldChange('Arrows.Display',event) },
+            { key: 'hide', value: this.translate.instant('SLIDE_EDITOR.HIDE'), callback: (event: any) => this.onSlideshowFieldChange('Arrows.Display',event) }
         ]
 
         this.ArrowButtons = [
             // { key: 'none', value: this.translate.instant('GROUP_SIZE.NONE') },
-            { key: 'regular', value: this.translate.instant('SLIDESHOW.ARROW_BUTTON.REGULAR'), callback: (event: any) => this.onSlideshowFieldChange('arrowShape',event) },
-            { key: 'round', value: this.translate.instant('SLIDESHOW.ARROW_BUTTON.ROUND'), callback: (event: any) => this.onSlideshowFieldChange('arrowShape',event) }
+            { key: 'regular', value: this.translate.instant('SLIDESHOW.ARROW_BUTTON.REGULAR'), callback: (event: any) => this.onSlideshowFieldChange('Arrows.Shape',event) },
+            { key: 'round', value: this.translate.instant('SLIDESHOW.ARROW_BUTTON.ROUND'), callback: (event: any) => this.onSlideshowFieldChange('Arrows.Shape',event) }
         ];
     
         this.ControllerSize = [
@@ -233,11 +233,11 @@ export class SlideshowEditorComponent implements OnInit {
 
     onSlideEditClick(event) {
        
-        if(this.configuration.slideshowConfig.editSlideIndex === event.id){ //close the editor
-            this.configuration.slideshowConfig.editSlideIndex = "-1";
+        if(this.configuration.slideshowConfig.EditSlideIndex === event.id){ //close the editor
+            this.configuration.slideshowConfig.EditSlideIndex = "-1";
         }
         else{ 
-            this.currentSlideindex = this.configuration.slideshowConfig.editSlideIndex = event.id;
+            this.currentSlideindex = this.configuration.slideshowConfig.EditSlideIndex = event.id;
         }
 
         this.updateHostObject();

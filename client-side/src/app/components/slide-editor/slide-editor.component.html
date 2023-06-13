@@ -8,10 +8,10 @@
     </div>
     <div class="actions" *ngIf="showActions">
         <pep-button classNames="caution" sizeType="xs" iconName="system_bin" (buttonClick)="onRemoveClick();"></pep-button>
-        <pep-button *ngIf="id != configuration?.slideshowConfig?.editSlideIndex" sizeType="xs" iconName="arrow_down" (buttonClick)="onEditClick();"></pep-button>
-        <pep-button *ngIf="id == configuration?.slideshowConfig?.editSlideIndex" sizeType="xs" iconName="arrow_up" (buttonClick)="onEditClick();"></pep-button>
+        <pep-button *ngIf="id != configuration?.slideshowConfig?.EditSlideIndex" sizeType="xs" iconName="arrow_down" (buttonClick)="onEditClick();"></pep-button>
+        <pep-button *ngIf="id == configuration?.slideshowConfig?.EditSlideIndex" sizeType="xs" iconName="arrow_up" (buttonClick)="onEditClick();"></pep-button>
     </div>
-    <div class="editorCont" *ngIf="id == configuration?.slideshowConfig?.editSlideIndex">
+    <div class="editorCont" *ngIf="id == configuration?.slideshowConfig?.EditSlideIndex">
    <pep-checkbox [value]="configuration?.slides[id].useTitle" [label]="'SLIDE_EDITOR.TITLE' | translate" [renderTitle]="false" 
         (valueChange)="onSlideFieldChange('useTitle',$event)">
     </pep-checkbox>

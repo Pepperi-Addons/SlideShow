@@ -1,6 +1,8 @@
 import '@pepperi-addons/cpi-node'
 export const router:any = Router()
+import SlidesowCpiService from './slideshow-cpi.service';
 import path from 'path';
+import { CLIENT_ACTION_ON_SLIDE_BUTTON_CLICKED, CLIENT_ACTION_ON_SLIDESHOW_LOAD } from 'shared'
 
 router.post('/prepare_assets', async (req, res)=>{
     const configuration = req.body.Configuration;
@@ -17,12 +19,6 @@ router.post('/prepare_assets', async (req, res)=>{
 
 async function getFilePath(slide) {
     let fileUrl;
-    // url =  "'https://pfs.pepperi.com/2234563d-b17b-4ace-b836-916b039504ae/ad909780-0c23-401e-8e8e-f514cc4f6aa2/Assets/bibi.jpeg';
-    // check if the url is a valid url
-    //const fixedURL = fixURLIfNeeded(url);
-    //if (fixedURL && fixedURL.startsWith('http')) {
-        //const filePath = new URL(fixedURL).pathname;
-        //const fileName = path.basename(filePath);
         try {
             const res = await pepperi.addons.pfs.uuid("ad909780-0c23-401e-8e8e-f514cc4f6aa2").schema("Assets").key(slide.asset).get();
             fileUrl = res.URL;
@@ -48,4 +44,20 @@ function fixURLIfNeeded(url) {
 export async function load(configuration: any) {
     
 }
+
+/**********************************  client events starts /**********************************/
+pepperi.events.intercept(CLIENT_ACTION_ON_SLIDE_BUTTON_CLICKED as any, {}, async (data): Promise<any> => {
+    debugger;
+    const cpiService = new SlidesowCpiService();
+    const res = cpiService.runFlowData(data.Key, data);
+    return res;
+
+});
+
+pepperi.events.intercept(CLIENT_ACTION_ON_SLIDESHOW_LOAD as any, {}, async (data): Promise<any> => {
+    let gallery = data.gallery;
+
+    return gallery;
+});
+/***********************************  client events ends /***********************************/
 

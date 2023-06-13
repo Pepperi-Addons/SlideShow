@@ -3,6 +3,7 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { PepColorService, PepLayoutService, PepScreenSizeType, PepSizeType, PepStyleType } from '@pepperi-addons/ngx-lib';
 import { ISlideEditor, ISlideShow, ISlideshowEditor } from '../slideshow.model';
 import { PepColorSettings } from '@pepperi-addons/ngx-composite-lib/color-settings';
+import { CLIENT_ACTION_ON_SLIDE_BUTTON_CLICKED } from 'shared'
 
 @Component({
     selector: 'slide',
@@ -13,7 +14,7 @@ import { PepColorSettings } from '@pepperi-addons/ngx-composite-lib/color-settin
 export class SlideComponent implements OnInit {
     @ViewChild('mainSlideCont', { static: true }) slideContainer: ElementRef;
 
-    @Output() slideClick: EventEmitter<any> = new EventEmitter<any>();
+    //@Output() slideClick: EventEmitter<any> = new EventEmitter<any>();
 
     screenSize: PepScreenSizeType;
     
@@ -109,10 +110,10 @@ export class SlideComponent implements OnInit {
     }
 
     getSlideContentHeight(){
-        let numToDec = this.slideshowConfig?.showControllersInSlider ? 0 : -0.5; 
-        let height = parseFloat(this.slideshowConfig?.height) + numToDec;
+        let numToDec = this.slideshowConfig?.Controllers?.ShowInSlider ? 0 : -0.5; 
+        let height = parseFloat(this.slideshowConfig?.Structure.Height) + numToDec;
 
-        return height.toString() + this.slideshowConfig?.heightUnit;   
+        return height.toString() + this.slideshowConfig?.Structure.Unit;   
     }
 
     ngOnChanges(changes) { 
@@ -122,9 +123,32 @@ export class SlideComponent implements OnInit {
 
     onSlideButtonClicked(btnName: string){
         const runScriptData = this.slide[btnName] && this.slide[btnName].script?.runScriptData;
-        if (runScriptData) {
+        //if (runScriptData) {
                 // Implement script click
-                this.slideClick.emit(runScriptData);
-            }
+                //this.slideClick.emit(runScriptData);
+        //}
+        
+        try{
+            const eventData = {
+                detail: {
+                    eventKey: CLIENT_ACTION_ON_SLIDE_BUTTON_CLICKED,
+                    eventData: { script: runScriptData },
+                    completion: (res: any) => {
+                            if (res) {
+                                debugger;
+                            } else {
+                                // Show default error.
+                                debugger;
+                            }
+                        }
+                }
+            };
+
+            const customEvent = new CustomEvent('emit-event', eventData);
+            window.dispatchEvent(customEvent);
         }
+        catch(err){
+
+        }
+    }
 }

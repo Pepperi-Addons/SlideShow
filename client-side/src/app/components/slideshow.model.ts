@@ -41,32 +41,79 @@ export class SlideImage {
     verticalPosition: string = '50';
 }
 
+export class Structure {
+    Unit: HeightUnit;
+    FillHeight: boolean;
+    Height: string;
+    InnerPadding: PepSizeType = "md";
+
+    constructor(unit: HeightUnit = "REM", fillHeight: boolean = false, height: string = '16', innerPadding: PepSizeType = 'md' ){
+        this.Unit = unit;
+        this.FillHeight = fillHeight;
+        this.Height = height;
+        this.InnerPadding = innerPadding;
+    }
+}
+
+export class Corners {
+    Use: boolean = false;
+    Size: PepSizeType = 'md';
+}
+
+export class Transition {
+    Use: boolean = true;
+    Duration: number = 5;
+    Type: TransitionType = 'fade';
+    Time: string = '0.75';
+}
+
+export class Arrows {
+    Use: boolean = true;
+    Type: ArrowType = 'arrow_right';
+    Shape: ArrowShape = 'round';
+    Style: PepStyleType= 'weak';
+    Display: DisplayStates = 'show';
+    Color: buttonColor= 'system';
+}
+
+export class Controllers {
+    ShowInSlider: boolean = true;
+    Display: DisplayStates = 'show';
+    Size: PepSizeType = 'md';
+    Style: PepStyleType= 'weak';
+    ShowPause: boolean = true;
+}
+
 //export interface ISlideshowEditor {
 export class ISlideshowEditor {
-    editSlideIndex: string = "-1";
-    heightUnit: HeightUnit = "REM";
-    fillHeight: boolean = false;
-    height: string = '16';
-    innerPadding: PepSizeType = "md";
-    isTransition: boolean = true;
-    transitionDuration: number = 5;
-    transitionType: TransitionType = 'fade';
-    transitionTime: string = '0.75';
-    isUseArrows: boolean = true;
-    arrowType: ArrowType = 'arrow_right';
-    arrowShape: ArrowShape = 'round';
-    arrowsStyle: PepStyleType= 'weak';
-    arrowsDisplay: DisplayStates = 'show';
-    arrowsColor: buttonColor= 'system';
-    usePauseButton: boolean = true;
-    useInverStyle: boolean = true;
-    showControllersInSlider: boolean = true;
-    controllersDisplay: DisplayStates = 'show';
-    controllerSize: PepSizeType = 'md';
-    controllerStyle: PepStyleType= 'weak';
-    dropShadow: PepShadowSettings = new PepShadowSettings(false,'md','soft');
-    useRoundCorners: boolean = false;
-    roundCornersSize: PepSizeType = 'md';
+    EditSlideIndex: string = "-1";
+    Structure: Structure = new Structure('REM', false, '16', 'md');
+    Transition: Transition = new Transition();
+    Arrows: Arrows = new Arrows();
+    Controllers: Controllers = new Controllers();
+    DropShadow: PepShadowSettings = new PepShadowSettings(false,'md','soft');
+    //HeightUnit: HeightUnit = "REM";
+    //FillHeight: boolean = false;
+    //height: string = '16';
+    //innerPadding: PepSizeType = "md";
+    //IsTransition: boolean = true;
+    //transitionDuration: number = 5;
+    //transitionType: TransitionType = 'fade';
+    //transitionTime: string = '0.75';
+    //isUseArrows: boolean = true;
+    //arrowType: ArrowType = 'arrow_right';
+    //arrowShape: ArrowShape = 'round';
+    //arrowsStyle: PepStyleType= 'weak';
+    //arrowsDisplay: DisplayStates = 'show';
+    //arrowsColor: buttonColor= 'system';
+    //usePauseButton: boolean = true;
+    //showControllersInSlider: boolean = true;
+    //controllersDisplay: DisplayStates = 'show';
+    //controllerSize: PepSizeType = 'md';
+    //controllerStyle: PepStyleType= 'weak';
+    //dropShadow: PepShadowSettings = new PepShadowSettings(false,'md','soft');
+    //useRoundCorners: boolean = false;
+    //roundCornersSize: PepSizeType = 'md';
 }
 
 export class ISlideEditor {
