@@ -10,7 +10,7 @@ router.post('/prepare_assets', async (req, res)=>{
         const slides = configuration.Data.slides as any[];
         await Promise.all(slides.map(async (slide) => {
             // overwrite the slides assetURL with the local file path
-            return slide.image.AssetUrl = await getFilePath(slide.image)
+            return slide.Image.AssetUrl = await getFilePath(slide.image)
         }))
         configuration.Data.slides = slides;
     }
@@ -20,7 +20,7 @@ router.post('/prepare_assets', async (req, res)=>{
 async function getFilePath(slide) {
     let fileUrl;
         try {
-            const res = await pepperi.addons.pfs.uuid("ad909780-0c23-401e-8e8e-f514cc4f6aa2").schema("Assets").key(slide.asset).get();
+            const res = await pepperi.addons.pfs.uuid("ad909780-0c23-401e-8e8e-f514cc4f6aa2").schema("Assets").key(slide.AssetKey).get();
             fileUrl = res.URL;
             console.log(fileUrl);
             }

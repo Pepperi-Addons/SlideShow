@@ -160,14 +160,14 @@ async function runMigration(client){
                                         }
                                     }
                                 },
-                                "image": {
+                                "Image": {
                                     "Type": "Object",
                                     "Fields": {
                                         "Use": {
                                             "Type": "Bool",
                                             "ConfigurationPerScreenSize": false, 
                                         },
-                                        "asset": {
+                                        "AssetKey": {
                                             "Type": "Resource",
                                             "Fields": {
                                                 "url": {

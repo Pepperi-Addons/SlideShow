@@ -92,6 +92,7 @@ export class ISlideshowEditor {
     Arrows: Arrows = new Arrows();
     Controllers: Controllers = new Controllers();
     DropShadow: PepShadowSettings = new PepShadowSettings(false,'md','soft');
+    Corners: Corners = new Corners();
 }
 
 export class Title {

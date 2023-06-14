@@ -33,9 +33,9 @@ class MyService {
         //check if distributor uuid included on assets pfs url
         //if not - replace it with empty string;
         if(slide?.Image?.AssetUrl.indexOf(distUUID) == -1){
-            slide.image.Use = false;
+            slide.Image.Use = false;
             slide.Image.Asset = '';
-            slide.image.AssetUrl = '';
+            slide.Image.AssetUrl = '';
         }
        
         return slide;

@@ -16,7 +16,7 @@
         (valueChange)="onSlideFieldChange('Title.Use',$event)">
     </pep-checkbox>
     <pep-textbox [label]="'SLIDE_EDITOR.TITLE_CONTENT' | translate" type="string" 
-                 [disabled]="!configuration?.slides[id].Title?.Use" [value]="configuration?.slides[id].slide?.Title?.Content" 
+                 [disabled]="!configuration?.slides[id].Title?.Use" [value]="configuration?.slides[id].Title?.Content" 
                  (valueChange)="onSlideFieldChange('Title.Content',$event)">
     </pep-textbox>
 
@@ -130,17 +130,13 @@
                         (colorChange)="onSlideFieldChange('Overlay',$event)">
     </pep-color-settings>
 
-    <pep-checkbox [value]="configuration?.slides[id].Image.Use" [label]="'SLIDE_EDITOR.IMAGE' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('image.Use',$event)"></pep-checkbox>
+    <pep-checkbox [value]="configuration?.slides[id].Image.Use" [label]="'SLIDE_EDITOR.IMAGE' | translate" [renderTitle]="false" (valueChange)="onSlideFieldChange('Image.Use',$event)"></pep-checkbox>
 
     <assets-button [imageURL]="configuration?.slides[id].Image?.AssetUrl"
                    [disabled]="!configuration?.slides[id].Image.Use" 
                    (hostEvents)="onHostEvents($event);">
     </assets-button>
 
-    <!-- <pep-textbox [label]="'SLIDE_EDITOR.CHOOSE_IMAGE' | translate" 
-                  type="link" 
-                  [value]="configuration?.slides[id].Image?.AssetUrl" 
-                  (valueChange)="onSlideFieldChange('image.AssetUrl',$event)"></pep-textbox> -->
     <pep-slider
         pepResetConfigurationField="slides[{{id}}].Image.HorizontalPosition" [hideReset]="configuration.slides[id].Image.HorizontalPosition === configurationSource?.slides[id].Image.HorizontalPosition"
          [resetHostEvents]="hostEvents" 
@@ -150,7 +146,7 @@
         [maxValue]="100"
         [disabled]="!configuration?.slides[id].Image.Use" 
         [value]="configuration?.slides[id].Image.HorizontalPosition"
-        (valueChange)="onSlideFieldChange('image.HorizontalPosition',$event)">
+        (valueChange)="onSlideFieldChange('Image.HorizontalPosition',$event)">
     </pep-slider>
     <pep-slider
         pepResetConfigurationField="slides[{{id}}].Image.VerticalPosition" [hideReset]="configuration.slides[id].Image.VerticalPosition === configurationSource?.slides[id].Image.VerticalPosition"
@@ -161,7 +157,7 @@
         [maxValue]="100"
         [disabled]="!configuration?.slides[id].Image.Use" 
         [value]="configuration?.slides[id].Image.VerticalPosition"
-        (valueChange)="onSlideFieldChange('image.VerticalPosition',$event)">
+        (valueChange)="onSlideFieldChange('Image.VerticalPosition',$event)">
     </pep-slider>
 </div>
 </div>

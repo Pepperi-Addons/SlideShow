@@ -202,10 +202,10 @@ export class SlideEditorComponent implements OnInit {
     onHostEvents(event: any) {
         if(event?.url){
             const encodeImgurl = "'"+ encodeURI(event.url) +"'";
-            this.configuration.slides[this.id]['image'].asset = event.key;
-            this.configuration.slides[this.id]['image'].AssetUrl = encodeImgurl;
+            this.configuration.slides[this.id]['Image'].AssetKey = event.key;
+            this.configuration.slides[this.id]['Image'].AssetUrl = encodeImgurl;
 
-            this.updateHostObjectField(`slides[${this.id}].image.AssetUrl`, encodeImgurl);
+            this.updateHostObjectField(`slides[${this.id}].Image.AssetUrl`, encodeImgurl);
             this.updateHostObjectField(`slides[${this.id}].Image.Asset`, event.key);
         }     
     }
