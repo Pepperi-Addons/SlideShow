@@ -23,7 +23,8 @@ export type DisplayStates = 'show' | 'hide';
 export class SlideButton {
     Use: boolean;
     Label: string = 'Button';
-    script: any = {};
+    Flow: any = {};
+    //script: any = {};
     Style: PepStyleType;
 
     constructor(use = true, label = 'Yess', style: PepStyleType = 'weak-invert') {
@@ -35,7 +36,7 @@ export class SlideButton {
 
 export class SlideImage {
     Use: boolean = false;
-    asset: string = '';
+    AssetKey: string = '';
     AssetUrl: string = '';
     HorizontalPosition: string = '50';
     VerticalPosition: string = '50';
@@ -87,6 +88,7 @@ export class Controllers {
 //export interface ISlideshowEditor {
 export class ISlideshowEditor {
     EditSlideIndex: string = "-1";
+    OnLoadFlow: any;
     Structure: Structure = new Structure('REM', false, '16', 'md');
     Transition: Transition = new Transition();
     Arrows: Arrows = new Arrows();
@@ -161,7 +163,7 @@ export interface slide {
 }
 
 export interface ISlideShow{
-    slideshowConfig: ISlideshowEditor,
-    slides: Array<ISlideEditor>
+    SlideshowConfig: ISlideshowEditor,
+    Slides: Array<ISlideEditor>
 }
  

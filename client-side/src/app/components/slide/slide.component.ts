@@ -18,7 +18,7 @@ export class SlideComponent implements OnInit {
 
     screenSize: PepScreenSizeType;
     
-    @Input() slideshowConfig: ISlideshowEditor;
+    @Input() SlideshowConfig: ISlideshowEditor;
     @Input() slide: ISlideEditor;
     @Input() showSlide: boolean;
 
@@ -41,7 +41,7 @@ export class SlideComponent implements OnInit {
     }
     
     private getDefaultHostObject(): ISlideShow {
-        return { slideshowConfig: new ISlideshowEditor(), slides: Array<ISlideEditor>() };
+        return { SlideshowConfig: new ISlideshowEditor(), Slides: Array<ISlideEditor>() };
     }
     
     getRGBAcolor(colObj: PepColorSettings, opac = null){
@@ -110,10 +110,10 @@ export class SlideComponent implements OnInit {
     }
 
     getSlideContentHeight(){
-        let numToDec = this.slideshowConfig?.Controllers?.ShowInSlider ? 0 : -0.5; 
-        let height = parseFloat(this.slideshowConfig?.Structure.Height) + numToDec;
+        let numToDec = this.SlideshowConfig?.Controllers?.ShowInSlider ? 0 : -0.5; 
+        let height = parseFloat(this.SlideshowConfig?.Structure.Height) + numToDec;
 
-        return height.toString() + this.slideshowConfig?.Structure.Unit;   
+        return height.toString() + this.SlideshowConfig?.Structure.Unit;   
     }
 
     ngOnChanges(changes) { 
@@ -122,17 +122,13 @@ export class SlideComponent implements OnInit {
     }
 
     onSlideButtonClicked(btnName: string){
-        const runScriptData = this.slide[btnName] && this.slide[btnName].script?.runScriptData;
-        //if (runScriptData) {
-                // Implement script click
-                //this.slideClick.emit(runScriptData);
-        //}
-        
+        const flowData = this.slide[btnName] && this.slide[btnName].Flow;
+        debugger;
         try{
             const eventData = {
                 detail: {
                     eventKey: CLIENT_ACTION_ON_SLIDE_BUTTON_CLICKED,
-                    eventData: { script: runScriptData },
+                    eventData: { flow: flowData },
                     completion: (res: any) => {
                             if (res) {
                                 debugger;

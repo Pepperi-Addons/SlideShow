@@ -67,7 +67,7 @@ async function runMigration(client){
             EditorElementName: `slideshow-editor-element-${client.AddonUUID}`,
             Schema: {
                 "Fields": {
-                    "slideshowConfig": {    
+                    "SlideshowConfig": {    
                             "Type": "Object",
                             "Fields": {
                                 "Structure": {
@@ -111,7 +111,7 @@ async function runMigration(client){
                                 },
                             }
                     },
-                    "slides": {
+                    "Slides": {
                         "Type": "Array",
                         "Items": {
                             "Type": "Object",

@@ -7,12 +7,12 @@ import { CLIENT_ACTION_ON_SLIDE_BUTTON_CLICKED, CLIENT_ACTION_ON_SLIDESHOW_LOAD 
 router.post('/prepare_assets', async (req, res)=>{
     const configuration = req.body.Configuration;
     if(!(await pepperi['environment'].isWebApp())) {
-        const slides = configuration.Data.slides as any[];
-        await Promise.all(slides.map(async (slide) => {
+        const Slides = configuration.Data.Slides as any[];
+        await Promise.all(Slides.map(async (slide) => {
             // overwrite the slides assetURL with the local file path
             return slide.Image.AssetUrl = await getFilePath(slide.image)
         }))
-        configuration.Data.slides = slides;
+        configuration.Data.Slides = Slides;
     }
     res.json({Configuration: configuration});
 });
@@ -47,17 +47,15 @@ export async function load(configuration: any) {
 
 /**********************************  client events starts /**********************************/
 pepperi.events.intercept(CLIENT_ACTION_ON_SLIDE_BUTTON_CLICKED as any, {}, async (data): Promise<any> => {
-    debugger;
     const cpiService = new SlidesowCpiService();
-    const res = cpiService.runFlowData(data.Key, data);
+    const res = cpiService.runFlowData(data.flow);
     return res;
-
 });
 
 pepperi.events.intercept(CLIENT_ACTION_ON_SLIDESHOW_LOAD as any, {}, async (data): Promise<any> => {
-    let slideshow = data.slideshow;
-
-    return slideshow;
+    const cpiService = new SlidesowCpiService();
+    const res = cpiService.runFlowData(data);
+    return res;
 });
 /***********************************  client events ends /***********************************/
 

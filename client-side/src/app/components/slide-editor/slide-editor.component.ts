@@ -67,7 +67,7 @@ export class SlideEditorComponent implements OnInit {
 
     async ngOnInit(): Promise<void> {
         
-        this.title = this.configuration.slides[this.id].Title.Content;
+        this.title = this.configuration.Slides[this.id].Title.Content;
 
         const desktopTitle = await this.translate.get('SLIDESHOW.HEIGHTUNITS_REM').toPromise();
 
@@ -129,15 +129,15 @@ export class SlideEditorComponent implements OnInit {
         
         if(key.indexOf('.') > -1){
             let keyObj = key.split('.');
-            this.configuration.slides[this.id][keyObj[0]][keyObj[1]] = value;
+            this.configuration.Slides[this.id][keyObj[0]][keyObj[1]] = value;
         }
         else{
-            this.configuration.slides[this.id][key] = value;
+            this.configuration.Slides[this.id][key] = value;
         }
 
         //this.updateHostObject();
-        this.updateHostObjectField(`slides[${this.id}].${key}`, value);
-        //this.updateHostObjectField(`slides[${this.id}][${key}]`, value);
+        this.updateHostObjectField(`Slides[${this.id}].${key}`, value);
+        //this.updateHostObjectField(`Slides[${this.id}][${key}]`, value);
     }
 
     private updateHostObjectField(fieldKey: string, value: any, updatePageConfiguration = false) {
@@ -160,10 +160,10 @@ export class SlideEditorComponent implements OnInit {
 
     // onSlideshowFieldChange(key, event){
     //     if(event && event.source && event.source.key){
-    //         this.configuration.slideshowConfig[key] = event.source.key;
+    //         this.configuration.SlideshowConfig[key] = event.source.key;
     //     }
     //     else{
-    //         this.configuration.slideshowConfig[key] = event;
+    //         this.configuration.SlideshowConfig[key] = event;
     //     }
 
     //     this.updateHostObject();
@@ -202,44 +202,34 @@ export class SlideEditorComponent implements OnInit {
     onHostEvents(event: any) {
         if(event?.url){
             const encodeImgurl = "'"+ encodeURI(event.url) +"'";
-            this.configuration.slides[this.id]['Image'].AssetKey = event.key;
-            this.configuration.slides[this.id]['Image'].AssetUrl = encodeImgurl;
+            this.configuration.Slides[this.id]['Image'].AssetKey = event.key;
+            this.configuration.Slides[this.id]['Image'].AssetUrl = encodeImgurl;
 
-            this.updateHostObjectField(`slides[${this.id}].Image.AssetUrl`, encodeImgurl);
-            this.updateHostObjectField(`slides[${this.id}].Image.Asset`, event.key);
+            this.updateHostObjectField(`Slides[${this.id}].Image.AssetUrl`, encodeImgurl);
+            this.updateHostObjectField(`Slides[${this.id}].Image.Asset`, event.key);
         }     
     }
 
-    openScriptPickerDialog(btnName: string) {
-        const script = this.configuration.slides[this.id][btnName].script || {};
-
-        const fields = {};
-        Object.keys(this._pageParameters).forEach(paramKey => {
-            fields[paramKey] = {
-                Type: 'String'
-        }
-        });
-        
-        script['fields'] = fields;
-        
-        //const dialogConfig = new MatDialogConfig();
-        //dialogConfig.height = '500px';
+    openFlowPickerDialog(btnName: string) {
+        const flow = this.configuration.Slides[this.id][btnName].Flow || {};
 
         this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
             container: this.viewContainerRef,
-            name: 'ScriptPicker',
+            name: 'FlowPicker',
             size: 'large',
-            //config: dialogConfig,
-            hostObject: this.configuration.slides[this.id][btnName].script,
-            hostEventsCallback: (event) => { 
-                if (event.action === 'script-picked') {
-                    this.configuration.slides[this.id][btnName].script = event.data || {};
-                    this.updateHostObjectField(`slides[${this.id}][${btnName}].script`, event.data, true);
-                    this.dialogRef.close();
-                } else if (event.action === 'close') {
-                    this.dialogRef.close();
+            hostObject: {
+                'runFlowData': flow
+            },
+            hostEventsCallback: (event) => {
+                if (event.action === 'on-done') {
+                        this.configuration.Slides[this.id][btnName].Flow = event.data;
+                        this.updateHostObjectField(`Slides[${this.id}][${btnName}].Flow`, event.data, true);
+                        //this.updateHostObject(true);
+                        this.dialogRef.close();
+                } else if (event.action === 'on-cancel') {
+                                this.dialogRef.close();
                 }
             }
-        });
+        })
     }
 }

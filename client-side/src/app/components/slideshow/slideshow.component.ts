@@ -54,7 +54,9 @@ export class SlideshowComponent implements OnInit {
     }
     
     async ngOnInit() {
-        this.configuration = await this.onSlideshowLoad();
+        if(this.configuration?.SlideshowConfig?.OnLoadFlow && this.configuration?.SlideshowConfig?.OnLoadFlow.FlowKey != ''){
+            this.configuration = await this.onSlideshowLoad();
+        }
         this.showSlides();
     }
 
@@ -66,7 +68,7 @@ export class SlideshowComponent implements OnInit {
                     eventData: { slideshow: this.configuration },
                     completion: (res: any) => {
                             if (res) {
-                                debugger;
+                                this._configuration = res;
                             } else {
                                 // Show default error.
                                 debugger;
@@ -88,16 +90,16 @@ export class SlideshowComponent implements OnInit {
     showSlides() {
 
         if (this.configuration && Object.keys(this.configuration).length > 0) {
-            if (!this.configuration.slideshowConfig.Transition.Use) {
+            if (!this.configuration.SlideshowConfig.Transition.Use) {
                 this.isPause = true;
                 clearTimeout(this.timer);
             }
             else {
-                var slides = this.configuration.slides; 
-                if (this.slideIndex >= slides.length) {this.slideIndex = 0}
+                var Slides = this.configuration.Slides; 
+                if (this.slideIndex >= Slides.length) {this.slideIndex = 0}
                 
                 var that = this;
-                var duration = this.configuration.slideshowConfig.Transition.Duration * 1000;
+                var duration = this.configuration.SlideshowConfig.Transition.Duration * 1000;
                 this.timer = setTimeout(function(){that.slideIndex ++; that.showSlides() }, duration);
             }
         }   
@@ -122,35 +124,35 @@ export class SlideshowComponent implements OnInit {
         
         this.slideIndex = event === 'forward' ? this.slideIndex + 1 : this.slideIndex - 1;
         
-        if(this.slideIndex == this.configuration.slides.length) {
+        if(this.slideIndex == this.configuration.Slides.length) {
             this.slideIndex = 0
         }
         else if(this.slideIndex < 0) {
-            this.slideIndex = this.configuration.slides.length -1;
+            this.slideIndex = this.configuration.Slides.length -1;
         }
         
       }
 
       getSliderFooterTop(){
-          let sliderHeight = parseFloat(this.configuration?.slideshowConfig?.Structure?.Height);
-          let numToDec = this.configuration?.slideshowConfig?.Controllers?.ShowInSlider ? -2.5 : 0.5; 
+          let sliderHeight = parseFloat(this.configuration?.SlideshowConfig?.Structure?.Height);
+          let numToDec = this.configuration?.SlideshowConfig?.Controllers?.ShowInSlider ? -2.5 : 0.5; 
           
           let footerPos = sliderHeight +  numToDec;
           
-          return footerPos.toString() + this.configuration?.slideshowConfig?.Structure.Unit;
+          return footerPos.toString() + this.configuration?.SlideshowConfig?.Structure.Unit;
       } 
       
     getSlideShowHeight(){
         if(this.configuration && Object.keys(this.configuration).length > 0){
-            let heightToAdd = this.configuration?.slideshowConfig?.Controllers?.Size == 'sm' ? 2.75 : 3.25;
-            heightToAdd = this.configuration?.slideshowConfig?.Controllers?.ShowInSlider ?  0 : heightToAdd;
-            return (parseFloat(this.configuration?.slideshowConfig?.Structure?.Height) + heightToAdd).toString() + this.configuration?.slideshowConfig.Structure.Unit;
+            let heightToAdd = this.configuration?.SlideshowConfig?.Controllers?.Size == 'sm' ? 2.75 : 3.25;
+            heightToAdd = this.configuration?.SlideshowConfig?.Controllers?.ShowInSlider ?  0 : heightToAdd;
+            return (parseFloat(this.configuration?.SlideshowConfig?.Structure?.Height) + heightToAdd).toString() + this.configuration?.SlideshowConfig.Structure.Unit;
         }
     }
 
     getSlideHeight(){
         let retHeight = 'inherit';
-        if(this.configuration?.slideshowConfig?.Structure?.FillHeight && !this.configuration?.slideshowConfig?.Controllers?.ShowInSlider){
+        if(this.configuration?.SlideshowConfig?.Structure?.FillHeight && !this.configuration?.SlideshowConfig?.Controllers?.ShowInSlider){
             retHeight = 'calc(100%  - 3rem)';
         }
 
@@ -178,17 +180,17 @@ export class SlideshowComponent implements OnInit {
         return res;
     }
 
-    onSlideClicked(event){
-        // Parse the params if exist.
-        const params = this.getScriptParams(event.ScriptData);
+    // onSlideClicked(event){
+    //     // Parse the params if exist.
+    //     const params = this.getScriptParams(event.ScriptData);
     
-        this.hostEvents.emit({
-            action: 'emit-event',
-            eventKey: 'RunScript',
-            eventData: {
-                ScriptKey: event.ScriptKey,
-                ScriptParams: params
-            }
-        });
-    }
+    //     this.hostEvents.emit({
+    //         action: 'emit-event',
+    //         eventKey: 'RunScript',
+    //         eventData: {
+    //             ScriptKey: event.ScriptKey,
+    //             ScriptParams: params
+    //         }
+    //     });
+    // }
 }

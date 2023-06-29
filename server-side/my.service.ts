@@ -24,8 +24,8 @@ class MyService {
 
     async importDataSource(body,distUUID) {
         console.log(`!!**!!** Slideshow import body: ${JSON.stringify(body)}`);
-        console.log(`!!**!!** Slideshow import  body.Object.slides: ${JSON.stringify(body['Object'].slides)}`);
-       body['Object'].slides = await Promise.all(body['Object'].slides.map(async (slide) => {
+        console.log(`!!**!!** Slideshow import  body.Object.Slides: ${JSON.stringify(body['Object'].Slides)}`);
+       body['Object'].Slides = await Promise.all(body['Object'].Slides.map(async (slide) => {
 
         console.log(`!!**!!** Slideshow import** slide: ${JSON.stringify(slide)}`);
         console.log(`!!**!!** Slideshow import** distUUID: ${distUUID}`);

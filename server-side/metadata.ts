@@ -25,15 +25,15 @@ export const SlideshowScheme: AddonDataScheme = {
     Name: blockName,
     Type: 'meta_data',
     Fields: {
-        slideshowConfig: {
+        SlideshowConfig: {
             Type: "Object"
         },
-        slides: {
+        Slides: {
             Type: 'Array',
             Items: {
                 Type: 'Object',
                 Fields: {
-                    asset: {
+                    AssetKey: {
                         Type: "Resource",
                         Resource: "Assets", // todo - need to change to resource adal table name
                         AddonUUID: "ad909780-0c23-401e-8e8e-f514cc4f6aa2",

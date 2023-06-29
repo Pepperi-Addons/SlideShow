@@ -103,7 +103,9 @@
         "SHADOW_INTENSITY": "Shadow Intensity",
         "SHADOW_TYPE": "Shadow Type",
         "ACTION": "Action",
-        "CHOOSE_SCRIPT": "Choose Script",
+        "CHOOSE_FLOW": "Flow",
+        "FLOW_ONLOAD_DESC": "Choose the flow you want to activate in On Load Event",
+        "FLOW_ONCLICK_DESC": "Choose the flow you want to activate in On Click Event",
         "FONT_WEIGHT": {
             "NORMAL": "Normal",
             "BOLD": "Bold",

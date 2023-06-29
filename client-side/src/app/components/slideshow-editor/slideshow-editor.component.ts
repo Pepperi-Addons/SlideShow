@@ -1,10 +1,12 @@
 import { CdkDragDrop, CdkDragEnd, CdkDragStart, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewContainerRef } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PepStyleType} from '@pepperi-addons/ngx-lib';
 import { PepButton } from '@pepperi-addons/ngx-lib/button';
 import { ISlideShow, ISlideshowEditor, TransitionType, ISlideEditor } from '../slideshow.model';
 import { PageConfiguration } from '@pepperi-addons/papi-sdk';
+import { MatDialogRef } from '@angular/material/dialog';
+import { PepAddonBlockLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
 
 @Component({
     selector: 'slideshow-editor',
@@ -65,8 +67,12 @@ export class SlideshowEditorComponent implements OnInit {
     ControllerSize: Array<PepButton> = [];
     
     currentSlideindex = 0;
+    dialogRef: MatDialogRef<any>;
 
-    constructor(private translate: TranslateService) { 
+    constructor(private translate: TranslateService,
+                private viewContainerRef: ViewContainerRef,
+                private addonBlockLoaderService: PepAddonBlockLoaderService) { 
+
     }
 
     private loadDefaultConfiguration() {
@@ -104,7 +110,7 @@ export class SlideshowEditorComponent implements OnInit {
     }
 
     private getDefaultHostObject(): ISlideShow {
-        return { slideshowConfig: new ISlideshowEditor(), slides: this.getDefaultSlide() };
+        return { SlideshowConfig: new ISlideshowEditor(), Slides: this.getDefaultSlide() };
     }
 
     public onHostObjectChange(event) {
@@ -139,14 +145,14 @@ export class SlideshowEditorComponent implements OnInit {
        
         if(key.indexOf('.') > -1){
             let keyObj = key.split('.');
-            this.configuration.slideshowConfig[keyObj[0]][keyObj[1]] = value;
+            this.configuration.SlideshowConfig[keyObj[0]][keyObj[1]] = value;
         }
         else {
-            this.configuration.slideshowConfig[key] = value;
+            this.configuration.SlideshowConfig[key] = value;
         }
         
         //this.updateHostObject();
-        this.updateHostObjectField(`slideshowConfig.${key}`, value);
+        this.updateHostObjectField(`SlideshowConfig.${key}`, value);
     }
 
     private updateHostObjectField(fieldKey: string, value: any) {
@@ -225,27 +231,27 @@ export class SlideshowEditorComponent implements OnInit {
 
     addNewSlideClick() {
         let slide = new ISlideEditor();
-        slide.id = (this.configuration.slides.length);
+        slide.id = (this.configuration.Slides.length);
         slide.Title.Content = this.getOrdinal(slide.id+1) + this.translate.instant('SLIDE_EDITOR.TITLE');
-        this.configuration.slides.push( slide); 
+        this.configuration.Slides.push( slide); 
         this.updateHostObject();  
     }
 
     onSlideEditClick(event) {
        
-        if(this.configuration.slideshowConfig.EditSlideIndex === event.id){ //close the editor
-            this.configuration.slideshowConfig.EditSlideIndex = "-1";
+        if(this.configuration.SlideshowConfig.EditSlideIndex === event.id){ //close the editor
+            this.configuration.SlideshowConfig.EditSlideIndex = "-1";
         }
         else{ 
-            this.currentSlideindex = this.configuration.slideshowConfig.EditSlideIndex = event.id;
+            this.currentSlideindex = this.configuration.SlideshowConfig.EditSlideIndex = event.id;
         }
 
         this.updateHostObject();
     }
 
     onSlideRemoveClick(event){
-        this.configuration.slides.splice(event.id, 1);
-        this.configuration.slides.forEach(function(slide, index, arr) {slide.id = index; });
+        this.configuration.Slides.splice(event.id, 1);
+        this.configuration.Slides.forEach(function(slide, index, arr) {slide.id = index; });
         this.updateHostObject();
     }
 
@@ -255,9 +261,9 @@ export class SlideshowEditorComponent implements OnInit {
 
     drop(event: CdkDragDrop<string[]>) {
         if (event.previousContainer === event.container) {
-         moveItemInArray(this.configuration.slides, event.previousIndex, event.currentIndex);
-         for(let index = 0 ; index < this.configuration.slides.length; index++){
-            this.configuration.slides[index].id = index;
+         moveItemInArray(this.configuration.Slides, event.previousIndex, event.currentIndex);
+         for(let index = 0 ; index < this.configuration.Slides.length; index++){
+            this.configuration.Slides[index].id = index;
          }
           this.updateHostObject();
         } 
@@ -277,12 +283,12 @@ export class SlideshowEditorComponent implements OnInit {
         const scriptBtns = ['FirstButton','SecondButton'];
 
         // Go for all slides scripts and add parameters to page configuration if Source is dynamic.
-        for (let index = 0; index < this.configuration.slides.length; index++) {
-            const slide = this.configuration.slides[index];
+        for (let index = 0; index < this.configuration.Slides.length; index++) {
+            const slide = this.configuration.Slides[index];
             scriptBtns.forEach(actButton => {
-                if (slide[actButton]?.script?.runScriptData) {
-                    Object.keys(slide[actButton]?.script.runScriptData?.ScriptData).forEach(paramKey => {
-                        const param = slide[actButton]?.script.runScriptData.ScriptData[paramKey];
+                if (slide[actButton]?.Flow?.runScriptData) {
+                    Object.keys(slide[actButton]?.Flow.runScriptData?.ScriptData).forEach(paramKey => {
+                        const param = slide[actButton]?.Flow.runScriptData.ScriptData[paramKey];
             
                         if (!parameters.has(param.Value) && param.Source === 'dynamic') {
                             parameters.add(param.Value);
@@ -317,4 +323,28 @@ export class SlideshowEditorComponent implements OnInit {
             pageConfiguration: this._pageConfiguration
         });
     }
+
+    openFlowPickerDialog() {
+    
+        const flow = this.configuration?.SlideshowConfig?.OnLoadFlow || null;
+
+        this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
+            container: this.viewContainerRef,
+            name: 'FlowPicker',
+            size: 'large',
+            hostObject: {
+                'runFlowData': flow
+            },
+            hostEventsCallback: (event) => {
+                if (event.action === 'on-done') {
+                               this.configuration.SlideshowConfig.OnLoadFlow = event.data;
+                                this.updateHostObject();
+                                this.dialogRef.close();
+                } else if (event.action === 'on-cancel') {
+                                this.dialogRef.close();
+                }
+            }
+        });
+    }
+
 }
