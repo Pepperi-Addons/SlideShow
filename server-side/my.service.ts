@@ -34,7 +34,7 @@ class MyService {
         //if not - replace it with empty string;
         if(slide?.Image?.AssetUrl.indexOf(distUUID) == -1){
             slide.Image.Use = false;
-            slide.Image.Asset = '';
+            slide.Image.AssetKey = '';
             slide.Image.AssetUrl = '';
         }
        

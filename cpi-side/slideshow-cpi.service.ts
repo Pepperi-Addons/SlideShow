@@ -1,5 +1,5 @@
 import { Client, Context, IClient, IContext } from '@pepperi-addons/cpi-node/build/cpi-side/events';
-import { CLIENT_ACTION_ON_SLIDE_BUTTON_CLICKED, CLIENT_ACTION_ON_SLIDESHOW_LOAD } from 'shared'
+import { CLIENT_ACTION_ON_SLIDE_BUTTON_CLICK } from 'shared'
 import { AddonUUID } from '../addon.config.json';
 
 class SlidesowCpiService {
@@ -16,11 +16,20 @@ class SlidesowCpiService {
         return {};
     }
 
-    public async runFlowData(flowData){
+    public async runFlowData(flowData, context){
         let res;
         try{
-                const flow = JSON.parse(Buffer.from(flowData, 'base64').toString('utf8'));
-                res = await pepperi.flows.run(flow);
+            res = await pepperi.flows.run({
+                // The runFlow object
+                RunFlow: flowData,  
+                // dynamic parameters that will be set to the flow data
+                Data: {
+                   
+                },
+                // optional, but needed for executing client actions within flow
+                // this is taken from the interceptor data
+                context: context
+            });
         }
         catch(err){
             res = {

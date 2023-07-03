@@ -2,7 +2,6 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
 import { PepLayoutService, PepScreenSizeType } from '@pepperi-addons/ngx-lib';
 import { IHostObject, ISlideEditor, ISlideShow, ISlideshowEditor } from '../slideshow.model';
-import { CLIENT_ACTION_ON_SLIDESHOW_LOAD } from 'shared'
 
 @Component({
   selector: 'slideshow',
@@ -54,39 +53,9 @@ export class SlideshowComponent implements OnInit {
     }
     
     async ngOnInit() {
-        if(this.configuration?.SlideshowConfig?.OnLoadFlow && this.configuration?.SlideshowConfig?.OnLoadFlow.FlowKey != ''){
-            this.configuration = await this.onSlideshowLoad();
-        }
         this.showSlides();
     }
-
-    onSlideshowLoad(){
-        try{
-            const eventData = {
-                detail: {
-                    eventKey: CLIENT_ACTION_ON_SLIDESHOW_LOAD,
-                    eventData: { slideshow: this.configuration },
-                    completion: (res: any) => {
-                            if (res) {
-                                this._configuration = res;
-                            } else {
-                                // Show default error.
-                                debugger;
-                            }
-                        }
-                }
-            };
-
-            const customEvent = new CustomEvent('emit-event', eventData);
-            window.dispatchEvent(customEvent);
-        }
-        catch(err){
-
-        }
-
-        return this.configuration;
-    }
-
+    
     showSlides() {
 
         if (this.configuration && Object.keys(this.configuration).length > 0) {

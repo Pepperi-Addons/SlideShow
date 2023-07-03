@@ -6,6 +6,7 @@ import { PepButton } from '@pepperi-addons/ngx-lib/button';
 import { PepColorSettings } from '@pepperi-addons/ngx-composite-lib/color-settings';
 import { MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
 import { PepAddonBlockLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
+import { SlideshowService } from 'src/services/slideshow.service';
 
 interface groupButtonArray {
     key: string; 
@@ -53,13 +54,16 @@ export class SlideEditorComponent implements OnInit {
     textColors: Array<groupButtonArray> = [];
     buttonColor: Array<PepButton> = [];
     buttonStyle: Array<{key: PepStyleType, value: string}> = [];
-    // InnerSpacing: Array<PepButton> = [];
+    
+    slideFirstBtnFlowName = undefined;
+    slideSecondBtnFlowName = undefined;
 
     constructor(
         private translate: TranslateService,
         private pepColorService: PepColorService,
         private viewContainerRef: ViewContainerRef,
-        private addonBlockLoaderService: PepAddonBlockLoaderService
+        private addonBlockLoaderService: PepAddonBlockLoaderService,
+        private slideshowService: SlideshowService
         // private utilitiesService: PepUtilitiesService
     ) { 
 
@@ -74,7 +78,6 @@ export class SlideEditorComponent implements OnInit {
         this.TitleWeight = [
             { key: 'normal', value: this.translate.instant('SLIDE_EDITOR.FONT_WEIGHT.NORMAL'), callback: (event: any) => this.onSlideFieldChange('titleWeight',event) },
             { key: 'bold', value: this.translate.instant('SLIDE_EDITOR.FONT_WEIGHT.BOLD'), callback: (event: any) => this.onSlideFieldChange('titleWeight',event) }
-            // { key: 'bolder', value: this.translate.instant('SLIDE_EDITOR.FONT_WEIGHT.BOLDER'), callback: (event: any) => this.onSlideFieldChange('titleWeight',event) }
         ]
     
         this.WidthSize =  [
@@ -82,18 +85,6 @@ export class SlideEditorComponent implements OnInit {
             { key: 'Regular', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.REGULAR'), callback: (event: any) => this.onSlideFieldChange('ContentWidth',event) },
             { key: 'Wide', value: this.translate.instant('SLIDE_EDITOR.WIDTH_SIZE.WIDE'), callback: (event: any) => this.onSlideFieldChange('ContentWidth',event) },
         ];
-        
-        // this.HorizentalAlign =  [
-        //     { key: 'left', iconName: 'text_align_right' },
-        //     { key: 'center', iconName: 'text_align_center' },
-        //     { key: 'right', iconName: 'text_align_left' }
-        // ];
-    
-        // this.VerticalAlign =  [
-        //     { key: 'top', value: this.translate.instant('SLIDE_EDITOR.VERTICAL_ALIGN_DIRECTION.TOP') },
-        //     { key: 'middle', value: this.translate.instant('SLIDE_EDITOR.VERTICAL_ALIGN_DIRECTION.MIDDLE') },
-        //     { key: 'bottom', value: this.translate.instant('SLIDE_EDITOR.VERTICAL_ALIGN_DIRECTION.BOTTOM') }
-        // ];
         
         this.textColors = [  
             { key: 'system', value: this.translate.instant('SLIDE_EDITOR.TEXT_COLOR.SYSTEM') },
@@ -112,7 +103,17 @@ export class SlideEditorComponent implements OnInit {
             { key: 'weak-invert', value: this.translate.instant('SLIDE_EDITOR.BUTTON_STYLES.WEAK_INVERT')},
             { key: 'regular', value: this.translate.instant('SLIDE_EDITOR.BUTTON_STYLES.REGULAR')},
             { key: 'strong', value:this.translate.instant('SLIDE_EDITOR.BUTTON_STYLES.STRONG')}
-        ];   
+        ];  
+        
+        const slide = this.configuration.Slides[this.id];
+       
+        if(slide?.FirstButton.Flow?.FirstButton?.FlowKey){
+            this.slideFirstBtnFlowName = await this.slideshowService.getFlowName(slide.FirstButton.Flow.FlowKey) || undefined;
+        }
+        if(slide?.SecondButton.Flow?.FirstButton?.FlowKey){
+            this.slideSecondBtnFlowName = await this.slideshowService.getFlowName(slide.SecondButton.Flow.FlowKey) || undefined;
+        }
+        
     }
 
     onRemoveClick() {
@@ -206,7 +207,7 @@ export class SlideEditorComponent implements OnInit {
             this.configuration.Slides[this.id]['Image'].AssetUrl = encodeImgurl;
 
             this.updateHostObjectField(`Slides[${this.id}].Image.AssetUrl`, encodeImgurl);
-            this.updateHostObjectField(`Slides[${this.id}].Image.Asset`, event.key);
+            this.updateHostObjectField(`Slides[${this.id}].Image.AssetKey`, event.key);
         }     
     }
 

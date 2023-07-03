@@ -3,7 +3,7 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { PepColorService, PepLayoutService, PepScreenSizeType, PepSizeType, PepStyleType } from '@pepperi-addons/ngx-lib';
 import { ISlideEditor, ISlideShow, ISlideshowEditor } from '../slideshow.model';
 import { PepColorSettings } from '@pepperi-addons/ngx-composite-lib/color-settings';
-import { CLIENT_ACTION_ON_SLIDE_BUTTON_CLICKED } from 'shared'
+import { CLIENT_ACTION_ON_SLIDE_BUTTON_CLICK } from 'shared'
 
 @Component({
     selector: 'slide',
@@ -123,18 +123,15 @@ export class SlideComponent implements OnInit {
 
     onSlideButtonClicked(btnName: string){
         const flowData = this.slide[btnName] && this.slide[btnName].Flow;
-        debugger;
         try{
             const eventData = {
                 detail: {
-                    eventKey: CLIENT_ACTION_ON_SLIDE_BUTTON_CLICKED,
+                    eventKey: CLIENT_ACTION_ON_SLIDE_BUTTON_CLICK,
                     eventData: { flow: flowData },
                     completion: (res: any) => {
                             if (res) {
-                                debugger;
                             } else {
                                 // Show default error.
-                                debugger;
                             }
                         }
                 }

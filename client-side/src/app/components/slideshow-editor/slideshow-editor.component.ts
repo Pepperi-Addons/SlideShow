@@ -7,6 +7,7 @@ import { ISlideShow, ISlideshowEditor, TransitionType, ISlideEditor } from '../s
 import { PageConfiguration } from '@pepperi-addons/papi-sdk';
 import { MatDialogRef } from '@angular/material/dialog';
 import { PepAddonBlockLoaderService } from '@pepperi-addons/ngx-lib/remote-loader';
+import { SlideshowService } from 'src/services/slideshow.service';
 
 @Component({
     selector: 'slideshow-editor',
@@ -68,9 +69,11 @@ export class SlideshowEditorComponent implements OnInit {
     
     currentSlideindex = 0;
     dialogRef: MatDialogRef<any>;
-
+    public onLoadFlowName = undefined;
+    
     constructor(private translate: TranslateService,
                 private viewContainerRef: ViewContainerRef,
+                private slideshowService: SlideshowService,
                 private addonBlockLoaderService: PepAddonBlockLoaderService) { 
 
     }
@@ -88,17 +91,6 @@ export class SlideshowEditorComponent implements OnInit {
             arr[i].id = i;
             arr[i].Title.Content = this.getOrdinal(i+1) + this.translate.instant('SLIDE_EDITOR.TITLE');
         }
-
-        // for(var i=0; i < numOfCards; i++){
-        //     let card = new ICardEditor();
-        //     card.id = i;
-            
-            
-
-        //     card.title = this.getOrdinal(i+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
-        //     card.description = this.translate.instant('GALLERY_EDITOR.AWESOMETEXTFORTHE') + ' ' + this.getOrdinal(i+1) + this.translate.instant('GALLERY_EDITOR.ITEM');
-        //     cards.push(card);
-        // }
 
         return arr;
     }
@@ -223,6 +215,10 @@ export class SlideshowEditorComponent implements OnInit {
             { key: 'sm', value: this.translate.instant('GROUP_SIZE.SM') },
             { key: 'md', value: this.translate.instant('GROUP_SIZE.MD') }
         ];
+
+        if(this.configuration.SlideshowConfig.OnLoadFlow){
+            this.onLoadFlowName = await this.slideshowService.getFlowName(this.configuration.SlideshowConfig.OnLoadFlow.FlowKey) || undefined;
+        }
 
         // When finish load raise block-editor-loaded.
         //this.hostEvents.emit({action: 'block-editor-loaded'});

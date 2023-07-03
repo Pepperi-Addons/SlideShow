@@ -99,7 +99,7 @@
         <label class="body-lg bold ellipsis">{{'SLIDE_EDITOR.CHOOSE_FLOW' | translate}}</label>
         <label class="body-xs normal">{{'SLIDE_EDITOR.FLOW_ONCLICK_DESC' | translate}}</label>
         <pep-button class="script-button" 
-                    [value]="configuration?.Slides[id].FirstButton?.Flow?.runScriptData?.ScriptKey ? configuration?.Slides[id].FirstButton?.Flow?.runScriptData?.ScriptKey : ('SLIDE_EDITOR.CHOOSE_FLOW' | translate)" 
+                    [value]="slideFirstBtnFlowName ? slideFirstBtnFlowName : ('SLIDE_EDITOR.CHOOSE_FLOW' | translate)" 
                     (buttonClick)="openFlowPickerDialog('FirstButton');">
         </pep-button>
     </div>
@@ -115,7 +115,7 @@
         <label class="body-lg bold ellipsis">{{'SLIDE_EDITOR.CHOOSE_FLOW' | translate}}</label>
         <label class="body-xs normal">{{'SLIDE_EDITOR.FLOW_ONCLICK_DESC' | translate}}</label>
         <pep-button class="script-button" 
-                    [value]="configuration?.Slides[id].SecondButton?.Flow?.runScriptData?.ScriptKey ? configuration?.Slides[id].SecondButton?.Flow?.runScriptData?.ScriptKey: ('SLIDE_EDITOR.CHOOSE_FLOW' | translate)" 
+                    [value]="slideSecondBtnFlowName ? slideSecondBtnFlowName : ('SLIDE_EDITOR.CHOOSE_FLOW' | translate)" 
                     (buttonClick)="openFlowPickerDialog('SecondButton');">
         </pep-button>
     </div>
