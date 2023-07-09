@@ -37,8 +37,8 @@ export class SlideshowService {
      async getFlowName(flowKey){
         let flowName = undefined;
         try{
-           // const flow = (await this.papiClient.userDefinedFlows.search({ KeyList: [flowKey], Fields: ['Key', 'Name']})).Objects;
-            flowName = 'TODO GET'; //flow?.length ? flow[0].Name : undefined;
+            const flow = (await this.papiClient.userDefinedFlows.search({ KeyList: [flowKey], Fields: ['Key', 'Name']})).Objects;
+            flowName = flow?.length ? flow[0].Name : undefined;
         }
         catch(err){
             flowName = undefined;

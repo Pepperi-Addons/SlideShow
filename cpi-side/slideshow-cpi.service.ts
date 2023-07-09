@@ -16,20 +16,33 @@ class SlidesowCpiService {
         return {};
     }
 
-    public async runFlowData(flowData, context){
+    public async runFlowData(flowData, data){
         let res;
         try{
-            res = await pepperi.flows.run({
-                // The runFlow object
-                RunFlow: flowData,  
-                // dynamic parameters that will be set to the flow data
-                Data: {
+            if(flowData){
                    
-                },
-                // optional, but needed for executing client actions within flow
-                // this is taken from the interceptor data
-                context: context
-            });
+                res = await pepperi.flows.run({
+                    // The runFlow object
+                    RunFlow: flowData,  
+                    // dynamic parameters that will be set to the flow data
+                    Data: data,
+                    // optional, but needed for executing client actions within flow
+                    // this is taken from the interceptor data
+                    context: undefined,
+                });
+
+            }
+            // res = await pepperi.flows.run({
+            //     // The runFlow object
+            //     RunFlow: flowData,  
+            //     // dynamic parameters that will be set to the flow data
+            //     Data: {
+                   
+            //     },
+            //     // optional, but needed for executing client actions within flow
+            //     // this is taken from the interceptor data
+            //     context: context
+            // });
         }
         catch(err){
             res = {

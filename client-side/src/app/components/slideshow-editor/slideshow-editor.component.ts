@@ -321,21 +321,37 @@ export class SlideshowEditorComponent implements OnInit {
     }
 
     openFlowPickerDialog() {
-    
-        const flow = this.configuration?.SlideshowConfig?.OnLoadFlow || null;
 
+        const flow = this.configuration?.SlideshowConfig?.OnLoadFlow;
+        let hostObj = {};
+        debugger;
+        if(flow){
+            hostObj = { 'runFlowData': { 'FlowKey': flow.FlowKey, 'FlowParams': flow.FlowParams }};
+        }
+        else{
+            hostObj = { 
+                fields: {
+                        onLoad: {
+                            Type: 'Object',
+                        },
+                        Test: {
+                            Type: 'String'
+                        }
+                    },
+                }
+        }
+        
         this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
             container: this.viewContainerRef,
             name: 'FlowPicker',
             size: 'large',
-            hostObject: {
-                'runFlowData': flow
-            },
-            hostEventsCallback: (event) => {
+            hostObject: hostObj,
+            hostEventsCallback: async (event) => {
                 if (event.action === 'on-done') {
-                               this.configuration.SlideshowConfig.OnLoadFlow = event.data;
+                                this.configuration.SlideshowConfig.OnLoadFlow = event.data?.FlowKey !== '' ? event.data : null;
                                 this.updateHostObject();
                                 this.dialogRef.close();
+                                this.onLoadFlowName = this.configuration.SlideshowConfig.OnLoadFlow ?  await this.slideshowService.getFlowName(this.configuration.SlideshowConfig.OnLoadFlow.FlowKey) : undefined;
                 } else if (event.action === 'on-cancel') {
                                 this.dialogRef.close();
                 }

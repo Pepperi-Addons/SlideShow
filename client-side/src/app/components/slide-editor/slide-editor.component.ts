@@ -106,11 +106,12 @@ export class SlideEditorComponent implements OnInit {
         ];  
         
         const slide = this.configuration.Slides[this.id];
-       
-        if(slide?.FirstButton.Flow?.FirstButton?.FlowKey){
+
+        if(slide?.FirstButton.Flow?.FlowKey){
             this.slideFirstBtnFlowName = await this.slideshowService.getFlowName(slide.FirstButton.Flow.FlowKey) || undefined;
+ 
         }
-        if(slide?.SecondButton.Flow?.FirstButton?.FlowKey){
+        if(slide?.SecondButton.Flow?.FlowKey){
             this.slideSecondBtnFlowName = await this.slideshowService.getFlowName(slide.SecondButton.Flow.FlowKey) || undefined;
         }
         
@@ -212,21 +213,30 @@ export class SlideEditorComponent implements OnInit {
     }
 
     openFlowPickerDialog(btnName: string) {
-        const flow = this.configuration.Slides[this.id][btnName].Flow || {};
+        const flow = this.configuration?.Slides[this.id][btnName].Flow || null;
+        let hostObj = {};
 
+        hostObj = Object.keys(flow).length ? { 'runFlowData': { 'FlowKey': flow.FlowKey, 'FlowParams': flow.FlowParams }} : {};
+        const self = this;
         this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
             container: this.viewContainerRef,
             name: 'FlowPicker',
             size: 'large',
-            hostObject: {
-                'runFlowData': flow
-            },
-            hostEventsCallback: (event) => {
+            hostObject: hostObj,
+            hostEventsCallback: async (event) => {
                 if (event.action === 'on-done') {
                         this.configuration.Slides[this.id][btnName].Flow = event.data;
                         this.updateHostObjectField(`Slides[${this.id}][${btnName}].Flow`, event.data, true);
-                        //this.updateHostObject(true);
                         this.dialogRef.close();
+                        
+                        // upfate flows buttons names by key 
+                        if(btnName === 'FirstButton'){
+                            self.slideFirstBtnFlowName = await (this.slideshowService.getFlowName(event.data.FlowKey) || undefined);
+                        }
+                        else{
+                            self.slideSecondBtnFlowName = await this.slideshowService.getFlowName(event.data.FlowKey) || undefined;
+                        }
+                       
                 } else if (event.action === 'on-cancel') {
                                 this.dialogRef.close();
                 }

@@ -10,7 +10,8 @@ router.post('/prepare_assets', async (req, res)=>{
     if(configuration?.Data?.SlideshowConfig?.OnLoadFlow){
         const cpiService = new SlidesowCpiService();
         // TODO - CALL TO FLOWS AND SET CONFIGURATION
-        //configuration = await cpiService.runFlowData(configuration?.Data?.SlideshowConfig?.OnLoadFlow, req);
+        configuration = await cpiService.runFlowData(configuration?.Data?.SlideshowConfig?.OnLoadFlow, configuration);
+        debugger;
     }
 
     if(!(await pepperi['environment'].isWebApp())) {
