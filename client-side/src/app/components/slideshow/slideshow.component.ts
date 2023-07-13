@@ -2,6 +2,7 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
 import { PepLayoutService, PepScreenSizeType } from '@pepperi-addons/ngx-lib';
 import { IHostObject, ISlideEditor, ISlideShow, ISlideshowEditor } from '../slideshow.model';
+import { CLIENT_ACTION_ON_SLIDE_BUTTON_CLICK } from 'shared';
 
 @Component({
   selector: 'slideshow',
@@ -149,17 +150,34 @@ export class SlideshowComponent implements OnInit {
         return res;
     }
 
-    // onSlideClicked(event){
-    //     // Parse the params if exist.
-    //     const params = this.getScriptParams(event.ScriptData);
-    
-    //     this.hostEvents.emit({
-    //         action: 'emit-event',
-    //         eventKey: 'RunScript',
-    //         eventData: {
-    //             ScriptKey: event.ScriptKey,
-    //             ScriptParams: params
-    //         }
-    //     });
-    // }
+     onSlideButtonClicked(event){
+        const flowData = event.flow;
+        const parameters = {
+            onLoad: this.configuration
+        }
+
+        if(flowData){
+            try{
+                const eventData = {
+                    detail: {
+                        eventKey: CLIENT_ACTION_ON_SLIDE_BUTTON_CLICK,
+                        eventData: { flow: flowData, parameters: parameters },
+                        completion: (res: any) => {
+                                if (res) {
+                                    debugger;
+                                } else {
+                                    debugger;
+                                    // Show default error.
+                                }
+                            }
+                    }
+                };
+                const customEvent = new CustomEvent('emit-event', eventData);
+                window.dispatchEvent(customEvent);
+            }
+            catch(err){
+
+            }
+        }
+     }
 }

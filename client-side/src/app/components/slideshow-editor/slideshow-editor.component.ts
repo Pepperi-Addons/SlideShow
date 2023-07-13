@@ -215,9 +215,10 @@ export class SlideshowEditorComponent implements OnInit {
             { key: 'sm', value: this.translate.instant('GROUP_SIZE.SM') },
             { key: 'md', value: this.translate.instant('GROUP_SIZE.MD') }
         ];
-
+       
         if(this.configuration.SlideshowConfig.OnLoadFlow){
-            this.onLoadFlowName = await this.slideshowService.getFlowName(this.configuration.SlideshowConfig.OnLoadFlow.FlowKey) || undefined;
+            const flow = JSON.parse(atob(this.configuration.SlideshowConfig.OnLoadFlow));
+            this.onLoadFlowName = await this.slideshowService.getFlowName(flow.FlowKey) || undefined;
         }
 
         // When finish load raise block-editor-loaded.
@@ -321,10 +322,9 @@ export class SlideshowEditorComponent implements OnInit {
     }
 
     openFlowPickerDialog() {
-
-        const flow = this.configuration?.SlideshowConfig?.OnLoadFlow;
+        const flow = JSON.parse(atob(this.configuration.SlideshowConfig.OnLoadFlow));
         let hostObj = {};
-        debugger;
+        
         if(flow){
             hostObj = { 'runFlowData': { 'FlowKey': flow.FlowKey, 'FlowParams': flow.FlowParams }};
         }
@@ -348,10 +348,11 @@ export class SlideshowEditorComponent implements OnInit {
             hostObject: hostObj,
             hostEventsCallback: async (event) => {
                 if (event.action === 'on-done') {
-                                this.configuration.SlideshowConfig.OnLoadFlow = event.data?.FlowKey !== '' ? event.data : null;
+                                const base64Flow = btoa(JSON.stringify(event.data));
+                                this.configuration.SlideshowConfig.OnLoadFlow = event.data?.FlowKey !== '' ? base64Flow : null;
                                 this.updateHostObject();
                                 this.dialogRef.close();
-                                this.onLoadFlowName = this.configuration.SlideshowConfig.OnLoadFlow ?  await this.slideshowService.getFlowName(this.configuration.SlideshowConfig.OnLoadFlow.FlowKey) : undefined;
+                                this.onLoadFlowName = this.configuration.SlideshowConfig.OnLoadFlow ?  await this.slideshowService.getFlowName(event.data?.FlowKey) : undefined;
                 } else if (event.action === 'on-cancel') {
                                 this.dialogRef.close();
                 }

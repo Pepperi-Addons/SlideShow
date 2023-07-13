@@ -9,9 +9,9 @@ router.post('/prepare_assets', async (req, res)=>{
     // check if flow configured to on load --> run flow (instaed of onload event)
     if(configuration?.Data?.SlideshowConfig?.OnLoadFlow){
         const cpiService = new SlidesowCpiService();
-        // TODO - CALL TO FLOWS AND SET CONFIGURATION
-        configuration = await cpiService.runFlowData(configuration?.Data?.SlideshowConfig?.OnLoadFlow, configuration);
-        debugger;
+        //CALL TO FLOWS AND SET CONFIGURATION
+        const res = await cpiService.runFlowData(configuration?.Data.SlideshowConfig.OnLoadFlow, configuration);
+        configuration = res?.configuration || configuration;
     }
 
     if(!(await pepperi['environment'].isWebApp())) {
@@ -62,7 +62,9 @@ export async function load(configuration: any) {
 /**********************************  client events starts /**********************************/
 pepperi.events.intercept(CLIENT_ACTION_ON_SLIDE_BUTTON_CLICK as any, {}, async (data): Promise<any> => {
     const cpiService = new SlidesowCpiService();
-    const res = cpiService.runFlowData(data.flow, data);
+    const flow = JSON.parse(Buffer.from(data.flow, 'base64').toString('utf8'));
+    const res = cpiService.getOptionsFromFlow(flow, data.parameters, data );
+    //const res = cpiService.runFlowData(data.flow, data);
     return res;
 });
 

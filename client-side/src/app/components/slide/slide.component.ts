@@ -14,7 +14,7 @@ import { CLIENT_ACTION_ON_SLIDE_BUTTON_CLICK } from 'shared'
 export class SlideComponent implements OnInit {
     @ViewChild('mainSlideCont', { static: true }) slideContainer: ElementRef;
 
-    //@Output() slideClick: EventEmitter<any> = new EventEmitter<any>();
+    @Output() buttonClick: EventEmitter<any> = new EventEmitter<any>();
 
     screenSize: PepScreenSizeType;
     
@@ -123,25 +123,6 @@ export class SlideComponent implements OnInit {
 
     onSlideButtonClicked(btnName: string){
         const flowData = this.slide[btnName] && this.slide[btnName].Flow;
-        try{
-            const eventData = {
-                detail: {
-                    eventKey: CLIENT_ACTION_ON_SLIDE_BUTTON_CLICK,
-                    eventData: { flow: flowData },
-                    completion: (res: any) => {
-                            if (res) {
-                            } else {
-                                // Show default error.
-                            }
-                        }
-                }
-            };
-
-            const customEvent = new CustomEvent('emit-event', eventData);
-            window.dispatchEvent(customEvent);
-        }
-        catch(err){
-
-        }
+        this.buttonClick.emit({flow: flowData}); 
     }
 }

@@ -106,13 +106,15 @@ export class SlideEditorComponent implements OnInit {
         ];  
         
         const slide = this.configuration.Slides[this.id];
-
-        if(slide?.FirstButton.Flow?.FlowKey){
-            this.slideFirstBtnFlowName = await this.slideshowService.getFlowName(slide.FirstButton.Flow.FlowKey) || undefined;
+    
+        if(slide?.FirstButton?.Flow){
+            const flow = JSON.parse(atob(slide?.FirstButton?.Flow));
+            this.slideFirstBtnFlowName = await this.slideshowService.getFlowName(flow.FlowKey) || undefined;
  
         }
-        if(slide?.SecondButton.Flow?.FlowKey){
-            this.slideSecondBtnFlowName = await this.slideshowService.getFlowName(slide.SecondButton.Flow.FlowKey) || undefined;
+        if(slide?.SecondButton?.Flow){
+            const flow = JSON.parse(atob(slide?.SecondButton?.Flow));
+            this.slideSecondBtnFlowName = await this.slideshowService.getFlowName(flow.FlowKey) || undefined;
         }
         
     }
@@ -213,10 +215,26 @@ export class SlideEditorComponent implements OnInit {
     }
 
     openFlowPickerDialog(btnName: string) {
-        const flow = this.configuration?.Slides[this.id][btnName].Flow || null;
+        const flow = JSON.parse(atob(this.configuration?.Slides[this.id][btnName].Flow));
         let hostObj = {};
+  
+        if(flow?.FlowKey !== ''){
+            hostObj = { 'runFlowData': { 'FlowKey': flow.FlowKey, 'FlowParams': flow.FlowParams }};
+        }
+        else{
+            hostObj = { 
+                fields: {
+                        onLoad: {
+                            Type: 'Object',
+                        },
+                        Test: {
+                            Type: 'String'
+                        }
+                    },
+                }
+        }
 
-        hostObj = Object.keys(flow).length ? { 'runFlowData': { 'FlowKey': flow.FlowKey, 'FlowParams': flow.FlowParams }} : {};
+        hostObj = Object.keys(flow).length && flow.FlowKey !== '' ? { 'runFlowData': { 'FlowKey': flow.FlowKey, 'FlowParams': flow.FlowParams }} : hostObj;
         const self = this;
         this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
             container: this.viewContainerRef,
@@ -225,10 +243,10 @@ export class SlideEditorComponent implements OnInit {
             hostObject: hostObj,
             hostEventsCallback: async (event) => {
                 if (event.action === 'on-done') {
-                        this.configuration.Slides[this.id][btnName].Flow = event.data;
-                        this.updateHostObjectField(`Slides[${this.id}][${btnName}].Flow`, event.data, true);
+                        const base64Flow = btoa(JSON.stringify(event.data));
+                        this.configuration.Slides[this.id][btnName].Flow =  base64Flow;
+                        this.updateHostObjectField(`Slides[${this.id}][${btnName}].Flow`, base64Flow, true);
                         this.dialogRef.close();
-                        
                         // upfate flows buttons names by key 
                         if(btnName === 'FirstButton'){
                             self.slideFirstBtnFlowName = await (this.slideshowService.getFlowName(event.data.FlowKey) || undefined);
