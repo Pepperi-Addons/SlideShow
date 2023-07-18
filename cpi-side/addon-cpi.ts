@@ -10,39 +10,36 @@ router.post('/prepare_assets', async (req, res)=>{
     if(configuration?.Data?.SlideshowConfig?.OnLoadFlow){
         const cpiService = new SlidesowCpiService();
         //CALL TO FLOWS AND SET CONFIGURATION
-        const res = await cpiService.runFlowData(configuration?.Data.SlideshowConfig.OnLoadFlow, configuration);
+        const res: any = await cpiService.getOptionsFromFlow(configuration?.Data.SlideshowConfig.OnLoadFlow, {onLoad: configuration}, req.context );
         configuration = res?.configuration || configuration;
     }
 
-    if(!(await pepperi['environment'].isWebApp())) {
-        const Slides = configuration.Data.Slides as any[];
+   /* if(!(await pepperi['environment'].isWebApp())) {
+        let Slides = configuration.Data.Slides as any[];
         if(Slides.length){
             await Promise.all(Slides.map(async (slide) => {
                 // overwrite the slides assetURL with the local file path
                 return slide.Image.AssetUrl = await getFilePath(slide.Image)
             }))
+            
             configuration.Data.Slides = Slides;
-    }
-    }
-
-    // RUN ON LOAD FLOW IF CUSTOMIZED
-
+         }
+    }*/
 
     res.json({Configuration: configuration});
 });
 
-async function getFilePath(slide) {
+async function getFilePath(image) {
     let fileUrl;
-        try {
-            const res = await pepperi.addons.pfs.uuid("ad909780-0c23-401e-8e8e-f514cc4f6aa2").schema("Assets").key(slide.Asset).get();
+    const assetKey = image.AssetKey;
+   
+    try {
+            const res = await pepperi.addons.pfs.uuid("ad909780-0c23-401e-8e8e-f514cc4f6aa2").schema("Assets").key(assetKey).get();
             fileUrl = res.URL;
-            console.log(fileUrl);
-            }
-        catch (error) {
-            console.error(error);
-            fileUrl = fixURLIfNeeded(slide.AssetUrl);        
         }
-    //}
+        catch (error) {
+           fileUrl = fixURLIfNeeded(image.AssetUrl);        
+        }
     return fileUrl;
 }
 
@@ -62,9 +59,7 @@ export async function load(configuration: any) {
 /**********************************  client events starts /**********************************/
 pepperi.events.intercept(CLIENT_ACTION_ON_SLIDE_BUTTON_CLICK as any, {}, async (data): Promise<any> => {
     const cpiService = new SlidesowCpiService();
-    const flow = JSON.parse(Buffer.from(data.flow, 'base64').toString('utf8'));
-    const res = cpiService.getOptionsFromFlow(flow, data.parameters, data );
-    //const res = cpiService.runFlowData(data.flow, data);
+    const res = await cpiService.getOptionsFromFlow(data.flow, data.parameters, data );
     return res;
 });
 

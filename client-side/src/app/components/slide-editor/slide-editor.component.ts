@@ -215,11 +215,24 @@ export class SlideEditorComponent implements OnInit {
     }
 
     openFlowPickerDialog(btnName: string) {
-        const flow = JSON.parse(atob(this.configuration?.Slides[this.id][btnName].Flow));
+        const flow = this.configuration?.Slides[this.id][btnName].Flow ? JSON.parse(atob(this.configuration?.Slides[this.id][btnName].Flow)) : null;
         let hostObj = {};
   
         if(flow?.FlowKey !== ''){
-            hostObj = { 'runFlowData': { 'FlowKey': flow.FlowKey, 'FlowParams': flow.FlowParams }};
+            hostObj = { 
+                runFlowData: { 
+                    FlowKey: flow.FlowKey, 
+                    FlowParams: flow.FlowParams 
+                },
+                fields: {
+                    onLoad: {
+                        Type: 'Object',
+                    },
+                    Test: {
+                        Type: 'String'
+                    }
+                }
+            };
         }
         else{
             hostObj = { 
@@ -234,7 +247,7 @@ export class SlideEditorComponent implements OnInit {
                 }
         }
 
-        hostObj = Object.keys(flow).length && flow.FlowKey !== '' ? { 'runFlowData': { 'FlowKey': flow.FlowKey, 'FlowParams': flow.FlowParams }} : hostObj;
+        //hostObj = Object.keys(flow).length && flow.FlowKey !== '' ? { 'runFlowData': { 'FlowKey': flow.FlowKey, 'FlowParams': flow.FlowParams }} : hostObj;
         const self = this;
         this.dialogRef = this.addonBlockLoaderService.loadAddonBlockInDialog({
             container: this.viewContainerRef,

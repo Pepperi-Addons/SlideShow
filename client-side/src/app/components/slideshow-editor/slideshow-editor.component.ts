@@ -322,13 +322,25 @@ export class SlideshowEditorComponent implements OnInit {
     }
 
     openFlowPickerDialog() {
-        const flow = JSON.parse(atob(this.configuration.SlideshowConfig.OnLoadFlow));
+        const flow = this.configuration.SlideshowConfig.OnLoadFlow ? JSON.parse(atob(this.configuration.SlideshowConfig.OnLoadFlow)) : null;
         let hostObj = {};
         
         if(flow){
-            hostObj = { 'runFlowData': { 'FlowKey': flow.FlowKey, 'FlowParams': flow.FlowParams }};
-        }
-        else{
+            hostObj = { 
+                runFlowData: { 
+                    FlowKey: flow.FlowKey, 
+                    FlowParams: flow.FlowParams 
+                },
+                fields: {
+                    onLoad: {
+                        Type: 'Object',
+                    },
+                    Test: {
+                        Type: 'String'
+                    }
+                }
+            };
+        } else{
             hostObj = { 
                 fields: {
                         onLoad: {

@@ -17,8 +17,9 @@ class SlidesowCpiService {
         return {};
     }
 
-    public  async getOptionsFromFlow(flowData: FlowObject, parameters: any, eventData: any): Promise<Array<{ Key: string, Title: string }>> {
-        const res: any = { Options: [] };
+    public  async getOptionsFromFlow(flowStr: string, parameters: any, eventData: any): Promise<any> {
+        const flowData: FlowObject = flowStr?.length ? JSON.parse(Buffer.from(flowStr, 'base64').toString('utf8')) : {};
+        
         if (flowData?.FlowKey?.length > 0) {
             const dynamicParamsData: any = {};
             
@@ -53,50 +54,14 @@ class SlidesowCpiService {
                 flowToRun['Context'] = eventData;
             }
             // Run the flow and return the options.
-            const flowRes = await pepperi.flows.run(flowToRun);
-            res.Options = flowRes?.Options || [];
+            const res = await pepperi.flows.run(flowToRun);
+            return res;
+        }
+        else{
+            return {};
         }
 
-        return res.Options;
-    }
-    
-    public async runFlowData(flowData, configuration){
-        let res;
-        const flow = JSON.parse(Buffer.from(flowData, 'base64').toString('utf8'));
-        try{
-            if(flow){
-                const runFlowObject: FlowObject = {
-                    FlowKey: flow.FlowKey,
-                    FlowParams: {
-                        onLoad: {
-                            Source: 'Dynamic',
-                            Value: 'configurationObj'
-                        }
-                    }
-                }
-
-                res = await pepperi.flows.run({
-                   // The runFlow object
-                   RunFlow: runFlowObject,
-                    // dynamic parameters that will be set to the flow data
-                    Data: {
-                        configurationObj: configuration
-                    },
-                    // optional, but needed for executing client actions within flow
-                    // this is taken from the interceptor data
-                    context: undefined,
-                });
-
-            }
-        }
-        catch(err){
-            res = {
-                success: false,
-                configuration: configuration
-            }
-        }
-
-        return res;
+        
     }
 
      /***********************************************************************************************/

@@ -3,7 +3,6 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { PepColorService, PepLayoutService, PepScreenSizeType, PepSizeType, PepStyleType } from '@pepperi-addons/ngx-lib';
 import { ISlideEditor, ISlideShow, ISlideshowEditor } from '../slideshow.model';
 import { PepColorSettings } from '@pepperi-addons/ngx-composite-lib/color-settings';
-import { CLIENT_ACTION_ON_SLIDE_BUTTON_CLICK } from 'shared'
 
 @Component({
     selector: 'slide',
