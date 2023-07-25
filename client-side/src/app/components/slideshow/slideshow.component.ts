@@ -153,7 +153,7 @@ export class SlideshowComponent implements OnInit {
      onSlideButtonClicked(event){
         const flowData = event.flow;
         const parameters = {
-            onLoad: this.configuration
+            OnLoad: this.configuration
         }
 
         if(flowData){

@@ -332,7 +332,7 @@ export class SlideshowEditorComponent implements OnInit {
                     FlowParams: flow.FlowParams 
                 },
                 fields: {
-                    onLoad: {
+                    OnLoad: {
                         Type: 'Object',
                     },
                     Test: {
@@ -343,7 +343,7 @@ export class SlideshowEditorComponent implements OnInit {
         } else{
             hostObj = { 
                 fields: {
-                        onLoad: {
+                        OnLoad: {
                             Type: 'Object',
                         },
                         Test: {

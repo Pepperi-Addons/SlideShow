@@ -225,7 +225,7 @@ export class SlideEditorComponent implements OnInit {
                     FlowParams: flow.FlowParams 
                 },
                 fields: {
-                    onLoad: {
+                    OnLoad: {
                         Type: 'Object',
                     },
                     Test: {
@@ -237,7 +237,7 @@ export class SlideEditorComponent implements OnInit {
         else{
             hostObj = { 
                 fields: {
-                        onLoad: {
+                        OnLoad: {
                             Type: 'Object',
                         },
                         Test: {

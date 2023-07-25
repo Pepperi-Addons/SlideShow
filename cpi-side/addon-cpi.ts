@@ -10,7 +10,7 @@ router.post('/prepare_assets', async (req, res)=>{
     if(configuration?.Data?.SlideshowConfig?.OnLoadFlow){
         const cpiService = new SlidesowCpiService();
         //CALL TO FLOWS AND SET CONFIGURATION
-        const res: any = await cpiService.getOptionsFromFlow(configuration?.Data.SlideshowConfig.OnLoadFlow, {onLoad: configuration}, req.context );
+        const res: any = await cpiService.getOptionsFromFlow(configuration?.Data.SlideshowConfig.OnLoadFlow, {OnLoad: configuration}, req.context );
         configuration = res?.configuration || configuration;
     }
 
