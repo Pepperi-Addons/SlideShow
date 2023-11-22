@@ -1,6 +1,8 @@
 import MyService from './my.service'
 import { Client, Request } from '@pepperi-addons/debug-server'
+import { Relation } from '@pepperi-addons/papi-sdk';
 import jwt from 'jwt-decode';
+import { blockName } from './metadata';
 
 // add functions here
 // this function will run on the 'api/foo' endpoint
@@ -32,6 +34,29 @@ export async function dimx_export(client:Client, request: Request): Promise<any>
         const service = new MyService(client);
         if (request.method == 'POST') {
             return service.exportDataSource(request.body);
+        }
+        else if (request.method == 'GET') {
+            throw new Error(`Method ${request.method} not supported`);
+        }
+    } catch(err) {
+        throw err;
+    }
+}
+
+export async function delete_relation(client:Client, request: Request) {
+    try {
+        const service = new MyService(client);
+        const pageComponentRelation: Relation = {
+            RelationName: "PageBlock",
+            Name: blockName,
+            Hidden: true,
+            Type: "NgComponent",
+            SubType: "NG14",
+            AddonUUID: client.AddonUUID
+        };
+        if (request.method == 'POST') {
+            const result = await service.upsertRelation(pageComponentRelation);
+            return {success:true, errorMessage: '' };
         }
         else if (request.method == 'GET') {
             throw new Error(`Method ${request.method} not supported`);
