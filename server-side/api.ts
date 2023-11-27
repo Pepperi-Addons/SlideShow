@@ -50,9 +50,12 @@ export async function delete_relation(client:Client, request: Request) {
             RelationName: "PageBlock",
             Name: blockName,
             Hidden: true,
+            ComponentName: `${blockName}Component`,
             Type: "NgComponent",
             SubType: "NG14",
-            AddonUUID: client.AddonUUID
+            AddonUUID: client.AddonUUID,
+            ModuleName: `${blockName}Module`,
+            AddonRelativeURL: blockName.toLowerCase()
         };
         if (request.method == 'POST') {
             const result = await service.upsertRelation(pageComponentRelation);
