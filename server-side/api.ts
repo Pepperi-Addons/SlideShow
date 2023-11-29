@@ -3,7 +3,6 @@ import { Client, Request } from '@pepperi-addons/debug-server'
 import { Relation } from '@pepperi-addons/papi-sdk';
 import jwt from 'jwt-decode';
 import { blockName } from './metadata';
-import { config } from '../client-side/src/app/components/addon.config';
 // add functions here
 // this function will run on the 'api/foo' endpoint
 // the real function is runnning on another typescript file
@@ -48,12 +47,12 @@ export async function delete_relation(client:Client, request: Request) {
         const service = new MyService(client);
         const pageComponentRelation: Relation = {
             RelationName: "PageBlock",
-            Name: blockName,
-            Hidden: true,
+            Name: `${blockName}(Do not use)`,
+            Hidden: false,
             ComponentName: `${blockName}Component`,
             Type: "NgComponent",
             SubType: "NG14",
-            AddonUUID: config.AddonUUID,
+            AddonUUID: client.AddonUUID,
             ModuleName: `${blockName}Module`,
             AddonRelativeURL: blockName.toLowerCase()
         };
