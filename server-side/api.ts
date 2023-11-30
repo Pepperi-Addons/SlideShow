@@ -48,7 +48,6 @@ export async function delete_relation(client:Client, request: Request) {
         const pageComponentRelation: Relation = {
             RelationName: "PageBlock",
             Name: blockName,
-            Hidden: false,
             ComponentName: `${blockName}Component`,
             Type: "NgComponent",
             SubType: "NG14",
