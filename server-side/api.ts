@@ -64,7 +64,7 @@ export async function delete_relation(client:Client, request: Request) {
             throw new Error(`Method ${request.method} not supported`);
         }
     } catch(err) {
-        throw err;
+        return {success:false, errorMessage: err };
     }
 }
 
