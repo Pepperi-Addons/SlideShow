@@ -65,6 +65,8 @@ async function runMigration(client){
             ElementsModule: 'WebComponents',
             ElementName: `slideshow-element-${client.AddonUUID}`,
             EditorElementName: `slideshow-editor-element-${client.AddonUUID}`,
+            Title: `${blockName} (Do not use)`,
+            Available: false,
             Schema: {
                 "Fields": {
                     "slideshowConfig": {
